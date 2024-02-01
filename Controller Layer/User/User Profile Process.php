@@ -1,6 +1,6 @@
-<!--=========================================
-    USER LOGIN PROCESS: Handles user login
-===========================================->
+<!--=================================================================
+    USER AUTHENTICATION PROCESS: Handles user login and register
+=================================================================--->
 <?php 
 
     /**
@@ -17,18 +17,22 @@
     //-------------------------------------------------------------------
 
     /**
-     * Method 1: Login using MySQLi Object Oriented
+     * ========================
+     *    USER PERSONAL INFO
+     * ========================
+     */
+    
+
+
+
+    /**
+     * ========================
+     *    USER PROFILE IMAGE
+     * ========================
      */
 
     
-    /**
-     * Method 2: Login using MySQLi Procedural
-     */
-
-
-    /**
-     * Method 3: Login using MySQLi PDO
-     */
+     
 
     
 
