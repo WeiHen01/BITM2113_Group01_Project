@@ -6,5 +6,6 @@
 ?>
 
 <!--========================================================================
-    User Register.php: Register page where user choose to sign up as user
+    Admin Report.php: Report page where admin can have a view and 
+                      report can be generated and exported as .pdf
 ==========================================================================-->
