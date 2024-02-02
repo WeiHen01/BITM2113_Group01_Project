@@ -21,7 +21,7 @@
 # BITM2113 WEB APPLICATION DEVELOPMENT
 
 This repository contains the source code for web development application
-which is used for project submission for **BITM2113 Web Development Application Group Project** in **Year 2023/2024 Semester 2**.
+which is used for **group project** submission for **BITM2113 Web Development Application** in **Year 2023/2024 Semester 2**.
 
 **Group Number: 0**
 
