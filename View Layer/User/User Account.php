@@ -2,6 +2,9 @@
     Check the session and get variables from other page
 =======================================================-->
 <?php 
+    session_start();
+
+    $user_id = $_SESSION['loggedUserId'];
 
 ?>
 
@@ -35,7 +38,7 @@
     <head>
 
         <!-- Title of the tab -->
-        <title> </title>
+        <title>User | Account</title>
 
     </head>
 

@@ -5,9 +5,9 @@
 
 ?>
 
-<!--===============================================================
-    User Login.php: Login page where user choose to login as user
-===================================================================-->
+<!--========================================================================
+    User Register.php: Register page where user choose to sign up as user
+==========================================================================-->
 <!--
     Features provided in this page:
     1. Vertical drawer
@@ -35,7 +35,7 @@
     <head>
 
         <!-- Title of the tab -->
-        <title>Login as Admin</title>
+        <title>Sign Up as Admin</title>
 
     </head>
 
@@ -52,8 +52,6 @@
     <script>
 
     </script>
-
-
 
 
 </html>

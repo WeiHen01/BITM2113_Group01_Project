@@ -35,7 +35,7 @@
     <head>
 
         <!-- Title of the tab -->
-        <title> </title>
+        <title>Login as User</title>
 
     </head>
 

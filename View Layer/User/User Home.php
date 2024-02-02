@@ -36,7 +36,7 @@
     <head>
 
         <!-- Title of the tab -->
-        <title> </title>
+        <title>User | Home</title>
 
     </head>
 
