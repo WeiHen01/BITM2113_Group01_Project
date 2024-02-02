@@ -1,7 +1,8 @@
 # User level
 
-This folder contains all functionalities that is authorized to 
-user level.
+This folder contains all front-ends that is authorized to 
+user level. The front-ends here will be linked to the functionalities
+at controller layer through interaction.
 
 ## Features provided:
 
