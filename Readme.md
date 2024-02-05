@@ -32,7 +32,7 @@ The project is developed to achieve following objectives and goal:
 
 ### Sustainable Development Goal (SDG):
 
-This project is specifically developed to aim for the SDG () which is .....
+This project is specifically developed to aim for the SDG (____) which is .....
 
 
 
