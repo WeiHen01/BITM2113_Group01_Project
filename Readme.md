@@ -7,12 +7,25 @@
 
 ## Problem Statements:
 
+The project is developed to achieve following problem statements:
+
+1. 
+
+2. 
+
+3. 
 
 
 
 ## Project Objective:
 
-The project is developed based on following objectives and goal:
+The project is developed to achieve following objectives and goal:
+
+1. 
+
+2. 
+
+3. 
 
 
 
