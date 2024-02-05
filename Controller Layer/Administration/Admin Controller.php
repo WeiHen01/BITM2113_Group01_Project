@@ -2,8 +2,6 @@
     ADMIN CONTROLLER: CRUD operations to manipulate Administation Information
 =============================================================================->
 
-
-
 <?php 
 
     // Import database connection file
