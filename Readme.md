@@ -4,17 +4,22 @@
 ## Introduction:
 
 
+
 ## Problem Statements:
+
 
 
 
 ## Project Objective:
 
+The project is developed based on following objectives and goal:
 
 
 
 
-### SDG Goal:
+### Sustainable Development Goal (SDG):
+
+This project is specifically developed to aim for the SDG () which is .....
 
 
 
@@ -26,6 +31,8 @@ which is used for **Group project** submission for **BITM2113 Web Development Ap
 **Group Number: 0**
 
 This project is developed by following team members:
+
+**Lecturer**: Madam 
 
 1. NG WEI HEN (B032110201) BITS S1G1
 
