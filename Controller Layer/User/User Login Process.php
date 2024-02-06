@@ -1,6 +1,6 @@
 <!--=========================================
     USER LOGIN PROCESS: Handles user login
-===========================================->
+==========================================-->
 <?php 
 
     /**
@@ -13,7 +13,9 @@
     include ('../../Database Layer/db_connection_MySQLi Procedural.php');
     // Connection 3: Using MySQLi PDO
     include ('../../Database Layer/db_connection_MySQLi PDO.php');
-
+    
+    include ('../../Database Layer/db_connection.php');
+    
     //-------------------------------------------------------------------
 
     /**
