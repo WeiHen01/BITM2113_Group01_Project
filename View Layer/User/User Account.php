@@ -4,6 +4,7 @@
 <?php 
     session_start();
 
+    // variables saved in the session - like SharedPreferences in Flutter
     $user_id = $_SESSION['loggedUserId'];
 
 ?>

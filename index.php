@@ -31,13 +31,13 @@
 
 
     <!-- FavIcon on the browser tab-->
-
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
 
     <!-- Head of the webpage -->
     <head>
 
         <!-- Title of the tab -->
-        <title> </title>
+        <title>BITM2113 | Admin Management System</title>
 
     </head>
 
