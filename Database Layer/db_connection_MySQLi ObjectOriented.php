@@ -16,7 +16,7 @@
     $password = "";
     
     //name of database
-    $dbname = "";
+    $dbname = "bitm2113_project";
     
     // Create connection
     $conn = new mysqli($servername, $username, $password, $dbname);
@@ -26,5 +26,5 @@
         die("Connection failed: " . $conn->connect_error);
     } 
 
-    echo "Connected successfully"; 
+    echo "Connected to database $dbname successfully"; 
 ?> 

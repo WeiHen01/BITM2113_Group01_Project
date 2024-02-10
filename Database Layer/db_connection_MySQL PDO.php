@@ -16,7 +16,7 @@
     $password = "";
     
     //name of database
-    $dbname = "";
+    $dbname = "bitm2113_project";
 
     try {
         // create connection
@@ -25,7 +25,7 @@
         // set the PDO error mode to exception
         $conn -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); 
         
-        echo "Connected successfully"; 
+        echo "Connected to database $dbname successfully"; 
     }
     catch(PDOException $e)
     {
