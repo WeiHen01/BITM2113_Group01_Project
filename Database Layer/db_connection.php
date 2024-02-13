@@ -26,35 +26,13 @@
     // Database name
     $dbname = "bitm2113_project";
 
-    
+    // Connection mysqli carry all define above variable to phpadmin
+    // die - php immediately stop the function
+                
+    $con=new mysqli($host,$user,$password,$dbname,$port,$socket)
+    or die (
+        'Could not connect to the database server.'.mysqli_connect_error()
+    );
+
     
 ?>
-
-<!-- Display the successful connection text in scrolling text -->
-<html>
-    <style>
-        marquee{
-            background-color: blue;
-            color: white;
-        }
-    </style>
-    <head>
-        <marquee scrollamount=30>
-            <?php 
-
-                // Connection mysqli carry all define above variable to phpadmin
-                // die - php immediately stop the function
-                
-                $con=new mysqli($host,$user,$password,$dbname,$port,$socket)
-                or die (
-                    'Could not connect to the database server.'.mysqli_connect_error()
-                );
-
-                $result = "Successful"
-                
-            ?>
-
-            Connected to database <strong><?php echo $dbname ?></strong> is <?php echo strtolower($result) ?>
-        </marquee>
-    </head>
-</html>

@@ -20,16 +20,29 @@
 <!DOCTYPE html>
 
     <!-- Import CSS References Stylesheets using URL Link-->
-    
+    <link rel="stylesheet" href="Index Style.css" />
 
 
 
     <!-- Embedded CSS style -->
     <style>
-        .nav-bar img{
-            width: 100px;
-            height: 100px
+
+        .nav-bar{
+            display: flex;
+            justify-content: space-between; /* Align items to both ends */
+            align-items: center;
         }
+        img[id="logo"]{
+            width: 60px;
+            height: 60px;
+        }
+        .nav-href{
+            float: right;
+            right: 0px;
+            position: absolute;
+            justify-content: space-between; /* Align items to both ends */
+        }
+        
     </style>
 
     <!-- Import Javascript / JQuery References -->
@@ -50,51 +63,72 @@
 
         <!-- Title of the tab -->
         <title>BITM2113 | Digital Online Learning System</title>
-
-        <div class="nav-bar">
-            
-            
-            <div>
-                <img alt="logo" src="https://png.pngtree.com/template/20190313/ourmid/pngtree-school-and-education-logo-image_67823.jpg">
-                <a href="index.php">Home</a>
-                <a href="#">Credit</a>
-                <a href="#">Contact</a>
-                <a href="#">Login</a>
-                <a href="#">Register</a>
-            </div>
-            
-            
-        </div>
-
+        
+        
+        
     </head>
 
 
     <!-- Body of the webpage -->
     <body>
+        <main>
+            <div class="big-wrapper light">
+                <img src="./img/shape.png" alt="" class="shape" />
+
+                <header>
+                    <div class="container">
+                        <div class="logo">
+                            <img src="https://png.pngtree.com/template/20190313/ourmid/pngtree-school-and-education-logo-image_67823.jpg" alt="Logo" onclick="window.location.href='index.php'"/>
+                            <h4 style="color: black" onclick="window.location.href='index.php'">Digital Online Education System</h4>
+                        </div>
+
+                        <div class="links">
+                            <ul>
+                                <li><a href="index.php">Home</a></li>
+                                <li><a href="#">Background</a></li>
+                                <li><a href="#">Contact</a></li>
+                                <!--"View Layer/User/User Login.php"-->
+                                <li><a href="Login.php">Log in</a></li>
+                                <li><a href="Register Selection.php" class="btn">Sign up</a></li>
+                            </ul>
+                        </div>
+
+                        <div class="overlay"></div>
+
+                        <div class="hamburger-menu">
+                            <div class="bar"></div>
+                        </div>
+                    </div>
+                </header>
+
+                <div class="showcase-area">
+                    <div class="container">
+                        <div class="left">
+                        <div class="big-title">
+                            <h1>Welcome to Digital Online Learning System!</h1>
+                        </div>
+                        <p class="text">
+                            Nowadays, education has arose into another norm or style due to pandemic 
+                            which isolates students cannot learn in face-to-face. Hence, it is necessary to
+                            develop this website for enabling the effectiveness for online learning system.
+                        </p>
+                        <div class="cta">
+                            <a href="View Layer/User/User Login.php" class="btn">Get started as a student</a>
+                        </div>
+                        </div>
+
+                        <div class="right">
+                            <img src="https://images.pexels.com/photos/163064/play-stone-network-networked-interactive-163064.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                                alt="Person Image" class="person" />
+                        </div>
+                    </div>
+                </div>
+
+               
+            </div>
+        </main>
         <!-- Sidebar / Vertical Drawer -->
-        
-
-        <!-- Content -->
-        <!-- Responsive Content Starts Here-->
-        <h1>Welcome to Digital Online Learning System!</h1>
-        <p>
-            Nowadays, education has arose into another norm or style due to pandemic 
-            which isolates students cannot learn in face-to-face. Hence, it is necessary to
-            develop this website for enabling the effectiveness for online learning system.
-        </p>
-        <img alt="education background" 
-        src="https://images.pexels.com/photos/163064/play-stone-network-networked-interactive-163064.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1">
-        
-
-        <br><br>
-
-        <p>Are you a ?</p>
-        <table>
-            <tr>
-                <td>Student</td>
-                <td>Lecturer</td>
-            </tr>
-        </table>
+                   
     </body>
 
 
