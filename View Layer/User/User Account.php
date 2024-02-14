@@ -4,8 +4,38 @@
 <?php 
     session_start();
 
+    // Establish connection to database
+    include ("../../Database Layer/db_connection.php");
+
     // variables saved in the session - like SharedPreferences in Flutter
-    $user_id = $_SESSION['loggedUserId'];
+    $useremail = $_SESSION["LoggedUserEmail"];
+
+    /**
+     * Process of finding user information based on user email
+     */
+
+    // Step 1: Generate SQL Statement
+    $sqlGetUser = $con -> prepare("SELECT * FROM student WHERE StudentEmail = ?");
+    
+    // Step 2: Filling in the parameter (?) in sqlStatement
+    $sqlGetUser -> bind_param("s", $useremail);
+
+    // Step 3: Execute the sql query
+    $sqlGetUser -> execute();
+
+    // Step 4: Obtain the result
+    $result = $sqlGetUser -> get_result();
+
+    // Step 5: Checking if the result retrieved is the only one record 
+    if($result -> num_rows == 1){
+
+        // Step 6: Fetch the data in associative array
+        $rowResult = $result -> fetch_assoc();
+
+        // Step 7: Getting certain attribute's value from the row / result retrieved
+        $username = $rowResult['StudentName'];
+        $usergender = $rowResult['StudentGender'];
+    }
 
 ?>
 
@@ -48,9 +78,11 @@
     <body>
 
         <!-- Horizontal Navigation bar -->
+        <p>Welcome! <?php echo $username ?></p>
 
 
         <!-- Left Vertical Sidebar / Drawer -->
+        
 
     </body>
 

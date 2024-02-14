@@ -52,13 +52,13 @@
 
 <body>
     <div class="wrapper">
-        <form action="">
+        <form action="../../Controller Layer/User/User Login Process.php" method = "POST">
             <h1>Student Login </h1>
             <div class="input-box">
-                <input type="text" placeholder="Username" required>
+                <input type="text" placeholder="Email" name = "useremail" required>
             </div>
             <div class="input-box">
-                <input type="password" placeholder="Password" required>
+                <input type="password" placeholder="Password" name = "password" required>
                 <i class="fa-regular fa-eye"></i>
             </div>
             <div class="remember-forgot">

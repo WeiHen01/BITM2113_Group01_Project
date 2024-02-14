@@ -64,8 +64,6 @@
         <!-- Title of the tab -->
         <title>BITM2113 | Digital Online Learning System</title>
         
-        
-        
     </head>
 
 
@@ -89,7 +87,7 @@
                                 <li><a href="#">Contact</a></li>
                                 <!--"View Layer/User/User Login.php"-->
                                 <li><a href="Login.php">Log in</a></li>
-                                <li><a href="Register Selection.php" class="btn">Sign up</a></li>
+                                <li><a href="Register.php" class="btn">Sign up</a></li>
                             </ul>
                         </div>
 

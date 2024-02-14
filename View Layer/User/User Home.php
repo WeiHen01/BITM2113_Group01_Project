@@ -2,6 +2,11 @@
     Check the session and get variables from other page
 =======================================================-->
 <?php 
+    if(session_status() == PHP_SESSION_NONE){
+        session_start();
+    }
+
+    $loggedUserEmail = $_SESSION["LoggedUserEmail"];
 
 ?>
 
@@ -45,6 +50,10 @@
     <body>
 
         <!-- Horizontal Navigation bar -->
+        <h3>Home Page</h3>
+        <p>Welcome! <?php echo $loggedUserEmail ?></p>
+
+        <a href = "User Account.php">Go to your account</a>
 
     </body>
 
