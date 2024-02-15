@@ -35,13 +35,13 @@
         // display the number of records retrieved based on the sql login statement
         $count = mysqli_num_rows($result);
 
-        // set a session for storing the value of student email
-        $_SESSION["LoggedUserEmail"] = $StudentEmail;
-
+       
         // Step 4: Check if the number of records is equal to 1, then will proceed to the home dashboard page
         // Which means the record is unique identified
         if($count === 1){
-            
+            // set a session for storing the value of student email
+            $_SESSION["LoggedUserEmail"] = $StudentEmail;
+
             echo "<script>
                     window.alert('Successful login! Welcome!');
                     window.location.href = '../../View Layer/User/User Home.php';

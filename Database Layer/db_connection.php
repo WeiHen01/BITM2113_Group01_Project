@@ -30,6 +30,7 @@
     // die - php immediately stop the function
     
     // type of connection: MySQLi object-oriented
+    // $con: a database connection variable
     $con=new mysqli($host, $user, $password, $dbname, $port, $socket)
     or die (
         'Could not connect to the database server.'.mysqli_connect_error()
@@ -37,8 +38,3 @@
 
     
 ?>
-
-
-<html>
-    <marquee><?php echo "Database $dbname is successfully connected!" ?></marquee>
-</html>

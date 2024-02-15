@@ -55,12 +55,57 @@
 
         <a href = "User Account.php">Go to your account</a>
 
+        <!-- Display the list -->
+        <table>
+            <!-- Table Header -->
+            <th>Matric Number</th>
+            <th>Name</th>
+
+            <!-- Functionality to retrieve a list based on condition -->
+            <?php 
+                // Step 1: Import database connection file
+                include ("../../Database Layer/db_connection.php");
+
+                // Step 2: Generate SQL statement: object-oriented
+                // $con : refer to database connection variable
+                $sqlList = $con -> prepare("SELECT * from student");
+
+                // Step 3: Execute SQL Statement
+                $sqlList -> execute();
+
+                // Step 4: Obtain the result
+                $result = $sqlList -> get_result();
+
+                // Step 5: Close the connection
+                $sqlList -> close();
+            ?>
+
+            <!-- Table content -->
+            <!-- Display the records retrieved -->
+            <?php while ($row = $result -> fetch_assoc()){ ?>
+                <tr>
+                    <td><?php echo $row["StudentMatricNo"]; ?></td>
+                    <td><?php echo $row["StudentName"]; ?></td>
+                </tr>
+            <?php } ?>
+        </table>
+
+        <!-- Step 1: Log out button -->
+        <button onclick = "confirmLogout()">Log out</button>
+
+
     </body>
 
 
     <!-- Javascript implementation -->
     <script>
-
+        // Step 2: Implement navigate to Log out process.php function
+        function confirmLogout(){
+            // pop up confirm dialog for asking confirmation to log out
+            if(window.confirm("Do you sure to log out?") == true){
+                window.location.href = '../../Controller Layer/User/User Logout Process.php';
+            }
+        }
     </script>
 
 

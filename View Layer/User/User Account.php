@@ -35,6 +35,10 @@
         // Step 7: Getting certain attribute's value from the row / result retrieved
         $username = $rowResult['StudentName'];
         $usergender = $rowResult['StudentGender'];
+        $userId = $rowResult['StudentID'];
+
+        // Assign the user id fetched to a new session
+        $_SESSION['LoggedUserID'] = $userId;
     }
 
 ?>
@@ -78,18 +82,35 @@
     <body>
 
         <!-- Horizontal Navigation bar -->
-        <p>Welcome! <?php echo $username ?></p>
-
+        
 
         <!-- Left Vertical Sidebar / Drawer -->
         
 
+
+        <p>Welcome! <?php echo $username ?></p>
+        <p>Gender: <?php echo $usergender ?></p>
+
+        <hr>
+        <!-- Step 1: Do update security to prevent unauthorised update -->
+        <button onclick = "updateSecurity()">Edit Profile</button>
+        
     </body>
 
 
     <!-- Javascript implementation -->
     <script>
+        // Step 2: Implement JS Function to request user for input current user password
+        function updateSecurity(){
+            var userCurrPassword = window.prompt("Please enter your current password: ");
 
+            // Step 3: Construct the URL with query parameter for passing javascript variable to php variable
+            var url = "../../Controller Layer/User/User Update Account Security.php?userInput=" 
+                        + encodeURIComponent(userCurrPassword);
+
+            // Step 4: Redirect to the PHP script
+            window.location.href = url;
+        }
     </script>
 
 
