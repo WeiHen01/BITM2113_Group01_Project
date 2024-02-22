@@ -93,7 +93,6 @@
         <!-- Step 1: Log out button -->
         <button onclick = "confirmLogout()">Log out</button>
 
-
     </body>
 
 
