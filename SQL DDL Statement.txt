@@ -1,0 +1,104 @@
+CREATE TABLE IF NOT EXISTS Student (
+
+	StudentID INT (11) AUTO_INCREMENT NOT NULL PRIMARY KEY,
+	StudentMatricNo VARCHAR (11) NOT NULL,
+	StudentName VARCHAR (50) NOT NULL,
+	StudentIC VARCHAR (12) NOT NULL,
+	StudentAge INT,
+	StudentGender VARCHAR (6) NOT NULL,
+	StudentAddress VARCHAR (100) NOT NULL,
+	StudentContact VARCHAR (15) NOT NULL,
+	StudentEmail VARCHAR (30) NOT NULL,
+	StudentPassword VARCHAR (40) NOT NULL,
+	StudentStatus VARCHAR (8) NOT NULL,
+	StudentImage LONGBLOB NOT NULL
+	
+);
+
+CREATE TABLE IF NOT EXISTS Lecturer (
+
+	LecturerID INT (11) AUTO_INCREMENT NOT NULL PRIMARY KEY,
+	LecturerName VARCHAR (50) NOT NULL,
+	LecturerGender VARCHAR (6) NOT NULL,
+	LecturerContact VARCHAR (15) NOT NULL,
+	StudentEmail VARCHAR (30) NOT NULL,
+	StudentPassword VARCHAR (40) NOT NULL,
+	LecturerMajor VARCHAR (40) NOT NULL,
+	StudentImage LONGBLOB NOT NULL
+	
+);
+
+CREATE TABLE IF NOT EXISTS Subject (
+
+	SubjectID INT (11) AUTO_INCREMENT NOT NULL PRIMARY KEY,
+	SubjectCode VARCHAR (8) NOT NULL,
+	SubjectName VARCHAR (30) NOT NULL,
+	SubjectDescription VARCHAR (100) NOT NULL
+	
+);
+
+CREATE TABLE IF NOT EXISTS Assignment (
+
+	AssignmentID INT (11) AUTO_INCREMENT NOT NULL PRIMARY KEY,
+	AssignmentName VARCHAR (30) NOT NULL,
+	AssignmentDesc VARCHAR (100) NOT NULL,
+	AssignmentDueDateTime DATETIME NOT NULL,
+	SubjectID INT (11) NOT NULL,
+
+	FOREIGN KEY (SubjectID) REFERENCES Subject(SubjectID)
+);
+
+
+CREATE TABLE IF NOT EXISTS Enrollment (
+
+	StudentID INT (11) NOT NULL,
+	SubjectID INT (11) NOT NULL,
+	EnrollTime TIME NOT NULL,
+	EnrollDate DATE NOT NULL,
+	
+	FOREIGN KEY (StudentID) REFERENCES Student(StudentID),
+	FOREIGN KEY (SubjectID) REFERENCES Subject(SubjectID)
+	
+);
+
+CREATE TABLE IF NOT EXISTS Submission (
+
+	AssignmentID INT (11) NOT NULL,
+	StudentID INT (11) NOT NULL,
+	StudentStatus VARCHAR (8) NOT NULL,
+	
+	FOREIGN KEY (StudentID) REFERENCES Student(StudentID),
+	FOREIGN KEY (AssignmentID) REFERENCES Assignment(AssignmentID)
+	
+);
+
+
+CREATE TABLE IF NOT EXISTS Lecture (
+
+	LectureID INT (11) AUTO_INCREMENT NOT NULL PRIMARY KEY ,
+	LecturerID INT (11) NOT NULL,
+	SubjectID INT (11) NOT NULL,
+	LectureDate DATE NOT NULL,
+	LectureStartTime TIME NOT NULL,
+	LectureEndTime TIME NOT NULL,
+	StudentStatus VARCHAR (8) NOT NULL,
+	
+	FOREIGN KEY (LecturerID) REFERENCES Lecturer(LecturerID),
+	FOREIGN KEY (SubjectID) REFERENCES Subject(SubjectID)
+	
+);
+
+
+CREATE TABLE IF NOT EXISTS Attendance (
+
+	AttendanceID INT (11) AUTO_INCREMENT NOT NULL PRIMARY KEY,
+	AttendanceDate DATE NOT NULL,
+	AttendanceTime TIME NOT NULL,
+	AttendanceStatus VARCHAR (11) NOT NULL,
+	LecturerID INT (11) NOT NULL,
+	StudentID INT (11) NOT NULL,
+
+	FOREIGN KEY (StudentID) REFERENCES Student(StudentID),
+	FOREIGN KEY (LecturerID) REFERENCES Lecturer(LecturerID)
+	
+);
