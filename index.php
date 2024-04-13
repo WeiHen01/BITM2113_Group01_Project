@@ -19,14 +19,15 @@
 <!--Telling browser using latest version of HTML documents - HTML5 -->
 <!DOCTYPE html>
 
-    <!-- Embedded CSS style -->
-    
+    <!-- External CSS style -->
+    <link rel="stylesheet" href="Index Style.css">
 
     <!-- Import Javascript / JQuery References -->
 
 
     <!-- Required meta tags -->
     <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 
@@ -37,7 +38,10 @@
     <head>
 
         <!-- Title of the tab -->
-        <title>BITM2113 | Digital Online Learning System</title>
+        <title>BITM2113 | H20 Harmony - Clean Water Initiatives</title>
+
+        <!-- Embedded CSS -->
+        
         
     </head>
 
@@ -49,6 +53,7 @@
 
 
         <!-- Content -->
+        
                    
     </body>
 
