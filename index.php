@@ -21,6 +21,7 @@
 
     <!-- External CSS style -->
     <link rel="stylesheet" href="Index Style.css">
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
 
     <!-- Import Javascript / JQuery References -->
 
@@ -41,7 +42,11 @@
         <title>BITM2113 | H20 Harmony - Clean Water Initiatives</title>
 
         <!-- Embedded CSS -->
-        
+        <style>
+            html{
+                font-family: 'Poppins';
+            }
+        </style>
         
     </head>
 
@@ -53,7 +58,7 @@
 
 
         <!-- Content -->
-        
+        <p>Welcome to H20 Harmony!</p>
                    
     </body>
 
