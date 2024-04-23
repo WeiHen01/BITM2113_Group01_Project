@@ -60,7 +60,8 @@
         <!-- Content -->
         <p>Welcome to H20 Harmony!</p>
 
-        <button onclick="window.location.href='./Register.php'">Login</button>
+        <button onclick="window.location.href='./Register.php'">Register</button>
+        <button onclick="window.location.href='./Login.php'">Login</button>
                    
     </body>
 
