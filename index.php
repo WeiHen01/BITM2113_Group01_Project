@@ -22,7 +22,6 @@
     <!-- External CSS style -->
     <link href="./output.css" rel="stylesheet">
     <link href='https://fonts.googleapis.com/css?family=Epilogue' rel='stylesheet'>
-    <script src="https://cdn.tailwindcss.com"></script>
 
     <!-- Import Javascript / JQuery References -->
 
@@ -61,7 +60,7 @@
         <!-- Content -->
         <p>Welcome to H20 Harmony!</p>
 
-        <button onclick="window.location.href='./Login.php'">Login</button>
+        <button onclick="window.location.href='./Register.php'">Login</button>
                    
     </body>
 
