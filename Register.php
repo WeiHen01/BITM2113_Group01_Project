@@ -36,7 +36,7 @@
         #role-selection{
            display: flex;
            gap: 2px; /* Adjust as needed */
-           padding: 5%;
+           padding: 3%;
            justify-content: space-between;
            align-items: center;
            text-align: center;
