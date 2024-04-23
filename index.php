@@ -20,8 +20,9 @@
 <!DOCTYPE html>
 
     <!-- External CSS style -->
-    <link rel="stylesheet" href="Index Style.css">
-    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+    <link href="./output.css" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Epilogue' rel='stylesheet'>
+    <script src="https://cdn.tailwindcss.com"></script>
 
     <!-- Import Javascript / JQuery References -->
 
@@ -44,7 +45,7 @@
         <!-- Embedded CSS -->
         <style>
             html{
-                font-family: 'Poppins';
+                font-family: 'Epilogue';
             }
         </style>
         
@@ -59,6 +60,8 @@
 
         <!-- Content -->
         <p>Welcome to H20 Harmony!</p>
+
+        <button onclick="window.location.href='./Login.php'">Login</button>
                    
     </body>
 

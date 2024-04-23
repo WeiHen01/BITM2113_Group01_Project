@@ -55,7 +55,6 @@
                   </script>";
            
         }
-    
 
         /**
          * Method 1: Login using MySQLi Object Oriented

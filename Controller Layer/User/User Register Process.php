@@ -31,8 +31,7 @@
         // Step 2: Generate SQL Statement for registration
         $sqlRegister = "INSERT INTO student (StudentID, StudentMatricNo, StudentName,
         StudentIC, StudentAge, StudentGender, StudentAddress, StudentContact, StudentEmail, StudentPassword, StudentStatus, StudentImage)
-        VALUES (0, '$studentMatricNo', '$studentName', '$studentIc', 0 , '$studentGender', '$studentAddress', '$studentContact',
-        '$studentEmail', '$studentHashPassword', 'Active', '')";
+        VALUES (0, '$studentMatricNo', '$studentName', '$studentIc', 0 , '$studentGender', '$studentAddress', '$studentContact', '$studentEmail', '$studentHashPassword', 'Active', '')";
         
         // Step 3: Establish Connection to database for execute SQL statement
         $sqlResult = mysqli_query($con, $sqlRegister);
@@ -41,9 +40,9 @@
         if($sqlResult == TRUE){
             // pop-up message for showing registration is successful
             echo "<script>
-                    window.alert('Registration is successful');
-                    window.location.href = '../../index.php';
-                 </script>";
+                window.alert('Registration is successful');
+                window.location.href = '../../index.php';
+            </script>";
             
         }
         else {
