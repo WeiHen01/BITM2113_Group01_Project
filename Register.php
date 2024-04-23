@@ -95,12 +95,12 @@
             float: right;
             font-size: 28px;
             font-weight: bold;
+            cursor: pointer;
+            padding: 1.5%;
         }
 
         #close:hover{
             color: black;
-            text-decoration: none;
-            cursor: pointer;
         }
 
         /** Modal: left-container */
@@ -171,6 +171,32 @@
             fill: #000000; /* neutral-400 */
         }
 
+        /* Button 26 */
+        .button {
+            position: absolute;
+            width: 42vw; 
+            height: 46px;  
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            font-size: 16px; 
+            margin-top: 2%;
+            line-height: 26px; 
+            font-weight: 400; 
+            color: #FFFFFFFF; /* white */
+            background: #00BDD6FF; /* primary-500 */
+            opacity: 1; 
+            border: none; 
+            border-radius: 8px; /* border-xl */
+            padding-left: 12px;
+        }
+
+        .button:hover {
+            background-color: #0056b3; /* Example background color on hover */
+            color: #f8f9fa; /* Example text color on hover */
+        }
+        
+
     </style>
     <body>
         
@@ -200,7 +226,9 @@
             <!-- Modal content -->
             <div class="modal-content">
                 <!--Close button -->
-                <i class="fa-solid fa-xmark" style="padding: 2%" id="close"></i>
+                <div id="close" >
+                    <i class="fa-solid fa-xmark" ></i>
+                </div>
 
                 <!-- Left container-->
                 <img class="image" src="./Assets/Image/Login_photo.jpeg" />
@@ -213,6 +241,9 @@
                     <p style="font-size: 16px">Enter your email to sign up.</p>
                     <div class="textbox">
                         <input type = "text" placeholder = "Enter Your Email" />
+                    </div>
+                    <div class="button" id="signupButton">
+                        <p>Continue</p>
                     </div>
                 </div>
                 
