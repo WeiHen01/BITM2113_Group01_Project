@@ -123,6 +123,7 @@
             line-height: 48px; 
             font-weight: 700; 
             color: #171A1FFF; /* neutral-900 */
+            word-wrap: break-word;
         }
 
         /** Right-container */
