@@ -172,9 +172,9 @@
         }
 
         /* Button 26 */
-        .button {
+        button {
             position: absolute;
-            width: 42vw; 
+            width: 43vw; 
             height: 46px;  
             display: flex; 
             align-items: center; 
@@ -191,11 +191,10 @@
             padding-left: 12px;
         }
 
-        .button:hover {
+        button:hover {
             background-color: #0056b3; /* Example background color on hover */
             color: #f8f9fa; /* Example text color on hover */
         }
-        
 
     </style>
     <body>
@@ -223,31 +222,35 @@
         <!-- The Modal -->
         <div id="myModal" class="modal">
             
-            <!-- Modal content -->
-            <div class="modal-content">
-                <!--Close button -->
-                <div id="close" >
-                    <i class="fa-solid fa-xmark" ></i>
-                </div>
-
-                <!-- Left container-->
-                <img class="image" src="./Assets/Image/Login_photo.jpeg" />
-                <div class="text">
-                    <p>"Thousands have lived without love, not one without water."</p>
-                </div>
-
-                <div class="text2">
-                    <p style="font-weight: 700; font-size: 32px">Sign Up</p>
-                    <p style="font-size: 16px">Enter your email to sign up.</p>
-                    <div class="textbox">
-                        <input type = "text" placeholder = "Enter Your Email" />
+            <form id="registrationForm" action="./Controller Layer/User/User Register Process.php" method="post">
+                <!-- Modal content -->
+                <div class="modal-content">
+                    <!--Close button -->
+                    <div id="close" >
+                        <i class="fa-solid fa-xmark" ></i>
                     </div>
-                    <div class="button" id="signupButton">
-                        <p>Continue</p>
+
+                    <!-- Left container-->
+                    <img class="image" src="./Assets/Image/Login_photo.jpeg" />
+                    <div class="text">
+                        <p>"Thousands have lived without love, not one without water."</p>
                     </div>
+
+                    <div class="text2">
+                        <p style="font-weight: 700; font-size: 32px">Sign Up</p>
+                        <p style="font-size: 16px">Enter your email to sign up.</p>
+                        <div class="textbox">
+                            <input type = "text" id="emailInput" placeholder = "Enter Your Email" />
+                        </div>
+                        <!-- Add id="errorText" for displaying error messages -->
+                        <div id="errorText" style ="color: red;"></div>
+                        <div class="button" id="signupButton" onclick="validateForm()"">
+                            <button type="submit">Continue</button>
+                        </div>
+                    </div>
+                    
                 </div>
-                
-            </div>
+            </form>
         
         </div>
 
@@ -264,6 +267,9 @@
 
             // Get the <span> element that closes the modal
             var i = document.getElementById("close");
+
+            var signUp = document.getElementById("signUpButton");
+
 
             // When the user clicks on the button, open the modal
             btn.onclick = function() {
@@ -287,6 +293,31 @@
             window.onclick = function(event) {
                 if (event.target == modal) {
                     modal.style.display = "none";
+                }
+            }
+
+            function validateForm() {
+                var emailInput = document.getElementById("emailInput");
+                var errorText = document.getElementById("errorText");
+                var email = emailInput.value;
+
+                // Regular expression for email validation
+                var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+                // Check if the email is empty
+                if (email.trim() === "") {
+                    errorText.innerText = "Please enter your email.";
+                    return false;
+                }
+                // Check if the email matches the regex pattern
+                else if (!emailRegex.test(email)) {
+                    errorText.innerText = "Please enter a valid email address.";
+                    return false;
+                } else {
+                    // If the email is valid, submit the form or perform other actions
+                    // For now, just log a success message
+                    console.log("Form submitted successfully!");
+                    return true;
                 }
             }
         </script>
