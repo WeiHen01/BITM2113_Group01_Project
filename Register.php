@@ -134,10 +134,15 @@
             color: #171A1FFF; /* neutral-900 */
         }
 
+        .textbox {
+            position: relative;
+            margin-bottom: 10px; /* Adjust as needed */
+        }
+
        
         .textbox input {
             font-family: 'Epilogue';
-            width: 42vw; 
+            width: 41vw; 
             height: 46px;
             font-size: 14px; 
             line-height: 22px; 
@@ -146,7 +151,7 @@
             border-radius: 8px; /* border-xl */
             border-width: 0px; 
             outline: none; 
-            padding-left: 12px;
+            padding-left: 25px; /* Adjust the padding to make space for the icon */
         }
         /* hover */
         .textbox input:hover {
@@ -238,10 +243,24 @@
                     </div>
 
                     <div class="text2">
-                        <p style="font-weight: 700; font-size: 32px">Sign Up</p>
+                        <p style="font-weight: 700; font-size: 32px">Sign Up as <span id="selectedRole"></span></p>
                         <p style="font-size: 16px">Enter your email to sign up.</p>
+                        <input type="text" name="selectedRole" id="selectedRoleInput">
                         <div class="textbox">
-                            <input type = "text" id="emailInput" placeholder = "Enter Your Email" />
+                            <i style = "position: absolute; left: 5px; top: 13px" class="fas fa-envelope" id="icons-1"></i> <!-- Icon for email -->
+                            <input type = "text" name = "Email" id="emailInput" placeholder = "Enter Your Email" />
+                        </div>
+                        <br />
+                        <div class="textbox">
+                            <i style = "position: absolute; left: 5px; top: 13px" class="fas fa-lock" id="icons-2"></i> <!-- Icon for password -->
+                            <input type = "text" name = "Password" id="passwordInput" placeholder = "Set Your Password" />
+                            <i style = "position: absolute; right: 25px; top: 13px" class="fas fa-eye" id="togglePassword"></i> <!-- Toggle button for password -->
+                        </div>
+                        <br />
+                        <div class="textbox">
+                            <i style = "position: absolute; left: 5px; top: 13px" class="fas fa-lock" id="icons-3"></i> <!-- Icon for password -->
+                            <input type = "text" name = "ConPassword" id="confirmPasswordInput" placeholder = "Confirm Your Password" />
+                            <i style = "position: absolute; right: 25px; top: 13px" class="fas fa-eye" id="toggleConfirmPassword"></i>
                         </div>
                         <!-- Add id="errorText" for displaying error messages -->
                         <div id="errorText" style ="color: red;"></div>
@@ -271,18 +290,29 @@
 
             var signUp = document.getElementById("signUpButton");
 
+            var selectedRole;
+
 
             // When the user clicks on the button, open the modal
             btn.onclick = function() {
                 modal.style.display = "block";
+                selectedRole = "Normal User"; // Set the selected role
+                document.getElementById("selectedRole").innerText = selectedRole;
+                document.getElementById("selectedRoleInput").value = selectedRole;
             }
             // When the user clicks on the button, open the modal
             btn2.onclick = function() {
                 modal.style.display = "block";
+                selectedRole = "Organization"; // Set the selected role
+                document.getElementById("selectedRole").innerText = selectedRole;
+                document.getElementById("selectedRoleInput").value = selectedRole;
             }
             // When the user clicks on the button, open the modal
             btn3.onclick = function() {
                 modal.style.display = "block";
+                selectedRole = "Administration"; // Set the selected role
+                document.getElementById("selectedRole").innerText = selectedRole;
+                document.getElementById("selectedRoleInput").value = selectedRole;
             }
 
             // When the user clicks on <span> (x), close the modal
@@ -321,6 +351,35 @@
                     return true;
                 }
             }
+            // JavaScript for toggling password visibility
+            document.getElementById("togglePassword").addEventListener("click", function() {
+                var passwordInput = document.getElementById("passwordInput");
+                var toggleIcon = document.getElementById("togglePassword");
+                if (passwordInput.type === "password") {
+                    passwordInput.type = "text";
+                    toggleIcon.classList.remove("fa-eye-slash");
+                    toggleIcon.classList.add("fa-eye");
+                } else {
+                    passwordInput.type = "password";
+                    toggleIcon.classList.remove("fa-eye");
+                    toggleIcon.classList.add("fa-eye-slash");
+                }
+            });
+
+            document.getElementById("toggleConfirmPassword").addEventListener("click", function() {
+                var confirmPasswordInput = document.getElementById("confirmPasswordInput");
+                var toggleIcon = document.getElementById("toggleConfirmPassword");
+                if (confirmPasswordInput.type === "password") {
+                    confirmPasswordInput.type = "text";
+                    toggleIcon.classList.remove("fa-eye-slash");
+                    toggleIcon.classList.add("fa-eye");
+                } else {
+                    confirmPasswordInput.type = "password";
+                    toggleIcon.classList.remove("fa-eye");
+                    toggleIcon.classList.add("fa-eye-slash");
+                }
+            });
+
         </script>
 
         

@@ -17,36 +17,75 @@
     if($_SERVER["REQUEST_METHOD"] == "POST"){
 
         // Step 1: Obtain value for each input in the form and assign it to the variable
-        $studentMatricNo = $_POST["matricNo"];
-        $studentName = $_POST["studentName"];
-        $studentIc = $_POST["studentIC"];
-        $studentGender = $_POST["Gender"];
-        $studentAddress = $_POST["Address"];
-        $studentContact = $_POST["Contact"];
-        $studentEmail = $_POST["Email"];
-        $studentPassword = $_POST["Password"];
-
-        $studentHashPassword = md5($studentPassword);
-
-        // Step 2: Generate SQL Statement for registration
-        $sqlRegister = "INSERT INTO student (StudentID, StudentMatricNo, StudentName,
-        StudentIC, StudentAge, StudentGender, StudentAddress, StudentContact, StudentEmail, StudentPassword, StudentStatus, StudentImage)
-        VALUES (0, '$studentMatricNo', '$studentName', '$studentIc', 0 , '$studentGender', '$studentAddress', '$studentContact', '$studentEmail', '$studentHashPassword', 'Active', '')";
         
-        // Step 3: Establish Connection to database for execute SQL statement
-        $sqlResult = mysqli_query($con, $sqlRegister);
+        $email = $_POST["Email"];
+        $input_password = $_POST["Password"];
+        $role = $_POST["selectedRole"];
+        
+        // Encrypt the password 
+        $password = md5($input_password);
 
-        // Step 4: Checking if the insert statement is successfully executed, it will navigate back to index.php
-        if($sqlResult == TRUE){
-            // pop-up message for showing registration is successful
-            echo "<script>
-                window.alert('Registration is successful');
-                window.location.href = '../../index.php';
-            </script>";
+        // Execute SQL based on role selection
+        if($role == "Normal User"){
+            // Step 2: Generate SQL Statement for registration
+            $sqlRegister = "INSERT INTO user (`UserId`, `Username`, `Email`, `Password`, `Contact`, `ProfileImage`, `Status`)
+            VALUES (0, '', '$email', '$password', '', '', 'Registered' )";
             
+            // Step 3: Establish Connection to database for execute SQL statement
+            $sqlResult = mysqli_query($con, $sqlRegister);
+
+            // Step 4: Checking if the insert statement is successfully executed, it will navigate back to index.php
+            if($sqlResult == TRUE){
+                // pop-up message for showing registration is successful
+                echo "<script>
+                    window.alert('User Registration is successful');
+                    window.location.href = '../../index.php';
+                </script>";
+                
+            }
+            else {
+                echo "<script>window.alert('Fail to register!');</script>";
+            }
+        }
+        else if($role == "Organization"){
+            // Step 2: Generate SQL Statement for registration
+            $sqlRegister = "INSERT INTO organization(`OrgId`, `OrgName`, `OrgEmail`, `OrgType`, `OrgPassword`, `OrgContact`, `OrgStatus`, `OrgImage`) VALUES (0,'','$email','','$password','','Registered','')";
+            
+            // Step 3: Establish Connection to database for execute SQL statement
+            $sqlResult = mysqli_query($con, $sqlRegister);
+
+            // Step 4: Checking if the insert statement is successfully executed, it will navigate back to index.php
+            if($sqlResult == TRUE){
+                // pop-up message for showing registration is successful
+                echo "<script>
+                    window.alert('Organization Registration is successful');
+                    window.location.href = '../../index.php';
+                </script>";
+                
+            }
+            else {
+                echo "<script>window.alert('Fail to register!');</script>";
+            }
         }
         else {
-            echo "<script>window.alert('Fail to register!');</script>";
+            // Step 2: Generate SQL Statement for registration
+            $sqlRegister = "INSERT INTO admin(`AdminId`, `AdminName`, `AdminEmail`, `AdminPassword`, `AdminContact`, `ProfileImage`) VALUES (0,'','$email','$password','','')";
+            
+            // Step 3: Establish Connection to database for execute SQL statement
+            $sqlResult = mysqli_query($con, $sqlRegister);
+
+            // Step 4: Checking if the insert statement is successfully executed, it will navigate back to index.php
+            if($sqlResult == TRUE){
+                // pop-up message for showing registration is successful
+                echo "<script>
+                    window.alert('Admin Registration is successful');
+                    window.location.href = '../../index.php';
+                </script>";
+                
+            }
+            else {
+                echo "<script>window.alert('Fail to register!');</script>";
+            }
         }
 
         /**
