@@ -44,9 +44,7 @@
             color: #171A1FFF; /* neutral-900 */
         }
 
-        .right-container{
-            display: flex;
-        }
+        
 
 
         
@@ -57,9 +55,7 @@
             
             <p style="font-weight: 700; font-size: 48px; ">Welcome back! 👋</p>
 
-            <div class="right-container">
-
-            </div>
+            
 
         </div>
 
