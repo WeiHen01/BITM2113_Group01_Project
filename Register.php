@@ -240,12 +240,12 @@
             </div>
 
             <div id="role2" style="background-color: rgba(255, 255, 255, 0.5);; font-weight: 600; " >
-                <img src="./Assets/Image/User.png" />
+                <img src="./Assets/Image/Organization.png" />
                 <p class="text-3xl font-bold">Organization</p>
             </div>
 
             <div id="role3" style="background-color: rgba(255, 255, 255, 0.5);; font-weight: 600;">
-                <img src="./Assets/Image/User.png" />
+                <img src="./Assets/Image/Admin.png" />
                 <p class="text-3xl font-bold">Administration</p>
             </div>
         </div>
