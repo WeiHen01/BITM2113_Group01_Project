@@ -228,7 +228,7 @@
         <!-- The Modal -->
         <div id="myModal" class="modal">
             
-            <form id="registrationForm" action="./Controller Layer/User/User Register Process.php" method="post">
+            <form id="registrationForm" action="./Controller Layer/Register Process.php" method="post">
                 <!-- Modal content -->
                 <div class="modal-content">
                     <!--Close button -->
