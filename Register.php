@@ -179,6 +179,7 @@
 
         /* Button 26 */
         button {
+            font-family: 'Epilogue';
             position: absolute;
             width: 43vw; 
             height: 46px;  
@@ -202,27 +203,33 @@
             color: #f8f9fa; /* Example text color on hover */
         }
 
-        .back-button {
+        /* Back button style */
+        #backButton {
             position: absolute;
             top: 10px;
             left: 10px;
-            font-size: 16px;
-            color: #000000; /* neutral-900 */
-            background-color: #FFFFFF; /* white */
-            border: none;
-            padding: 10px 20px;
-            border-radius: 8px; /* border-xl */
             cursor: pointer;
+            z-index: 9999;
+            color: black;
+            padding: 10px;
+            border-radius: 5px;
+            font-weight: bold;
         }
 
-        .back-button:hover {
-            background-color: #CCCCCC; /* Example background color on hover */
-            color: #000000; /* Example text color on hover */
+        #backButton:hover{
+            transition: 0.3s;
+            color: #0056b3
         }
+
+        
 
     </style>
     <body>
-        
+        <!-- Back button -->
+        <div id="backButton" style="display: block;" onclick="window.location.href='./index.php'">
+            <i class="fas fa-arrow-left"></i> Back
+        </div>
+
         <h1 style = "padding-top: 3%"><center>Let's get started!</center></h1>
         <h2 style = "padding-top: 5px"><center>Are you a?</center></h2>
 
@@ -243,8 +250,7 @@
             </div>
         </div>
 
-        <!-- Back Button -->
-        <button class="back-button" onclick="goBack()">Back</button>
+        
 
         <!-- The Modal -->
         <div id="myModal" class="modal">
@@ -266,7 +272,7 @@
                     <div class="text2">
                         <p style="font-weight: 700; font-size: 32px">Sign Up as <span id="selectedRole"></span></p>
                         <p style="font-size: 16px">Enter your email to sign up.</p>
-                        <input type="text" name="selectedRole" id="selectedRoleInput">
+                        <input type="hidden" name="selectedRole" id="selectedRoleInput">
                         <div class="textbox">
                             <i style = "position: absolute; left: 5px; top: 13px" class="fas fa-envelope" id="icons-1"></i> <!-- Icon for email -->
                             <input type = "text" name = "Email" id="emailInput" placeholder = "Enter Your Email" />
@@ -400,6 +406,10 @@
                     toggleIcon.classList.add("fa-eye-slash");
                 }
             });
+
+            
+
+            
 
         </script>
 

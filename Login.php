@@ -127,8 +127,29 @@
         object-fit: fill;
         border-radius: 8px;
     }
+
+    #backButton {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        cursor: pointer;
+        z-index: 9999;
+        color: black;
+        padding: 10px;
+        border-radius: 5px;
+        font-weight: bold;
+    }
+
+    #backButton:hover{
+        transition: 0.3s;
+        color: #0056b3
+    }
 </style>
 <body>
+    <!-- Back button -->
+    <div id="backButton" style="display: block;" onclick="window.location.href='./index.php'">
+        <i class="fas fa-arrow-left"></i> Back
+    </div>
     <form id="loginForm" action="./Controller Layer/Login Process.php" method="POST">
         <div class="container">
             <div class="column1">
@@ -151,15 +172,15 @@
                         <i style="position: absolute; right: 10px; top: 13px" class="fas fa-eye" id="togglePassword"></i> <!-- Toggle button for password -->
                     </div>
 
+                    <div style="height: 5vh"></div>
+
                     <div class="button" id="signupButton" onclick="validateForm()">
                         <button type="submit" style="color: #FFFFFFFF; background: #00BDD6FF; transition: #0056b3 0.3s;" onmouseover="this.style.backgroundColor='#0056b3';" onmouseout="this.style.backgroundColor='#00BDD6FF';">Login</button>
                     </div>
 
-                    <div class="button" id="signupButton" onclick="validateForm()">
-                        <button type="button" style = "color: #000000; background: #FFFFFF;" onClick = "window.location.href = './index.php';" onmouseover="this.style.backgroundColor='#0056b3'; this.style.color='#ffffff'" onmouseout="this.style.backgroundColor='#FFFFFF'; this.style.color='#000000'">Back</button>
-                    </div>
+                    
 
-                    <center><p style = "font-size: 10px">Don't have an account? <a><b>Sign Up now</b></a></p></center>
+                    <center><p style = "font-size: 13px">Don't have an account? <a href="./Register.php" onmouseover="this.style.color='#0056b3'" onmouseout="this.style.color='#000000'" style="text-decoration: none; color: #000000" ><b>Sign Up now</b></a></p></center>
 
 
             </div>
