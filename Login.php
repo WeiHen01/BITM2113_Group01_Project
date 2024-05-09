@@ -165,7 +165,7 @@
                 <h2 style="font-family: Epilogue; font-size: 24px;">You choose to login as:</h2>
                 <!-- Dropdown menu -->
                 <select id="imageSelect" onchange="displayImage()" name="Role">
-                    <option value="None">Select your role</option>
+                    <option value="None">-</option>
                     <option value="Normal User">Normal User</option>
                     <option value="Organization">Organization</option>
                     <option value="Administration">Administration</option>

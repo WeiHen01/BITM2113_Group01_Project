@@ -27,6 +27,10 @@
         // Encrypt the password 
         $password = md5($UserPassword);
 
+        if($role === null || $UserEmail === null || $UserPassword === null){
+            echo "<script>window.alert('Empty Record');</script>";
+        }
+
         if($role === "Normal User"){
            // Step 2: Generate SQL Statement for login
             $sqlLogin = "SELECT * FROM user 
