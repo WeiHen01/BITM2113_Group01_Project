@@ -158,6 +158,8 @@
                     <div class="button" id="signupButton" onclick="validateForm()">
                         <button type="button" style = "color: #000000; background: #FFFFFF;" onClick = "window.location.href = './index.php';" onmouseover="this.style.backgroundColor='#0056b3'; this.style.color='#ffffff'" onmouseout="this.style.backgroundColor='#FFFFFF'; this.style.color='#000000'">Back</button>
                     </div>
+
+                    <p style = "font-size: 10px">Don't have an account? <a><b>Sign Up now</b></a></p>
             </div>
 
             <div class="column2">

@@ -202,6 +202,24 @@
             color: #f8f9fa; /* Example text color on hover */
         }
 
+        .back-button {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            font-size: 16px;
+            color: #000000; /* neutral-900 */
+            background-color: #FFFFFF; /* white */
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px; /* border-xl */
+            cursor: pointer;
+        }
+
+        .back-button:hover {
+            background-color: #CCCCCC; /* Example background color on hover */
+            color: #000000; /* Example text color on hover */
+        }
+
     </style>
     <body>
         
@@ -224,6 +242,9 @@
                 <p class="text-3xl font-bold">Administration</p>
             </div>
         </div>
+
+        <!-- Back Button -->
+        <button class="back-button" onclick="goBack()">Back</button>
 
         <!-- The Modal -->
         <div id="myModal" class="modal">
