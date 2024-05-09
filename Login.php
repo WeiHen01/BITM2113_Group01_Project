@@ -25,40 +25,66 @@
             height: 100vh;
         }
         
-        /* Image 32 */
         /* Container 21 */
         .container {
-            margin: 2%;
-            padding: 2%;
-            width: 92%;
-            height: 84vh; /* Set the height of the container */
-            background: rgba(255, 255, 255, 0.5); /* white */
-            border-radius: 6px; /* border-m */
+            position: absolute; 
+            padding: 1%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 86vw;
+            height: 84vh;
+            background: #FFFFFF50; /* white */
+            border-radius: 4px; /* border-m */
             box-shadow: 0px 0px 1px #171a1f, 0px 0px 2px #171a1f; /* shadow-xs */
         }
-
-        p { 
-             
-            width: 35vw; 
-            font-family: Epilogue; /* Heading */
-            color: #171A1FFF; /* neutral-900 */
-        }
-
         
 
+        /* Textbox 7 */
+        .textbox {
+            position: absolute; 
+            left: 1%; 
+            display: flex;
+            flex-direction: column;
+        }
+
+        .textbox input {
+            width: 35vw; 
+            height: 7vh;
+            padding-left: 44px; 
+            padding-right: 16px; 
+            font-family: Inter; 
+            font-size: 16px; 
+            line-height: 26px; 
+            font-weight: 400; 
+            background: #F3F4F6FF; /* neutral-200 */
+            border-radius: 8px; /* border-xl */
+            border-width: 0px; 
+            outline: none; 
+        }
 
         
 
     </style>
     <body>
-        <div class="container">
-            
-            <p style="font-weight: 700; font-size: 48px; ">Welcome back! 👋</p>
+        <div class = "container">
+            <h1 style="font-family: Epilogue; font-size: 50px;">Welcome back 👋</h1>
+            <h3 style="font-family: Epilogue; font-size: 24px; font-weight: 400">Log in your account</h3>
+            <form>
+                <div class = "textbox">
+                    <b>Your email</b>
+                    <input type = "text">
+                </div>
 
-            
+                <div style = "height: 15%"></div> 
 
+                <div class = "textbox">
+                    <b>Password</b>
+                    <input type = "text">
+                </div>
+
+                
+            </form>
         </div>
-
-        
     </body>
 </html>
