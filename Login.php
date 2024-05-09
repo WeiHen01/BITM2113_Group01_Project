@@ -62,7 +62,7 @@
 
     .textbox input {
         font-family: 'Epilogue';
-        width: 47vw; /* Fill the entire width of the parent container */
+        width: 45vw; /* Fill the entire width of the parent container */
         height: 46px;
         font-size: 14px;
         line-height: 22px;
@@ -72,6 +72,7 @@
         border-width: 0px;
         outline: none;
         padding-left: 35px; /* Adjust the padding to make space for the icon */
+        padding-right: 38px;
     }
 
     /* Button 26 */
@@ -86,8 +87,6 @@
         margin-top: 2%;
         line-height: 26px;
         font-weight: 400;
-        color: #FFFFFFFF; /* white */
-        background: #00BDD6FF; /* primary-500 */
         opacity: 1;
         border: none;
         border-radius: 8px; /* border-xl */
@@ -109,16 +108,17 @@
         border-radius: 8px;
         padding: 10px;
         margin-bottom: 20px;
+        
+        background-color: transparent;
     }
 
     /* Image display */
     .image-container {
         width: 100%;
-        height: 50vh; /* Adjust as needed */
+        height: 46vh; /* Adjust as needed */
         display: flex; /* Use flexbox for layout */
         justify-content: center;
         align-items: center;
-        padding: 0%;
     }
 
     .image-container img {
@@ -145,14 +145,18 @@
                     <div style="height: 2vh"></div>
 
                     <b>Password</b>
-                    <div class="textbox">
+                    <div class="textbox" >
                         <i style="position: absolute; left: 5px; top: 13px" class="fas fa-lock" id="icons-2"></i> <!-- Icon for password -->
                         <input type="password" name="Password" id="passwordInput" placeholder="Enter Your Password" />
-                        <i style="position: absolute; right: 25px; top: 13px" class="fas fa-eye" id="togglePassword"></i> <!-- Toggle button for password -->
+                        <i style="position: absolute; right: 10px; top: 13px" class="fas fa-eye" id="togglePassword"></i> <!-- Toggle button for password -->
                     </div>
 
                     <div class="button" id="signupButton" onclick="validateForm()">
-                        <button type="submit">Continue</button>
+                        <button type="submit" style="color: #FFFFFFFF; background: #00BDD6FF; transition: #0056b3 0.3s;" onmouseover="this.style.backgroundColor='#0056b3';" onmouseout="this.style.backgroundColor='#00BDD6FF';">Login</button>
+                    </div>
+
+                    <div class="button" id="signupButton" onclick="validateForm()">
+                        <button type="button" style = "color: #000000; background: #FFFFFF;" onClick = "window.location.href = './index.php';" onmouseover="this.style.backgroundColor='#0056b3'; this.style.color='#ffffff'" onmouseout="this.style.backgroundColor='#FFFFFF'; this.style.color='#000000'">Back</button>
                     </div>
             </div>
 
@@ -161,7 +165,7 @@
                 <h2 style="font-family: Epilogue; font-size: 24px;">You choose to login as:</h2>
                 <!-- Dropdown menu -->
                 <select id="imageSelect" onchange="displayImage()" name="Role">
-                    <option value="none">-</option>
+                    <option value="None">Select your role</option>
                     <option value="Normal User">Normal User</option>
                     <option value="Organization">Organization</option>
                     <option value="Administration">Administration</option>
@@ -182,33 +186,50 @@
             var selectBox = document.getElementById("imageSelect");
             var selectedValue = selectBox.options[selectBox.selectedIndex].value;
             var image = document.getElementById("selectedImage");
-            var imgBox = document.getElementsByClassName("image-container");
+            var imgBox = document.querySelector(".image-container");
+            var imgeBox = document.getClass
             var roleChosen = document.getElementById("roleSelected");
 
             if (selectedValue === "Normal User") {
                 image.src = "./Assets/Image/User.png";
                 roleChosen.innerHTML = "Normal User";
                 imgBox.style.display = "flex";
+                image.style.display = "block";
                 roleChosen.style.display = "block";
             } else if (selectedValue === "Organization") {
                 image.src = "./Assets/Image/Organization.png";
                 roleChosen.innerHTML = "Organization";
                 imgBox.style.display = "flex";
+                image.style.display = "block";
                 roleChosen.style.display = "block";
             } else if (selectedValue === "Administration") {
                 image.src = "./Assets/Image/Admin.png";
                 roleChosen.innerHTML = "Administration";
                 imgBox.style.display = "flex";
+                image.style.display = "block";
                 roleChosen.style.display = "block";
-            } else if (selectedValue === "-"){
-                imgBox.style.display = "none";
-                roleChosen.style.display = "none";
-            } else {
+            } else if (selectedValue === "None"){
                 // If no option is selected, hide the image
+                image.style.display = "none";
                 imgBox.style.display = "none";
                 roleChosen.style.display = "none";
             }
         }
+
+        // JavaScript for toggling password visibility
+        document.getElementById("togglePassword").addEventListener("click", function() {
+            var passwordInput = document.getElementById("passwordInput");
+            var toggleIcon = document.getElementById("togglePassword");
+            if (passwordInput.type === "password") {
+                passwordInput.type = "text";
+                toggleIcon.classList.remove("fa-eye-slash");
+                toggleIcon.classList.add("fa-eye");
+            } else {
+                passwordInput.type = "password";
+                toggleIcon.classList.remove("fa-eye");
+                toggleIcon.classList.add("fa-eye-slash");
+            }
+        });
     </script>
 </body>
 </html>
