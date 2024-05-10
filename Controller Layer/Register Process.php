@@ -39,7 +39,7 @@
                 // pop-up message for showing registration is successful
                 echo "<script>
                     window.alert('User Registration is successful');
-                    window.location.href = '../../index.php';
+                    window.location.href = '../index.php';
                 </script>";
                 
             }

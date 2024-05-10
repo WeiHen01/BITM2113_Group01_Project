@@ -49,14 +49,19 @@
             if($count === 1){
                 // set a session for storing the value of student email
                 $_SESSION["LoggedUserEmail"] = $UserEmail;
+                $_SESSION["login_status"] = "success"; // Set login status to success
+                $_SESSION["role"] = $role;
+
+
+                // Redirect to login.php with a URL parameter indicating successful login
+                header("Location: ../View Layer/User/User Home.php");
             }
             else {
-                echo "<script>
-                    window.alert('Invalid Email or Password for user! Please try login again!');
-                
-                    </script>";
-
-            } 
+                $_SESSION["login_status"] = "fail"; // Set login status to fail
+                $_SESSION["role"] = $role;
+                // Redirect to login.php with a URL parameter indicating login failure
+                header("Location: ../Login.php");
+            }
         }
         elseif($role === "Organization"){
             // Step 2: Generate SQL Statement for login

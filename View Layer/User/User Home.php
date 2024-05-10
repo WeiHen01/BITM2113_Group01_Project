@@ -42,70 +42,43 @@
 
         <!-- Title of the tab -->
         <title>User | Home</title>
+        <!-- FavIcon on the browser tab-->
+        <link rel="icon" type="image/x-icon" href="../../Assets/Image/logo.png">
 
+        <link href='https://fonts.googleapis.com/css?family=Epilogue:ExtraBold' rel='stylesheet'>
+        <link href='https://fonts.googleapis.com/css?family=Epilogue' rel='stylesheet'>
+
+        <!-- Template Stylesheet -->
+        <link rel="stylesheet" href="../General Components & Widget/User/User Component Style.css">
     </head>
 
 
     <!-- Body of the webpage -->
     <body>
+        
+        <!-- Sidebar -->
+        <?php 
+            include("../General Components & Widget/User/Sidebar.php");
+        ?>
 
-        <!-- Horizontal Navigation bar -->
-        <h3>Home Page</h3>
-        <p>Welcome! <?php echo $loggedUserEmail ?></p>
-
-        <a href = "User Account.php">Go to your account</a>
-
-        <!-- Display the list -->
-        <table>
-            <!-- Table Header -->
-            <th>Matric Number</th>
-            <th>Name</th>
-
-            <!-- Functionality to retrieve a list based on condition -->
+        <div id="contentArea">
+            <!-- Header -->
             <?php 
-                // Step 1: Import database connection file
-                include ("../../Database Layer/db_connection.php");
-
-                // Step 2: Generate SQL statement: object-oriented
-                // $con : refer to database connection variable
-                $sqlList = $con -> prepare("SELECT * from student");
-
-                // Step 3: Execute SQL Statement
-                $sqlList -> execute();
-
-                // Step 4: Obtain the result
-                $result = $sqlList -> get_result();
-
-                // Step 5: Close the connection
-                $sqlList -> close();
+                include("../General Components & Widget/User/Header.php");
             ?>
 
-            <!-- Table content -->
-            <!-- Display the records retrieved -->
-            <?php while ($row = $result -> fetch_assoc()){ ?>
-                <tr>
-                    <td><?php echo $row["StudentMatricNo"]; ?></td>
-                    <td><?php echo $row["StudentName"]; ?></td>
-                </tr>
-            <?php } ?>
-        </table>
+            <p style="padding-left:1.5%">Hello</p>
+        </div>
 
-        <!-- Step 1: Log out button -->
-        <button onclick = "confirmLogout()">Log out</button>
+        
+
+        
+        
 
     </body>
 
 
-    <!-- Javascript implementation -->
-    <script>
-        // Step 2: Implement navigate to Log out process.php function
-        function confirmLogout(){
-            // pop up confirm dialog for asking confirmation to log out
-            if(window.confirm("Do you sure to log out?") == true){
-                window.location.href = '../../Controller Layer/User/User Logout Process.php';
-            }
-        }
-    </script>
+    <script src="../General Components & Widget/User/User Component Script.js"></script>
 
 
 </html>
