@@ -43,7 +43,7 @@
         <!-- Title of the tab -->
         <title>User | Home</title>
         <!-- FavIcon on the browser tab-->
-        <link rel="icon" type="image/x-icon" href="../../Assets/Image/logo.png">
+        <link rel="icon" type="image/x-icon" href="../../Assets/Image/H20 Harmony Logo.png">
 
         <link href='https://fonts.googleapis.com/css?family=Epilogue:ExtraBold' rel='stylesheet'>
         <link href='https://fonts.googleapis.com/css?family=Epilogue' rel='stylesheet'>
@@ -68,7 +68,10 @@
             ?>
 
             <p style="padding-left:1.5%">Hello</p>
+
+            <img src = "../../Assets/Image/H20 Harmony Logo.png">
         </div>
+        
 
         
 

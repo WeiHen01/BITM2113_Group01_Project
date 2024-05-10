@@ -2,8 +2,6 @@
 <html lang="en">
 
 <head>
-	<meta charset="UTF-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
 	<link rel="stylesheet" href="View Layer/General Components & Widget/User/component_style.css" />
 
@@ -16,14 +14,22 @@
 	
 	<!-- Header bar -->
     <div class="header-bar">
-        <span style="cursor: pointer" onclick="toggleSidebar()">
-            <i id="menuIcon" class="fa-solid fa-bars" style="font-size: 20px"></i>
-        </span>
+        <div class = "left-area">
+            <span style="cursor: pointer" onclick="toggleSidebar()">
+                <i id="menuIcon" class="fa-solid fa-bars" style="font-size: 20px; color:  #4069E5FF;"></i>
+            </span>
+
+            <div class = "Logo">
+                <img src="../../../Assets/Image/H20 Harmony Logo.png"  alt="Logo" width="100">
+            </div>
+
+            <p style="font-size: 15px;">H20 Harmony</p>
+        </div>
         
 
         <!-- Profile image with dropdown -->
         <div class="profile-image" onclick="toggleDropdown()">
-            <img src="profile_image.jpg" alt="Profile" width="40" height="40">
+            <img src="../../../Assets/Image/logo.png" alt="Profile" width="40" height="40">
             <div class="profile-dropdown" id="profileDropdown">
                 <a href="#">Profile</a>
                 <a href="#">Settings</a>
