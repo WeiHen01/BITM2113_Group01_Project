@@ -47,14 +47,8 @@
             // Step 4: Check if the number of records is equal to 1, then will proceed to the home dashboard page
             // Which means the record is unique identified
             if($count === 1){
-            // set a session for storing the value of student email
-            $_SESSION["LoggedUserEmail"] = $UserEmail;
-
-            echo "<script>
-                window.alert('Successful login as User! Welcome!');
-            
-                </script>";
-
+                // set a session for storing the value of student email
+                $_SESSION["LoggedUserEmail"] = $UserEmail;
             }
             else {
                 echo "<script>
@@ -64,7 +58,7 @@
 
             } 
         }
-        else if($role === "Organization"){
+        elseif($role === "Organization"){
             // Step 2: Generate SQL Statement for login
             $sqlLogin = "SELECT * FROM organization 
             WHERE OrgEmail = '$UserEmail'
@@ -82,19 +76,21 @@
             if($count === 1){
                 // set a session for storing the value of student email
                 $_SESSION["LoggedUserEmail"] = $UserEmail;
+                $_SESSION["login_status"] = "success"; // Set login status to success
+                $_SESSION["role"] = $role;
 
-                echo "<script>window.alert('Successful login as Organization! Welcome!');window.location.href = '../Login.php';</script>";
 
+               // Redirect to login.php with a URL parameter indicating successful login
+               header("Location: ../Login.php");
             }
             else {
-                echo "<script>
-                    window.alert('Invalid Email or Password for organization! Please try login again!');
-                
-                    </script>";
-
-            } 
+                $_SESSION["login_status"] = "fail"; // Set login status to fail
+                $_SESSION["role"] = $role;
+                // Redirect to login.php with a URL parameter indicating login failure
+                header("Location: ../Login.php");
+            }
         }
-        else{
+        elseif($role === "Administration"){
             // Step 2: Generate SQL Statement for login
             $sqlLogin = "SELECT * FROM admin 
             WHERE AdminEmail = '$UserEmail'
@@ -112,17 +108,23 @@
             if($count === 1){
                 // set a session for storing the value of student email
                 $_SESSION["LoggedUserEmail"] = $UserEmail;
+                $_SESSION["login_status"] = "success"; // Set login status to success
+                $_SESSION["role"] = $role;
 
-                echo "<script>window.alert('Successful login as Administration! Welcome!');</script>";
+
+               // Redirect to login.php with a URL parameter indicating successful login
+               header("Location: ../Login.php");
 
             }
             else {
-                echo "<script>
-                    window.alert('Invalid Email or Password for Administration! Please try login again!');
-                
-                    </script>";
-
+                $_SESSION["login_status"] = "fail"; // Set login status to success
+                // Redirect to login.php with a URL parameter indicating successful login
+                header("Location: ../Login.php");
+              
             } 
+        }
+        else{
+            echo "<script>window.alert('No role is selected!');window.location.href = '../Login.php';</script>";
         }
     }
 

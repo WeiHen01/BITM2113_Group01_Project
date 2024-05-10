@@ -1,3 +1,8 @@
+<?php 
+    // Start the session at the very beginning of the file
+    session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,6 +18,13 @@
 
     <!-- FONT AWESOME ICON -->
     <script src="https://kit.fontawesome.com/74a2be9f6d.js" crossorigin="anonymous"></script>
+
+    <!-- SWEET ALERT -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/css/iziToast.min.css">
+
+
 </head>
 <style>
     body{
@@ -28,7 +40,7 @@
     /* Container 21 */
     .container {
         position: absolute; 
-        padding: 1%;
+        padding: 0.5%;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
@@ -112,6 +124,8 @@
         background-color: transparent;
     }
 
+    
+
     /* Image display */
     .image-container {
         width: 100%;
@@ -142,12 +156,20 @@
 
     #backButton:hover{
         transition: 0.3s;
-        color: #0056b3
+        color: #ffffff
     }
+
+    /* Custom CSS for Toastify message */
+    /* Custom CSS */
+    .custom-toast {
+        font-family: 'Epilogue';
+        color: white;
+    }
+
 </style>
 <body>
     <!-- Back button -->
-    <div id="backButton" style="display: block;" onclick="window.location.href='./index.php'">
+    <div id="backButton" style="display: block; margin: 0" onclick="window.location.href='./index.php'">
         <i class="fas fa-arrow-left"></i> Back
     </div>
     <form id="loginForm" action="./Controller Layer/Login Process.php" method="POST">
@@ -157,7 +179,7 @@
                 <h1 style="font-family: Epilogue; font-size: 50px;">Welcome back 👋</h1>
                 <h3 style="font-family: Epilogue; font-size: 24px; font-weight: 400">Log in your account</h3>
             
-                    <b>Your email</b>
+                    <b style="font-family: Epilogue; font-size: 17px;">Your email</b>
                     <div class="textbox">
                         <i style="position: absolute; left: 5px; top: 13px" class="fas fa-envelope" id="icons-1"></i> <!-- Icon for email -->
                         <input type="text" name="Email" id="emailInput" placeholder="Enter Your Email" />
@@ -165,14 +187,22 @@
 
                     <div style="height: 2vh"></div>
 
-                    <b>Password</b>
+                    <b style="font-family: Epilogue; font-size: 17px;">Password</b>
                     <div class="textbox" >
                         <i style="position: absolute; left: 5px; top: 13px" class="fas fa-lock" id="icons-2"></i> <!-- Icon for password -->
                         <input type="password" name="Password" id="passwordInput" placeholder="Enter Your Password" />
                         <i style="position: absolute; right: 10px; top: 13px" class="fas fa-eye" id="togglePassword"></i> <!-- Toggle button for password -->
                     </div>
 
-                    <div style="height: 5vh"></div>
+                    <div style="display: flex; justify-content: space-between; font-size: 12px; align-items: center;">
+                        <div style="display: flex; align-items: center;">
+                            <input type="checkbox" value="status" id="Remember" /> 
+                            <label for="Remember">Remember me</label>
+                        </div>
+                        <b><a href="" style="text-decoration: none; color: black" onmouseover="this.style.color='#0056b3'" onmouseout="this.style.color='#000000'">Forget Password?</a></b>
+                    </div>
+
+                   
 
                     <div class="button" id="signupButton" onclick="validateForm()">
                         <button type="submit" style="color: #FFFFFFFF; background: #00BDD6FF; transition: #0056b3 0.3s;" onmouseover="this.style.backgroundColor='#0056b3';" onmouseout="this.style.backgroundColor='#00BDD6FF';">Login</button>
@@ -186,16 +216,18 @@
             </div>
 
             <div class="column2">
-                <!-- Content for the second column (Dropdown menu and Image display) -->
-                <h2 style="font-family: Epilogue; font-size: 24px;">You choose to login as:</h2>
-                <!-- Dropdown menu -->
-                <select id="imageSelect" onchange="displayImage()" name="Role">
-                    <option value="None">-</option>
-                    <option value="Normal User">Normal User</option>
-                    <option value="Organization">Organization</option>
-                    <option value="Administration">Administration</option>
-                </select>
+                <div class="dropdown-container">
+                    <!-- Content for the second column (Dropdown menu and Image display) -->
+                    <h2 id="roleTitle" style="font-family: Epilogue; font-size: 24px; text-align: center">You choose to login as:</h2>
+                    <!-- Dropdown menu -->
+                    <select id="imageSelect" onchange="displayImage()" name="Role">
+                        <option value="None">-</option>
+                        <option value="Normal User">Normal User</option>
+                        <option value="Organization">Organization</option>
+                        <option value="Administration">Administration</option>
+                    </select>
 
+                </div>
                 <!-- Image display -->
                 <div class="image-container" id="imageContainer">
                     <img id="selectedImage" src = "">
@@ -206,14 +238,71 @@
         </div>
     </form>
 
+    <!-- PHP code to check for successful login and trigger SweetAlert -->
+    <?php 
+        // Check if the session variable 'login_status' indicates a successful login
+        if(isset($_SESSION['login_status']) && $_SESSION['login_status'] == 'success') {
+            
+            // if successful login as organization
+            if(isset($_SESSION["role"]) && $_SESSION["role"] == 'Organization'){
+                
+
+                echo "<script>
+                    Swal.fire({
+                        title: 'Login Successful as Organization!',
+                        text: 'You may proceed to login as Organization!',
+                        icon: 'success'
+                    }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = './index.php'
+                    } 
+                    });
+                </script>";
+                // Unset the session variable after displaying the SweetAlert
+                unset($_SESSION['login_status']);
+            }
+        }
+        //login failed
+        // Check if the session variable 'login_status' indicates a login failure
+        elseif(isset($_SESSION['login_status']) && $_SESSION['login_status'] == 'fail') {
+            // if successful login as organization
+            if(isset($_SESSION["role"]) && $_SESSION["role"] == 'Organization'){
+               // Trigger iziToast notification for successful login
+                echo "<script src=\"https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/js/iziToast.min.js\"></script>";
+                echo "<script>
+                        iziToast.show({
+                            title: 'Fail to login',
+                            message: 'Fail to login as organization!',
+                            position: 'bottomRight',
+                            timeout: 3000,
+                            backgroundColor: 'red',
+                            titleColor: 'white',
+                            messageColor: 'white',
+                            class: 'custom-toast',
+                            icon: 'fa-solid fa-circle-xmark',
+                            iconColor: 'white',
+                            onClose: function(instance, toast, closedBy) {
+                                // Add custom CSS to align the close button to the right
+                                toast.style.justifyContent = 'flex-end';
+                            }
+                        });
+                    </script>";
+                
+                // Unset the session variable after displaying the iziToast notification
+                unset($_SESSION['login_status']);
+            }
+        }
+        
+    ?>
+
     <script>
         function displayImage() {
             var selectBox = document.getElementById("imageSelect");
             var selectedValue = selectBox.options[selectBox.selectedIndex].value;
             var image = document.getElementById("selectedImage");
             var imgBox = document.querySelector(".image-container");
-            var imgeBox = document.getClass
             var roleChosen = document.getElementById("roleSelected");
+            var roleTitle = document.getElementById("roleTitle");
 
             if (selectedValue === "Normal User") {
                 image.src = "./Assets/Image/User.png";
@@ -238,6 +327,9 @@
                 image.style.display = "none";
                 imgBox.style.display = "none";
                 roleChosen.style.display = "none";
+                roleTitle.style.textAlign = "center"; // Center align the title
+                
+
             }
         }
 
@@ -255,6 +347,13 @@
                 toggleIcon.classList.add("fa-eye-slash");
             }
         });
+
+        
+
+
     </script>
+
+    
+   
 </body>
 </html>
