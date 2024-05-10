@@ -56,15 +56,24 @@
 
             // Step 4: Checking if the insert statement is successfully executed, it will navigate back to index.php
             if($sqlResult == TRUE){
-                // pop-up message for showing registration is successful
-                echo "<script>
-                    window.alert('Organization Registration is successful');
-                    window.location.href = '../../index.php';
-                </script>";
+                
+                // set a session for storing the value of student email
+                $_SESSION["register_status"] = "success";
+                $_SESSION["role"] = $role;
+
+                // Redirect to login.php with a URL parameter indicating successful login
+                header("Location: ../Register.php");
+
+                
                 
             }
             else {
-                echo "<script>window.alert('Fail to register!');</script>";
+                // set a session for storing the value of student email
+                $_SESSION["register_status"] = "fail";
+                $_SESSION["role"] = $role;
+
+                // Redirect to login.php with a URL parameter indicating successful login
+                header("Location: ../Register.php");
             }
         }
         else {

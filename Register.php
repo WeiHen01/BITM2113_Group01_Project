@@ -1,4 +1,7 @@
-
+<?php 
+    // Start the session at the very beginning of the file
+    session_start();
+?>
 <!-- Login Page -->
 
 <!DOCTYPE html>
@@ -19,6 +22,13 @@
 
         <!-- FONT AWESOME ICON -->
         <script src="https://kit.fontawesome.com/74a2be9f6d.js" crossorigin="anonymous"></script>
+
+        <!-- SWEET ALERT -->
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+        <!-- iziToast -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/css/iziToast.min.css">
+
 
 
     </head>
@@ -300,6 +310,63 @@
             </form>
         
         </div>
+
+        <!-- PHP code to check for successful login and trigger SweetAlert -->
+        <?php 
+            // Check if the session variable 'login_status' indicates a successful login
+            if(isset($_SESSION['register_status']) && $_SESSION['login_status'] == 'success') {
+                
+                // if successful login as organization
+                if(isset($_SESSION["role"]) && $_SESSION["role"] == 'Organization'){
+                    
+
+                    echo "<script>
+                        Swal.fire({
+                            title: 'Register Successful as Organization!',
+                            text: 'You may proceed to login as Organization!',
+                            icon: 'success'
+                        }).then((result) => {
+                        if (result.isConfirmed) {
+                            window.location.href = './login.php'
+                        } 
+                        });
+                    </script>";
+                    // Unset the session variable after displaying the SweetAlert
+                    unset($_SESSION['register_status']);
+                }
+            }
+            //login failed
+            // Check if the session variable 'login_status' indicates a login failure
+            elseif(isset($_SESSION['register_status']) && $_SESSION['register_status'] == 'fail') {
+                // if successful login as organization
+                if(isset($_SESSION["role"]) && $_SESSION["role"] == 'Organization'){
+                // Trigger iziToast notification for successful login
+                    echo "<script src=\"https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/js/iziToast.min.js\"></script>";
+                    echo "<script>
+                            iziToast.show({
+                                title: 'Fail to register',
+                                message: 'Fail to register as organization!',
+                                position: 'bottomRight',
+                                timeout: 3000,
+                                backgroundColor: 'red',
+                                titleColor: 'white',
+                                messageColor: 'white',
+                                class: 'custom-toast',
+                                icon: 'fa-solid fa-circle-xmark',
+                                iconColor: 'white',
+                                onClose: function(instance, toast, closedBy) {
+                                    // Add custom CSS to align the close button to the right
+                                    toast.style.justifyContent = 'flex-end';
+                                }
+                            });
+                        </script>";
+                    
+                    // Unset the session variable after displaying the iziToast notification
+                    unset($_SESSION['register_status']);
+                }
+            }
+            
+        ?>
 
         <script>
             // Get the modal

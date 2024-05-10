@@ -80,8 +80,8 @@
                 $_SESSION["role"] = $role;
 
 
-               // Redirect to login.php with a URL parameter indicating successful login
-               header("Location: ../Login.php");
+                // Redirect to login.php with a URL parameter indicating successful login
+                header("Location: ../Login.php");
             }
             else {
                 $_SESSION["login_status"] = "fail"; // Set login status to fail
