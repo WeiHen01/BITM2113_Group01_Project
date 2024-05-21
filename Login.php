@@ -271,7 +271,7 @@
                         icon: 'success'
                     }).then((result) => {
                     if (result.isConfirmed) {
-                        window.location.href = './User/User Home.php'
+                        window.location.href = './View Layer/User/User Home.php'
                     } 
                     });
                 </script>";
