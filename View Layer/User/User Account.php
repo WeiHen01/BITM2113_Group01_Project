@@ -4,42 +4,7 @@
 <?php 
     session_start();
 
-    // Establish connection to database
-    include ("../../Database Layer/db_connection.php");
-
-    // variables saved in the session - like SharedPreferences in Flutter
-    $useremail = $_SESSION["LoggedUserEmail"];
-
-    /**
-     * Process of finding user information based on user email
-     */
-
-    // Step 1: Generate SQL Statement
-    $sqlGetUser = $con -> prepare("SELECT * FROM student WHERE StudentEmail = ?");
     
-    // Step 2: Filling in the parameter (?) in sqlStatement
-    $sqlGetUser -> bind_param("s", $useremail);
-
-    // Step 3: Execute the sql query
-    $sqlGetUser -> execute();
-
-    // Step 4: Obtain the result
-    $result = $sqlGetUser -> get_result();
-
-    // Step 5: Checking if the result retrieved is the only one record 
-    if($result -> num_rows == 1){
-
-        // Step 6: Fetch the data in associative array
-        $rowResult = $result -> fetch_assoc();
-
-        // Step 7: Getting certain attribute's value from the row / result retrieved
-        $username = $rowResult['StudentName'];
-        $usergender = $rowResult['StudentGender'];
-        $userId = $rowResult['StudentID'];
-
-        // Assign the user id fetched to a new session
-        $_SESSION['LoggedUserID'] = $userId;
-    }
 
 ?>
 
@@ -75,6 +40,15 @@
         <!-- Title of the tab -->
         <title>User | Account</title>
 
+        <!-- FavIcon on the browser tab-->
+        <link rel="icon" type="image/x-icon" href="../../Assets/Image/H20 Harmony Logo.png">
+
+        <link href='https://fonts.googleapis.com/css?family=Epilogue:ExtraBold' rel='stylesheet'>
+        <link href='https://fonts.googleapis.com/css?family=Epilogue' rel='stylesheet'>
+
+        <!-- Template Stylesheet -->
+        <link rel="stylesheet" href="../General Components & Widget/User/User Component Style.css">
+
     </head>
 
 
@@ -82,18 +56,29 @@
     <body>
 
         <!-- Horizontal Navigation bar -->
-        
+        <!-- Sidebar -->
+        <?php 
+            include("../General Components & Widget/User/Sidebar.php");
+        ?>
+
+        <div id="contentArea">
+            <!-- Header -->
+            <?php 
+                include("../General Components & Widget/User/Header.php");
+            ?>
+            
+            <!-- Content starts here -->
+            <p style="padding-left:1.5%; font-weight: bold">Profile</p>
+
+
+            
+        </div>
 
         <!-- Left Vertical Sidebar / Drawer -->
         
 
 
-        <p>Welcome! <?php echo $username ?></p>
-        <p>Gender: <?php echo $usergender ?></p>
-
-        <hr>
-        <!-- Step 1: Do update security to prevent unauthorised update -->
-        <button onclick = "updateSecurity()">Edit Profile</button>
+        
         
     </body>
 
@@ -112,6 +97,9 @@
             window.location.href = url;
         }
     </script>
+
+    <!-- Must add this for enabling sidebar to be opened -->
+    <script src="../General Components & Widget/User/User Component Script.js"></script>
 
 
 </html>

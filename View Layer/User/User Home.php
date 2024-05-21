@@ -61,15 +61,21 @@
             include("../General Components & Widget/User/Sidebar.php");
         ?>
 
+        <!-- Body --> 
+
         <div id="contentArea">
+            
             <!-- Header -->
             <?php 
                 include("../General Components & Widget/User/Header.php");
             ?>
 
+            <!-- Content here -->
+
             <p style="padding-left:1.5%">Hello</p>
 
-            <img src = "../../Assets/Image/H20 Harmony Logo.png">
+
+            
         </div>
         
 

@@ -54,7 +54,7 @@
 
 
                 // Redirect to login.php with a URL parameter indicating successful login
-                header("Location: ../View Layer/User/User Home.php");
+                header("Location: ../Login.php");
             }
             else {
                 $_SESSION["login_status"] = "fail"; // Set login status to fail
