@@ -5,11 +5,11 @@
             <p>Name</p>
             <p>Output</p>
         </div>
-        <a href="Org Home.php" <?php if(basename($_SERVER['PHP_SELF']) == 'User Home.php') echo 'class="active"'?>>
+        <a href="Org Home.php" <?php if(basename($_SERVER['PHP_SELF']) == 'Org Home.php') echo 'class="active"'?>>
             <i class="fa-solid fa-house" style="padding-right: 5%"></i>
             Home
         </a>
-        <a href="Org Dashboard.php" <?php if(basename($_SERVER['PHP_SELF']) == 'User Dashboard.php') echo 'class="active"'?>>
+        <a href="Org Dashboard.php" <?php if(basename($_SERVER['PHP_SELF']) == 'Org Dashboard.php') echo 'class="active"'?>>
             <i class="fa-solid fa-chart-line" style="padding-right: 5%"></i>
             Dashboard
         </a>

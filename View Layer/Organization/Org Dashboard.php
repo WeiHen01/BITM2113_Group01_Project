@@ -60,7 +60,7 @@
 
             <!-- Content here -->
 
-            <p style="padding-left:1.5%">Dashboard</p>
+            <p style="padding-left:1.5%">Organization Dashboard</p>
 
 
             

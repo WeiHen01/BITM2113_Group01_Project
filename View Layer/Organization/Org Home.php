@@ -29,7 +29,7 @@
     <head>
 
         <!-- Title of the tab -->
-        <title>User | Home</title>
+        <title>Org | Home</title>
         <!-- FavIcon on the browser tab-->
         <link rel="icon" type="image/x-icon" href="../../Assets/Image/H20 Harmony Logo.png">
 
@@ -60,7 +60,7 @@
 
             <!-- Content here -->
 
-            <p style="padding-left:1.5%">Hello</p>
+            <p style="padding-left:1.5%">Organization Home</p>
 
 
             
