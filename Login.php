@@ -266,12 +266,12 @@
 
                 echo "<script>
                     Swal.fire({
-                        title: 'Login Successful as Organization!',
+                        title: 'Login Successful as User!',
                         text: 'You may proceed to login as User!',
                         icon: 'success'
                     }).then((result) => {
                     if (result.isConfirmed) {
-                        window.location.href = './index.php'
+                        window.location.href = './User/User Home.php'
                     } 
                     });
                 </script>";
