@@ -288,7 +288,7 @@
                         icon: 'success'
                     }).then((result) => {
                     if (result.isConfirmed) {
-                        window.location.href = './index.php'
+                        window.location.href = './View Layer/Administration/Admin_Home.php
                     } 
                     });
                 </script>";
