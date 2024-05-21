@@ -288,11 +288,36 @@
                         icon: 'success'
                     }).then((result) => {
                     if (result.isConfirmed) {
-                        window.location.href = './View Layer/Administration/Admin_Home.php
+                        window.location.href = './View Layer/Administration/Admin Home.php'
                     } 
                     });
                 </script>";
                 // Unset the session variable after displaying the SweetAlert
+                unset($_SESSION['login_status']);
+            }
+            else {
+                // Trigger iziToast notification for successful login
+                echo "<script src=\"https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/js/iziToast.min.js\"></script>";
+                echo "<script>
+                        iziToast.show({
+                            title: 'Fail to login',
+                            message: 'Fail to login!',
+                            position: 'bottomRight',
+                            timeout: 3000,
+                            backgroundColor: 'red',
+                            titleColor: 'white',
+                            messageColor: 'white',
+                            class: 'custom-toast',
+                            icon: 'fa-solid fa-circle-xmark',
+                            iconColor: 'white',
+                            onClose: function(instance, toast, closedBy) {
+                                // Add custom CSS to align the close button to the right
+                                toast.style.justifyContent = 'flex-end';
+                            }
+                        });
+                    </script>";
+                
+                // Unset the session variable after displaying the iziToast notification
                 unset($_SESSION['login_status']);
             }
         }
