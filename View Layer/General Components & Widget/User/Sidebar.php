@@ -23,7 +23,7 @@
             Event
         </a>
         <a href="javascript:void(0)" onclick="showContent('Services')">
-            <i class="fa-solid fa-arrow-right-from-bracket" style="padding-right: 5%"></i>
+            <i class="fa-regular fa-file-lines" style="padding-right: 5%"></i>
             Complaint
         </a>
         <a href="#" onClick="logout()">
