@@ -1,9 +1,11 @@
 <div id="sideMenu" class="sideMenu">
     
     <div class="mainMenu">
-        <div style = "padding: 3%; background-color: cyan">
-            <p>Name</p>
-            <p>Output</p>
+        <div style = "padding: 3%; background-color: white">
+        <div id="logo" style="display: flex; align-items: center; justify-content: center;">
+                <img src="../../Assets/Image/H20 Harmony Logo.png" alt="Logo" width="50">
+                <p style="font-size: 15px;"><b>H2O Harmony</b></p>
+            </div>
         </div>
         <a href="Org Home.php" <?php if(basename($_SERVER['PHP_SELF']) == 'Org Home.php') echo 'class="active"'?>>
             <i class="fa-solid fa-house" style="padding-right: 5%"></i>

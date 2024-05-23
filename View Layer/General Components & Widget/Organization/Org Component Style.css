@@ -36,11 +36,11 @@ body {
 
 .mainMenu a:hover {
     color: #000;
-    background-color: rgb(0, 132, 255);
+    background-color: rgb(114, 169, 221);
 }
 
 .sideMenu .mainMenu a.active {
-    background-color: #1100ff; /* Example background color for active link */
+    background-color: #9d98edf6; /* Example background color for active link */
     color: #fff; /* Example text color for active link */
     font-weight: bold; /* Example style for active link */
 }

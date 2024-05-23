@@ -1,7 +1,7 @@
 <div id="sideMenu" class="sideMenu">
     
     <div class="mainMenu">
-        <div style = "padding: 3%; background-color: cyan">
+        <div style = "padding: 3%; background-color: white">
             <p>Name</p>
             <p>Output</p>
         </div>
