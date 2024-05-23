@@ -62,6 +62,7 @@
 
         <button onclick="window.location.href='./Register.php'">Register</button>
         <button onclick="window.location.href='./Login.php'">Login</button>
+        <button onclick="window.location.href='./Landing Page.php'">landing</button>
                    
     </body>
 

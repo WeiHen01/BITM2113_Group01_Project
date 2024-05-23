@@ -236,7 +236,7 @@
     </style>
     <body>
         <!-- Back button -->
-        <div id="backButton" style="display: block;" onclick="window.location.href='./index.php'">
+        <div id="backButton" style="display: block;" onclick="window.location.href='./Landing Page.php'">
             <i class="fas fa-arrow-left"></i> Back
         </div>
 
