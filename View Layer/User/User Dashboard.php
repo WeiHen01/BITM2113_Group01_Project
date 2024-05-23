@@ -57,11 +57,11 @@
             ?>
 
             <div style="overflow-y: auto">
-                <p style="padding-left:1.5%; "><b>Dashboard</b></p>
+                <p style="padding-left:2%; "><b>Dashboard</b></p>
 
                 <div style="display: flex;">
-                    <div class="container"></div>
-                    <div class="container" style = "margin-bottom: 2%"></div>
+                    <div class="container"> <p>Total Polluted Areas</p> </div>
+                    <div class="container" style = "margin-bottom: 2%"><p>Total Complaints in This week</p></div>
                 </div>
 
                 <div class = "container-2"></div>

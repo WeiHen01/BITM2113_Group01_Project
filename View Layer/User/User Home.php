@@ -55,7 +55,7 @@
         <style>
             /* Container 23 */
             .container {
-                margin-left: 2%;
+                margin-left: 4%;
                 width: 95%; 
                 height: 35vh; 
                 background: #FFFFFFFF; /* white */
@@ -67,6 +67,7 @@
             }
 
             .container-2 {
+                margin-left: 1%;
                 margin-right: 2%;
                 width: 95%; 
                 height: 71vh; 
@@ -100,7 +101,7 @@
 
             <!-- Content here -->
 
-            <p style="padding-left: 1.5%"><b>Home</b></p>
+            <p style="padding-left: 2%"><b>Home</b></p>
             <!-- make it in same row -->
             <!-- First container group -->
             <div>

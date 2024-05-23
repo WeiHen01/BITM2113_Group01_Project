@@ -199,7 +199,8 @@
             <div class="header-menu-item">Learn More</div>
         </div>
 
-        <button class="button-1" onclick="window.location.href='./Login.php'", style=" top: 19px; left: 83%;">Login</button>
+        <button class="button-1" onclick="window.location.href='./Login.php'", style=" top: 19px; left: 83%; margin-right: 1%">Login</button>
+        
         <button class="button-2" onclick="window.location.href='./Register.php'", style="top: 19px; left: 89%; ">Get Started!</button>
 
         <!--=============

@@ -22,7 +22,7 @@
             <i class="fa-regular fa-calendar-days" style="padding-right: 5%"></i>
             Event
         </a>
-        <a href="javascript:void(0)" onclick="showContent('Services')">
+        <a href="User Complaint.php" <?php if(basename($_SERVER['PHP_SELF']) == 'User Complaint.php') echo 'class="active"'?>>
             <i class="fa-regular fa-file-lines" style="padding-right: 5%"></i>
             Complaint
         </a>
