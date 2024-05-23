@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>User | Dashboard</title>
+        <title>User | Event</title>
 
         <!-- FavIcon on the browser tab-->
         <link rel="icon" type="image/x-icon" href="../../Assets/Image/H20 Harmony Logo.png">
@@ -26,7 +26,7 @@
                 include("../General Components & Widget/User/Header.php");
             ?>
 
-            <p style="padding-left:1.5%">Dashboard</p>
+            <p style="padding-left:1.5%">Event</p>
         </div>
 
 
