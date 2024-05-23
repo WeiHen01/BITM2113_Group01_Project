@@ -20,7 +20,7 @@
 <!DOCTYPE html>
 
     <!-- External CSS style -->
-    <link href="./output.css" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Epilogue:ExtraBold' rel='stylesheet'>
     <link href='https://fonts.googleapis.com/css?family=Epilogue' rel='stylesheet'>
 
     <!-- Import Javascript / JQuery References -->
@@ -40,8 +40,12 @@
             html{
                 font-family: 'Epilogue';
             }
+            body{
+                font-family: 'Epilogue';
+            }
              /* Button 1 */
             .button-1 {
+                font-family: 'Epilogue';
                 position: absolute; 
                 width: 87px; 
                 height: 40px; 
@@ -49,7 +53,6 @@
                 display: flex; 
                 align-items: center; 
                 justify-content: center; 
-                font-family: Inter; 
                 font-size: 15px; 
                 line-height: 28px; 
                 font-weight: 400; 
@@ -63,6 +66,7 @@
             }
             /* Button 2 */
             .button-2 {
+                font-family: 'Epilogue';
                 position: absolute; 
                 top: 19px; 
                 left: 1269px; 
@@ -72,7 +76,6 @@
                 display: flex; 
                 align-items: center; 
                 justify-content: center; 
-                font-family: Inter; 
                 font-size: 15px; 
                 line-height: 28px; 
                 font-weight: 400; 
@@ -83,68 +86,87 @@
                 border-radius: 8px; /* border-xl */
             }
             .header-menu {
-            position: absolute; 
-            top: 3%; 
-            left: 50%; 
-            transform: translateX(-50%);
-            width: 25%; 
-            height: 6%; 
-            display: flex; 
-            align-items: center; 
-            font-family: Inter; /* Body */
-            font-size: 1.1%; 
-            line-height: 1.8%; 
-            font-weight: 400; 
-            opacity: 1; 
+                font-family: 'Epilogue';
+                position: absolute; 
+                top: 3%; 
+                left: 50%; 
+                transform: translateX(-50%);
+                width: 25%; 
+                height: 6%; 
+                display: flex; 
+                align-items: center; 
+                font-family: Inter; /* Body */
+                font-size: 1.1%; 
+                line-height: 1.8%; 
+                font-weight: 400; 
+                opacity: 1; 
             }
             .header-menu .header-menu-item {
-            padding: 2% 5%; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            color: #565E6CFF; /* neutral-600 */
-            background: transparent; 
-            border-radius: 4px; /* border-m */
-            cursor: pointer; 
-            white-space: nowrap; 
+                font-family: 'Epilogue';
+                padding: 2% 5%; 
+                display: flex; 
+                align-items: center; 
+                justify-content: center; 
+                color: #565E6CFF; /* neutral-600 */
+                background: transparent; 
+                border-radius: 4px; /* border-m */
+                cursor: pointer; 
+                white-space: nowrap; 
             }
             .header-menu .header-menu-item.selected {
-            position: relative; 
-            font-weight: 700; 
-            color: #00BDD6FF; /* primary-500 */
-            background: transparent; 
+                position: relative; 
+                font-weight: 700; 
+                color: #00BDD6FF; /* primary-500 */
+                background: transparent; 
+            }
+
+            .header-menu .header-menu-item:nth-child(1):hover {
+                color: #00BDD6FF; /* primary-500 */
+                background: transparent; 
+            }
+            .header-menu .header-menu-item:nth-child(2):hover {
+                color: #00BDD6FF; /* primary-500 */
+                background: transparent; 
+            }
+            .header-menu .header-menu-item:nth-child(3):hover {
+                color: #00BDD6FF; /* primary-500 */
+                background: transparent; 
+            }
+            .header-menu .header-menu-item:nth-child(4):hover {
+                color: #00BDD6FF; /* primary-500 */
+                background: transparent; 
             }
             .header-menu .header-menu-item.selected:hover:active {
-            color: #00BDD6FF; /* primary-500 */
-            background: transparent; 
+                color: #00BDD6FF; /* primary-500 */
+                background: transparent; 
             }
             .header-menu .header-menu-item:nth-child(1) {
-            font-family: Inter; 
+            
             font-size: 15px; 
             line-height: 1.8%; 
             font-weight: 400; 
             color: #565E6CFF; /* neutral-600 */
             }
             .header-menu .header-menu-item:nth-child(2) {
-            font-family: Inter; 
+            
             font-size: 15px; 
             line-height: 1.8%; 
             font-weight: 400; 
             color: #565E6CFF; /* neutral-600 */
             }
             .header-menu .header-menu-item:nth-child(3) {
-            font-family: Inter; 
-            font-size: 15px; 
-            line-height: 1.8%; 
-            font-weight: 400; 
-            color: #565E6CFF; /* neutral-600 */
+                
+                font-size: 15px; 
+                line-height: 1.8%; 
+                font-weight: 400; 
+                color: #565E6CFF; /* neutral-600 */
             }
             .header-menu .header-menu-item:nth-child(4) {
-            font-family: Inter; 
-            font-size: 15px; 
-            line-height: 1.8%; 
-            font-weight: 400; 
-            color: #565E6CFF; /* neutral-600 */
+            
+                font-size: 15px; 
+                line-height: 1.8%; 
+                font-weight: 400; 
+                color: #565E6CFF; /* neutral-600 */
             }
 
             .text {
@@ -199,9 +221,9 @@
             <div class="header-menu-item">Learn More</div>
         </div>
 
-        <button class="button-1" onclick="window.location.href='./Login.php'", style=" top: 19px; left: 83%; margin-right: 1%">Login</button>
+        <button class="button-1" onclick="window.location.href='./Login.php'", style=" top: 19px; left: 80%; margin-right: 1%" onmouseover="this.style.backgroundColor='#00BDD6FF'; this.style.color = '#ffffff'; this.style.cursor = 'pointer'" onmouseout="this.style.backgroundColor='#ffffff'; this.style.color='#00BDD6FF'">Login</button>
         
-        <button class="button-2" onclick="window.location.href='./Register.php'", style="top: 19px; left: 89%; ">Get Started!</button>
+        <button class="button-2" onclick="window.location.href='./Register.php'", style="top: 19px; left: 86%; margin-left: 1%;" onmouseover="this.style.backgroundColor='#ffffff'; this.style.color = '#00BDD6FF'; this.style.borderColor='#00BDD6FF'; this.style.cursor = 'pointer'" onmouseout="this.style.backgroundColor='#00BDD6FF'; this.style.color='#ffffff'; ">Get Started!</button>
 
         <!--=============
                Title

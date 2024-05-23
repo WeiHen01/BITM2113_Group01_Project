@@ -13,6 +13,24 @@
 
         <!-- Template Stylesheet -->
         <link rel="stylesheet" href="../General Components & Widget/User/User Component Style.css">
+
+        <style>
+            /* Container 23 */
+            .container {
+                margin-left: 2%;
+                width: calc(90%/3); 
+                height: 70vh; 
+                background: #d1d1d1; /* white */
+                border-radius: 6px; /* border-l */
+                border-width: 1px; 
+                border-color: #DEE1E6FF; /* neutral-300 */
+                border-style: solid; 
+                box-shadow: 0px 0px 1px #171a1f, 0px 0px 2px #171a1f; /* shadow-xs */
+            }
+
+
+            
+        </style>
     </head>
     <body>
         <!-- Sidebar -->
@@ -26,7 +44,17 @@
                 include("../General Components & Widget/User/Header.php");
             ?>
 
-            <p style="padding-left:1.5%">Dashboard</p>
+            <p style="padding-left:2%"><b>Complaint</b></p>
+
+            <div style = "display: flex">
+
+                <div class = "container"></div>
+
+                <div class = "container"></div>
+
+                <div class = "container"></div>
+
+            </div>
         </div>
 
 

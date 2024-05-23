@@ -32,7 +32,7 @@
                 margin-left: 2%;
                 margin-right:  2%;
                 width: 95vw; 
-                height: 40vh; 
+                height: 60vh; 
                 background: #FFFFFFFF; /* white */
                 border-radius: 6px; /* border-l */
                 border-width: 1px; 
@@ -60,8 +60,8 @@
                 <p style="padding-left:2%; "><b>Dashboard</b></p>
 
                 <div style="display: flex;">
-                    <div class="container"> <p>Total Polluted Areas</p> </div>
-                    <div class="container" style = "margin-bottom: 2%"><p>Total Complaints in This week</p></div>
+                    <div class="container"> <p style="padding-left:2%; ">Total Polluted Areas</p> </div>
+                    <div class="container" style = "margin-bottom: 2%"><p style="padding-left:2%; ">Total Complaints in This week</p></div>
                 </div>
 
                 <div class = "container-2"></div>

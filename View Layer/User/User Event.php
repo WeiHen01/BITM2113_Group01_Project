@@ -23,10 +23,8 @@
             }
 
             .container-2{
-                margin-left: 1%;
-                margin-right: 1%;
-                width: 90%; 
-                height: 25vh; 
+                width: 100%; 
+                height: 62vh; 
                 background: #ffffff; /* tertiary1-500 */
             }
 
@@ -49,7 +47,18 @@
 
             <div class = "container"></div>
 
-            <div class ="container-2"><p style="padding-left: 1.5%"><b>Upcoming Event</b></p></div>
+            <div class ="container-2" style = "display: flex">
+                <div style= "width: 35vw; background-color: #6a8dc1;">
+                    <p style="padding-left: 1.5%"><b>Upcoming Event</b></p>
+                    <p style="padding-left: 1.5%">Upcoming Event</p>
+                </div>
+                
+
+                <div style = "background-color: #17a0c8; width: 100vw; height: 62vh">
+
+                </div>
+            
+            </div>
         </div>
 
 
