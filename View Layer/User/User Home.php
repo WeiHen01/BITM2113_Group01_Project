@@ -50,6 +50,34 @@
 
         <!-- Template Stylesheet -->
         <link rel="stylesheet" href="../General Components & Widget/User/User Component Style.css">
+
+
+        <style>
+            /* Container 23 */
+            .container {
+                margin-left: 2%;
+                width: 95%; 
+                height: 35vh; 
+                background: #FFFFFFFF; /* white */
+                border-radius: 6px; /* border-l */
+                border-width: 1px; 
+                border-color: #DEE1E6FF; /* neutral-300 */
+                border-style: solid; 
+                box-shadow: 0px 0px 1px #171a1f, 0px 0px 2px #171a1f; /* shadow-xs */
+            }
+
+            .container-2 {
+                margin-right: 2%;
+                width: 95%; 
+                height: 71vh; 
+                background: #FFFFFFFF; /* white */
+                border-radius: 6px; /* border-l */
+                border-width: 1px; 
+                border-color: #DEE1E6FF; /* neutral-300 */
+                border-style: solid; 
+                box-shadow: 0px 0px 1px #171a1f, 0px 0px 2px #171a1f; /* shadow-xs */
+            }
+        </style>
     </head>
 
 
@@ -72,7 +100,28 @@
 
             <!-- Content here -->
 
-            <p style="padding-left:1.5%">Hello</p>
+            <p style="padding-left: 1.5%"><b>Home</b></p>
+            <!-- make it in same row -->
+            <!-- First container group -->
+            <div>
+                <!-- First container group -->
+                <div style="display: flex;">
+                    <!-- Inner flex container for the first two containers -->
+                    <div style="display: flex; flex-direction: column; width: 50%;">
+                        <div class="container" style="margin-bottom: 1%">
+                            <p style="padding-left: 1.5%"><b>Location</b></p>
+                        </div>
+                        <div class="container" >
+                            <p style="padding-left: 1.5%"><b>Latest Complaint submitted</b></p>
+                        </div>
+                    </div>
+                    <!-- Third container -->
+                    <div class="container-2" style="width: 50%;">
+                        <p style="padding-left: 1.5%"><b>Upcoming Events</b></p>
+                    </div>
+                </div>
+            </div>
+
 
 
             
