@@ -26,7 +26,7 @@
                 include("../General Components & Widget/User/Header.php");
             ?>
 
-            <p style="padding-left:1.5%">Event</p>
+            <p style="padding-left:1.5%"><b>Event</b></p>
         </div>
 
 
