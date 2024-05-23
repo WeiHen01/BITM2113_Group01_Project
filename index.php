@@ -84,7 +84,9 @@
                 opacity: 1; 
                 border: none; 
                 border-radius: 8px; /* border-xl */
+                border-color: #00BDD6FF; /* primary-500 */
             }
+
             .header-menu {
                 font-family: 'Epilogue';
                 position: absolute; 
@@ -223,7 +225,7 @@
 
         <button class="button-1" onclick="window.location.href='./Login.php'", style=" top: 19px; left: 80%; margin-right: 1%" onmouseover="this.style.backgroundColor='#00BDD6FF'; this.style.color = '#ffffff'; this.style.cursor = 'pointer'" onmouseout="this.style.backgroundColor='#ffffff'; this.style.color='#00BDD6FF'">Login</button>
         
-        <button class="button-2" onclick="window.location.href='./Register.php'", style="top: 19px; left: 86%; margin-left: 1%;" onmouseover="this.style.backgroundColor='#ffffff'; this.style.color = '#00BDD6FF'; this.style.borderColor='#00BDD6FF'; this.style.cursor = 'pointer'" onmouseout="this.style.backgroundColor='#00BDD6FF'; this.style.color='#ffffff'; ">Get Started!</button>
+        <button class="button-2" onclick="window.location.href='./Register.php'", style="top: 19px; left: 86%; margin-left: 1%;" onmouseover="this.style.backgroundColor='transparent'; this.style.color = '#00BDD6FF'; this.style.cursor = 'pointer'" onmouseout="this.style.backgroundColor='#00BDD6FF'; this.style.color='#ffffff';">Get Started!</button>
 
         <!--=============
                Title

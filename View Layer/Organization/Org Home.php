@@ -65,7 +65,7 @@
         }
 
         .text {
-            font-family: Epilogue; /* Heading */
+            font-family: 'Epilogue'; 
             font-size: 1.5em; 
             line-height: 1.5em; 
             font-weight: 700; 
@@ -75,7 +75,7 @@
         }
 
         .sub-text {
-            font-family: Inter; /* Body */
+            font-family: 'Epilogue'; 
             font-size: 14px; 
             line-height: 22px; 
             font-weight: 400; 
@@ -97,6 +97,7 @@
             align-items: center;
             justify-content: center;
             margin-top: 2%;
+            font-family: 'Epilogue'; 
         }
 
         /* Rectangle 16 */
@@ -111,7 +112,7 @@
         }
 
         .sub-container-text {
-            font-family: Epilogue; 
+            font-family: 'Epilogue'; 
             font-size: 1.2em; 
             line-height: 1.2em; 
             font-weight: 500; 
@@ -150,6 +151,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            font-family: 'Epilogue'; 
         }
 
         /* Button inside Popup container */
@@ -163,6 +165,7 @@
             border: none;
             border-radius: 4px;
             cursor: pointer;
+            font-family: 'Epilogue'; 
         }
 
         /* Overlay */

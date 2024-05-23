@@ -27,7 +27,6 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        font-family: Inter;
         font-size: 14px;
         line-height: 22px;
         font-weight: 700;
@@ -35,6 +34,7 @@
         background: #00BDD6FF; /* primary-500 */
         opacity: 1;
         border: none;
+        font-family: 'Epilogue';
         border-radius: 4px; /* border-m */
     }
 
@@ -55,7 +55,7 @@
         left: 1400px;
         width: 35px;
         height: 35px;
-        font-family: Inter;
+        font-family: 'Epilogue';
         font-size: 22px;
         line-height: 22px;
         font-weight: 400;
