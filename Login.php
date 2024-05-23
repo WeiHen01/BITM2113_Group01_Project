@@ -169,7 +169,7 @@
 </style>
 <body>
     <!-- Back button -->
-    <div id="backButton" style="display: block; margin: 0" onclick="window.location.href='./Landing Page.php'">
+    <div id="backButton" style="display: block; margin: 0" onclick="window.location.href='./index.php'">
         <i class="fas fa-arrow-left"></i> Back
     </div>
     <form id="loginForm" action="./Controller Layer/Login Process.php" method="POST">
