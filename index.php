@@ -115,8 +115,18 @@
         .button-2 {
             color: #FFFFFF;
             background: #00BDD6;
-            border: none;
+            border: 1px solid #00BDD6;
             cursor: pointer;
+        }
+
+        
+        .button-1:hover{
+            color: #FFFFFF;
+            background: #00BDD6;
+        }
+        .button-2:hover{
+            background: #FFFFFF;
+            color: #00BDD6;
         }
 
         .text {
