@@ -290,7 +290,7 @@
                 
                 <div class="left-container">
 
-                    <div style="height: 10%"></div>
+                    <div style="height: 3%"></div>
 
                     <div class = "user-details">
 
@@ -313,6 +313,8 @@
                         </div>
                         
                     </div>
+
+                    <div style="height: 5%"></div>
 
                     <div class="button" id="openEditProfile">
                         <button type="button" style="color: #FFFFFFFF; background: #00BDD6FF; transition: #0056b3 0.3s; width: 100%;" onmouseover="this.style.backgroundColor='#0056b3';" onmouseout="this.style.backgroundColor='#00BDD6FF';">
