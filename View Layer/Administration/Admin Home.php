@@ -75,7 +75,7 @@
     </body>
 
 
-    <script src="../General Components & Widget/User/User Component Script.js"></script>
+    <script src="../General Components & Widget/Administration/Admin_Component Script.js"></script>
 
 
 </html>

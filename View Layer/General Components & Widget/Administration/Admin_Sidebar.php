@@ -5,7 +5,7 @@
             <p>Name</p>
             <p>Output</p>
         </div>
-        <a href="User Home.php" <?php if(basename($_SERVER['PHP_SELF']) == 'User Home.php') echo 'class="active"'?>>
+        <a href="Admin Home.php" <?php if(basename($_SERVER['PHP_SELF']) == 'Admin Home.php') echo 'class="active"'?>>
             <i class="fa-solid fa-house" style="padding-right: 5%"></i>
             Home
         </a>
