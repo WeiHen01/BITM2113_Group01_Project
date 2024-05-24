@@ -139,7 +139,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 7%;
+            gap: 8%;
             height: 20vh;
         }
 
@@ -180,8 +180,8 @@
         </div>
 
         <div class="button-group">
-            <button class="button-1" onclick="window.location.href='./Login.php'">Login</button>
-            <button class="button-2" onclick="window.location.href='./Register.php'">Get Started!</button>
+            <button class="button-1" onclick="window.location.href='./Login.php'"  onmouseover="this.style.background='#00bcd4'; this.style.color = '#ffffff'" onmouseleave="this.style.color='#00bcd4'; this.style.background = 'transparent'">Login</button>
+            <button class="button-2" onclick="window.location.href='./Register.php'" onmouseover="this.style.background='transparent'; this.style.color = '#00bcd4'" onmouseleave="this.style.color='#ffffff'; this.style.background = '#00bcd4'">Get Started!</button>
         </div>
     </div>
 
@@ -190,6 +190,8 @@
     <div class="text" style="font-size: 3.5rem; text-align: center;">Pure Waters, Brighter Futures</div>
     <div class="text" style="font-size: 3.5rem;  text-align: center;">Partner with Us for Clean Water Solutions!</div>
     <div class="text-body" style="font-size: 1.25rem; font-weight: 400;   text-align: center;">Empowering Communities through Innovative and Sustainable Water Solutions,<br> Ensuring Access to Clean Water for a Healthier and Brighter Future for All</div>
+
+    
 
     <!-- Upper-Body Content -->
     <div class="image-container" style="height: 80vh;">
@@ -219,9 +221,10 @@
             <div class="text-body" style="font-size: 1.25rem; font-weight: 400; margin-bottom: 1.25rem; text-align: justify;">
                 Explore and Participate in Organizational<br> Events Effortlessly!
             </div>
+
             <div class="button-group"  style="flex: 1;">
-                <button class="button-1" onclick="window.location.href=''" style="color: #00bcd4; width: 9.375rem; height: 2.5rem;">Learn more</button>
-                <button class="button-2" onclick="window.location.href=''" style="margin-right: 0.625rem; width: 9.375rem; height: 2.5rem; ">Try now</button>
+                <button class="button-1" onclick="window.location.href=''" style="color: #00bcd4; width: 9.375rem; height: 2.5rem;" onmouseover="this.style.background='#00bcd4'; this.style.color = '#ffffff'" onmouseleave="this.style.color='#00bcd4'; this.style.background = '#ffffff'">Learn more</button>
+                <button class="button-2" onclick="window.location.href=''" style="margin-right: 0.625rem; width: 9.375rem; height: 2.5rem; " onmouseover="this.style.background='#ffffff'; this.style.color = '#00bcd4'" onmouseleave="this.style.color='#ffffff'; this.style.background = '#00bcd4'">Try now</button>
             </div>
         </div>
     </div>
@@ -237,8 +240,8 @@
             </div>
             
             <div class="button-group"  style="flex: 1;">
-                <button class="button-1" onclick="window.location.href=''" style="color: #00bcd4; width: 9.375rem; height: 2.5rem;">Learn more</button>
-                <button class="button-2" onclick="window.location.href=''" style="margin-right: 0.625rem; width: 9.375rem; height: 2.5rem; ">Try now</button>
+                <button class="button-1" onclick="window.location.href=''" style="color: #00bcd4; width: 9.375rem; height: 2.5rem;" onmouseover="this.style.background='#00bcd4'; this.style.color = '#ffffff'" onmouseleave="this.style.color='#00bcd4'; this.style.background = '#ffffff'">Learn more</button>
+                <button class="button-2" onclick="window.location.href=''" style="margin-right: 0.625rem; width: 9.375rem; height: 2.5rem; " onmouseover="this.style.background='#ffffff'; this.style.color = '#00bcd4'" onmouseleave="this.style.color='#ffffff'; this.style.background = '#00bcd4'">Try now</button>
             </div>
 
         </div>
