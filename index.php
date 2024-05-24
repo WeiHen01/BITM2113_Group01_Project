@@ -120,14 +120,7 @@
         }
 
         
-        .button-1:hover{
-            color: #FFFFFF;
-            background: #00BDD6;
-        }
-        .button-2:hover{
-            background: #FFFFFF;
-            color: #00BDD6;
-        }
+        
 
         .text {
             font-family: 'Epilogue', sans-serif;
