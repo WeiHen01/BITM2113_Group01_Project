@@ -20,7 +20,7 @@
     <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
 
     <!-- FavIcon on the browser tab-->
-    <link rel="icon" type="image/x-icon" href="./Assets/Image/logo.png">
+    <link rel="icon" type="image/x-icon" href="Assets/Image/H20 Harmony Logo.png">
 
     <!-- Embedded CSS -->
     <style>
