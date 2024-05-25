@@ -6,8 +6,12 @@ at controller layer through interaction.
 
 ## Features provided:
 
-1. 
+1. Home
 
-2. 
+2. Dashboard
 
-3. 
+3. Events
+
+4. Complaints
+
+5. Profiles

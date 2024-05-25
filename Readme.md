@@ -27,7 +27,7 @@ A platform that raises awareness about water pollution and connects individuals 
 
 Water pollution is a serious problem worldwide, caused by various sources like industrial waste and untreated sewage. Despite efforts to regulate it, urbanization and population growth worsen the situation, especially in areas already facing water scarcity. The effects are far reaching, harming ecosystems, public health, and disadvantaged communities the most. Grassroots movements try to address the issue, but lack of coordination limits their impact.Hence, H2O Harmony is developed as such web application, aiming to connect people and organizations fighting water pollution. By sharing resources and coordinating efforts, it hopes to make grassroots initiatives more effective. Ultimately, H2O Harmony aims for unity in addressing water pollution, recognizing that collective action is crucial for lasting solutions. This platform is also developed to achieve the Sustainable Development Goal (SDG) Number 6: Ensure availability and sustainable management of water and sanitation for all. Furthermore, it aims to hit the target 6.3 which helps to improve water quality by eliminating pollution through conducting event.
 
-## Theme: Clean Water Initiative
+## Theme 18: Clean Water Initiative
 
 A platform that raises awareness about water pollution and connects individuals and organizations with resources to promote clean water initiatives.
 
