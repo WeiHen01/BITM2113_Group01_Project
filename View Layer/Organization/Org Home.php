@@ -1,5 +1,5 @@
 <!--=====================================================
-    Organization Home Page
+    Check the session and get variables from other page
 =======================================================-->
 <?php 
     if(session_status() == PHP_SESSION_NONE){
@@ -14,7 +14,32 @@
 
     <!-- Import CSS References Stylesheets using URL Link-->
 
+
+
     <!-- Embedded CSS style -->
+    <style>
+
+    </style>
+
+
+    <!-- FavIcon on the browser tab-->
+
+
+    <!-- Head of the webpage -->
+    <head>
+
+        <!-- Title of the tab -->
+        <title>Organization | Home</title>
+        <!-- FavIcon on the browser tab-->
+        <link rel="icon" type="image/x-icon" href="../../Assets/Image/H20 Harmony Logo.png">
+
+        <link href='https://fonts.googleapis.com/css?family=Epilogue:ExtraBold' rel='stylesheet'>
+        <link href='https://fonts.googleapis.com/css?family=Epilogue' rel='stylesheet'>
+
+        <!-- Template Stylesheet -->
+        <link rel="stylesheet" href="../General Components & Widget/Organization/Org Component Style.css">
+    </head>
+
     <style>
         /* Big Container */
         .container {
@@ -35,7 +60,6 @@
             cursor: pointer;
         }
 
-        /* Group 2 */
         .group {
             width: 94%; 
             height: 90%; 
@@ -206,27 +230,8 @@
             z-index: 1000; /* Ensure it's above other elements */
             display: none; /* Hidden by default */
         }
-
+        
     </style>
-
-
-    <!-- FavIcon on the browser tab-->
-
-
-    <!-- Head of the webpage -->
-    <head>
-
-        <!-- Title of the tab -->
-        <title>Org | Home</title>
-        <!-- FavIcon on the browser tab-->
-        <link rel="icon" type="image/x-icon" href="../../Assets/Image/H20 Harmony Logo.png">
-
-        <link href='https://fonts.googleapis.com/css?family=Epilogue:ExtraBold' rel='stylesheet'>
-        <link href='https://fonts.googleapis.com/css?family=Epilogue' rel='stylesheet'>
-
-        <!-- Template Stylesheet -->
-        <link rel="stylesheet" href="../General Components & Widget/Organization/Org Component Style.css">
-    </head>
 
 
     <!-- Body of the webpage -->
@@ -246,42 +251,33 @@
                 include("../General Components & Widget/Organization/Org Header.php");
             ?>
 
-        </div>
-        <!-- Navigation bar -->
-        <div class="navigation-bar" style="top: 10%; left: 5%">
-            <div class="icon" onclick="">
-                <!-- Add your icon here -->
-                <i class="fa-solid fa-bell"></i>
-            </div>
-        </div>
+            <!-- Content here -->
 
-        <!-- Big Container 1-->
-        <div class="container" style=" top: 15%; 
-            left: 5%;" >
             <!-- Group 2 -->
-            <div class="group"  onclick="showPopup()">
-                <div class="image">
-                    <!-- Image content -->
-                    <img src="../../Assets/Image/org event.png" alt="Event Image">
-                </div>
-                <div class="text">
-                Upcoming Events
-                </div>
-                <div class="sub-container">
-                    <div class="sub-container-text">
-                        Additional Information
+            <div class = "container">
+                <div class="group"  onclick="showPopup()">
+                    <div class="image">
+                        <!-- Image content -->
+                        <img src="../../Assets/Image/org event.png" alt="Event Image">
                     </div>
-                </div>
-                <div class="sub-container">
-                    <div class="sub-container-text">
-                        Additional Information
+                    <div class="text">
+                        Upcoming Events
+                    </div>
+                    <div class="sub-container">
+                        <div class="sub-container-text">
+                            Additional Information
+                        </div>
+                    </div>
+                    <div class="sub-container">
+                        <div class="sub-container-text">
+                            Additional Information
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- Overlay 1-->
-        <div class="overlay" id="overlay" style="display:none;" onclick="hidePopup()"></div>
+            <div class="overlay" id="overlay" style="display:none;" onclick="hidePopup()"></div>
+
             <!-- Popup container -->
             <div class="popup-container" id="popupContainer">
                 <!-- Row 1 -->
@@ -316,84 +312,109 @@
                         <div class="sub-text" style="padding-top: 10px;">View all your event here!</div>
                         <button class="popup-button">Event Calender</button>
                     </div>
-        </div>
-
-         <!-- Popup container for adding a new event -->
-        <div class="popup-container" id="newEventPopupContainer" style="display: flex; padding: 20px;
-            background: white; border-radius: 8px;">
-        <div style="background-image: url('../../Assets/Image/Org New Event.png'); 
-            padding: 20px; border-radius: 8px; width: 30%; background-size: cover; background-position: center;">
-            <h2 style="writing-mode: vertical-rl; text-align: center; 
-            font-size: 80px;  padding: 50px; transform: rotate(180deg); margin: 0;">New Event</h2>
-        </div>
-
-            <div style="flex-grow: 1; padding: 20px;">
-                <!-- Event Title -->
-                <h3>Please enter details for new event:</h3>
-                <!-- Event Name -->
-                <input type="text" id="newEventName" name="newEventName" placeholder="Event Name" style="width: 100%; margin-bottom: 10px; padding: 10px; font-family: Inter; font-size: 16px; line-height: 24px; border: 1px solid #9095A0; border-radius: 4px;">
-
-                <!-- Event Description -->
-                <textarea id="newEventDescription" name="newEventDescription" placeholder="Description" rows="4" style="width: 100%; margin-bottom: 10px; padding: 10px; font-family: Inter; font-size: 16px; line-height: 24px; border: 1px solid #9095A0; border-radius: 4px;"></textarea>
-
-                <!-- Event Location -->
-                <select id="newEventLocation" name="newEventLocation" style="width: 100%; margin-bottom: 10px; padding: 10px; font-family: Inter; font-size: 16px; line-height: 24px; border: 1px solid #9095A0; border-radius: 4px;">
-                    <option value="" disabled selected>Location</option>
-                    <!-- Add your locations here -->
-                </select>
-
-                <!-- Event Category -->
-                <input type="text" id="newEventCategory" name="newEventCategory" placeholder="Category" style="width: 100%; margin-bottom: 10px; padding: 10px; font-family: Inter; font-size: 16px; line-height: 24px; border: 1px solid #9095A0; border-radius: 4px;">
-
-                <!-- Participation Quota -->
-                <div style="margin-bottom: 10px;">
-                    <label style="display: block; font-family: Inter; font-size: 16px; margin-bottom: 5px;">Participation Quota</label>
-                    <div>
-                        <input type="radio" id="quota1" name="participationQuota" value="<50">
-                        <label for="quota1" style="margin-right: 10px;">Participants < 50</label>
-                        <input type="radio" id="quota2" name="participationQuota" value="50-100">
-                        <label for="quota2" style="margin-right: 10px;">50 < Participants < 100</label>
-                        <input type="radio" id="quota3" name="participationQuota" value="100-250">
-                        <label for="quota3" style="margin-right: 10px;">100 < Participants < 250</label>
-                        <input type="radio" id="quota4" name="participationQuota" value="others">
-                        <label for="quota4">Others</label>
-                    </div>
-                    <textarea id="otherQuota" name="otherQuota" placeholder="Others" rows="1" style="width: 100%; margin-top: 10px; padding: 10px; font-family: Inter; font-size: 16px; line-height: 24px; border: 1px solid #9095A0; border-radius: 4px;"></textarea>
                 </div>
 
-                <!-- Button to submit event --> 
-                <button class="popup-button" onclick="submitNewEvent()" style="width: 100%; padding: 10px; background-color: #2979FF; color: white; font-family: Inter; font-size: 16px; line-height: 24px; border: none; border-radius: 4px;">Add New Event</button>
+            <!-- Popup container for adding a new event -->
+            <div class="popup-container" id="newEventPopupContainer" style="display: none; padding: 20px;
+                background: white; border-radius: 8px;">
+            <div style="background-image: url('../../Assets/Image/Org New Event.png'); 
+                padding: 20px; border-radius: 8px; width: 30%; background-size: cover; background-position: center;">
+                <h2 style="writing-mode: vertical-rl; text-align: center; 
+                font-size: 80px;  padding: 50px; transform: rotate(180deg); margin: 0;">New Event</h2>
+            </div>
+
+                <div style="flex-grow: 1; padding: 20px;">
+                    <!-- Event Title -->
+                    <h3>Please enter details for new event:</h3>
+                    <!-- Event Name -->
+                    <input type="text" id="newEventName" name="newEventName" placeholder="Event Name" style="width: 100%; margin-bottom: 10px; padding: 10px; font-family: Inter; font-size: 16px; line-height: 24px; border: 1px solid #9095A0; border-radius: 4px;">
+
+                    <!-- Event Description -->
+                    <textarea id="newEventDescription" name="newEventDescription" placeholder="Description" rows="4" style="width: 100%; margin-bottom: 10px; padding: 10px; font-family: Inter; font-size: 16px; line-height: 24px; border: 1px solid #9095A0; border-radius: 4px;"></textarea>
+
+                    <!-- Event Location -->
+                    <select id="newEventLocation" name="newEventLocation" style="width: 100%; margin-bottom: 10px; padding: 10px; font-family: Inter; font-size: 16px; line-height: 24px; border: 1px solid #9095A0; border-radius: 4px;">
+                        <option value="" disabled selected>Location</option>
+                        <!-- Add your locations here -->
+                    </select>
+
+                    <!-- Event Category -->
+                    <input type="text" id="newEventCategory" name="newEventCategory" placeholder="Category" style="width: 100%; margin-bottom: 10px; padding: 10px; font-family: Inter; font-size: 16px; line-height: 24px; border: 1px solid #9095A0; border-radius: 4px;">
+
+                    <!-- Participation Quota -->
+                    <div style="margin-bottom: 10px;">
+                        <label style="display: block; font-family: Inter; font-size: 16px; margin-bottom: 5px;">Participation Quota</label>
+                        <div>
+                            <input type="radio" id="quota1" name="participationQuota" value="<50">
+                            <label for="quota1" style="margin-right: 10px;">Participants < 50</label>
+                            <input type="radio" id="quota2" name="participationQuota" value="50-100">
+                            <label for="quota2" style="margin-right: 10px;">50 < Participants < 100</label>
+                            <input type="radio" id="quota3" name="participationQuota" value="100-250">
+                            <label for="quota3" style="margin-right: 10px;">100 < Participants < 250</label>
+                            <input type="radio" id="quota4" name="participationQuota" value="others">
+                            <label for="quota4">Others</label>
+                        </div>
+                        <textarea id="otherQuota" name="otherQuota" placeholder="Others" rows="1" style="width: 100%; margin-top: 10px; padding: 10px; font-family: Inter; font-size: 16px; line-height: 24px; border: 1px solid #9095A0; border-radius: 4px;"></textarea>
                     </div>
-                    <div style="padding: 20px; border-radius: 8px; width: 40%;">
-                        <div style="background-image: url('../../Assets/Image/Org2.png'); padding: 80px; border-radius: 8px; position: relative;">
-                            <div style="position: absolute; top: 7%; right: 40%; background: #987070 ;color: white; border-radius: 50%; padding: 5px 10px;">?</div>
-                            <p style="font-family: Inter; font-size: 16px; line-height: 24px; text-align: center; color: #F1EEDC;">"The environment is where we all meet; where we all have a mutual interest; it is the one thing all of us share."</p>
+
+                    <!-- Button to submit event --> 
+                    <button class="popup-button" onclick="submitNewEvent()" style="width: 100%; padding: 10px; background-color: #2979FF; color: white; font-family: Inter; font-size: 16px; line-height: 24px; border: none; border-radius: 4px;">Add New Event</button>
+                        </div>
+                        <div style="padding: 20px; border-radius: 8px; width: 40%;">
+                            <div style="background-image: url('../../Assets/Image/Org2.png'); padding: 80px; border-radius: 8px; position: relative;">
+                                <div style="position: absolute; top: 7%; right: 40%; background: #987070 ;color: white; border-radius: 50%; padding: 5px 10px;">?</div>
+                                <p style="font-family: Inter; font-size: 16px; line-height: 24px; text-align: center; color: #F1EEDC;">"The environment is where we all meet; where we all have a mutual interest; it is the one thing all of us share."</p>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-        <!-- Overlay for new event popup container -->
-        <div class="overlay" id="overlayNewEventPopup" style="display: none;" onclick="hidePopup()"></div>
+            <!-- Overlay for new event popup container -->
+            <div class="overlay" id="overlayNewEventPopup" style="display: none;" onclick="hidePopup()"></div>
 
+            </div>
+            
+
+            
+            
+
+
+
+
+
+
+        </div>
+        
+
+        
+
+        
+        
 
     </body>
-        <script>
-            function showPopup() {
-                document.getElementById("popupContainer").style.display = "block";
-                document.getElementById("overlay").style.display = "block";
-            }
-            function hidePopup() {
-                document.getElementById("popupContainer").style.display = "none";
+
+    <script>
+        function showPopup() {
+            document.getElementById("popupContainer").style.display = "block";
+            document.getElementById("overlay").style.display = "block";
+        }
+        function hidePopup() {
+            document.getElementById("popupContainer").style.display = "none";
+            document.getElementById("overlay").style.display = "block";
+        }
+        function showAddNewEvent() {
+            document.getElementById("newEventPopupContainer").style.display = "flex";
+            document.getElementById("overlayPopup").style.display = "block";
+        }
+
+        window.onclick = function(event) {
+            if(event.target == document.getElementById("overlay")){
                 document.getElementById("overlay").style.display = "none";
             }
-        </script>
-        <script>
-            function showAddNewEvent() {
-                document.getElementById("newEventPopupContainer").style.display = "block";
-                document.getElementById("overlayPopup").style.display = "block";
-            }
+        }
+    </script>
 
-        </script>
-        <script src="../General Components & Widget/User/User Component Script.js"></script>
+
+    <script src="../General Components & Widget/Organization/Org Component Script.js"></script>
+
 
 </html>

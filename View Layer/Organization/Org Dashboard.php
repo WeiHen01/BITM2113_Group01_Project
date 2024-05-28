@@ -46,7 +46,7 @@
         
         <!-- Sidebar -->
         <?php 
-            include("../General Components & Widget/Administration/Admin_Sidebar.php");
+            include("../General Components & Widget/Organization/Org Sidebar.php");
         ?>
 
         <!-- Body --> 
@@ -55,7 +55,7 @@
             
             <!-- Header -->
             <?php 
-                include("../General Components & Widget/Administration/Admin_Header.php");
+                include("../General Components & Widget/Organization/Org Header.php");
             ?>
 
             <!-- Content here -->
