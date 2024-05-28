@@ -28,6 +28,22 @@
                 box-shadow: 0px 0px 1px #171a1f, 0px 0px 2px #171a1f; /* shadow-xs */
             }
 
+            .complaint-button{
+                padding: 1%;
+                background-color: #5faddc;
+                color: white;
+                place-items: center;
+                border-radius: 6px; /* border-l */
+                border-color: #5faddc; /* neutral-300 */
+                border-width: 1px; 
+            }
+
+            .complaint-button:hover{
+                background-color: white;
+                color: #5faddc;
+                
+            }
+
 
             
         </style>
@@ -44,15 +60,34 @@
                 include("../General Components & Widget/User/Header.php");
             ?>
 
-            <p style="padding-left:2%"><b>Complaint</b></p>
+            <div style = "display: flex; justify-content:space-between; border-color: #5faddc; /* neutral-300 */
+                border-width: 1px;  padding-top: 1%; padding-bottom:1%">
+                <p style="padding-left:2%"><b>Complaint</b></p>
+
+                <div class ="complaint-button" style="margin-right: 2%; display: flex; gap: 5px">
+                    <i class="fa-solid fa-plus"></i>
+                     
+                    Add complaint
+                </div>
+            </div>
 
             <div style = "display: flex">
+                
+                <!-- Left -->
+                <div class = "container" style="overflow-y: auto">
+                    
+                </div>
 
-                <div class = "container"></div>
+               
+                 <!-- Center -->
+                <div class = "container" style="overflow-y: auto">
+                
+                </div>
 
-                <div class = "container"></div>
+                 <!-- Right -->
+                <div class = "container" style="overflow-y: auto">
 
-                <div class = "container"></div>
+                </div>
 
             </div>
         </div>

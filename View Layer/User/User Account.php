@@ -197,6 +197,7 @@
                 background: #F3F4F6FF; /* neutral-200 */
             }
 
+
             
 
             
@@ -334,11 +335,13 @@
 
                 </div>
 
-                <div class="right-container" style = "overflow-y: auto">
+                <div class="right-container"  style = "overflow-y: auto">
                     
-                    <p style = "font-size: 25px"><strong>Event Participated</strong></p>
+                    <div>
+                        <p style = "font-size: 25px"><strong>Event Participated</strong></p>
+                    </div>
 
-                    <div class = "event-details" >
+                    <div class = "event-details">
 
                         <div class ="event">
                             <strong><p>Event 1</p></strong>

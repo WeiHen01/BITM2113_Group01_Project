@@ -64,7 +64,7 @@
                     <div class="container" style = "margin-bottom: 2%"><p style="padding-left:2%; ">Total Complaints in This week</p></div>
                 </div>
 
-                <div class = "container-2"></div>
+                <div class = "container-2" style="margin-bottom: 2%"></div>
 
             </div>
 

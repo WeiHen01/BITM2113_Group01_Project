@@ -70,7 +70,7 @@
                 margin-left: 1%;
                 margin-right: 2%;
                 width: 95%; 
-                height: 71vh; 
+                height: 73vh; 
                 background: #FFFFFFFF; /* white */
                 border-radius: 6px; /* border-l */
                 border-width: 1px; 
@@ -108,8 +108,8 @@
                 <!-- First container group -->
                 <div style="display: flex;">
                     <!-- Inner flex container for the first two containers -->
-                    <div style="display: flex; flex-direction: column; width: 50%;">
-                        <div class="container" style="margin-bottom: 1%">
+                    <div style="display: flex; flex-direction: column; width: 50%; gap: 20px">
+                        <div class="container">
                             <p style="padding-left: 1.5%"><b>Location</b></p>
                         </div>
                         <div class="container" >
