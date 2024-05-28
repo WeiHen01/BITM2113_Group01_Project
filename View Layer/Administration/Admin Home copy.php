@@ -27,6 +27,7 @@
 
         #contentArea {
             flex: 1;
+            padding: 20px;
         }
 
         .container {
@@ -107,51 +108,51 @@
             include("../General Components & Widget/Administration/Admin_Sidebar.php");
         ?>
 
+        <!-- Body --> 
+
         <!-- Body -->
         <div id="contentArea">
-            <!-- Header -->
-            <?php 
-                include("../General Components & Widget/Administration/Admin_Header.php");
-            ?>
+        <!-- Header -->
+        <?php 
+            include("../General Components & Widget/Administration/Admin_Header.php");
+        ?>
 
-            <!-- Overview Section -->
-            <div style="padding: 2%">
-                <div class="overview-container">
-                    <div class="overview-item">
-                        <p>Organization Registration</p>
-                    </div>
-                    <div class="overview-item">
-                        <p>User Registration</p>
-                    </div>
-                    <div class="overview-item">
-                        <p>User Complaint Issues</p>
-                    </div>
-                    <div class="overview-item">
-                        <p>Organization Event Created</p>
-                    </div>
-                </div>
+        <!-- Overview Section -->
+        <div id="contentArea">
 
-                <!-- Report by this month Section -->
-                <div class="section-title">Report by this month</div>
-                    <div class="main-content">
-                        <div class="container">
-                            <p><b>Resolved and Unresolved Water Pollution Complaint</b></p>
-                            <div class="chart-container">
-                                <!-- Insert your chart here -->
-                            </div>
-                        </div>
-                        <div class="container">
-                            <p><b>Active Events</b></p>
-                            <div class="pie-chart-container">
-                                <!-- Insert your pie chart here -->
-                            </div>
-                        </div>
-                    </div>
+        <!-- Overview Section -->
+        <div class="overview-container">
+            <div class="overview-item">
+                <p>Organization Registration</p>
+            </div>
+            <div class="overview-item">
+                <p>User Registration</p>
+            </div>
+            <div class="overview-item">
+                <p>User Complaint Issues</p>
+            </div>
+            <div class="overview-item">
+                <p>Organization Event Created</p>
+            </div>
+        </div>
+
+        <!-- Report by this month Section -->
+        <div class="section-title">Report by this month</div>
+        <div class="main-content">
+            <div class="container">
+                <p><b>Resolved and Unresolved Water Pollution Complaint</b></p>
+                <div class="chart-container">
+                    <!-- Insert your chart here -->
                 </div>
             </div>
-
-        
+            <div class="container">
+                <p><b>Active Events</b></p>
+                <div class="pie-chart-container">
+                    <!-- Insert your pie chart here -->
+                </div>
+            </div>
         </div>
+    </div>
     </body>
 
 
