@@ -160,7 +160,7 @@
             top: 15%; 
             left: 214px; 
             width: 70%; 
-            height: 80%; 
+            height: 80vh; 
             background: #DEE1E6FF; /* neutral-300 */
             border-radius: 15px; /* border-xl */
             box-shadow: 0px 17px 35px #171a1f, 0px 0px 2px #171a1f; /* shadow-xl */
@@ -208,13 +208,13 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 100%; 
-            height: 100%;
+            width: 80%; 
+            height: 90%;
             background: #DEE1E6FF; /* neutral-300 */
             border-radius: 15px; /* border-xl */
             box-shadow: 0px 17px 35px #171a1f, 0px 0px 2px #171a1f; /* shadow-xl */
             z-index: 1001; /* Ensure it's above other elements */
-            padding: 20px;
+            padding: 2%;
             display: none; /* Hidden by default */
         }
 
@@ -258,7 +258,7 @@
                 <div class="group"  onclick="showPopup()">
                     <div class="image">
                         <!-- Image content -->
-                        <img src="../../Assets/Image/org event.png" alt="Event Image">
+                        <img src="../../Assets/Image/org event.png" style = "width: 100%" alt="Event Image">
                     </div>
                     <div class="text">
                         Upcoming Events
@@ -313,27 +313,28 @@
                         <button class="popup-button">Event Calender</button>
                     </div>
                 </div>
+            </div>
 
             <!-- Popup container for adding a new event -->
             <div class="popup-container" id="newEventPopupContainer" style="display: none; padding: 20px;
                 background: white; border-radius: 8px;">
-            <div style="background-image: url('../../Assets/Image/Org New Event.png'); 
-                padding: 20px; border-radius: 8px; width: 30%; background-size: cover; background-position: center;">
-                <h2 style="writing-mode: vertical-rl; text-align: center; 
-                font-size: 80px;  padding: 50px; transform: rotate(180deg); margin: 0;">New Event</h2>
-            </div>
+                <div style="background-image: url('../../Assets/Image/Org New Event.png'); 
+                    padding: 20px; border-radius: 8px; width: 30%; background-size: cover; background-position: center;">
+                    <h2 style="writing-mode: vertical-rl; text-align: center; 
+                    font-size: 80px;  padding: 50px; transform: rotate(180deg); margin: 0;">New Event</h2>
+                </div>
 
                 <div style="flex-grow: 1; padding: 20px;">
                     <!-- Event Title -->
                     <h3>Please enter details for new event:</h3>
                     <!-- Event Name -->
-                    <input type="text" id="newEventName" name="newEventName" placeholder="Event Name" style="width: 100%; margin-bottom: 10px; padding: 10px; font-family: Inter; font-size: 16px; line-height: 24px; border: 1px solid #9095A0; border-radius: 4px;">
+                    <input type="text" id="newEventName" name="newEventName" placeholder="Event Name" style="width: 100%; margin-bottom: 10px; padding: 10px; font-family: 'Epilogue'; font-size: 16px; line-height: 24px; border: 1px solid #9095A0; border-radius: 4px;">
 
                     <!-- Event Description -->
-                    <textarea id="newEventDescription" name="newEventDescription" placeholder="Description" rows="4" style="width: 100%; margin-bottom: 10px; padding: 10px; font-family: Inter; font-size: 16px; line-height: 24px; border: 1px solid #9095A0; border-radius: 4px;"></textarea>
+                    <textarea id="newEventDescription" name="newEventDescription" placeholder="Description" rows="4" style="width: 100%; margin-bottom: 10px; padding: 10px; font-family: 'Epilogue'; font-size: 16px; line-height: 24px; border: 1px solid #9095A0; border-radius: 4px;"></textarea>
 
                     <!-- Event Location -->
-                    <select id="newEventLocation" name="newEventLocation" style="width: 100%; margin-bottom: 10px; padding: 10px; font-family: Inter; font-size: 16px; line-height: 24px; border: 1px solid #9095A0; border-radius: 4px;">
+                    <select id="newEventLocation" name="newEventLocation" style="width: 100%; margin-bottom: 10px; padding: 10px; font-family: 'Epilogue'; font-size: 16px; line-height: 24px; border: 1px solid #9095A0; border-radius: 4px;">
                         <option value="" disabled selected>Location</option>
                         <!-- Add your locations here -->
                     </select>
@@ -342,7 +343,7 @@
                     <input type="text" id="newEventCategory" name="newEventCategory" placeholder="Category" style="width: 100%; margin-bottom: 10px; padding: 10px; font-family: Inter; font-size: 16px; line-height: 24px; border: 1px solid #9095A0; border-radius: 4px;">
 
                     <!-- Participation Quota -->
-                    <div style="margin-bottom: 10px;">
+                    <div style="margin-bottom: 1%;">
                         <label style="display: block; font-family: Inter; font-size: 16px; margin-bottom: 5px;">Participation Quota</label>
                         <div>
                             <input type="radio" id="quota1" name="participationQuota" value="<50">
@@ -354,11 +355,11 @@
                             <input type="radio" id="quota4" name="participationQuota" value="others">
                             <label for="quota4">Others</label>
                         </div>
-                        <textarea id="otherQuota" name="otherQuota" placeholder="Others" rows="1" style="width: 100%; margin-top: 10px; padding: 10px; font-family: Inter; font-size: 16px; line-height: 24px; border: 1px solid #9095A0; border-radius: 4px;"></textarea>
+                        <textarea id="otherQuota" name="otherQuota" placeholder="Others" rows="1" style="width: 100%; margin-top: 10px; padding: 10px; font-family: 'Epilogue'; font-size: 16px; line-height: 24px; border: 1px solid #9095A0; border-radius: 4px;"></textarea>
                     </div>
 
                     <!-- Button to submit event --> 
-                    <button class="popup-button" onclick="submitNewEvent()" style="width: 100%; padding: 10px; background-color: #2979FF; color: white; font-family: Inter; font-size: 16px; line-height: 24px; border: none; border-radius: 4px;">Add New Event</button>
+                    <button class="popup-button" onclick="submitNewEvent()" style="width: 100%; padding: 10px; background-color: #2979FF; color: white; font-family: 'Epilogue'; font-size: 16px; line-height: 24px; border: none; border-radius: 4px;">Add New Event</button>
                         </div>
                         <div style="padding: 20px; border-radius: 8px; width: 40%;">
                             <div style="background-image: url('../../Assets/Image/Org2.png'); padding: 80px; border-radius: 8px; position: relative;">
