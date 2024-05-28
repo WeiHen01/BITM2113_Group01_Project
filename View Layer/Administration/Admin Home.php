@@ -116,6 +116,7 @@
 
             <!-- Overview Section -->
             <div style="padding: 2%">
+
                 <div class="overview-container">
                     <div class="overview-item">
                         <p>Organization Registration</p>
@@ -148,6 +149,7 @@
                         </div>
                     </div>
                 </div>
+                
             </div>
 
         
