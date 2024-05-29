@@ -338,7 +338,7 @@
                 <div class="right-container"  style = "overflow-y: auto">
                     
                     <div>
-                        <p style = "font-size: 25px"><strong>Event Participated</strong></p>
+                        <p><strong>Event Participated</strong></p>
                     </div>
 
                     <div class = "event-details">
