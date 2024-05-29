@@ -27,6 +27,7 @@
 
         #contentArea {
             flex: 1;
+            background: #E5E4E2;
         }
 
         .container {
@@ -39,19 +40,23 @@
         }
 
         .overview-container {
+            padding: 1%;
             display: flex;
+            background: #FFFFFF;
             justify-content: space-between;
-            margin-bottom: 20px;
+            border-radius: 0.5em;
         }
 
         .overview-item {
             flex: 1;
             margin: 0 10px;
             text-align: center;
-            padding: 20px;
-            background: #F0F4F8;
-            border-radius: 6px;
-            box-shadow: 0px 0px 1px #171a1f, 0px 0px 2px #171a1f;
+            padding: 5.0px;
+            background: #F1F4FDFF; /* tertiary1-100 */
+            border-radius: 4px; /* border-m */
+            border-width: 1px; 
+            border-color: #C5D1F7FF; /* tertiary1-200 */
+            border-style: solid; 
         }
 
         .main-content {
@@ -73,6 +78,7 @@
         }
 
         .section-title {
+            margin-top: 2%;
             margin-left: 10px;
             font-size: 1.2em;
             font-weight: bold;
@@ -117,20 +123,27 @@
             
 
             <!-- Overview Section -->
-            <div style="padding: 2%">
-
+            <p style="padding-left: 2%"><b>Home</b></p>
+            <div style="padding-left: 2%">
+        
                 <div class="overview-container">
                     <div class="overview-item">
-                        <p>Organization Registration</p>
+                    <i class="fa-solid fa-building" style="color: white"></i>
+                    <i class="fa-solid fa-circle" style="margin-top: 2%; color: blue; font-size: 32px;"></i> 
+                    <p style="color:blue; font-size:24px;"><b>17</b></p>
+                    <p><b>Organization Registration</b></p>
                     </div>
                     <div class="overview-item">
-                        <p>User Registration</p>
+                        <p style="color:blue; font-size:24px;"><b>20</b></p>
+                        <p><b>User Registration</b></p>
                     </div>
                     <div class="overview-item">
-                        <p>User Complaint Issues</p>
+                        <p style="color:blue; font-size:24px;"><b>23</b></p>
+                        <p><b>User Complaint Issues</b></p>
                     </div>
                     <div class="overview-item">
-                        <p>Organization Event Created</p>
+                        <p style="color:blue; font-size:24px;"><b>07</b></p>
+                        <p><b>Organization Event Created</b></p>
                     </div>
                 </div>
 
