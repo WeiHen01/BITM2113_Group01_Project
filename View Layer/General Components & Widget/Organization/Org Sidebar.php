@@ -19,6 +19,14 @@
             <i class="fa-regular fa-calendar-days" style="padding-right: 5%"></i>
             Event
         </a>
+        <a href="Org Event Calendar.php" <?php if(basename($_SERVER['PHP_SELF']) == 'Org Event Calendar.php') echo 'class="active"'?>>
+            <i class="fa-regular fa-calendar" style="padding-right: 5%"></i>
+            Calendar
+        </a>
+        <a href="Org Company Profile.php" <?php if(basename($_SERVER['PHP_SELF']) == 'Org Company Profile.php') echo 'class="active"'?>>
+            <i class="fa-regular fa-calendar" style="padding-right: 5%"></i>
+            Profile
+        </a>
         <a href="javascript:void(0)" onclick="showContent('Services')">
             <i class="fa-solid fa-arrow-right-from-bracket" style="padding-right: 5%"></i>
             Complaint

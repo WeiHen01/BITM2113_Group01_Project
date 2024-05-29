@@ -65,7 +65,7 @@
         <div class="profile-image" onclick="toggleDropdown()">
             <img src="../../../Assets/Image/logo.png" alt="Profile" width="40" height="40">
             <div class="profile-dropdown" id="profileDropdown">
-                <a href="User Account.php">Profile</a>
+                <a href="Org Company Profile.php">Profile</a>
                 <a href="#" onClick="logout()">Logout</a>
             </div>
         </div>

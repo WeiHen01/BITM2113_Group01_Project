@@ -37,7 +37,7 @@
         <link href='https://fonts.googleapis.com/css?family=Epilogue' rel='stylesheet'>
 
         <!-- Template Stylesheet -->
-        <link rel="stylesheet" href="../General Components & Widget/Administration/Admin_Component Style.css">
+        <link rel="stylesheet" href="../General Components & Widget/Organization/Org Component Style.css">
     </head>
 
 
@@ -60,7 +60,7 @@
 
             <!-- Content here -->
 
-            <p style="padding-left:1.5%">Organization Dashboard</p>
+            <p style="padding-left:1.5%">Organization Company Profile</p>
 
 
             
