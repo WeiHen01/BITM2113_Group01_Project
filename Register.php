@@ -274,7 +274,7 @@
                 <!-- Modal content -->
                 <div class="modal-content">
                     <!--Close button -->
-                    <div id="close" >
+                    <div id="close" style = "padding: 2%">
                         <i class="fa-solid fa-xmark"></i>
                     </div>
 

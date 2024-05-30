@@ -110,6 +110,95 @@
                 color: #f8f9fa; /* Example text color on hover */
             }
 
+            button {
+                font-family: 'Epilogue';
+                width: 15vw; 
+                height: 46px;  
+                display: flex; 
+                align-items: center; 
+                justify-content: center; 
+                font-size: 16px; 
+                margin-top: 2%;
+                line-height: 26px; 
+                font-weight: 400; 
+                color: #FFFFFFFF; /* white */
+                background: #00BDD6FF; /* primary-500 */
+                opacity: 1; 
+                gap: 3%;
+                border: none; 
+                border-radius: 8px; /* border-xl */
+                padding-left: 12px;
+            }
+
+            button:hover {
+                background-color: #0056b3; /* Example background color on hover */
+                color: #f8f9fa; /* Example text color on hover */
+            }
+
+            #updateAccButton button{
+                font-family: 'Epilogue';
+                width: 8vw; 
+                height: 46px;  
+                display: flex; 
+                align-items: center; 
+                justify-content: center; 
+                font-size: 16px; 
+                margin-top: 2%;
+                line-height: 26px; 
+                font-weight: 400; 
+                color: #FFFFFFFF; /* white */
+                background: #00BDD6FF; /* primary-500 */
+                opacity: 1; 
+                border: none; 
+                border-radius: 8px; /* border-xl */
+                padding-left: 12px;
+            }
+
+            #updateAccButton button:hover{
+                font-family: 'Epilogue';
+                width: 8vw; 
+                height: 46px;  
+                display: flex; 
+                align-items: center; 
+                justify-content: center; 
+                font-size: 16px; 
+                margin-top: 2%;
+                line-height: 26px; 
+                font-weight: 400; 
+                background-color: #0056b3; /* Example background color on hover */
+                color: #f8f9fa; /* Example text color on hover */
+                opacity: 1; 
+                border: none; 
+                border-radius: 8px; /* border-xl */
+                padding-left: 12px;
+            }
+
+            
+
+            .cancelBtn button {
+                font-family: 'Epilogue';
+                width: 8vw; 
+                height: 46px;  
+                display: flex; 
+                align-items: center; 
+                justify-content: center; 
+                font-size: 16px; 
+                margin-top: 2%;
+                line-height: 26px; 
+                font-weight: 400; 
+                color: #000000; /* white */
+                background: #FFFFFFFF; /* primary-500 */
+                opacity: 1; 
+                border: none; 
+                border-radius: 8px; /* border-xl */
+                padding-left: 12px;
+            }
+
+            .cancelBtn button:hover {
+                color: #000000; /* white */
+                background: #949494; /* primary-500 */
+            }
+
 
             /* The Modal (background) */
             .modal {
@@ -130,12 +219,12 @@
             /* Modal Content/Box */
             .modal-content {
                 position: absolute; 
-                top: 10%;
+                top: 15%;
                 bottom: 10%; 
                 left: 30%;
                 right: 30%; 
                 width: 40%; 
-                height: 80%;
+                height: 70%;
                 background: #FFFFFFFF; /* white */
                 border-radius: 8px; /* border-xl */
                 box-shadow: 0px 17px 35px #171a1f, 0px 0px 2px #171a1f; /* shadow-xl */
@@ -171,14 +260,14 @@
 
             .textbox {
                 position: relative;
-                margin-left: 1%;
+                margin-left: 3%;
                 margin-bottom: 10px; /* Adjust as needed */
             }
 
         
             .textbox input {
                 font-family: 'Epilogue';
-                width: 41vw; 
+                width: 35vw; 
                 height: 46px;
                 font-size: 14px; 
                 line-height: 22px; 
@@ -187,7 +276,7 @@
                 border-radius: 8px; /* border-xl */
                 border-width: 0px; 
                 outline: none; 
-                padding-left: 25px; /* Adjust the padding to make space for the icon */
+                padding-left: 15px; /* Adjust the padding to make space for the icon */
             }
 
             /* hover */
@@ -228,22 +317,28 @@
                         <b>Update profile</b>
                     </div>
 
-                    <div style = "padding: 4%">
-                        <input type = "text" name = "Username" id="usernameInput" placeholder = "Enter Your Username" />
+                    <label style = "margin-left: 3%">Username</label>
+                    <div class="textbox">
+                        <input type="text" name="Username" id="usernameInput" placeholder="Enter Your Username" />
                     </div>
 
-                    <div style = "padding: 4%">
-                        <input type = "text" name = "Email" id="emailInput" placeholder = "Enter Your Email" />
+                    <label style = "margin-left: 3%">Email</label>
+                    <div class="textbox">
+                        <input type="text" name="Email" id="emailInput" placeholder="Enter Your Email" />
                     </div>
 
-                    <div style = "padding: 4%">
-                        <input type = "text" name = "Contact" id="contactInput" placeholder = "Enter Your Contact" />
+                    <label style = "margin-left: 3%">Contact</label>
+                    <div class="textbox" style = "margin-bottom: 10%">
+                        <input type="text" name="Contact" id="contactInput" placeholder="Enter Your Contacr" />
                     </div>
 
-                    <div class="button" style = "justify-content: flex-end;">
-                        <button type="button" style="color: #FFFFFFFF; background: #00BDD6FF; transition: #0056b3 0.3s; width: 40%;" onmouseover="this.style.backgroundColor='#0056b3';" onmouseout="this.style.backgroundColor='#00BDD6FF';">
-                            Update 
-                        </button>
+                    <div style = "display: flex; justify-content: end; margin-top: 2%; margin-right: 5%; gap: 10px;">
+                        <div class="cancelBtn">
+                            <button type="cancel">Cancel</button>
+                        </div>
+                        <div class="btn" id="updateAccButton" onclick="validateForm()">
+                            <button type="submit">Continue</button>
+                        </div>
                     </div>
 
                     
@@ -264,7 +359,33 @@
                         <i class="fa-solid fa-xmark" ></i>
                     </div>
 
-                    
+                    <div style = "font-size: 25px; padding: 4%">
+                        <b>Update password</b>
+                    </div>
+
+                    <label style = "margin-left: 3%">Old Password</label>
+                    <div class="textbox">
+                        <input type="text" name="oldPass" id="passwordOld" placeholder="Enter Your Current Password" />
+                    </div>
+
+                    <label style = "margin-left: 3%">New Password</label>
+                    <div class="textbox">
+                        <input type="text" name="newPass" id="passwordNew" placeholder="Enter Your New Password" />
+                    </div>
+
+                    <label style = "margin-left: 3%">Contact</label>
+                    <div class="textbox" style = "margin-bottom: 10%">
+                        <input type="text" name="conPass" id="passwordConfirm" placeholder="Confirm New Password" />
+                    </div>
+
+                    <div style = "display: flex; justify-content: end; margin-top: 2%; margin-right: 5%; gap: 10px;">
+                        <div class="cancelBtn">
+                            <button type="cancel">Cancel</button>
+                        </div>
+                        <div class="btn" id="updateAccButton" onclick="validateForm()">
+                            <button type="submit">Continue</button>
+                        </div>
+                    </div>
                     
                 </div>
             </form>

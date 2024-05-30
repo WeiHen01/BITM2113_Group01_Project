@@ -136,6 +136,7 @@
 
             select{
                 border:none;
+                font-family: 'Epilogue';
                 padding: 10px 20px;
                 border-radius:5px;
                 width: 50%;
