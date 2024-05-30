@@ -111,6 +111,11 @@
 
         #close:hover{
             color: black;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            padding: 1.5%;
         }
 
         /** Modal: left-container */
@@ -270,7 +275,7 @@
                 <div class="modal-content">
                     <!--Close button -->
                     <div id="close" >
-                        <i class="fa-solid fa-xmark" ></i>
+                        <i class="fa-solid fa-xmark"></i>
                     </div>
 
                     <!-- Left container-->

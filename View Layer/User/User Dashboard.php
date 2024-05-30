@@ -20,7 +20,7 @@
                 margin-left: 2%;
                 width: 25%; 
                 height: 20vh; 
-                background: #FFFFFFFF; /* white */
+                background: url("../../Assets/Image/User_dashboard_bg.png"); /* white */
                 border-radius: 6px; /* border-l */
                 border-width: 1px; 
                 border-color: #DEE1E6FF; /* neutral-300 */
@@ -31,7 +31,7 @@
             .container-2 {
                 margin-left: 2%;
                 margin-right:  2%;
-                width: 95vw; 
+                width: 94vw; 
                 height: 60vh; 
                 background: #FFFFFFFF; /* white */
                 border-radius: 6px; /* border-l */

@@ -16,10 +16,16 @@
 
         <style>
             /* Container 23 */
-            .container {
+            .main-container {
                 margin-left: 2%;
                 width: calc(90%/3); 
-                height: 70vh; 
+                height: 62vh; 
+                border-radius: 6px; /* border-l */
+            }
+
+            /* Container 23 */
+            .container {
+                height: 65vh; 
                 background: #d1d1d1; /* white */
                 border-radius: 6px; /* border-l */
                 border-width: 1px; 
@@ -84,6 +90,15 @@
                 padding: 1.5%;
             }
 
+            #close-2 :hover{
+                color: #000000;
+                float: right;
+                font-size: 28px;
+                font-weight: bold;
+                cursor: pointer;
+                padding: 1.5%;
+            }
+
             /* Textbox style */
             .textbox {
                 position: relative;
@@ -92,7 +107,7 @@
 
             .textbox input {
                 font-family: 'Epilogue';
-                width: 70vw; /* Fill the entire width of the parent container */
+                width: 75vw; /* Fill the entire width of the parent container */
                 height: 46px;
                 font-size: 14px;
                 line-height: 22px;
@@ -101,13 +116,12 @@
                 border-radius: 8px; /* border-xl */
                 border-width: 0px;
                 outline: none;
-                padding-left: 35px; /* Adjust the padding to make space for the icon */
-                padding-right: 38px;
+                padding-left: 1%; /* Adjust the padding to make space for the icon */
             }
 
             .textbox textarea {
                 font-family: 'Epilogue';
-                width: 70vw; /* Fill the entire width of the parent container */
+                width: 75vw; /* Fill the entire width of the parent container */
                 height: 100px;
                 font-size: 14px;
                 line-height: 22px;
@@ -116,8 +130,8 @@
                 border-radius: 8px; /* border-xl */
                 border-width: 0px;
                 outline: none;
-                padding-left: 35px; /* Adjust the padding to make space for the icon */
-                padding-right: 38px;
+                padding-top: 1%;
+                padding-left: 1%; /* Adjust the padding to make space for the icon */
             }
 
             select{
@@ -208,33 +222,31 @@
 
                             <p>Complaint title</p>
                             <div class="textbox">
-                                <i style="position: absolute; left: 5px; top: 13px" class="fas fa-envelope" id="icons-1"></i> <!-- Icon for email -->
                                 <input type="text" name="Email" id="emailInput" placeholder="Enter Your Email" />
                             </div>
 
                             <p>Description</p>
                             <div class="textbox">
-                                <i style="position: absolute; left: 5px; top: 13px" class="fas fa-envelope" id="icons-1"></i> <!-- Icon for email -->
                                 <textarea name="Email" id="emailInput" placeholder="Enter description"> </textarea>
                             </div>
 
-                            <div style = "display: flex; justify-content: space-evenly">
-                                <select name="language" id="language">
-                                    <option value="none" data-icon = "fa-solid fa-city">City</option>
-                                    <option value="javascript"> JavaScript</option>
-                                    <option value="java" selected>Java</option>
+                            <div style = "display: flex; justify-content: space-evenly; gap: 10px">
+                                <select name="city" id="city">
+                                    <option value="none">City</option>
+                                    <option value="javascript"> State</option>
+                                    <option value="java">Country</option>
                                 </select>
 
-                                <select name="language" id="language">
-                                    <option value="none">City</option>
+                                <select name="state" id="state">
+                                    <option value="none">State</option>
                                     <option value="javascript"> JavaScript</option>
-                                    <option value="java" selected>Java</option>
+                                    <option value="java">Java</option>
                                 </select>
 
-                                <select name="language" id="language">
-                                    <option value="none">City</option>
+                                <select name="country" id="country">
+                                    <option value="none">Country</option>
                                     <option value="javascript"> JavaScript</option>
-                                    <option value="java" selected>Java</option>
+                                    <option value="java">Java</option>
                                 </select>
                             </div>
 
@@ -279,19 +291,32 @@
             <div style = "display: flex">
                 
                 <!-- Left -->
-                <div class = "container" style="overflow-y: auto">
+                <div class = "main-container">
+                    <b>Recently added</b>
+                    <div style="height: 2%"></div>
+                    <div class = "container" style="overflow-y: auto">
+
+                    </div>
                     
                 </div>
 
                
                  <!-- Center -->
-                <div class = "container" style="overflow-y: auto">
-                
+                <div class = "main-container">
+                    <b>In Progress</b>
+                    <div style="height: 2%"></div>
+                    <div class = "container" style="overflow-y: auto">
+
+                    </div>
                 </div>
 
                  <!-- Right -->
-                <div class = "container" style="overflow-y: auto">
+                <div class = "main-container">
+                    <b>Done</b>
+                    <div style="height: 2%"></div>
+                    <div class = "container" style="overflow-y: auto">
 
+                    </div>
                 </div>
 
             </div>
