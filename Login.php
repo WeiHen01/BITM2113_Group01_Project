@@ -283,7 +283,7 @@
 
                 echo "<script>
                     Swal.fire({
-                        title: 'Login Successful as Organization!',
+                        title: 'Login Successful as Administration!',
                         text: 'You may proceed to login as Admin!',
                         icon: 'success'
                     }).then((result) => {
