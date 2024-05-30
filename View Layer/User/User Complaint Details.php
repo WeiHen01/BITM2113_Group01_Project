@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>User | Complaint Details</title>
+
+        <!-- FavIcon on the browser tab-->
+        <link rel="icon" type="image/x-icon" href="../../Assets/Image/H20 Harmony Logo.png">
+
+        <link href='https://fonts.googleapis.com/css?family=Epilogue:ExtraBold' rel='stylesheet'>
+        <link href='https://fonts.googleapis.com/css?family=Epilogue' rel='stylesheet'>
+
+        <!-- Template Stylesheet -->
+        <link rel="stylesheet" href="../General Components & Widget/User/User Component Style.css">
+    </head>
+    <body>
+        
+    </body>
+</html>

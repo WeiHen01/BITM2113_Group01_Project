@@ -29,7 +29,7 @@
             }
 
             .complaint-button{
-                padding: 1%;
+                padding: 0.5%;
                 background-color: #5faddc;
                 color: white;
                 place-items: center;
@@ -43,6 +43,143 @@
                 color: #5faddc;
                 
             }
+            
+            /* The Modal (background) */
+            .modal {
+                display: none; /* Hidden by default */
+                position: fixed; /* Stay in place */
+                z-index: 1; /* Sit on top */
+                left: 0;
+                top: 0;
+                width: 100%; /* Full width */
+                height: 100%; /* Full height */
+                overflow: auto; /* Enable scroll if needed */
+                background-color: rgb(0,0,0); /* Fallback color */
+                background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+                justify-content: center; /* Center horizontally */
+                align-items: center; /* Center vertically */
+            }
+
+            /* Modal Content/Box */
+            .modal-content {
+                position: absolute; 
+                top: 10%;
+                bottom: 10%; 
+                left: 10%;
+                right: 10%; 
+                width: 80%; 
+                height: 80%;
+                background: #FFFFFFFF; /* white */
+                border-radius: 8px; /* border-xl */
+                box-shadow: 0px 17px 35px #171a1f, 0px 0px 2px #171a1f; /* shadow-xl */
+            }
+
+            /* The Close Button */
+            #close-2 {
+                color: #aaa;
+                float: right;
+                font-size: 28px;
+                font-weight: bold;
+                cursor: pointer;
+                padding: 1.5%;
+            }
+
+            /* Textbox style */
+            .textbox {
+                position: relative;
+                margin-bottom: 10px; /* Adjust as needed */
+            }
+
+            .textbox input {
+                font-family: 'Epilogue';
+                width: 70vw; /* Fill the entire width of the parent container */
+                height: 46px;
+                font-size: 14px;
+                line-height: 22px;
+                font-weight: 400;
+                background: #F3F4F6FF; /* neutral-200 */
+                border-radius: 8px; /* border-xl */
+                border-width: 0px;
+                outline: none;
+                padding-left: 35px; /* Adjust the padding to make space for the icon */
+                padding-right: 38px;
+            }
+
+            .textbox textarea {
+                font-family: 'Epilogue';
+                width: 70vw; /* Fill the entire width of the parent container */
+                height: 100px;
+                font-size: 14px;
+                line-height: 22px;
+                font-weight: 400;
+                background: #F3F4F6FF; /* neutral-200 */
+                border-radius: 8px; /* border-xl */
+                border-width: 0px;
+                outline: none;
+                padding-left: 35px; /* Adjust the padding to make space for the icon */
+                padding-right: 38px;
+            }
+
+            select{
+                border:none;
+                padding: 10px 20px;
+                border-radius:5px;
+                width: 50%;
+                background: #F3F4F6FF; /* neutral-200 */
+            }
+
+            select:focus{
+                outline:none;
+            }
+
+                /* Button 26 */
+            button {
+                font-family: 'Epilogue';
+                width: 15vw; 
+                height: 46px;  
+                display: flex; 
+                align-items: center; 
+                justify-content: center; 
+                font-size: 16px; 
+                margin-top: 2%;
+                line-height: 26px; 
+                font-weight: 400; 
+                color: #FFFFFFFF; /* white */
+                background: #00BDD6FF; /* primary-500 */
+                opacity: 1; 
+                border: none; 
+                border-radius: 8px; /* border-xl */
+                padding-left: 12px;
+            }
+
+            button:hover {
+                background-color: #0056b3; /* Example background color on hover */
+                color: #f8f9fa; /* Example text color on hover */
+            }
+
+            .cancelBtn button {
+                font-family: 'Epilogue';
+                width: 15vw; 
+                height: 46px;  
+                display: flex; 
+                align-items: center; 
+                justify-content: center; 
+                font-size: 16px; 
+                margin-top: 2%;
+                line-height: 26px; 
+                font-weight: 400; 
+                color: #000000; /* white */
+                background: #FFFFFFFF; /* primary-500 */
+                opacity: 1; 
+                border: none; 
+                border-radius: 8px; /* border-xl */
+                padding-left: 12px;
+            }
+
+            .cancelBtn button:hover {
+                color: #000000; /* white */
+                background: #949494; /* primary-500 */
+            }
 
 
             
@@ -51,8 +188,77 @@
     <body>
         <!-- Sidebar -->
         <?php 
-                include("../General Components & Widget/User/Sidebar.php");
-            ?>
+            include("../General Components & Widget/User/Sidebar.php");
+        ?>
+
+        <!-- The Modal -->
+        <div id="addComplaintModel" class="modal">
+            
+            <form id="updatePasswordForm" method="post">
+                <!-- Modal content -->
+                <div class="modal-content" >
+                    <!--Close button -->
+                    <div id="close-2" >
+                        <i class="fa-solid fa-xmark" ></i>
+                    </div>
+
+                    <div style = "padding: 3%">
+                        <form>
+                            <strong style = "font-size: 25px">Submit a complaint</strong> 
+
+                            <p>Complaint title</p>
+                            <div class="textbox">
+                                <i style="position: absolute; left: 5px; top: 13px" class="fas fa-envelope" id="icons-1"></i> <!-- Icon for email -->
+                                <input type="text" name="Email" id="emailInput" placeholder="Enter Your Email" />
+                            </div>
+
+                            <p>Description</p>
+                            <div class="textbox">
+                                <i style="position: absolute; left: 5px; top: 13px" class="fas fa-envelope" id="icons-1"></i> <!-- Icon for email -->
+                                <textarea name="Email" id="emailInput" placeholder="Enter description"> </textarea>
+                            </div>
+
+                            <div style = "display: flex; justify-content: space-evenly">
+                                <select name="language" id="language">
+                                    <option value="none" data-icon = "fa-solid fa-city">City</option>
+                                    <option value="javascript"> JavaScript</option>
+                                    <option value="java" selected>Java</option>
+                                </select>
+
+                                <select name="language" id="language">
+                                    <option value="none">City</option>
+                                    <option value="javascript"> JavaScript</option>
+                                    <option value="java" selected>Java</option>
+                                </select>
+
+                                <select name="language" id="language">
+                                    <option value="none">City</option>
+                                    <option value="javascript"> JavaScript</option>
+                                    <option value="java" selected>Java</option>
+                                </select>
+                            </div>
+
+                            <div style = "display: flex; justify-content: end; margin-top: 2%; gap: 10px;">
+                                <div class="cancelBtn">
+                                    <button type="cancel">Cancel</button>
+                                </div>
+                                <div class="button" id="signupButton" onclick="validateForm()">
+                                    <button type="submit">Continue</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                    
+
+
+
+                    
+                    
+                </div>
+            </form>
+        
+        </div>
 
         <div id="contentArea">
             <!-- Header -->
@@ -64,9 +270,8 @@
                 border-width: 1px;  padding-top: 1%; padding-bottom:1%">
                 <p style="padding-left:2%"><b>Complaint</b></p>
 
-                <div class ="complaint-button" style="margin-right: 2%; display: flex; gap: 5px">
+                <div id="complainBtn" class ="complaint-button" style="margin-right: 2%; display: flex; gap: 5px">
                     <i class="fa-solid fa-plus"></i>
-                     
                     Add complaint
                 </div>
             </div>
@@ -94,5 +299,28 @@
 
 
     </body>
+    <script>
+        var openCreate  = document.getElementById("addComplaintModel");
+        // Get the button that opens the modal
+        var btn = document.getElementById("complainBtn");
+
+        var i2 = document.getElementById("close-2");
+
+        // When the user clicks on the button, open the modal
+        btn.onclick = function() {
+            openCreate.style.display = "block";
+        }
+
+        i2.onclick = function(){
+            openCreate.style.display = "none";
+        }
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+            if (event.target == openCreate){
+                openCreate.style.display = "none";
+            }
+        }
+    </script>
     <script src="../General Components & Widget/User/User Component Script.js"></script>
 </html>
