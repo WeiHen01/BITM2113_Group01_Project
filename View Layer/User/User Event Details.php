@@ -270,7 +270,7 @@
                         <div class="group-small" style="background-color: #b8bef5; padding: 2%">
                             <center><p style = "padding-top: 1%; font-weight: bold">128 participants joined the event!</p></center>
                             
-                            <div class="button" id="openEditPassword">
+                            <div class="button" id="openEditPassword" onclick = "confirmJoin()">
                                 <button type="button" style="color: #FFFFFFFF; background: #00BDD6FF; transition: #0056b3 0.3s; width: 100%;" onmouseover="this.style.backgroundColor='#0056b3';" onmouseout="this.style.backgroundColor='#00BDD6FF';">
                                     Join Now!
                                 </button>
@@ -294,7 +294,7 @@
 
     </body>
     <script>
-
+        
     </script>
     <script src="../General Components & Widget/User/User Component Script.js"></script>
 </html>

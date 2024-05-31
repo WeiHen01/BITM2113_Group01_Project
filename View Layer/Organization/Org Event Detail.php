@@ -401,8 +401,6 @@
 
                 </div>
                 
-<<<<<<< HEAD
-=======
                 <div class="overlay" id="overlay" onclick="hidePopup()"></div>
 
                 <div class="popup-container" id="popupContainer">
