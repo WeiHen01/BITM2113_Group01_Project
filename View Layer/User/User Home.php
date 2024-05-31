@@ -70,7 +70,7 @@
                 margin-left: 1%;
                 margin-right: 2%;
                 width: 95%; 
-                height: 73vh; 
+                height: 72vh; 
                 background: #FFFFFFFF; /* white */
                 border-radius: 6px; /* border-l */
                 border-width: 1px; 
@@ -101,14 +101,14 @@
 
             <!-- Content here -->
 
-            <p style="padding-left: 2%"><b>Home</b></p>
+            <p style="padding-left: 2%; font-size: 25px"><b>Home</b></p>
             <!-- make it in same row -->
             <!-- First container group -->
-            <div>
+            <div style = "margin-bottom: 2%">
                 <!-- First container group -->
                 <div style="display: flex;">
                     <!-- Inner flex container for the first two containers -->
-                    <div style="display: flex; flex-direction: column; width: 50%; gap: 20px">
+                    <div style="display: flex; flex-direction: column; width: 50%; gap: 10px">
                         <div class="container">
                             <p style="padding-left: 1.5%"><b>Location</b></p>
                         </div>

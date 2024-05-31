@@ -190,6 +190,30 @@
                 background: #949494; /* primary-500 */
             }
 
+            .cancelBtn02 button {
+                font-family: 'Epilogue';
+                width: 8vw; 
+                height: 46px;  
+                display: flex; 
+                align-items: center; 
+                justify-content: center; 
+                font-size: 16px; 
+                margin-top: 2%;
+                line-height: 26px; 
+                font-weight: 400; 
+                color: #000000; /* white */
+                background: #FFFFFFFF; /* primary-500 */
+                opacity: 1; 
+                border: none; 
+                border-radius: 8px; /* border-xl */
+                padding-left: 12px;
+            }
+
+            .cancelBtn02 button:hover {
+                color: #000000; /* white */
+                background: #949494; /* primary-500 */
+            }
+
 
             /* The Modal (background) */
             .modal {
@@ -349,7 +373,7 @@
                     </div>
 
                     <div style = "display: flex; justify-content: end; margin-top: 2%; margin-right: 5%; gap: 10px;">
-                        <div class="cancelBtn">
+                        <div class="cancelBtn" id="cancelBtn">
                             <button type="button">Cancel</button>
                         </div>
                         <div class="updateProfile-btn" id="updateAccButton" onclick="validateForm()">
@@ -371,7 +395,7 @@
                 <!-- Modal content -->
                 <div class="modal-content">
                     <!--Close button -->
-                    <div id="close-2" >
+                    <div id="close-2" style = "padding: 4%">
                         <i class="fa-solid fa-xmark" ></i>
                     </div>
 
@@ -395,7 +419,7 @@
                     </div>
 
                     <div style = "display: flex; justify-content: end; margin-top: 2%; margin-right: 5%; gap: 10px;">
-                        <div class="cancelBtn">
+                        <div class="cancelBtn02" id="cancelBtn02">
                             <button type="button">Cancel</button>
                         </div>
                         <div class="updateProfile-btn" id="updateAccButton" onclick="validateForm()">
@@ -715,6 +739,9 @@
 
         var btn2 = document.getElementById("openEditPassword");
 
+        var cancel = document.getElementById("cancelBtn");
+        var cancel02 = document.getElementById("cancelBtn02");
+
         var profile = document.getElementById("profile-container");
 
         // Get the <span> element that closes the modal
@@ -729,6 +756,14 @@
 
         btn2.onclick = function(){
             modal2.style.display = "block";
+        }
+
+        cancel.onclick = function(){
+            modal.style.display = "none";
+        }
+
+        cancel02.onclick = function(){
+            modal2.style.display = "none";
         }
 
         // When the user clicks on <span> (x), close the modal
