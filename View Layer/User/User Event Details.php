@@ -22,6 +22,15 @@
         <!-- Template Stylesheet -->
         <link rel="stylesheet" href="../General Components & Widget/User/User Component Style.css">
 
+        <!-- FONT AWESOME ICON -->
+        <script src="https://kit.fontawesome.com/74a2be9f6d.js" crossorigin="anonymous"></script>
+
+        <!-- SWEET ALERT -->
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/css/iziToast.min.css">
+
+
         <style>
             a{
                 color: #ffffff;
@@ -139,19 +148,16 @@
                 font-family: 'Epilogue'
             }
 
-            button {
+            .joinButton button {
                 font-family: 'Epilogue';
                 width: 15vw; 
                 height: 46px;  
-                display: flex; 
                 align-items: center; 
                 justify-content: center; 
                 font-size: 16px; 
                 margin-top: 2%;
                 line-height: 26px; 
                 font-weight: 400; 
-                color: #FFFFFFFF; /* white */
-                background: #00BDD6FF; /* primary-500 */
                 opacity: 1; 
                 gap: 3%;
                 border: none; 
@@ -159,10 +165,24 @@
                 padding-left: 12px;
             }
 
-            button:hover {
-                background-color: #0056b3; /* Example background color on hover */
-                color: #f8f9fa; /* Example text color on hover */
+            .cancelButton button {
+                font-family: 'Epilogue';
+                width: 15vw; 
+                height: 46px;  
+                align-items: center; 
+                justify-content: center; 
+                font-size: 16px; 
+                margin-top: 2%;
+                line-height: 26px; 
+                font-weight: 400; 
+                opacity: 1; 
+                gap: 3%;
+                border: none; 
+                border-radius: 8px; /* border-xl */
+                padding-left: 12px;
             }
+
+            
         </style>
     </head>
     <body>
@@ -188,12 +208,21 @@
                     </div>
 
                     <div class = "container" style="margin-left: 10%; margin-right: 10%; padding-bottom: 2%;">
-                        <h3 style=" font-family: 'Epilogue'; text-align: center; font-size: 14; line-height: 56px; font-weight: 500; color: #171A1FFF;">May 27</h3>
-                        <h1 style=" font-family: 'Epilogue'; text-align: center; font-size: 40px; line-height: 30px; font-weight: 800; color: #171A1FFF;">Ripple Effect: Unveiling Water Pollution</h1>
-                        <h3 style=" font-family: 'Epilogue'; text-align: center; font-size: 14; line-height: 20px; font-weight: 300; color: #171A1FFF;">
-                        Rock Revolt: A Fusion of Power and Passion" is an electrifying rock music
-                        event that brings together a diverse lineup of talented rock bands and
-                        artists</h3>
+                        <?php
+                            
+                            require("../../Database Layer/db_connection.php");
+                            //validation 
+                            $sqlCheck = "SELECT * FROM event WHERE EventId = $eventID";
+
+                            $resultCheck = mysqli_query($con, $sqlCheck);
+
+                            if(mysqli_num_rows($resultCheck) === 1){
+                                $row = mysqli_fetch_assoc($resultCheck);
+                            }
+                        ?>
+                        <h3 style=" font-family: 'Epilogue'; text-align: center; font-size: 14; line-height: 56px; font-weight: 500; color: #171A1FFF;"><?php echo $row["DateTime"] ?></h3>
+                        <h1 style=" font-family: 'Epilogue'; text-align: center; font-size: 40px; line-height: 30px; font-weight: 800; color: #171A1FFF;"><?php echo $row["Name"] ?></h1>
+                        
                         <div style = "display: flex; justify-content: center">
                             <button class="button-red" onclick="" >
                                 <i class="fa-regular fa-heart"></i>
@@ -205,6 +234,7 @@
                                 124
                             </button>
                         </div>
+
                     </div>
                 </div>
 
@@ -220,7 +250,7 @@
                                 </div>
                                 <div>
                                     <p style = "padding-top: 1%; font-weight: bold">Date and Time</p>
-                                    <p style = "padding-top: 1%;">Date and Time</p>
+                                    <p style = "padding-top: 1%;"><?php echo $row["DateTime"] ?></p>
                                 </div>
 
                             </div>
@@ -231,7 +261,7 @@
                                 </div>
                                 <div>
                                     <p style = "padding-top: 1%; font-weight: bold">Place</p>
-                                    <p style = "padding-top: 1%;">Place</p>
+                                    <p style = "padding-top: 1%;"><?php echo $row["Location"] ?></p>
                                 </div>
 
                             </div>
@@ -254,27 +284,59 @@
                         </div>
 
 
-                        <p style="line-height: 1.5; text-align: justify;">Rock Revolt: A Fusion of Power and Passion" is an electrifying rock music
-                        event that brings together a diverse lineup of talented rock bands and
-                        artists</p>
+                        <p style="padding-left: 2%; line-height: 1.5; text-align: justify;">
+                            <?php echo $row["Description"] ?>
+                        </p>
 
                     </div>
 
-
-
-
-
-
-
                     <div class="group" style="display: block; top: 82%; padding: 2%;">
                         <div class="group-small" style="background-color: #b8bef5; padding: 2%">
-                            <center><p style = "padding-top: 1%; font-weight: bold">128 participants joined the event!</p></center>
+
+                            <!-- Display number of participants -->
+                            <?php 
+                                $sql = "SELECT COUNT(EventId) AS participationCount FROM participation WHERE EventId = $eventID AND ParticipationStatus = 'Joined'";
+                                $result = mysqli_query($con, $sql);
+
+                                if($result == true){
+                                    $row = mysqli_fetch_assoc($result);
+                                    $count = $row["participationCount"];
+                                }
+                            ?>
+                            <center><p style = "padding-top: 1%; font-weight: bold"><?php echo $count == 0 ? "Nobody joined this event yet!" : "$count participants joined the event!"?>  </p></center>
+
+                            <!-- Button if user has joined the event or not -->
                             
-                            <div class="button" id="openEditPassword" onclick = "confirmJoin()">
-                                <button type="button" style="color: #FFFFFFFF; background: #00BDD6FF; transition: #0056b3 0.3s; width: 100%;" onmouseover="this.style.backgroundColor='#0056b3';" onmouseout="this.style.backgroundColor='#00BDD6FF';">
-                                    Join Now!
+                            <?php 
+                                $user = $_SESSION['user'];
+                                $sql2 = "SELECT * FROM participation WHERE EventId = $eventID AND UserId = $user";
+                                $status = '';
+                                $result2 = mysqli_query($con, $sql2);
+
+                                if(mysqli_num_rows($result2) === 1){
+                                    $row2 = mysqli_fetch_assoc($result2);
+                                    $status = $row2["ParticipationStatus"];
+                                }
+                            ?>
+                            <div class="joinButton" onclick = "<?php echo $status == "Joined" ? null : 'toggleParticipation()' ?>">
+                                <button type="button" 
+                                style="color: #FFFFFFFF; background: <?php echo $status == "Joined" ? "#b0b0b0" : "#00BDD6FF"  ?>; width: 100%; cursor: <?php echo $status == "Joined" ? null :'pointer' ?>"
+                                onmouseover="this.style.backgroundColor='<?php echo $status == 'Joined' ? '#b0b0b0' : '#0056b3';?>'" 
+                                onmouseout="this.style.backgroundColor='<?php echo $status == 'Joined' ? '#b0b0b0' : '#00BDD6';?>'"
+
+                                
+                                >
+                                    <b><?php echo $status == "Joined" ? "You have joined this event" : "Join Now!" ?></b>
                                 </button>
                             </div>
+
+                            <div class="cancelButton" style="display: <?php echo $status == "Joined" ? 'block' : 'none' ?>" onclick = "toggleCancel()">
+                                <button type="button" style="color: #FFFFFFFF; background: #DE3B40FF; transition: #b00000 0.3s; width: 100%; cursor: pointer" onmouseover="this.style.backgroundColor='#b00000';" onmouseout="this.style.backgroundColor='#DE3B40FF';">
+                                    <b>Cancel joining</b>
+                                </button>
+                            </div>
+
+                           
                             
                         </div>
                         
@@ -293,8 +355,150 @@
         </div>
 
     </body>
+    <?php 
+        // Check if the session variable 'login_status' indicates a successful login
+        if(isset($_SESSION['Participation'])) {
+            if($_SESSION['Participation'] == "Success"){
+                echo "<script src=\"https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/js/iziToast.min.js\"></script>";
+                echo "<script>
+                    iziToast.show({
+                        title: 'Join Successful',
+                        message: 'You have join the event successfully!',
+                        position: 'bottomRight',
+                        timeout: 3000,
+                        backgroundColor: 'green',
+                        titleColor: 'white',
+                        messageColor: 'white',
+                        class: 'custom-toast',
+                        icon: 'fa-regular fa-circle-check',
+                        iconColor: 'white',
+                        onClose: function(instance, toast, closedBy) {
+                            // Add custom CSS to align the close button to the right
+                            toast.style.justifyContent = 'flex-end';
+                        }
+                    });
+                </script>";
+                // Unset the session variable after displaying the SweetAlert
+                unset($_SESSION['Participation']);
+            }
+            elseif($_SESSION['Participation'] == "Failure"){
+                echo "<script src=\"https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/js/iziToast.min.js\"></script>";
+                echo "<script>
+                            iziToast.show({
+                                title: 'Fail to join',
+                                message: 'Fail to join this event!',
+                                position: 'bottomRight',
+                                timeout: 3000,
+                                backgroundColor: 'red',
+                                titleColor: 'white',
+                                messageColor: 'white',
+                                class: 'custom-toast',
+                                icon: 'fa-solid fa-circle-xmark',
+                                iconColor: 'white',
+                                onClose: function(instance, toast, closedBy) {
+                                    // Add custom CSS to align the close button to the right
+                                    toast.style.justifyContent = 'flex-end';
+                                }
+                            });
+                        </script>";
+                // Unset the session variable after displaying the SweetAlert
+                unset($_SESSION['Participation']);
+            }
+
+        }
+
+
+        // Check if the session variable 'login_status' indicates a successful login
+        if(isset($_SESSION["CancelJoin"])) {
+            if($_SESSION["CancelJoin"] == 'Success'){
+                echo "<script src=\"https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/js/iziToast.min.js\"></script>";
+                echo "<script>
+                    iziToast.show({
+                        title: 'Participation',
+                        message: 'You have cancelled your participation on this event successfully!',
+                        position: 'bottomRight',
+                        timeout: 3000,
+                        backgroundColor: 'green',
+                        titleColor: 'white',
+                        messageColor: 'white',
+                        class: 'custom-toast',
+                        icon: 'fa-regular fa-circle-check',
+                        iconColor: 'white',
+                        onClose: function(instance, toast, closedBy) {
+                            // Add custom CSS to align the close button to the right
+                            toast.style.justifyContent = 'flex-end';
+                        }
+                    });
+                </script>";
+                // Unset the session variable after displaying the SweetAlert
+                unset($_SESSION["CancelJoin"]);
+            }
+            elseif($_SESSION["CancelJoin"] == 'Failure'){
+                echo "<script src=\"https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/js/iziToast.min.js\"></script>";
+                echo "<script>
+                            iziToast.show({
+                                title: 'Fail to cancel',
+                                message: 'Fail to cancel participation of this event!',
+                                position: 'bottomRight',
+                                timeout: 3000,
+                                backgroundColor: 'red',
+                                titleColor: 'white',
+                                messageColor: 'white',
+                                class: 'custom-toast',
+                                icon: 'fa-solid fa-circle-xmark',
+                                iconColor: 'white',
+                                onClose: function(instance, toast, closedBy) {
+                                    // Add custom CSS to align the close button to the right
+                                    toast.style.justifyContent = 'flex-end';
+                                }
+                            });
+                        </script>";
+                // Unset the session variable after displaying the SweetAlert
+                unset($_SESSION["CancelJoin"]);
+            }
+
+        }
+    ?>
     <script>
+        function toggleParticipation() {
+            // Display confirmation dialog
+            Swal.fire({
+                title: 'Are you sure?',
+                text: 'Do you want to join now?',
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonColor: '#000aaa',
+                cancelButtonColor: '#ff0000',
+                confirmButtonText: 'Yes, join now!',
+                cancelButtonText: 'No, cancel'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = '../../Controller Layer/User/User Event Process.php?participate=Join&event=<?php echo $eventID?>&user=<?php echo $_SESSION["user"]?>';
+                }
+            });
+        }
+
+        function toggleCancel() {
+            // Display confirmation dialog
+            Swal.fire({
+                title: 'Are you sure?',
+                text: 'Do you want to cancel to join this event?',
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonColor: '#000aaa',
+                cancelButtonColor: '#ff0000',
+                confirmButtonText: 'Yes, cancel now!',
+                cancelButtonText: 'No, let me reconsider'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = '../../Controller Layer/User/User Event Process.php?participate=Cancel&event=<?php echo $eventID?>&user=<?php echo $_SESSION["user"]?>';
+                }
+            });
+        }
+
         
+
+
     </script>
     <script src="../General Components & Widget/User/User Component Script.js"></script>
 </html>
