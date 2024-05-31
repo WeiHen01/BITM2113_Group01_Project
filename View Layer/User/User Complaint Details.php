@@ -1,8 +1,6 @@
 <?php 
     session_start();
 
-   
-
     $complaintID = $_GET['complaint'];
 
 ?>
@@ -289,8 +287,7 @@
         <!-- Update Modal -->
         <div id="updateComplaintModel" class="modal">
             
-            <form action = "../../Controller Layer/User/User Complaint Process.php" method="post">
-                <?php 
+        <?php 
                     require("../../Database Layer/db_connection.php");
                    
                     $sqlShow = "SELECT * FROM complain WHERE ComplainId = '$complaintID'";
@@ -348,9 +345,9 @@
                     </div>
 
                     <div style = "padding: 3%">
-                        <form action ="../../Controller Layer/User/User Complaint Process.php" method = "POST">
+                        <form action ="../../Controller Layer/User/User Complaint Process.php?action=Update" method = "POST">
                             <strong style = "font-size: 25px">Update a complaint</strong> 
-
+                            <input type="hidden" name = "id" value = "<?php echo htmlspecialchars($row['ComplainId'], ENT_QUOTES, 'UTF-8');?>"/>
                             <p>Complaint title</p>
                             <div class="textbox">
                                 <input type="text" name="Title" id="title" placeholder="Enter title" value = "<?php echo htmlspecialchars($row['Title'], ENT_QUOTES, 'UTF-8');?>" />
@@ -392,15 +389,14 @@
                                 <div class="cancelBtn" id="cancelBtn" >
                                     <button type="button">Cancel</button>
                                 </div>
-                                <div class="submitBtn" onclick="validateForm()">
-                                    <button type="submit" name="updatedataDoctor">Edit</button>
+                                <div class="submitBtn">
+                                    <button type="submit" name="updateComplaint">Edit</button>
                                 </div>
                             </div>
                         </form>
                     </div>
 
                 </div>
-            </form>
         
         </div>
 
@@ -474,7 +470,7 @@
 
 
                 <div style = "margin-top: 10vh; display: flex; justify-content: center; gap: 5%">
-                    <div class="deleteBtn" id="deleteButton">
+                    <div class="deleteBtn" id="deleteButton" onclick="deleteComplaint()">
                         <button type="button">Delete this complaint</button>
                     </div>
                     <div class="editBtn" id="editButton">
@@ -494,6 +490,62 @@
 
         </div>
     </body>
+    <?php 
+        // Check if the session variable 'login_status' indicates a successful login
+        if(isset($_SESSION['UpdateComplaint']) && ($_SESSION['UpdateComplaint'] == "Success")) {
+            
+            echo "<script src=\"https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/js/iziToast.min.js\"></script>";
+            echo "<script>
+                    iziToast.show({
+                        title: 'Hooray! Complaint is updated!',
+                        message: 'The complaint is updated successfully!',
+                        position: 'bottomRight',
+                        timeout: 3000,
+                        backgroundColor: 'green',
+                        titleColor: 'white',
+                        messageColor: 'white',
+                        class: 'custom-toast',
+                        icon: 'fa-regular fa-circle-check',
+                        iconColor: 'white',
+                        onClose: function(instance, toast, closedBy) {
+                            // Add custom CSS to align the close button to the right
+                            toast.style.justifyContent = 'flex-end';
+                        }
+                    });
+                </script>";
+            // Unset the session variable after displaying the SweetAlert
+            unset($_SESSION['UpdateComplaint']);
+            
+        }
+        //login failed
+        // Check if the session variable 'login_status' indicates a login failure
+        elseif(isset($_SESSION['UpdateComplaint']) && ($_SESSION['UpdateComplaint'] == "Failure")) {
+            echo "<script src=\"https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/js/iziToast.min.js\"></script>";
+            echo "<script>
+                        iziToast.show({
+                            title: 'Fail to update',
+                            message: 'Fail to update the complaint!',
+                            position: 'bottomRight',
+                            timeout: 3000,
+                            backgroundColor: 'red',
+                            titleColor: 'white',
+                            messageColor: 'white',
+                            class: 'custom-toast',
+                            icon: 'fa-solid fa-circle-xmark',
+                            iconColor: 'white',
+                            onClose: function(instance, toast, closedBy) {
+                                // Add custom CSS to align the close button to the right
+                                toast.style.justifyContent = 'flex-end';
+                            }
+                        });
+                    </script>";
+            // Unset the session variable after displaying the SweetAlert
+            unset($_SESSION['UpdateComplaint']);
+        }
+
+
+        
+    ?>
     <script>
         var openUpdate = document.getElementById("updateComplaintModel");
         // Get the button that opens the modal
@@ -522,6 +574,21 @@
                 openUpdate.style.display = "none";
             }
         }
+        
+        // Function to handle delete action
+        function deleteComplaint() {
+            // Display confirm dialog
+            var confirmed = confirm("Are you sure you want to delete this complaint?");
+            
+            // If user confirms, redirect to PHP script
+            if (confirmed) {
+                // Redirect to the PHP script to handle deletion
+                window.location.href = '../../Controller Layer/User/User Complaint Process.php?action=Delete&complaint=<?php echo $complaintID ?>';
+            }
+        }
+
+
+        
     </script>
     <script src="../General Components & Widget/User/User Component Script.js"></script>
 </html>

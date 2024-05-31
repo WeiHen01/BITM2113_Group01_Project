@@ -259,7 +259,7 @@
         <!-- The Modal -->
         <div id="addComplaintModel" class="modal">
             
-            <form action = "../../Controller Layer/User/User Complaint Process.php" method="post">
+            <form action = "../../Controller Layer/User/User Complaint Process.php?action=Create" method="post">
                 <!-- Modal content -->
                 <div class="modal-content" >
                     <!--Close button -->
@@ -364,7 +364,7 @@
                             $user = $_SESSION['userID'];
 
                             $sqlView = "SELECT * FROM complain WHERE Status = 'Incomplete' 
-                                        AND UserID = '$user'";
+                                        AND UserId = '$user'";
 
                             $result = mysqli_query($con, $sqlView);
 
@@ -409,7 +409,7 @@
                             $user = $_SESSION['userID'];
 
                             $sqlView = "SELECT * FROM complain WHERE Status = 'Progressing' 
-                                        AND UserID = '$user'";
+                                        AND UserId = '$user'";
 
                             $result = mysqli_query($con, $sqlView);
 
@@ -453,7 +453,7 @@
                             $user = $_SESSION['userID'];
 
                             $sqlView = "SELECT * FROM complain WHERE Status = 'Done' 
-                                        AND UserID = '$user'";
+                                        AND UserId = '$user'";
 
                             $result = mysqli_query($con, $sqlView);
 
@@ -468,7 +468,7 @@
                                         $time = substr($row["DateTime"], 11);    // "08:04:34"
 
                         ?>
-                        <div style = "background-color: #a2c8f2; margin-bottom: 10px; padding: 2%; border-radius: 2%; cursor:pointer" id = "doneContainer" onClick = "window.location.href='User Complaint Details.php?complaint=<?php echo $row['ComplainId']; ?></div>'">
+                        <div style = "background-color: #a2c8f2; margin-bottom: 10px; padding: 2%; border-radius: 2%; cursor:pointer" id = "doneContainer" onClick = "window.location.href='User Complaint Details.php?complaint=<?php echo $row['ComplainId']; ?>'">
                             
                             <b><?php echo $row["Title"] ?></b>
                             <p><?php echo $row["Description"] ?></p>
@@ -567,6 +567,59 @@
                     </script>";
             // Unset the session variable after displaying the SweetAlert
             unset($_SESSION['Submission']);
+        }
+
+
+        // Check if the session variable 'login_status' indicates a successful login
+        if(isset($_SESSION['delStatus']) && ($_SESSION['delStatus'] == "Success")) {
+            
+            echo "<script src=\"https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/js/iziToast.min.js\"></script>";
+            echo "<script>
+                    iziToast.show({
+                        title: 'Hooray! Complaint is deleted!',
+                        message: 'The complaint is deleted successfully!',
+                        position: 'bottomRight',
+                        timeout: 3000,
+                        backgroundColor: 'green',
+                        titleColor: 'white',
+                        messageColor: 'white',
+                        class: 'custom-toast',
+                        icon: 'fa-regular fa-circle-check',
+                        iconColor: 'white',
+                        onClose: function(instance, toast, closedBy) {
+                            // Add custom CSS to align the close button to the right
+                            toast.style.justifyContent = 'flex-end';
+                        }
+                    });
+                </script>";
+            // Unset the session variable after displaying the SweetAlert
+            unset($_SESSION['delStatus']);
+            
+        }
+        //login failed
+        // Check if the session variable 'login_status' indicates a login failure
+        elseif(isset($_SESSION['delStatus']) && ($_SESSION['delStatus'] == "Failure")) {
+            echo "<script src=\"https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/js/iziToast.min.js\"></script>";
+            echo "<script>
+                        iziToast.show({
+                            title: 'Fail to delete',
+                            message: 'Fail to delete the complaint!',
+                            position: 'bottomRight',
+                            timeout: 3000,
+                            backgroundColor: 'red',
+                            titleColor: 'white',
+                            messageColor: 'white',
+                            class: 'custom-toast',
+                            icon: 'fa-solid fa-circle-xmark',
+                            iconColor: 'white',
+                            onClose: function(instance, toast, closedBy) {
+                                // Add custom CSS to align the close button to the right
+                                toast.style.justifyContent = 'flex-end';
+                            }
+                        });
+                    </script>";
+            // Unset the session variable after displaying the SweetAlert
+            unset($_SESSION['delStatus']);
         }
         
     ?>
