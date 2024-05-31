@@ -272,10 +272,11 @@
             }
 
             a{
-                color: #4069E552;
+                color: #0000ff;
             }
             a:hover{
-                color: #0056b3;
+                color: #97a0e6;
+                transition: 0.3s color;
             }
 
 
