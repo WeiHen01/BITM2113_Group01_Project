@@ -46,7 +46,7 @@
                     <a href="User Event.php" class="back-link">
                         <i class="fa-solid fa-chevron-left"></i>
                     </a>
-                    <p class="header-text" style = "font-weight: bold">Complaint Details</p>
+                    <p class="header-text" style = "font-weight: bold">All Events</p>
                 </div>
             </div>
 

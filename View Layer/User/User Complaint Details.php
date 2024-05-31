@@ -30,29 +30,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/css/iziToast.min.css">
 
         <style>
-            .editBtn button{
-                font-family: 'Epilogue';
-                width: 15vw; 
-                height: 46px;  
-                display: flex; 
-                align-items: center; 
-                justify-content: center; 
-                font-size: 16px; 
-                margin-top: 2%;
-                line-height: 26px; 
-                font-weight: 400; 
-                color: #FFFFFFFF; /* white */
-                background: #00BDD6FF; /* primary-500 */
-                opacity: 1; 
-                border: none; 
-                border-radius: 8px; /* border-xl */
-                padding-left: 12px;
-            }
-
-            .editBtn button:hover {
-                background-color: #0056b3; /* Example background color on hover */
-                color: #f8f9fa; /* Example text color on hover */
-            }
+            
 
             .deleteBtn button{
                 font-family: 'Epilogue';
@@ -246,7 +224,7 @@
             /* Button 26 */
             .submitBtn button {
                 font-family: 'Epilogue';
-                width: 15vw; 
+                width: 10vw; 
                 height: 46px;  
                 display: flex; 
                 align-items: center; 
@@ -265,6 +243,31 @@
 
             .submitBtn button:hover {
                 background-color: #0056b3; /* Example background color on hover */
+                color: #f8f9fa; /* Example text color on hover */
+            }
+
+            /* Button 26 */
+            .cancelButton button {
+                font-family: 'Epilogue';
+                width: 10vw; 
+                height: 46px;  
+                display: flex; 
+                align-items: center; 
+                justify-content: center; 
+                font-size: 16px; 
+                margin-top: 2%;
+                line-height: 26px; 
+                font-weight: 400; 
+                color: #808080; /* white */
+                background: #ffffffff; /* primary-500 */
+                opacity: 1; 
+                border: none; 
+                border-radius: 8px; /* border-xl */
+                padding-left: 12px;
+            }
+
+            .cancelButton button:hover {
+                background-color: #808080; /* Example background color on hover */
                 color: #f8f9fa; /* Example text color on hover */
             }
 
@@ -386,7 +389,7 @@
                         </div>
 
                         <div style = "display: flex; justify-content: end; margin-top: 2%; gap: 10px;">
-                            <div class="cancelBtn" id="cancelBtn" >
+                            <div class="cancelButton" id="cancelBtn" >
                                 <button type="button">Cancel</button>
                             </div>
                             <div class="submitBtn">

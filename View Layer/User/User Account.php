@@ -3,6 +3,8 @@
 =======================================================-->
 <?php 
     session_start();
+
+    $loggedUserEmail = $_SESSION["LoggedUserEmail"];
 ?>
 
 <!--=========================================================================
@@ -49,14 +51,14 @@
         <style>
             /* Container 45 */
             .container {
-                width: 100%; 
-                height: 25vh; 
+                width: 100%;
+                height: 50vh; 
                 background: #00BDD6FF; /* primary-500 */
             }
 
             .left-container{
                 width: 25vw;
-                height: 75vh;
+                height: 70vh;
                 padding-left: 1%;
                 padding-right: 1%;
                 background: #959f9c; /* primary-500 */
@@ -71,7 +73,7 @@
 
             .right-container{
                 width: 75vw;
-                height: 75vh;
+                height: 70vh;
                 padding-left: 1%;
                 padding-right: 1%;
                 background: #ffffff; /* primary-500 */
@@ -87,25 +89,6 @@
 
 
              /* Button 26 */
-            button {
-                font-family: 'Epilogue';
-                height: 46px;
-                align-items: center;
-                justify-content: center;
-                font-size: 16px;
-                margin-top: 2%;
-                line-height: 26px;
-                font-weight: 400;
-                opacity: 1;
-                border: none;
-                border-radius: 8px; /* border-xl */
-                padding-left: 12px;
-            }
-
-            button:hover {
-                background-color: #0056b3; /* Example background color on hover */
-                color: #f8f9fa; /* Example text color on hover */
-            }
 
             button {
                 font-family: 'Epilogue';
@@ -284,7 +267,25 @@
             }
 
 
-            
+            .profile-container {
+                width: 10vw; /* Set the width of the container */
+                height: 10vw; /* Set the height of the container */
+                border-radius: 50%; /* Make it a circle */
+                overflow: hidden; /* Hide overflow to keep the circular shape */
+                display: flex; /* Center the image if it's smaller */
+                align-items: center; /* Center the image vertically */
+                justify-content: center; /* Center the image horizontally */
+                border: 2px solid #000000; /* Optional: add a border for better visibility */
+                background-color: #f0f0f0; /* Optional: add a background color */
+                margin-left: 7.5vw;
+                padding: 0.5%;
+            }
+
+            .profile-picture {
+                width: 100%; /* Ensure the image fills the container */
+                height: auto; /* Maintain the aspect ratio */
+                object-fit: cover; /* Cover the container without distorting the image */
+            }
 
             
             
@@ -401,96 +402,157 @@
                 include("../General Components & Widget/User/Header.php");
             ?>
 
-            <div class="container"></div>
+            <div>
 
-            <div class="avatar-profile"></div>
-
-            <div style = "display: flex;">
+            <div class="container" style = "margin: 0;">
                 
-                <div class="left-container">
+            <div class="profile-container">
+                <img src="https://www.niehs.nih.gov/sites/default/files/health/assets/images/safewater_og.jpg" alt="Profile Picture" class="profile-picture">
+            </div>
 
-                    <div style="height: 3%"></div>
-
-                    <div class = "user-details">
-
-                        <strong><p style = "font-size: 25px">Username</p></strong>
-
-                        <div style="display: flex; align-items: center; padding-left: 1%">
-                            <i class="fa-regular fa-envelope"></i>
-
-                            <div style="width: 3%"></div>
-
-                            <p>Hello</p>
-                        </div>
-
-                        <div style="display: flex; align-items: center; padding-left: 1%">
-                            <i class="fa-solid fa-phone"></i>
-
-                            <div style="width: 3%"></div>
-
-                            <p>Hello</p>
-                        </div>
-                        
-                    </div>
-
-                    <div style="height: 5%"></div>
-
-                    <div class="button" id="openEditProfile">
-                        <button type="button" style="color: #FFFFFFFF; background: #00BDD6FF; transition: #0056b3 0.3s; width: 100%;" onmouseover="this.style.backgroundColor='#0056b3';" onmouseout="this.style.backgroundColor='#00BDD6FF';">
-                            <i class="fa-regular fa-pen-to-square"></i>
-                            Edit this profile
-                        </button>
-                    </div>
-
-                    <div class="button" id="openEditPassword">
-                        <button type="button" style="color: #FFFFFFFF; background: #00BDD6FF; transition: #0056b3 0.3s; width: 100%;" onmouseover="this.style.backgroundColor='#0056b3';" onmouseout="this.style.backgroundColor='#00BDD6FF';">
-                            <i class="fa-solid fa-lock"></i>
-                            Edit password
-                        </button>
-                    </div>
-
+    
+                <div style = "display: flex;">
                     
+                    <div class="left-container">
+    
+                        <div style="height: 5%"></div>
+    
+                        <div class = "user-details">
+    
+                            <strong><p style = "font-size: 25px"><b><?php echo $row["Username"] ?></b></p></strong>
+    
+                            <div style="display: flex; align-items: center; padding-left: 1%">
+                                <i class="fa-regular fa-envelope"></i>
+    
+                                <div style="width: 3%"></div>
+    
+                                <p><?php echo $row["Email"] ?></p>
+                            </div>
+    
+                            <div style="display: flex; align-items: center; padding-left: 1%">
+                                <i class="fa-solid fa-phone"></i>
+    
+                                <div style="width: 3%"></div>
+    
+                                <p><?php echo $row["Contact"] == null ? "-": $row["Contact"] ?></p>
+                            </div>
+                            
+                        </div>
+    
+                        <div style="height: 5%"></div>
+    
+                        <div class="button" id="openEditProfile">
+                            <button type="button" style="color: #FFFFFFFF; background: #00BDD6FF; transition: #0056b3 0.3s; width: 100%;" onmouseover="this.style.backgroundColor='#0056b3';" onmouseout="this.style.backgroundColor='#00BDD6FF';">
+                                <i class="fa-regular fa-pen-to-square"></i>
+                                Edit this profile
+                            </button>
+                        </div>
+    
+                        <div class="button" id="openEditPassword">
+                            <button type="button" style="color: #FFFFFFFF; background: #00BDD6FF; transition: #0056b3 0.3s; width: 100%;" onmouseover="this.style.backgroundColor='#0056b3';" onmouseout="this.style.backgroundColor='#00BDD6FF';">
+                                <i class="fa-solid fa-lock"></i>
+                                Edit password
+                            </button>
+                        </div>
+    
+                        
+    
+                    </div>
+    
+                    <div class="right-container"  style = "overflow-y: auto">
+                        
+                        <div>
+                            <p><strong>Event Participated</strong></p>
+                        </div>
+
+                        <?php 
+                            require("../../Database Layer/db_connection.php");
+
+                            $sql = "SELECT * FROM participation WHERE UserId IN(
+                                SELECT UserId FROM user WHERE Email = '$loggedUserEmail'
+                            ) AND ParticipationStatus = 'Completed'";
+
+                            $result = mysqli_query($con, $sql);
+
+                            function formatDate($inputTimestamp) {
+                                // Get current date
+                                $currentDate = date('Y-m-d');
+                                $inputDate = date('Y-m-d', strtotime($inputTimestamp));
+                                
+                                // Calculate date difference in days
+                                $dateDifference = (strtotime($currentDate) - strtotime($inputDate)) / (60 * 60 * 24);
+                            
+                                // Logic for date comparison
+                                if ($inputDate == $currentDate) {
+                                    return "Today";
+                                } elseif ($dateDifference == 1) {
+                                    return "1 day ago";
+                                } elseif ($dateDifference == 2) {
+                                    return "2 days ago";
+                                } else {
+                                    return date('Y-m-d', strtotime($inputTimestamp));
+                                }
+                            }
+                            
+                            function formatTime($inputTimestamp) {
+                                // Get current time
+                                $currentTimestamp = time();
+                                $inputTimestamp = strtotime($inputTimestamp);
+                            
+                                // Calculate time difference in seconds
+                                $timeDifference = $currentTimestamp - $inputTimestamp;
+                            
+                                // Logic for time comparison
+                                if ($timeDifference < 60) {
+                                    return $timeDifference . " seconds ago";
+                                } elseif ($timeDifference < 3600) {
+                                    $minutesAgo = floor($timeDifference / 60);
+                                    return $minutesAgo . " minutes ago";
+                                } else {
+                                    return date('g:i:s a', $inputTimestamp);
+                                }
+                            }
+
+                            // Check if the query returned any results
+                            if ($result && mysqli_num_rows($result) > 0) {
+                                
+                                $row = mysqli_fetch_assoc($result);
+
+                                $event = $row['EventId'];
+
+                                $sql_2 = "SELECT * FROM event WHERE EventId = $event";
+
+                                $result_2 = mysqli_query($con, $sql_2);
+
+                                if ($result_2 && mysqli_num_rows($result_2) > 0) {
+                                    while ($row_2 = mysqli_fetch_assoc($result_2)) {
+
+                        ?>
+    
+                        <div class = "event-details">
+    
+                            <div class ="event">
+                                
+                                <strong><?php echo $row_2["Name"] ?></strong>
+                                <p><?php echo $row_2["Description"] ?></p>
+                                <p>Joined By: <?php echo formatDate($row_2['DateTime']).' '.formatTime($row_2['DateTime']) ?></p>
+                                <p><?php echo $row_2["Location"] ?></p>
+                                
+                                <?php 
+                                            }
+                                        }
+                                    }
+                                ?>
+                            </div>
+    
+                        
+                        </div>
+    
+                    </div>
+                
+
 
                 </div>
-
-                <div class="right-container"  style = "overflow-y: auto">
-                    
-                    <div>
-                        <p><strong>Event Participated</strong></p>
-                    </div>
-
-                    <div class = "event-details">
-
-                        <div class ="event">
-                            <strong><p>Event 1</p></strong>
-                        </div>
-
-                        <div class ="event">
-                            <strong><p>Event 1</p></strong>
-                        </div>
-
-                        <div class ="event">
-                            <strong><p>Event 1</p></strong>
-                        </div>
-
-                        <div class ="event">
-                            <strong><p>Event 1</p></strong>
-                        </div>
-
-                        <div class ="event">
-                            <strong><p>Event 1</p></strong>
-                        </div>
-
-                        <div class ="event">
-                            <strong><p>Event 1</p></strong>
-                        </div>
-
-                        
-                    
-                    </div>
-
-                </div>
-            
             </div>
 
             

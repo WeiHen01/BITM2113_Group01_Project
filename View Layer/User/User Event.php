@@ -1,3 +1,7 @@
+<?php 
+    session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -64,6 +68,9 @@
                 border: none;
                 border-radius: 8px; /* border-xl */
                 padding-left: 12px;
+                padding-right: 12px;
+                margin-left: 5%;
+                margin-right: 5%;
             }
 
             button:hover {
@@ -140,7 +147,7 @@
                     <p style="padding-left: 3%; font-size: 15px; padding-bottom: 3%; font-size: 14px">Come and discover the events organised! You may join the event!</p>
 
                     <div class="button" id="openEditPassword" onClick = "window.location.href='All Event List.php'">
-                        <button type="button" style="color: #FFFFFFFF; background: #00BDD6FF; transition: #0056b3 0.3s; width: 100%;" onmouseover="this.style.backgroundColor='#0056b3';" onmouseout="this.style.backgroundColor='#00BDD6FF';">
+                        <button type="button" style="color: #FFFFFFFF; background: #00BDD6FF; transition: #0056b3 0.3s; width: 90%;" onmouseover="this.style.backgroundColor='#0056b3';" onmouseout="this.style.backgroundColor='#00BDD6FF';">
                             View all events
                         </button>
                     </div>
