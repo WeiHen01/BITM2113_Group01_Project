@@ -48,6 +48,15 @@
         <!-- Template Stylesheet -->
         <link rel="stylesheet" href="../General Components & Widget/User/User Component Style.css">
 
+        <!-- FONT AWESOME ICON -->
+        <script src="https://kit.fontawesome.com/74a2be9f6d.js" crossorigin="anonymous"></script>
+
+        <!-- SWEET ALERT -->
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/css/iziToast.min.css">
+
+
         <style>
             /* Container 45 */
             .container {
@@ -90,6 +99,8 @@
 
              /* Button 26 */
 
+            
+
             button {
                 font-family: 'Epilogue';
                 width: 15vw; 
@@ -117,7 +128,7 @@
 
             #updateAccButton button{
                 font-family: 'Epilogue';
-                width: 8vw; 
+                width: 10vw; 
                 height: 46px;  
                 display: flex; 
                 align-items: center; 
@@ -136,7 +147,7 @@
 
             #updateAccButton button:hover{
                 font-family: 'Epilogue';
-                width: 8vw; 
+                width: 10vw; 
                 height: 46px;  
                 display: flex; 
                 align-items: center; 
@@ -297,6 +308,18 @@
 
         <!-- The Modal -->
         <div id="updateModel" class="modal">
+
+        <?php 
+                require("../../Database Layer/db_connection.php");
+                
+                $sqlShow = "SELECT * FROM user WHERE Email = '$loggedUserEmail'";
+
+                $result = mysqli_query($con, $sqlShow);
+            
+                if(mysqli_num_rows($result) === 1){
+                    $row = mysqli_fetch_assoc($result);
+                }
+            ?>
             
             <form id="updateProfileForm" action = "../../Controller Layer/User/User Profile Process.php?user=<?php echo $row['UserId']?>" method="post">
                 <!-- Modal content -->
@@ -312,24 +335,24 @@
 
                     <label style = "margin-left: 3%">Username</label>
                     <div class="textbox">
-                        <input type="text" name="Username" id="usernameInput" placeholder="Enter Your Username" />
+                        <input type="text" name="Username" id="usernameInput" placeholder="Enter Your Username" value = <?php echo htmlspecialchars(isset($row["Username"]) && $row["Username"] !== null ? $row["Username"] : "New User"); ?> >
                     </div>
 
                     <label style = "margin-left: 3%">Email</label>
                     <div class="textbox">
-                        <input type="text" name="Email" id="emailInput" placeholder="Enter Your Email" />
+                        <input type="text" name="Email" id="emailInput" placeholder="Enter Your Email" value = <?php echo htmlspecialchars($row["Email"]) ?> >
                     </div>
 
                     <label style = "margin-left: 3%">Contact</label>
                     <div class="textbox" style = "margin-bottom: 10%">
-                        <input type="text" name="Contact" id="contactInput" placeholder="Enter Your Contacr" />
+                        <input type="text" name="Contact" id="contactInput" placeholder="Enter Your Contact" value = <?php echo $row["Contact"] === null ? "No phone" : htmlspecialchars($row["Contact"]) ?> >
                     </div>
 
                     <div style = "display: flex; justify-content: end; margin-top: 2%; margin-right: 5%; gap: 10px;">
                         <div class="cancelBtn">
-                            <button type="cancel">Cancel</button>
+                            <button type="button">Cancel</button>
                         </div>
-                        <div class="btn" id="updateAccButton" onclick="validateForm()">
+                        <div class="updateProfile-btn" id="updateAccButton" onclick="validateForm()">
                             <button type="submit" name = "update-profile">Update Profile</button>
                         </div>
                     </div>
@@ -344,7 +367,7 @@
         <!-- The Modal -->
         <div id="updatePasswordModel" class="modal">
             
-            <form id="updatePasswordForm" method="post">
+            <form id="updatePasswordForm" action = "../../Controller Layer/User/User Profile Process.php?user=<?php echo $row['UserId']?>" method="post">
                 <!-- Modal content -->
                 <div class="modal-content">
                     <!--Close button -->
@@ -373,10 +396,10 @@
 
                     <div style = "display: flex; justify-content: end; margin-top: 2%; margin-right: 5%; gap: 10px;">
                         <div class="cancelBtn">
-                            <button type="cancel">Cancel</button>
+                            <button type="button">Cancel</button>
                         </div>
-                        <div class="btn" id="updateAccButton" onclick="validateForm()">
-                            <button type="submit">Continue</button>
+                        <div class="updateProfile-btn" id="updateAccButton" onclick="validateForm()">
+                            <button type="submit" name = "update-password">Update Password</button>
                         </div>
                     </div>
                     
@@ -562,6 +585,122 @@
         
         
     </body>
+
+    <?php 
+        if(isset($_SESSION['Update_Profile']) && $_SESSION['Update_Profile'] == 'Success') {
+            // Trigger iziToast notification for successful login
+            echo "<script src=\"https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/js/iziToast.min.js\"></script>";
+            echo "<script>
+                    iziToast.show({
+                        title: 'Successfully update profile',
+                        message: 'You have updated your profile!',
+                        position: 'bottomRight',
+                        timeout: 3000,
+                        backgroundColor: 'green',
+                        titleColor: 'white',
+                        messageColor: 'white',
+                        class: 'custom-toast',
+                        icon: 'fa-regular fa-circle-check',
+                        iconColor: 'white',
+                        onClose: function(instance, toast, closedBy) {
+                            // Add custom CSS to align the close button to the right
+                            toast.style.justifyContent = 'flex-end';
+                        }
+                    });
+                </script>";
+            
+            // Unset the session variable after displaying the iziToast notification
+            unset($_SESSION['Update_Profile']);
+        }
+        elseif(isset($_SESSION['Update_Profile']) && $_SESSION['Update_Profile'] == 'Failure') {
+            // Trigger iziToast notification for successful login
+            echo "<script src=\"https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/js/iziToast.min.js\"></script>";
+            echo "<script>
+                    iziToast.show({
+                        title: 'Fail to update',
+                        message: 'Fail to update profile!',
+                        position: 'bottomRight',
+                        timeout: 3000,
+                        backgroundColor: 'red',
+                        titleColor: 'white',
+                        messageColor: 'white',
+                        class: 'custom-toast',
+                        icon: 'fa-solid fa-circle-xmark',
+                        iconColor: 'white',
+                        onClose: function(instance, toast, closedBy) {
+                            // Add custom CSS to align the close button to the right
+                            toast.style.justifyContent = 'flex-end';
+                        }
+                    });
+                </script>";
+            
+            // Unset the session variable after displaying the iziToast notification
+            unset($_SESSION['Update_Profile']);
+        }
+        else {
+
+        }
+        
+
+        // Update password response
+
+        if(isset($_SESSION['Update_Password']) && $_SESSION['Update_Password'] == 'Success') {
+            // Trigger iziToast notification for successful login
+            echo "<script src=\"https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/js/iziToast.min.js\"></script>";
+            echo "<script>
+                    iziToast.show({
+                        title: 'Successfully update password',
+                        message: 'You have updated your password!',
+                        position: 'bottomRight',
+                        timeout: 3000,
+                        backgroundColor: 'green',
+                        titleColor: 'white',
+                        messageColor: 'white',
+                        class: 'custom-toast',
+                        icon: 'fa-regular fa-circle-check',
+                        iconColor: 'white',
+                        onClose: function(instance, toast, closedBy) {
+                            // Add custom CSS to align the close button to the right
+                            toast.style.justifyContent = 'flex-end';
+                        }
+                    });
+                </script>";
+            
+            // Unset the session variable after displaying the iziToast notification
+            unset($_SESSION['Update_Password']);
+        }
+        elseif(isset($_SESSION['Update_Password']) && $_SESSION['Update_Password'] == 'Failure') {
+            // Trigger iziToast notification for successful login
+            echo "<script src=\"https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/js/iziToast.min.js\"></script>";
+            echo "<script>
+                    iziToast.show({
+                        title: 'Fail to update',
+                        message: 'Fail to update password!',
+                        position: 'bottomRight',
+                        timeout: 3000,
+                        backgroundColor: 'red',
+                        titleColor: 'white',
+                        messageColor: 'white',
+                        class: 'custom-toast',
+                        icon: 'fa-solid fa-circle-xmark',
+                        iconColor: 'white',
+                        onClose: function(instance, toast, closedBy) {
+                            // Add custom CSS to align the close button to the right
+                            toast.style.justifyContent = 'flex-end';
+                        }
+                    });
+                </script>";
+            
+            // Unset the session variable after displaying the iziToast notification
+            unset($_SESSION['Update_Password']);
+        }
+        else {
+
+        }
+        
+
+
+    ?>
 
 
     <!-- Javascript implementation -->

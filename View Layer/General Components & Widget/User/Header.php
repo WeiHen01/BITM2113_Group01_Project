@@ -63,7 +63,7 @@
             <!-- Profile image with dropdown -->
             <div class="profile-image" onclick="toggleDropdown()" style = "display: flex; gap: 3%; align-items: center">
                 <img src="../../../Assets/Image/logo.png" width="40" height="40">
-                <p><?php echo $row['Username'] ?></p>
+                <p><?php echo $row['Username'] == null ? "New User" : $row['Username'] ?></p>
                 <div class="profile-dropdown" id="profileDropdown">
                     <a href="User Account.php">Profile</a>
                     <a href="#" onClick="logout()">Logout</a>

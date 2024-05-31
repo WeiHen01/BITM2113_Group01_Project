@@ -27,7 +27,7 @@
                 <img src="path/to/your/image.jpg" alt="Avatar" class="avatar-name">
             </div>
             <div style = "margin: 0">
-                <p><b><?php echo $row['Username']?></b></p>
+                <p><b><?php echo $row['Username'] == null ? "New User" : $row['Username'] ?></b></p>
                 <p style = "font-size: 12px"><?php echo $row['Email']?></p>
             </div>
         </div>

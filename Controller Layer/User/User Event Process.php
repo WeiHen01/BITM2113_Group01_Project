@@ -7,11 +7,12 @@
      * 1. first time, user join the event => no results yet in database => insert record of participation
      * 2. if user want to cancel the event => search the current participation record, then delete the record
      */
-    if(isset($_GET["participate"]) && isset($_GET["event"]) && isset($_GET["user"])){
-        $userSelected = $_GET["user"];
-        if($_GET["participate"] == "Join"){
+    if(isset($_GET["participate"]) && isset($_GET["event"]) && isset($_GET["userSelected"])){
+        
+        $userSelected = $_GET["userSelected"];
+        
+        if($_GET["participate"] === "Join"){
             $event = $_GET["event"];
-            $user = $_GET['user'];
             
             // validation if user already joined this event
             $sqlCheck = "SELECT * FROM participation WHERE EventId = $event AND UserId = $userSelected AND ParticipationStatus = 'Joined'";
@@ -31,12 +32,8 @@
 
                 $result = mysqli_query($con, $sql);
 
-                if($addResult == True){
+                if($addResult === True){
                     $_SESSION["Participation"] = "Success";
-
-                    echo "<script>
-                        alert('Joining process done');
-                    </script>";
 
                     // Redirect to login.php with a URL parameter indicating successful login
                     header("Location: ../../View Layer/User/User Event Details.php?event=$event");
@@ -44,9 +41,6 @@
                 else {
                     $_SESSION["Participation"] = "Failure";
 
-                    echo "<script>
-                        alert('Joining process fail!');
-                    </script>";
 
                     // Redirect to login.php with a URL parameter indicating successful login
                     header("Location: ../../View Layer/User/User Event Details.php?event=$event");
@@ -55,8 +49,7 @@
 
             
         }
-        
-        if($_GET["participate"] == "Cancel"){
+        elseif($_GET["participate"] === "Cancel"){
             $event = $_GET["event"];
             $user = $_SESSION['user'];
             
@@ -65,13 +58,9 @@
 
             $resultDel = mysqli_query($con, $sqlDel);
 
-            if($resultDel == true){
+            if($resultDel === true){
                 
                 $_SESSION["CancelJoin"] = "Success";
-
-                echo "<script>
-                    alert('Cancel process done');
-                </script>";
 
                 // Redirect to login.php with a URL parameter indicating successful login
                 header("Location: ../../View Layer/User/User Event Details.php?event=$event");
@@ -79,11 +68,6 @@
             }
             else {
                 $_SESSION["CancelJoin"] = "Failure";
-
-                echo "<script>
-                    alert('Cancel process incomplete!');
-                    window.location.href = '../../View Layer/User/User Event Details.php?event=$event'
-                </script>";
 
                 // Redirect to login.php with a URL parameter indicating successful login
                 header("Location: ../../View Layer/User/User Event Details.php?event=$event");
@@ -93,6 +77,9 @@
 
             
         } 
+        else {
+
+        }
         
 
     }

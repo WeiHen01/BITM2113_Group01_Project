@@ -570,6 +570,9 @@
             // Unset the session variable after displaying the SweetAlert
             unset($_SESSION['Submission']);
         }
+        else {
+            
+        }
 
 
         // Check if the session variable 'login_status' indicates a successful login
@@ -622,6 +625,9 @@
                     </script>";
             // Unset the session variable after displaying the SweetAlert
             unset($_SESSION['delStatus']);
+        }
+        else {
+
         }
         
     ?>
