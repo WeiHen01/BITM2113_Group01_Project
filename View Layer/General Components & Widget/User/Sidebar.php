@@ -1,3 +1,24 @@
+
+<?php 
+    if(session_status() == PHP_SESSION_NONE){
+        session_start();
+    }
+
+    $loggedUserEmail = $_SESSION["LoggedUserEmail"];
+
+    require("../../Database Layer/db_connection.php");
+
+    $sql = "SELECT * FROM user WHERE Email = '$loggedUserEmail'";
+
+    $result = mysqli_query($con, $sql);
+
+    if(mysqli_num_rows($result) === 1){
+        $row = mysqli_fetch_assoc($result);
+        $_SESSION['user'] = $row["UserId"];
+    }
+
+?>
+
 <div id="sideMenu" class="sideMenu">
     
     <div class="mainMenu">
@@ -5,9 +26,9 @@
             <div style = "padding-right: 5%">
                 <img src="path/to/your/image.jpg" alt="Avatar" class="avatar-name">
             </div>
-            <div>
-                <p><b>Name</b></p>
-                <p>Output</p>
+            <div style = "margin: 0">
+                <p><b><?php echo $row['Username']?></b></p>
+                <p style = "font-size: 12px"><?php echo $row['Email']?></p>
             </div>
         </div>
         <a href="User Home.php" <?php if(basename($_SERVER['PHP_SELF']) == 'User Home.php') echo 'class="active"'?>>

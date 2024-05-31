@@ -19,32 +19,56 @@
      */
     
      // User update personal information
-     if($_SERVER["REQUEST_METHOD"] == "POST"){
+     if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['update-profile']) && isset($_GET['user'])){
 
         // Step 1: Getting input value and assign to the variable
-        $matric = $_POST['MatricNo'];
-        $name = $_POST['Name'];
+        $username = $_POST['Username'];
+        $email = $_POST['Email'];
+        $phone = $_POST['Contact'];
 
-        $id = $_SESSION["LoggedUserID"];
+        $id = $_GET['user'];
 
-        // Step 2: Generate SQL Statement
-        $sqlUpdate = "UPDATE student SET StudentMatricNo = '$matric', 
-                        StudentName = '$name'
-                        WHERE StudentID = '$id'";
+        $sql = "UPDATE user SET Username='$username', `Email`='$email', `Contact`='$phone' WHERE UserId = '$id'";
 
-        // Step 3: Execute SQL Statement by establishing connection
-        $result = mysqli_query($con, $sqlUpdate);
+        $result = mysqli_query($con, $sql);
 
-        // Step 4: Showing pop up for output of update record (whether successful / not successful)
         if($result == TRUE){
-                echo "<script>window.alert('Your information is successful updated');
-                        window.location.href = '../../View Layer/User/User Account.php';
-                      </script>";
+            $_SESSION["Update_Profile"] = "Success";
+
+                // Redirect to login.php with a URL parameter indicating successful login
+            header("Location: ../../View Layer/User/User Account.php");     
         }
         else {
-                echo "<script>
-                        window.alert('Your information is failed to be updated');
-                      </script>";
+            $_SESSION["Update_Profile"] = "Failure";
+
+                // Redirect to login.php with a URL parameter indicating successful login
+            header("Location: ../../View Layer/User/User Account.php");  
+        }
+     }
+
+
+     if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['update-password']) && isset($_GET['user'])){
+
+        // Step 1: Getting input value and assign to the variable
+        $password = md5($_POST['newPass']);
+
+        $id = $_GET['user'];
+
+        $sql = "UPDATE user SET `Password`='$password' WHERE UserId = '$id'";
+
+        $result = mysqli_query($con, $sql);
+
+        if($result == TRUE){
+            $_SESSION["Update_Password"] = "Success";
+
+                // Redirect to login.php with a URL parameter indicating successful login
+            header("Location: ../../View Layer/User/User Account.php");     
+        }
+        else {
+            $_SESSION["Update_Password"] = "Failure";
+
+                // Redirect to login.php with a URL parameter indicating successful login
+            header("Location: ../../View Layer/User/User Account.php");  
         }
      }
 
@@ -56,6 +80,7 @@
      *    USER DELETE ACCOUNT
      * ========================
      */
+
 
 
 

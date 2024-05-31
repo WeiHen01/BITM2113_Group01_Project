@@ -13,6 +13,7 @@
 
     if(mysqli_num_rows($result) === 1){
         $row = mysqli_fetch_assoc($result);
+        $_SESSION['user'] = $row["UserId"];
     }
 
 ?>
@@ -60,7 +61,7 @@
             
 
             <!-- Profile image with dropdown -->
-            <div class="profile-image" onclick="toggleDropdown()" style = "display: flex; gap: 2%; align-items: center">
+            <div class="profile-image" onclick="toggleDropdown()" style = "display: flex; gap: 3%; align-items: center">
                 <img src="../../../Assets/Image/logo.png" width="40" height="40">
                 <p><?php echo $row['Username'] ?></p>
                 <div class="profile-dropdown" id="profileDropdown">

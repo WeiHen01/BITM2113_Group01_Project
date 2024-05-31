@@ -290,7 +290,7 @@
                 <div style="display: flex">
                     <div class="group" style="top: 82%; left: 6.67%; padding: 2%">
                         <h3 style="text-align: left; font-family: Epilogue; font-size: 35px; margin: 0;">Description</h3>
-                        <h3 style=" font-family: 'Epilogue'; text-align: left; font-size: 25; line-height: 38px; font-weight: 300; color: #171A1FFF;"> 
+                        <h3 style=" font-family: 'Epilogue'; text-align: justify; font-size: 25; line-height: 38px; font-weight: 300; color: #171A1FFF;"> 
                         "Ripple Effect: Unveiling Water Pollution" is an engaging and 
                         informative event dedicated to raising awareness about the 
                         critical issue of water pollution and its significant impacts on 

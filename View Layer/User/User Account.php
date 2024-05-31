@@ -81,7 +81,7 @@
             }
 
             .event{
-                background: #a2a2a2;
+                background: #9cbfe7;
                 padding: 1%;
                 margin-bottom: 1%;
                 border-radius: 1%;
@@ -268,8 +268,8 @@
 
 
             .profile-container {
-                width: 10vw; /* Set the width of the container */
-                height: 10vw; /* Set the height of the container */
+                width: 8vw; /* Set the width of the container */
+                height: 8vw; /* Set the height of the container */
                 border-radius: 50%; /* Make it a circle */
                 overflow: hidden; /* Hide overflow to keep the circular shape */
                 display: flex; /* Center the image if it's smaller */
@@ -282,16 +282,11 @@
             }
 
             .profile-picture {
-                width: 100%; /* Ensure the image fills the container */
-                height: auto; /* Maintain the aspect ratio */
+                width: 120%; /* Ensure the image fills the container */
+                height: 120%; /* Maintain the aspect ratio */
                 object-fit: cover; /* Cover the container without distorting the image */
             }
 
-            
-            
-
-            
-            
         </style>
 
     </head>
@@ -303,7 +298,7 @@
         <!-- The Modal -->
         <div id="updateModel" class="modal">
             
-            <form id="updateProfileForm" method="post">
+            <form id="updateProfileForm" action = "../../Controller Layer/User/User Profile Process.php?user=<?php echo $row['UserId']?>" method="post">
                 <!-- Modal content -->
                 <div class="modal-content">
                     <!--Close button -->
@@ -335,7 +330,7 @@
                             <button type="cancel">Cancel</button>
                         </div>
                         <div class="btn" id="updateAccButton" onclick="validateForm()">
-                            <button type="submit">Continue</button>
+                            <button type="submit" name = "update-profile">Update Profile</button>
                         </div>
                     </div>
 
@@ -371,7 +366,7 @@
                         <input type="text" name="newPass" id="passwordNew" placeholder="Enter Your New Password" />
                     </div>
 
-                    <label style = "margin-left: 3%">Contact</label>
+                    <label style = "margin-left: 3%">Confirm Password</label>
                     <div class="textbox" style = "margin-bottom: 10%">
                         <input type="text" name="conPass" id="passwordConfirm" placeholder="Confirm New Password" />
                     </div>
@@ -533,10 +528,9 @@
     
                             <div class ="event">
                                 
-                                <strong><?php echo $row_2["Name"] ?></strong>
+                                <strong style ="font-size: 25px"><?php echo $row_2["Name"] ?></strong>
                                 <p><?php echo $row_2["Description"] ?></p>
-                                <p>Joined By: <?php echo formatDate($row_2['DateTime']).' '.formatTime($row_2['DateTime']) ?></p>
-                                <p><?php echo $row_2["Location"] ?></p>
+                                <p><b>Participated By:</b> <?php echo formatDate($row_2['DateTime']).' '.formatTime($row_2['DateTime']) ?></p>
                                 
                                 <?php 
                                             }
@@ -582,6 +576,8 @@
 
         var btn2 = document.getElementById("openEditPassword");
 
+        var profile = document.getElementById("profile-container");
+
         // Get the <span> element that closes the modal
         var i = document.getElementById("close");
 
@@ -615,6 +611,8 @@
                 modal2.style.display = "none";
             }
         }
+
+        
 
 
     </script>
