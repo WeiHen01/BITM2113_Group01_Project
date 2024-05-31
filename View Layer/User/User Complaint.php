@@ -330,81 +330,8 @@
         
         </div>
 
-        <!-- Update Modal -->
-        <div id="updateComplaintModel" class="modal">
-            
-            <form action = "../../Controller Layer/User/User Complaint Process.php" method="post">
-                <!-- Modal content -->
-                <div class="modal-content" >
-                    <!--Close button -->
-                    <div id="close" >
-                        <i class="fa-solid fa-xmark"></i>
-                    </div>
-
-                    <div style = "padding: 3%">
-                        <form>
-                            <strong style = "font-size: 25px">Update a complaint</strong> 
-
-                            <p>Complaint title</p>
-                            <div class="textbox">
-                                <input type="text" name="Title" id="title" placeholder="Enter title" 
-                                    
-                                />
-                            </div>
-
-                            <p>Description</p>
-                            <div class="textbox">
-                                <textarea name="Description" id="desc" placeholder="Enter description"> </textarea>
-                            </div>
-
-                            <div style = "display: flex; justify-content: space-evenly; align-items: center; gap: 2%">
-                                <div class="textbox-sm">
-                                    <input type="text" name="City" id="City" placeholder="City" />
-                                </div>
-
-                                <select name="State" id="state">
-                                    <option value="none">State</option>
-                                    <option value="Melaka"> Melaka</option>
-                                    <option value="Pulau Pinang"> Pulau Pinang</option>
-                                    <option value="Perlis"> Perlis</option>
-                                    <option value="Negeri Sembilan"> Negeri Sembilan</option>
-                                    <option value="Kelantan"> Kelantan</option>
-                                    <option value="Kedah"> Kedah</option>
-                                    <option value="Perak"> Perak</option>
-                                    <option value="Terengganu"> Terengganu</option>
-                                    <option value="Johor"> Johor</option>
-                                    <option value="Pahang"> Pahang</option>
-                                    <option value="Sabah"> Sabah</option>
-                                    <option value="Sarawak"> Sarawak</option>
-                                    <option value="Labuan"> Labuan</option>
-                                </select>
-
-                                <div class="textbox-sm">
-                                    <input type="text" name="Country" id="country" placeholder="Country" />
-                                </div>
-                            </div>
-
-                            <div style = "display: flex; justify-content: end; margin-top: 2%; gap: 10px;">
-                                <div class="cancelBtn">
-                                    <button type="cancel">Cancel</button>
-                                </div>
-                                <div class="submitBtn" id="signupButton" onclick="validateForm()">
-                                    <button type="submit">Continue</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-
-                    
-
-
-
-                    
-                    
-                </div>
-            </form>
         
-        </div>
+
 
         <div id="contentArea">
             <!-- Header -->
@@ -413,8 +340,8 @@
             ?>
 
             <div style = "display: flex; justify-content:space-between; border-color: #5faddc; /* neutral-300 */
-                border-width: 1px;  padding-top: 1%; padding-bottom:1%">
-                <p style="padding-left:2%"><b>Complaint</b></p>
+                border-width: 1px;  padding-top: 0.5%; padding-bottom:1%">
+                <p style="padding-left:2%; font-size: 20px"><b>Complaint</b></p>
 
                 <div id="complainBtn" class ="complaint-button" style="margin-right: 2%; display: flex; gap: 5px">
                     <i class="fa-solid fa-plus"></i>
@@ -449,7 +376,7 @@
                                         $time = substr($row["DateTime"], 11);    // "08:04:34"
                         
                         ?>
-                        <div style = "background-color: #a2c8f2; margin-bottom: 10px; padding: 2%; border-radius: 2%" id = "recentContainer">
+                        <div style = "background-color: #a2c8f2; margin-bottom: 10px; padding: 2%; border-radius: 2%; cursor:pointer" id = "recentContainer" onClick = "window.location.href='User Complaint Details.php?complaint=<?php echo $row['ComplainId']; ?></div>'">
                             
                             <b><?php echo $row["Title"] ?></b>
                             <p><?php echo $row["Description"] ?></p>
@@ -475,8 +402,8 @@
                     <b>In Progress</b>
                     <div style="height: 2%"></div>
                     <div class = "container" style="overflow-y: auto">
-                         <!-- Create container item for looping the result -->
-                         <?php 
+                        <!-- Create container item for looping the result -->
+                        <?php 
                             include ("../../Database Layer/db_connection.php");
 
                             $user = $_SESSION['userID'];
@@ -497,7 +424,7 @@
                                         $time = substr($row["DateTime"], 11);    // "08:04:34"
 
                         ?>
-                        <div style = "background-color: #a2c8f2; margin-bottom: 10px; padding: 2%; border-radius: 2%" id = "progressContainer">
+                        <div style = "background-color: #a2c8f2; margin-bottom: 10px; padding: 2%; border-radius: 2%; cursor:pointer" id = "progressContainer" onClick = "window.location.href='User Complaint Details.php?complaint=<?php echo $row['ComplainId']; ?></div>'">
                             
                             <b><?php echo $row["Title"] ?></b>
                             <p><?php echo $row["Description"] ?></p>
@@ -541,7 +468,7 @@
                                         $time = substr($row["DateTime"], 11);    // "08:04:34"
 
                         ?>
-                        <div style = "background-color: #a2c8f2; margin-bottom: 10px; padding: 2%; border-radius: 2%" id = "doneContainer">
+                        <div style = "background-color: #a2c8f2; margin-bottom: 10px; padding: 2%; border-radius: 2%; cursor:pointer" id = "doneContainer" onClick = "window.location.href='User Complaint Details.php?complaint=<?php echo $row['ComplainId']; ?></div>'">
                             
                             <b><?php echo $row["Title"] ?></b>
                             <p><?php echo $row["Description"] ?></p>
@@ -569,13 +496,25 @@
         // Check if the session variable 'login_status' indicates a successful login
         if(isset($_SESSION['Submission']) && ($_SESSION['Submission'] == "Success")) {
             
+            echo "<script src=\"https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/js/iziToast.min.js\"></script>";
             echo "<script>
-                    Swal.fire({
-                        title: 'Successful added',
-                        text: 'You have submit a new complaint successfully',
-                        icon: 'success'
-                    });
-                </script>";
+                        iziToast.show({
+                            title: 'Hooray! New Complaint made!',
+                            message: 'The complaint is submitted successfully!',
+                            position: 'bottomRight',
+                            timeout: 3000,
+                            backgroundColor: 'green',
+                            titleColor: 'white',
+                            messageColor: 'white',
+                            class: 'custom-toast',
+                            icon: 'fa-regular fa-circle-check',
+                            iconColor: 'white',
+                            onClose: function(instance, toast, closedBy) {
+                                // Add custom CSS to align the close button to the right
+                                toast.style.justifyContent = 'flex-end';
+                            }
+                        });
+                    </script>";
             // Unset the session variable after displaying the SweetAlert
             unset($_SESSION['Submission']);
             
@@ -583,6 +522,7 @@
         //login failed
         // Check if the session variable 'login_status' indicates a login failure
         elseif(isset($_SESSION['Submission']) && ($_SESSION['Submission'] == "Failure")) {
+            echo "<script src=\"https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/js/iziToast.min.js\"></script>";
             echo "<script>
                         iziToast.show({
                             title: 'Fail to submit',
@@ -652,23 +592,6 @@
             openCreate.style.display = "none";
         }
 
-        // Function to redirect to complaint details page with complaint ID parameter
-        function redirectToDetails(complaintID) {
-            window.location.href = "User%20Complaint%20Details.php?complaintID=" + complaintID;
-        }
-
-        recent.onclick = function () {
-            
-        }
-
-        progress.onclick = function () {
-            
-        }
-
-        done.onclick = function () {
-            
-        }
-
 
         // When the user clicks anywhere outside of the modal, close it
         window.onclick = function(event) {
@@ -679,6 +602,10 @@
             if (event.target == openUpdate){
                 openUpdate.style.display = "none";
             }
+        }
+
+        function redirectToDetails(complaintID) {
+            window.location.href = "User%20Complaint%20Details.php?complaintID=" + complaintID;
         }
 
         
