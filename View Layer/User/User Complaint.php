@@ -1,3 +1,6 @@
+<?php 
+    session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -14,6 +17,15 @@
         <!-- Template Stylesheet -->
         <link rel="stylesheet" href="../General Components & Widget/User/User Component Style.css">
 
+        <!-- FONT AWESOME ICON -->
+        <script src="https://kit.fontawesome.com/74a2be9f6d.js" crossorigin="anonymous"></script>
+
+        <!-- SWEET ALERT -->
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/css/iziToast.min.css">
+
+
         <style>
             /* Container 23 */
             .main-container {
@@ -26,12 +38,7 @@
             /* Container 23 */
             .container {
                 height: 65vh; 
-                background: #d1d1d1; /* white */
-                border-radius: 6px; /* border-l */
-                border-width: 1px; 
-                border-color: #DEE1E6FF; /* neutral-300 */
-                border-style: solid; 
-                box-shadow: 0px 0px 1px #171a1f, 0px 0px 2px #171a1f; /* shadow-xs */
+                background: #ffffff; /* white */
             }
 
             .complaint-button{
@@ -119,6 +126,24 @@
                 padding-left: 1%; /* Adjust the padding to make space for the icon */
             }
 
+            .textbox-sm {
+                margin-bottom: 10px; /* Adjust as needed */
+            }
+
+            .textbox-sm input {
+                font-family: 'Epilogue';
+                width: calc(100vw/4); /* Fill the entire width of the parent container */
+                height: 8vh;
+                font-size: 14px;
+                line-height: 22px;
+                font-weight: 400;
+                background: #F3F4F6FF; /* neutral-200 */
+                border-radius: 8px; /* border-xl */
+                border-width: 0px;
+                outline: none;
+                padding-left: 2%; /* Adjust the padding to make space for the icon */
+            }
+
             .textbox textarea {
                 font-family: 'Epilogue';
                 width: 75vw; /* Fill the entire width of the parent container */
@@ -137,9 +162,9 @@
             select{
                 border:none;
                 font-family: 'Epilogue';
-                padding: 10px 20px;
+                width: calc(100vw/4); /* Fill the entire width of the parent container */
+                height: 8vh;
                 border-radius:5px;
-                width: 50%;
                 background: #F3F4F6FF; /* neutral-200 */
             }
 
@@ -147,7 +172,7 @@
                 outline:none;
             }
 
-                /* Button 26 */
+            /* Button 26 */
             button {
                 font-family: 'Epilogue';
                 width: 15vw; 
@@ -172,9 +197,33 @@
                 color: #f8f9fa; /* Example text color on hover */
             }
 
+            .submitBtn button{
+                font-family: 'Epilogue';
+                width: 10vw; 
+                height: 46px;  
+                display: flex; 
+                align-items: center; 
+                justify-content: center; 
+                font-size: 16px; 
+                margin-top: 2%;
+                line-height: 26px; 
+                font-weight: 400; 
+                color: #FFFFFFFF; /* white */
+                background: #00BDD6FF; /* primary-500 */
+                opacity: 1; 
+                border: none; 
+                border-radius: 8px; /* border-xl */
+                padding-left: 12px;
+            }
+
+            .submitBtn button:hover {
+                background-color: #0056b3; /* Example background color on hover */
+                color: #f8f9fa; /* Example text color on hover */
+            }
+
             .cancelBtn button {
                 font-family: 'Epilogue';
-                width: 15vw; 
+                width: 10vw; 
                 height: 46px;  
                 display: flex; 
                 align-items: center; 
@@ -209,7 +258,7 @@
         <!-- The Modal -->
         <div id="addComplaintModel" class="modal">
             
-            <form id="updatePasswordForm" method="post">
+            <form action = "../../Controller Layer/User/User Complaint Process.php" method="post">
                 <!-- Modal content -->
                 <div class="modal-content" >
                     <!--Close button -->
@@ -223,39 +272,122 @@
 
                             <p>Complaint title</p>
                             <div class="textbox">
-                                <input type="text" name="Email" id="emailInput" placeholder="Enter Your Email" />
+                                <input type="text" name="Title" id="title" placeholder="Enter title" />
                             </div>
 
                             <p>Description</p>
                             <div class="textbox">
-                                <textarea name="Email" id="emailInput" placeholder="Enter description"> </textarea>
+                                <textarea name="Description" id="desc" placeholder="Enter description"> </textarea>
                             </div>
 
                             <div style = "display: flex; justify-content: space-evenly; gap: 10px">
-                                <select name="city" id="city">
-                                    <option value="none">City</option>
-                                    <option value="javascript"> State</option>
-                                    <option value="java">Country</option>
-                                </select>
+                                <div class="textbox-sm">
+                                    <input type="text" name="City" id="City" placeholder="City" />
+                                </div>
 
-                                <select name="state" id="state">
+                                <select name="State" id="state">
                                     <option value="none">State</option>
-                                    <option value="javascript"> JavaScript</option>
-                                    <option value="java">Java</option>
+                                    <option value="Melaka"> Melaka</option>
+                                    <option value="Pulau Pinang"> Pulau Pinang</option>
+                                    <option value="Perlis"> Perlis</option>
+                                    <option value="Negeri Sembilan"> Negeri Sembilan</option>
+                                    <option value="Kelantan"> Kelantan</option>
+                                    <option value="Kedah"> Kedah</option>
+                                    <option value="Perak"> Perak</option>
+                                    <option value="Terengganu"> Terengganu</option>
+                                    <option value="Johor"> Johor</option>
+                                    <option value="Pahang"> Pahang</option>
+                                    <option value="Sabah"> Sabah</option>
+                                    <option value="Sarawak"> Sarawak</option>
+                                    <option value="Labuan"> Labuan</option>
                                 </select>
 
-                                <select name="country" id="country">
-                                    <option value="none">Country</option>
-                                    <option value="javascript"> JavaScript</option>
-                                    <option value="java">Java</option>
+                                <div class="textbox-sm">
+                                    <input type="text" name="Country" id="country" placeholder="Country" />
+                                </div>
+                            </div>
+
+                            <div style = "display: flex; justify-content: end; margin-top: 2%; align-items: center; gap: 10px;">
+                                <div class="cancelBtn">
+                                    <button type="cancel">Cancel</button>
+                                </div>
+                                <div class="submitBtn" id="signupButton" onclick="validateForm()">
+                                    <button type="submit">Continue</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                    
+
+
+
+                    
+                    
+                </div>
+            </form>
+        
+        </div>
+
+        <!-- Update Modal -->
+        <div id="updateComplaintModel" class="modal">
+            
+            <form action = "../../Controller Layer/User/User Complaint Process.php" method="post">
+                <!-- Modal content -->
+                <div class="modal-content" >
+                    <!--Close button -->
+                    <div id="close" >
+                        <i class="fa-solid fa-xmark"></i>
+                    </div>
+
+                    <div style = "padding: 3%">
+                        <form>
+                            <strong style = "font-size: 25px">Update a complaint</strong> 
+
+                            <p>Complaint title</p>
+                            <div class="textbox">
+                                <input type="text" name="Title" id="title" placeholder="Enter title" 
+                                    
+                                />
+                            </div>
+
+                            <p>Description</p>
+                            <div class="textbox">
+                                <textarea name="Description" id="desc" placeholder="Enter description"> </textarea>
+                            </div>
+
+                            <div style = "display: flex; justify-content: space-evenly; align-items: center; gap: 2%">
+                                <div class="textbox-sm">
+                                    <input type="text" name="City" id="City" placeholder="City" />
+                                </div>
+
+                                <select name="State" id="state">
+                                    <option value="none">State</option>
+                                    <option value="Melaka"> Melaka</option>
+                                    <option value="Pulau Pinang"> Pulau Pinang</option>
+                                    <option value="Perlis"> Perlis</option>
+                                    <option value="Negeri Sembilan"> Negeri Sembilan</option>
+                                    <option value="Kelantan"> Kelantan</option>
+                                    <option value="Kedah"> Kedah</option>
+                                    <option value="Perak"> Perak</option>
+                                    <option value="Terengganu"> Terengganu</option>
+                                    <option value="Johor"> Johor</option>
+                                    <option value="Pahang"> Pahang</option>
+                                    <option value="Sabah"> Sabah</option>
+                                    <option value="Sarawak"> Sarawak</option>
+                                    <option value="Labuan"> Labuan</option>
                                 </select>
+
+                                <div class="textbox-sm">
+                                    <input type="text" name="Country" id="country" placeholder="Country" />
+                                </div>
                             </div>
 
                             <div style = "display: flex; justify-content: end; margin-top: 2%; gap: 10px;">
                                 <div class="cancelBtn">
                                     <button type="cancel">Cancel</button>
                                 </div>
-                                <div class="button" id="signupButton" onclick="validateForm()">
+                                <div class="submitBtn" id="signupButton" onclick="validateForm()">
                                     <button type="submit">Continue</button>
                                 </div>
                             </div>
@@ -297,6 +429,41 @@
                     <div style="height: 2%"></div>
                     <div class = "container" style="overflow-y: auto">
 
+                        <!-- Create container item for looping the result -->
+                        <?php 
+                            include ("../../Database Layer/db_connection.php");
+
+                            $user = $_SESSION['userID'];
+
+                            $sqlView = "SELECT * FROM complain WHERE Status = 'Incomplete' 
+                                        AND UserID = '$user'";
+
+                            $result = mysqli_query($con, $sqlView);
+
+                            if($result){
+                                if (mysqli_num_rows($result) > 0) {
+                                    while ($row = mysqli_fetch_assoc($result)){
+                                        // Extract date and time using substr
+                                        $date = substr($row["DateTime"], 0, 10); // "2024-05-31"
+                                        $time = substr($row["DateTime"], 11);    // "08:04:34"
+                        
+                        ?>
+                        <div style = "background-color: #a2c8f2; margin-bottom: 10px; padding: 2%; border-radius: 2%" id = "recentContainer">
+                            
+                            <b><?php echo $row["Title"] ?></b>
+                            <p><?php echo $row["Description"] ?></p>
+                            <p><b>Location:</b> <?php echo "{$row["City"]}, {$row["State"]}, {$row["Country"]}"?></p>
+
+                            <p><b>Posted at:</b> <?php echo $row["DateTime"] ?></p>
+                            
+                        </div>
+                        <?php 
+                                    } 
+                                }
+                            }
+                        ?>
+                    
+
                     </div>
                     
                 </div>
@@ -307,7 +474,42 @@
                     <b>In Progress</b>
                     <div style="height: 2%"></div>
                     <div class = "container" style="overflow-y: auto">
+                         <!-- Create container item for looping the result -->
+                         <?php 
+                            include ("../../Database Layer/db_connection.php");
 
+                            $user = $_SESSION['userID'];
+
+                            $sqlView = "SELECT * FROM complain WHERE Status = 'Progressing' 
+                                        AND UserID = '$user'";
+
+                            $result = mysqli_query($con, $sqlView);
+
+                            
+                        ?>
+                        <?php 
+                            if($result){
+                                if (mysqli_num_rows($result) > 0) {
+                                    while ($row = mysqli_fetch_assoc($result)){
+                                        // Extract date and time using substr
+                                        $date = substr($row["DateTime"], 0, 10); // "2024-05-31"
+                                        $time = substr($row["DateTime"], 11);    // "08:04:34"
+
+                        ?>
+                        <div style = "background-color: #a2c8f2; margin-bottom: 10px; padding: 2%; border-radius: 2%" id = "progressContainer"  >
+                            
+                            <b><?php echo $row["Title"] ?></b>
+                            <p><?php echo $row["Description"] ?></p>
+                            <p><b>Location:</b> <?php echo "{$row["City"]}, {$row["State"]}, {$row["Country"]}"?></p>
+
+                            <p><b>Posted at:</b> <?php echo $row["DateTime"] ?></p>
+                            
+                        </div>
+                        <?php 
+                                    } 
+                                }
+                            }
+                        ?>
                     </div>
                 </div>
 
@@ -316,7 +518,42 @@
                     <b>Done</b>
                     <div style="height: 2%"></div>
                     <div class = "container" style="overflow-y: auto">
+                         <!-- Create container item for looping the result -->
+                         <?php 
+                            include ("../../Database Layer/db_connection.php");
 
+                            $user = $_SESSION['userID'];
+
+                            $sqlView = "SELECT * FROM complain WHERE Status = 'Done' 
+                                        AND UserID = '$user'";
+
+                            $result = mysqli_query($con, $sqlView);
+
+                            
+                        ?>
+                        <?php 
+                            if($result){
+                                if (mysqli_num_rows($result) > 0) {
+                                    while ($row = mysqli_fetch_assoc($result)){
+                                        // Extract date and time using substr
+                                        $date = substr($row["DateTime"], 0, 10); // "2024-05-31"
+                                        $time = substr($row["DateTime"], 11);    // "08:04:34"
+
+                        ?>
+                        <div style = "background-color: #a2c8f2; margin-bottom: 10px; padding: 2%; border-radius: 2%" id = "doneContainer"  >
+                            
+                            <b><?php echo $row["Title"] ?></b>
+                            <p><?php echo $row["Description"] ?></p>
+                            <p><b>Location:</b> <?php echo "{$row["City"]}, {$row["State"]}, {$row["Country"]}"?></p>
+
+                            <p><b>Posted at:</b> <?php echo $row["DateTime"] ?></p>
+                            
+                        </div>
+                        <?php 
+                                    } 
+                                }
+                            }
+                        ?>
                     </div>
                 </div>
 
@@ -325,11 +562,60 @@
 
 
     </body>
+
+     <!-- PHP code to check for successful login and trigger SweetAlert -->
+     <?php 
+        // Check if the session variable 'login_status' indicates a successful login
+        if(isset($_SESSION['Submission']) && ($_SESSION['Submission'] == "Success")) {
+            
+            echo "<script>
+                    Swal.fire({
+                        title: 'Successful added',
+                        text: 'You have submit a new complaint successfully',
+                        icon: 'success'
+                    });
+                </script>";
+            // Unset the session variable after displaying the SweetAlert
+            unset($_SESSION['Submission']);
+            
+        }
+        //login failed
+        // Check if the session variable 'login_status' indicates a login failure
+        elseif(isset($_SESSION['Submission']) && ($_SESSION['Submission'] == "Failure")) {
+            echo "<script>
+                        iziToast.show({
+                            title: 'Fail to submit',
+                            message: 'Fail to submit new complaint!',
+                            position: 'bottomRight',
+                            timeout: 3000,
+                            backgroundColor: 'red',
+                            titleColor: 'white',
+                            messageColor: 'white',
+                            class: 'custom-toast',
+                            icon: 'fa-solid fa-circle-xmark',
+                            iconColor: 'white',
+                            onClose: function(instance, toast, closedBy) {
+                                // Add custom CSS to align the close button to the right
+                                toast.style.justifyContent = 'flex-end';
+                            }
+                        });
+                    </script>";
+            // Unset the session variable after displaying the SweetAlert
+            unset($_SESSION['Submission']);
+        }
+        
+    ?>
+
     <script>
         var openCreate  = document.getElementById("addComplaintModel");
+        var openUpdate  = document.getElementById("updateComplaintModel");
+        var recent = document.getElementById("recentContainer");
+        var progress = document.getElementById("progressContainer");
+        var done = document.getElementById("doneContainer");
+
         // Get the button that opens the modal
         var btn = document.getElementById("complainBtn");
-
+        var cancel = document.getElementById("cancelBtn");
         var i2 = document.getElementById("close-2");
 
         // When the user clicks on the button, open the modal
@@ -341,10 +627,27 @@
             openCreate.style.display = "none";
         }
 
+        recent.onclick = function(){
+            window.location.href = "User Complaint Details.php";
+        }
+
+        progress.onclick = function(){
+            window.location.href = "User Complaint Details.php";
+        }
+
+        done.onclick = function(){
+            window.location.href = "User Complaint Details.php";
+        }
+
+
         // When the user clicks anywhere outside of the modal, close it
         window.onclick = function(event) {
             if (event.target == openCreate){
                 openCreate.style.display = "none";
+            }
+
+            if (event.target == openUpdate){
+                openUpdate.style.display = "none";
             }
         }
     </script>

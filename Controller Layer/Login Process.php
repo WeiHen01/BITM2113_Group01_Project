@@ -47,8 +47,10 @@
             // Step 4: Check if the number of records is equal to 1, then will proceed to the home dashboard page
             // Which means the record is unique identified
             if($count === 1){
+                $row = mysqli_fetch_assoc($result);
                 // set a session for storing the value of student email
                 $_SESSION["LoggedUserEmail"] = $UserEmail;
+                $_SESSION["userID"] = $row["UserId"];
                 $_SESSION["login_status"] = "success"; // Set login status to success
                 $_SESSION["role"] = $role;
 
@@ -79,6 +81,8 @@
             // Step 4: Check if the number of records is equal to 1, then will proceed to the home dashboard page
             // Which means the record is unique identified
             if($count === 1){
+                $row = mysqli_fetch_assoc($result);
+                $_SESSION["orgID"] = $row["OrgId"];
                 // set a session for storing the value of student email
                 $_SESSION["LoggedUserEmail"] = $UserEmail;
                 $_SESSION["login_status"] = "success"; // Set login status to success
@@ -111,6 +115,8 @@
             // Step 4: Check if the number of records is equal to 1, then will proceed to the home dashboard page
             // Which means the record is unique identified
             if($count === 1){
+                $row = mysqli_fetch_assoc($result);
+                $_SESSION["AdminID"] = $row["AdminId"];
                 // set a session for storing the value of student email
                 $_SESSION["LoggedUserEmail"] = $UserEmail;
                 $_SESSION["login_status"] = "success"; // Set login status to success

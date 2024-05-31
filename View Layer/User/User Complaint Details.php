@@ -13,8 +13,33 @@
 
         <!-- Template Stylesheet -->
         <link rel="stylesheet" href="../General Components & Widget/User/User Component Style.css">
+
+         <!-- FONT AWESOME ICON -->
+        <script src="https://kit.fontawesome.com/74a2be9f6d.js" crossorigin="anonymous"></script>
+
+        <!-- SWEET ALERT -->
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/css/iziToast.min.css">
     </head>
     <body>
-        
+        <!-- Sidebar -->
+        <?php 
+            include("../General Components & Widget/User/Sidebar.php");
+        ?>
+
+        <div id="contentArea">
+            <!-- Header -->
+            <?php 
+                include("../General Components & Widget/User/Header.php");
+            ?>
+
+            
+
+            
+
+
+        </div>
     </body>
+    <script src="../General Components & Widget/User/User Component Script.js"></script>
 </html>
