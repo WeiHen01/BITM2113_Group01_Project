@@ -376,7 +376,7 @@
                                         $time = substr($row["DateTime"], 11);    // "08:04:34"
                         
                         ?>
-                        <div style = "background-color: #a2c8f2; margin-bottom: 10px; padding: 2%; border-radius: 2%; cursor:pointer" id = "recentContainer" onClick = "window.location.href='User Complaint Details.php?complaint=<?php echo $row['ComplainId']; ?></div>'">
+                        <div style = "background-color: #a2c8f2; margin-bottom: 10px; padding: 2%; border-radius: 2%; cursor:pointer" id = "recentContainer" onClick = "window.location.href='User Complaint Details.php?complaint=<?php echo $row['ComplainId']; ?>'">
                             
                             <b><?php echo $row["Title"] ?></b>
                             <p><?php echo $row["Description"] ?></p>

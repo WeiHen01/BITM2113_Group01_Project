@@ -1,8 +1,5 @@
 <?php 
     session_start();
-
-    $eventID = $_GET['event'];
-
 ?>
 
 <!DOCTYPE html>
@@ -10,7 +7,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>User | Event Details</title>
+        <title>User | Event</title>
 
         <!-- FavIcon on the browser tab-->
         <link rel="icon" type="image/x-icon" href="../../Assets/Image/H20 Harmony Logo.png">
@@ -30,6 +27,7 @@
                 color: #0056b3;
             }
         </style>
+
     </head>
     <body>
         <!-- Sidebar -->
@@ -48,12 +46,12 @@
                     <a href="User Event.php" class="back-link">
                         <i class="fa-solid fa-chevron-left"></i>
                     </a>
-                    <p class="header-text" style = "font-weight: bold">Event Details</p>
+                    <p class="header-text" style = "font-weight: bold">Complaint Details</p>
                 </div>
             </div>
 
-        </div>
 
+        </div>
     </body>
     <script>
 

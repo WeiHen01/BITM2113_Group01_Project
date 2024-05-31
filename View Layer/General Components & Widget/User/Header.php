@@ -1,3 +1,22 @@
+<?php 
+    if(session_status() == PHP_SESSION_NONE){
+        session_start();
+    }
+
+    $loggedUserEmail = $_SESSION["LoggedUserEmail"];
+
+    require("../../Database Layer/db_connection.php");
+
+    $sql = "SELECT * FROM user WHERE Email = '$loggedUserEmail'";
+
+    $result = mysqli_query($con, $sql);
+
+    if(mysqli_num_rows($result) === 1){
+        $row = mysqli_fetch_assoc($result);
+    }
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,8 +24,6 @@
         <!-- FONT AWESOME ICON -->
         <script src="https://kit.fontawesome.com/74a2be9f6d.js" crossorigin="anonymous"></script>
 
-
-        
     </head>
 
     
@@ -43,8 +60,9 @@
             
 
             <!-- Profile image with dropdown -->
-            <div class="profile-image" onclick="toggleDropdown()">
-                <img src="../../../Assets/Image/logo.png" alt="Profile" width="40" height="40">
+            <div class="profile-image" onclick="toggleDropdown()" style = "display: flex; gap: 2%; align-items: center">
+                <img src="../../../Assets/Image/logo.png" width="40" height="40">
+                <p><?php echo $row['Username'] ?></p>
                 <div class="profile-dropdown" id="profileDropdown">
                     <a href="User Account.php">Profile</a>
                     <a href="#" onClick="logout()">Logout</a>

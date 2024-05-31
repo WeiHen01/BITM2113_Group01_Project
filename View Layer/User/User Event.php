@@ -10,6 +10,7 @@
 
         <link href='https://fonts.googleapis.com/css?family=Epilogue:ExtraBold' rel='stylesheet'>
         <link href='https://fonts.googleapis.com/css?family=Epilogue' rel='stylesheet'>
+        <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
 
         <!-- Template Stylesheet -->
         <link rel="stylesheet" href="../General Components & Widget/User/User Component Style.css">
@@ -18,73 +19,57 @@
             /* Container 23 */
             .container {
                 width: 100%; 
-                height: 25vh; 
+                height: 50vh; 
                 background: #4069E5FF; /* tertiary1-500 */
-            }
-
-            .container-2{
-                width: 100%; 
-                height: 62vh; 
-                background: #ffffff; /* tertiary1-500 */
-            }
-
-            *,
-            *::before,
-            *::after {
                 margin: 0;
-                padding: 0;
-                box-sizing: border-box;
+                
             }
 
-            
 
-            h2 {
+            #clockdiv{
+                font-family: 'Poppins';
+                color: #fff;
+                display: inline-flex;
+                font-weight: 500;
                 text-align: center;
-                color: #ffffff;
                 font-size: 30px;
-                margin-bottom: 30px;
-                padding-top: 1%;
             }
 
-            .time-container{
-                display: flex;
+
+            #clockdiv div > span{
+                padding: 15px;
+                border-radius: 3px;
+                background: #ffffff;
+                display: inline-block;
+                font-family: 'Poppins';
+                color: #000000;
+            }
+
+            .smalltext{
+                padding-top: 5px;
+                font-size: 16px;
+            }
+
+             /* Button 26 */
+             button {
+                font-family: 'Epilogue';
+                height: 46px;
+                align-items: center;
                 justify-content: center;
+                font-size: 16px;
+                margin-top: 2%;
+                line-height: 26px;
+                font-weight: 400;
+                opacity: 1;
+                border: none;
+                border-radius: 8px; /* border-xl */
+                padding-left: 12px;
             }
 
-            .counter-container {
-                width: 100px;
-                height: 60px;
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                text-align: center;
-                background: transparent;
-                border: 2px solid #ffffff;
-                border-radius: 10px;
-                backdrop-filter: blur(15px);
-                color: #ffffff;
-                margin: 0 5px;
+            button:hover {
+                background-color: #0056b3; /* Example background color on hover */
+                color: #f8f9fa; /* Example text color on hover */
             }
-
-            .counter {
-                display: block;
-                font-size: 35px;
-                font-weight: 600;
-            }
-
-            .block-container {
-                width: 50vw;
-                margin: 0 15%;
-                height: 15vh;
-                justify-content: center;
-                text-align: center;
-                background: transparent;
-                border: 2px solid #ffffff;
-                border-radius: 10px;
-                backdrop-filter: blur(15px);
-                color: #ffffff;
-            }
-
             
         </style>
     </head>
@@ -101,95 +86,148 @@
             ?>
 
 
-            <div class = "container">
+            <div class = "container" style = "text-align: center; align-items: center">
+                <p style = "margin: 0; padding: 2%; text-align:center; color: white; font-size: 25px"><strong>Don't miss the upcoming event!</strong></p>
+                
+                <div id="clockdiv" style = "justify-content: center; gap: 15%">
+                    <div>
+                        <span class="days"></span>
+                        <div class="smalltext">Days</div>
+                    </div>
+                    <div>
+                        <span class="hours"></span>
+                        <div class="smalltext">Hours</div>
+                    </div>
+                    <div>
+                        <span class="minutes"></span>
+                        <div class="smalltext">Minutes</div>
+                    </div>
+                    <div>
+                        <span class="seconds"></span>
+                        <div class="smalltext">Seconds</div>
+                    </div>
+                </div>
 
-                <!-- <main>
-                    <h2>Don't miss the upcoming events!</h2>
-                    <div class="time-container">
-                        <div class="counter-container">
-                            <span id="days" class="counter">0</span>
-                            <span>Days</span>
-                        </div>
-                        <div class="counter-container">
-                            <span id="hours" class="counter">0</span>
-                            <span>Hours</span>
-                        </div>
-                        <div class="counter-container">
-                            <span id="minutes" class="counter">0</span>
-                            <span>Minutes</span>
-                        </div>
-                        <div class="counter-container">
-                            <span id="seconds" class="counter">0</span>
-                            <span>Seconds</span>
+                <div style = "background: #F3F4F6FF; margin-top: 1%; margin-left: 20%; margin-right: 20%; height: 15vh; gap: 5%; display: flex; align-items: center; justify-content: space-evenly; padding-left: 1%">
+                    <div style = "display: flex; gap: 15%; align-items: center; ">
+                        <i class="fa-solid fa-location-dot" style="font-size: 40px"></i>
+                        <div style = "align-items: start">
+                            <p><strong>Location</strong></p>
+                            <p class ="venue">Venue</p>
                         </div>
                     </div>
-                </main> -->
-
-                <div style = "height: 20px"></div>
-
-                <!-- <main>
-                    <div class="block-container">
-                        <h3 style = "font-size: 25px; padding: 2%">Don't miss the upcoming events!</h3>
-                        <div style = "display: flex; justify-content: space-evenly">
-                            <p>Location</p>
-                            <p>Time</p>
-                            <p>Number of participants</p>
+                    <div style = "display: flex; gap: 15%; align-items: center;">
+                        <i class="fa-regular fa-clock" style="font-size: 40px"></i>
+                        <div style = "align-items: start">
+                            <p><strong>Time</strong></p>
+                            <p class ="date">Time</p>
                         </div>
                     </div>
-                </main> -->
+                    <div style = "display: flex; gap: 10%; width: 30vw; align-items: center;">
+                        <i class="fa-solid fa-users" style="font-size: 40px"></i>
+                        <div style = "align-items: start">
+                            <p><strong>Number of participants</strong></p>
+                            <p class ="time">number</p>
+                        </div>
+                    </div>
+
+                </div>
             </div>
 
-            <div style="height: 10%"></div>
+            <div style = "display: flex;">
+                <div style= "padding: 0.5%; background-color: #e5e5e5; width: 35vw; height: auto">
+                    <p style="padding-left: 3%; font-size: 25px"><b>Upcoming Event</b></p>
+                    <p style="padding-left: 3%; font-size: 15px; padding-bottom: 3%; font-size: 14px">Come and discover the events organised! You may join the event!</p>
 
-            <div class ="container-2" style = "display: flex">
-                
-                <div style= "width: 35vw; background-color: #6a8dc1;">
-                    <div style= "height: 10vh; background-color: #6a8dc1;"></div>
-                    <p style="padding: 3%"><b>Upcoming Event</b></p>
-                    <p style="padding: 3%">Upcoming Event</p>
-                </div>
-                
-
-                <div style = "background-color: #17a0c8; width: 100vw; height: 62vh">
+                    <div class="button" id="openEditPassword" onClick = "window.location.href='All Event List.php'">
+                        <button type="button" style="color: #FFFFFFFF; background: #00BDD6FF; transition: #0056b3 0.3s; width: 100%;" onmouseover="this.style.backgroundColor='#0056b3';" onmouseout="this.style.backgroundColor='#00BDD6FF';">
+                            View all events
+                        </button>
+                    </div>
 
                 </div>
+
+                <div style = "padding: 0.5%; background-color: #e5e5e5; display: flex; width: 65vw; height: 35vh; overflow-x: auto; gap: 2%">
+                    
+                    <?php 
+                        require("../../Database Layer/db_connection.php");
+
+                        $sql = "SELECT * FROM event ORDER BY DateTime DESC LIMIT 5";
+
+                        $result = $con->query($sql);
+
+                        // Check if the query returned any results
+                        if ($result && $result->num_rows > 0) {
+                            while ($row = $result->fetch_assoc()) {
+                    ?>
+                    
+                    <div style="background: #ffffff; width: 25%; padding: 2%; cursor: pointer" onClick="window.location.href='User Event Details.php?event=<?php echo $row['EventId']; ?>'">
+                        <img src="https://www.niehs.nih.gov/sites/default/files/health/assets/images/safe_water.jpg" style="height: 50%; width: 100%">
+                        <b style="font-size: 20px"><?php echo $row["Name"] ?></b>
+                        <p style="margin: 0; padding-top: 3%; font-size: 13px; text-overflow: ellipsis;overflow: hidden; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;"><?php echo $row["Description"] ?></p>
+                    </div>
+                    <?php
+                            }
+                        } else {
+                            echo "No events found.";
+                        }
+                        $con->close();
+                    ?>
+                </div>
+            </div>
             
-            </div>
+
+
+
         </div>
 
 
     </body>
     <script>
-        const countDownDate = new Date("January 1, 2026 00:00:00").getTime();
-        const days = document.getElementById("days");
-        const hours = document.getElementById("hours");
-        const minutes = document.getElementById("minutes");
-        const seconds = document.getElementById("seconds");
-
-        const interval = setInterval(() => {
-            const now = new Date().getTime();
-            const duration = countDownDate - now;
+        function getTimeRemaining(endtime) {
+            const total = Date.parse(endtime) - Date.parse(new Date());
+            const seconds = Math.floor((total / 1000) % 60);
+            const minutes = Math.floor((total / 1000 / 60) % 60);
+            const hours = Math.floor((total / (1000 * 60 * 60)) % 24);
+            const days = Math.floor(total / (1000 * 60 * 60 * 24));
             
-            if (duration < 0) {
-                clearInterval(interval);
-                updateDuration(0);
-                return;
-            }
-            
-            updateDuration(duration);
-        }, 1000);
-
-        function updateDuration(duration)  {
-            const dayFix = Math.floor(duration / (1000 * 60 * 60 * 24));
-            const hourFix = Math.floor((duration % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutesFix = Math.floor((duration % (1000 * 60 * 60)) / (1000 * 60));
-            const secondsFix = Math.floor((duration % (1000 * 60)) / 1000);
-            
-            days.innerHTML = dayFix;
-            hours.innerHTML = hourFix;
-            minutes.innerHTML = minutesFix;
-            seconds.innerHTML = secondsFix;
+            return {
+                total,
+                days,
+                hours,
+                minutes,
+                seconds
+            };
         }
+
+        function initializeClock(id, endtime) {
+            const clock = document.getElementById(id);
+            const daysSpan = clock.querySelector('.days');
+            const hoursSpan = clock.querySelector('.hours');
+            const minutesSpan = clock.querySelector('.minutes');
+            const secondsSpan = clock.querySelector('.seconds');
+
+            function updateClock() {
+                const t = getTimeRemaining(endtime);
+
+                daysSpan.innerHTML = t.days;
+                hoursSpan.innerHTML = ('0' + t.hours).slice(-2);
+                minutesSpan.innerHTML = ('0' + t.minutes).slice(-2);
+                secondsSpan.innerHTML = ('0' + t.seconds).slice(-2);
+
+                if (t.total <= 0) {
+                    clearInterval(timeinterval);
+                }
+            }
+
+            updateClock();
+            const timeinterval = setInterval(updateClock, 1000);
+        }
+
+        const deadline = new Date(Date.parse(new Date()) + 15 * 24 * 60 * 60 * 1000);
+        initializeClock('clockdiv', deadline);
+
+
     </script>
     <script src="../General Components & Widget/User/User Component Script.js"></script>
 </html>
