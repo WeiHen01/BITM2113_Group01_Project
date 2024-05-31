@@ -23,6 +23,7 @@
         <!-- SWEET ALERT -->
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
+        
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/css/iziToast.min.css">
 
 
@@ -496,7 +497,7 @@
                                         $time = substr($row["DateTime"], 11);    // "08:04:34"
 
                         ?>
-                        <div style = "background-color: #a2c8f2; margin-bottom: 10px; padding: 2%; border-radius: 2%" id = "progressContainer"  >
+                        <div style = "background-color: #a2c8f2; margin-bottom: 10px; padding: 2%; border-radius: 2%" id = "progressContainer">
                             
                             <b><?php echo $row["Title"] ?></b>
                             <p><?php echo $row["Description"] ?></p>
@@ -540,7 +541,7 @@
                                         $time = substr($row["DateTime"], 11);    // "08:04:34"
 
                         ?>
-                        <div style = "background-color: #a2c8f2; margin-bottom: 10px; padding: 2%; border-radius: 2%" id = "doneContainer"  >
+                        <div style = "background-color: #a2c8f2; margin-bottom: 10px; padding: 2%; border-radius: 2%" id = "doneContainer">
                             
                             <b><?php echo $row["Title"] ?></b>
                             <p><?php echo $row["Description"] ?></p>
@@ -603,6 +604,30 @@
             // Unset the session variable after displaying the SweetAlert
             unset($_SESSION['Submission']);
         }
+        // Check if the session variable 'login_status' indicates a login failure
+        elseif(isset($_SESSION['Submission']) && ($_SESSION['Submission'] == "Empty")) {
+            echo "<script src=\"https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/js/iziToast.min.js\"></script>";
+            echo "<script>
+                        iziToast.show({
+                            title: 'Empty Input',
+                            message: 'Please fill in all fields required',
+                            position: 'bottomRight',
+                            timeout: 3000,
+                            backgroundColor: 'orange',
+                            titleColor: 'white',
+                            messageColor: 'white',
+                            class: 'custom-toast',
+                            icon: 'fa-solid fa-circle-xmark',
+                            iconColor: 'white',
+                            onClose: function(instance, toast, closedBy) {
+                                // Add custom CSS to align the close button to the right
+                                toast.style.justifyContent = 'flex-end';
+                            }
+                        });
+                    </script>";
+            // Unset the session variable after displaying the SweetAlert
+            unset($_SESSION['Submission']);
+        }
         
     ?>
 
@@ -627,16 +652,21 @@
             openCreate.style.display = "none";
         }
 
-        recent.onclick = function(){
-            window.location.href = "User Complaint Details.php";
+        // Function to redirect to complaint details page with complaint ID parameter
+        function redirectToDetails(complaintID) {
+            window.location.href = "User%20Complaint%20Details.php?complaintID=" + complaintID;
         }
 
-        progress.onclick = function(){
-            window.location.href = "User Complaint Details.php";
+        recent.onclick = function () {
+            
         }
 
-        done.onclick = function(){
-            window.location.href = "User Complaint Details.php";
+        progress.onclick = function () {
+            
+        }
+
+        done.onclick = function () {
+            
         }
 
 
@@ -650,6 +680,8 @@
                 openUpdate.style.display = "none";
             }
         }
+
+        
     </script>
     <script src="../General Components & Widget/User/User Component Script.js"></script>
 </html>

@@ -34,7 +34,7 @@
                 include("../General Components & Widget/User/Header.php");
             ?>
 
-            
+            <strong>Details</strong>
 
             
 
