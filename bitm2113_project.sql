@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 28, 2024 at 07:45 AM
+-- Generation Time: May 31, 2024 at 08:05 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -60,6 +60,20 @@ CREATE TABLE `complain` (
   `Status` varchar(155) NOT NULL,
   `UserId` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `complain`
+--
+
+INSERT INTO `complain` (`ComplainId`, `Title`, `Description`, `DateTime`, `City`, `State`, `Country`, `Status`, `UserId`) VALUES
+(1, 'Water Pollution in Ayer Keroh', 'There is a factory that pour polluted oil to river.', '2024-05-31 01:56:47', 'Ayer Keroh', 'Melaka', 'Malaysia', 'Incomplete', 1),
+(2, 'Report! A new pollution found!', 'I notice the river in Bukit Mertajam is very dirty. ', '2024-05-31 08:03:58', 'Bukit Mertajam', 'Pulau Pinang', 'Malaysia', 'Incomplete', 1),
+(3, 'Water Pollution in Johor Bahru', 'There is a factory that pour polluted oil to river.', '2024-05-31 08:04:34', 'Johor Bahru', 'Johor', 'Malaysia', 'Done', 1),
+(4, 'Pollution found in Batu Pahat', 'I notice the river in Batu Pahat is very dirty. ', '2024-05-31 08:05:00', 'Batu Pahat', 'Johor', 'Malaysia', 'Progressing', 1),
+(5, 'Water Pollution in Kulim', 'There is a factory that pour polluted oil to river.', '2024-05-31 08:05:21', 'Kulim', 'Kedah', 'Malaysia', 'Done', 1),
+(10, 'New pollution detected', ' Today, I feel mad as I notice the river near Kuala Terengganu is severely polluted.', '2024-05-31 09:54:46', 'Kuala Terengganu', 'Terengganu', 'Malaysia', 'Progressing', 1),
+(11, 'New pollution detected', ' Today, I feel mad as I notice the river near Kuala Terengganu is severely polluted.', '2024-05-31 09:55:35', 'Kuala Terengganu', 'Terengganu', 'Malaysia', 'Done', 1),
+(12, 'New pollution detected', ' Today, I feel mad as I notice the river near Kuala Terengganu is severely polluted.', '2024-05-31 09:56:11', 'Kuala Terengganu', 'Terengganu', 'Malaysia', 'Incomplete', 1);
 
 -- --------------------------------------------------------
 
@@ -135,7 +149,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`UserId`, `Username`, `Email`, `Password`, `Contact`, `ProfileImage`, `Status`) VALUES
-(1, '', 'rolandng0001@gmail.com', '8e7ffe93c71c0fba8d0efe729d4d0fc3', '', '', 'Registered'),
+(1, '', 'rolandng0001@gmail.com', '202cb962ac59075b964b07152d234b70', '', '', 'Registered'),
 (2, '', 'weihen@gmail.com', '202cb962ac59075b964b07152d234b70', '', '', 'Registered');
 
 --
@@ -195,7 +209,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `complain`
 --
 ALTER TABLE `complain`
-  MODIFY `ComplainId` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ComplainId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `event`

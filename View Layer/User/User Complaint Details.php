@@ -290,6 +290,56 @@
         <div id="updateComplaintModel" class="modal">
             
             <form action = "../../Controller Layer/User/User Complaint Process.php" method="post">
+                <?php 
+                    require("../../Database Layer/db_connection.php");
+                   
+                    $sqlShow = "SELECT * FROM complain WHERE ComplainId = '$complaintID'";
+
+                    $result = mysqli_query($con, $sqlShow);
+                
+                    if(mysqli_num_rows($result) === 1){
+                        $row = mysqli_fetch_assoc($result);
+                    }
+
+                    function formatDate($inputTimestamp) {
+                        // Get current date
+                        $currentDate = date('Y-m-d');
+                        $inputDate = date('Y-m-d', strtotime($inputTimestamp));
+                        
+                        // Calculate date difference in days
+                        $dateDifference = (strtotime($currentDate) - strtotime($inputDate)) / (60 * 60 * 24);
+                    
+                        // Logic for date comparison
+                        if ($inputDate == $currentDate) {
+                            return "Today";
+                        } elseif ($dateDifference == 1) {
+                            return "1 day ago";
+                        } elseif ($dateDifference == 2) {
+                            return "2 days ago";
+                        } else {
+                            return date('Y-m-d', strtotime($inputTimestamp));
+                        }
+                    }
+                    
+                    function formatTime($inputTimestamp) {
+                        // Get current time
+                        $currentTimestamp = time();
+                        $inputTimestamp = strtotime($inputTimestamp);
+                    
+                        // Calculate time difference in seconds
+                        $timeDifference = $currentTimestamp - $inputTimestamp;
+                    
+                        // Logic for time comparison
+                        if ($timeDifference < 60) {
+                            return $timeDifference . " seconds ago";
+                        } elseif ($timeDifference < 3600) {
+                            $minutesAgo = floor($timeDifference / 60);
+                            return $minutesAgo . " minutes ago";
+                        } else {
+                            return date('g:i:s a', $inputTimestamp);
+                        }
+                    }
+                ?>
                 <!-- Modal content -->
                 <div class="modal-content" >
                     <!--Close button -->
@@ -298,45 +348,43 @@
                     </div>
 
                     <div style = "padding: 3%">
-                        <form>
+                        <form action ="../../Controller Layer/User/User Complaint Process.php" method = "POST">
                             <strong style = "font-size: 25px">Update a complaint</strong> 
 
                             <p>Complaint title</p>
                             <div class="textbox">
-                                <input type="text" name="Title" id="title" placeholder="Enter title" 
-                                    
-                                />
+                                <input type="text" name="Title" id="title" placeholder="Enter title" value = "<?php echo htmlspecialchars($row['Title'], ENT_QUOTES, 'UTF-8');?>" />
                             </div>
 
                             <p>Description</p>
                             <div class="textbox">
-                                <textarea name="Description" id="desc" placeholder="Enter description"> </textarea>
+                                <textarea name="Description" id="desc" rows="4" cols="50"><?php echo $row["Description"]?></textarea>
                             </div>
 
                             <div style = "display: flex; justify-content: space-evenly; align-items: center; gap: 2%">
                                 <div class="textbox-sm">
-                                    <input type="text" name="City" id="City" placeholder="City" />
+                                    <input type="text" name="City" id="City" placeholder="City" value = "<?php echo htmlspecialchars($row['City'], ENT_QUOTES, 'UTF-8');?>"/>
                                 </div>
 
-                                <select name="State" id="state">
+                                <select name="State" id="state" value = <?php echo $row["State"]?>>
                                     <option value="none">State</option>
-                                    <option value="Melaka"> Melaka</option>
-                                    <option value="Pulau Pinang"> Pulau Pinang</option>
-                                    <option value="Perlis"> Perlis</option>
-                                    <option value="Negeri Sembilan"> Negeri Sembilan</option>
-                                    <option value="Kelantan"> Kelantan</option>
-                                    <option value="Kedah"> Kedah</option>
-                                    <option value="Perak"> Perak</option>
-                                    <option value="Terengganu"> Terengganu</option>
-                                    <option value="Johor"> Johor</option>
-                                    <option value="Pahang"> Pahang</option>
-                                    <option value="Sabah"> Sabah</option>
-                                    <option value="Sarawak"> Sarawak</option>
-                                    <option value="Labuan"> Labuan</option>
+                                    <option value="Melaka" <?php echo ($row['State'] == 'Melaka') ? 'selected' : ''; ?>> Melaka</option>
+                                    <option value="Pulau Pinang" <?php echo ($row['State'] == 'Pulau Pinang') ? 'selected' : ''; ?>> Pulau Pinang</option>
+                                    <option value="Perlis" <?php echo ($row['State'] == 'Perlis') ? 'selected' : ''; ?>> Perlis</option>
+                                    <option value="Negeri Sembilan" <?php echo ($row['State'] == 'Negeri Sembilan') ? 'selected' : ''; ?>> Negeri Sembilan</option>
+                                    <option value="Kelantan" <?php echo ($row['State'] == 'Kelantan') ? 'selected' : ''; ?>> Kelantan</option>
+                                    <option value="Kedah" <?php echo ($row['State'] == 'Kedah') ? 'selected' : ''; ?>> Kedah</option>
+                                    <option value="Perak" <?php echo ($row['State'] == 'Perak') ? 'selected' : ''; ?>> Perak</option>
+                                    <option value="Terengganu" <?php echo ($row['State'] == 'Terengganu') ? 'selected' : ''; ?>> Terengganu</option>
+                                    <option value="Johor" <?php echo ($row['State'] == 'Johor') ? 'selected' : ''; ?>> Johor</option>
+                                    <option value="Pahang" <?php echo ($row['State'] == 'Pahang') ? 'selected' : ''; ?>> Pahang</option>
+                                    <option value="Sabah" <?php echo ($row['State'] == 'Sabah') ? 'selected' : ''; ?>> Sabah</option>
+                                    <option value="Sarawak" <?php echo ($row['State'] == 'Sarawak') ? 'selected' : ''; ?>> Sarawak</option>
+                                    <option value="Labuan" <?php echo ($row['State'] == 'Labuan') ? 'selected' : ''; ?>> Labuan</option>
                                 </select>
 
                                 <div class="textbox-sm">
-                                    <input type="text" name="Country" id="country" placeholder="Country" />
+                                    <input type="text" name="Country" id="country" value = <?php echo $row["Country"]?> placeholder="Country" />
                                 </div>
                             </div>
 
@@ -345,7 +393,7 @@
                                     <button type="button">Cancel</button>
                                 </div>
                                 <div class="submitBtn" onclick="validateForm()">
-                                    <button type="submit">Continue</button>
+                                    <button type="submit" name="updatedataDoctor">Edit</button>
                                 </div>
                             </div>
                         </form>
@@ -394,13 +442,13 @@
                         <div style = "padding: 10%; background: #EBFDFFFF; align-items: center;">
                             <i class="fa-regular fa-calendar-days" style = "font-size: 5vh"></i>
                         </div>
-                        <b><?php echo strtoupper($row["DateTime"]) ?></b>
+                        <b><?php echo strtoupper(formatDate($row["DateTime"])) ?></b>
                     </div>
                     <div style = "display: flex; gap: 5%; width: 20%; align-items: center;">
                         <div style = "padding: 10%; background: #EBFDFFFF; align-items: center;">
                             <i class="fa-regular fa-clock" style = "font-size: 5vh"></i>
                         </div>
-                        <b><?php echo strtoupper($row["DateTime"]) ?></b>
+                        <b><?php echo strtoupper(formatTime($row["DateTime"])) ?></b>
                     </div>
                     <div style = "display: flex; gap: 5%; width: 20%; align-items: center;">
                         <div style = "padding: 10%; background: #EBFDFFFF; align-items: center;">
