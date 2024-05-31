@@ -356,65 +356,125 @@
 
         </div>
 
-        <?php 
-            if(isset($_SESSION['CancelJoin']) && $_SESSION['CancelJoin'] == 'Success') {
-                // Trigger iziToast notification for successful login
-                echo "<script>
-                        iziToast.show({
-                            title: 'Successfully update password',
-                            message: 'You have updated your password!',
-                            position: 'bottomRight',
-                            timeout: 10000,
-                            backgroundColor: 'green',
-                            titleColor: 'white',
-                            messageColor: 'white',
-                            class: 'custom-toast',
-                            icon: 'fa-regular fa-circle-check',
-                            iconColor: 'white',
-                            onClose: function(instance, toast, closedBy) {
-                                // Add custom CSS to align the close button to the right
-                                toast.style.justifyContent = 'flex-end';
-                            }
-                        });
-                    </script>";
-                
-                // Unset the session variable after displaying the iziToast notification
-                unset($_SESSION['CancelJoin']);
-            }
-            elseif(isset($_SESSION['CancelJoin']) && $_SESSION['CancelJoin'] == 'Failure') {
-                // Trigger iziToast notification for successful login
-                echo "";
-                echo "<script>
-                        iziToast.show({
-                            title: 'Fail to update',
-                            message: 'Fail to update password!',
-                            position: 'bottomRight',
-                            timeout: 3000,
-                            backgroundColor: 'red',
-                            titleColor: 'white',
-                            messageColor: 'white',
-                            class: 'custom-toast',
-                            icon: 'fa-solid fa-circle-xmark',
-                            iconColor: 'white',
-                            onClose: function(instance, toast, closedBy) {
-                                // Add custom CSS to align the close button to the right
-                                toast.style.justifyContent = 'flex-end';
-                            }
-                        });
-                    </script>";
-                
-                // Unset the session variable after displaying the iziToast notification
-                unset($_SESSION['CancelJoin']);
-            }
-            else {
-
-            }
-
-        ?>
+        
 
     </body>
     
 
+    <?php 
+        if(isset($_SESSION['Participation']) && $_SESSION['Participation'] == 'Success') {
+            // Trigger iziToast notification for successful login
+            // Trigger iziToast notification for successful login
+            echo "<script src=\"https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/js/iziToast.min.js\"></script>";
+            echo "<script>
+                    iziToast.show({
+                        title: 'Join Successfully',
+                        message: 'You have join the event successfully!',
+                        position: 'bottomRight',
+                        timeout: 10000,
+                        backgroundColor: 'green',
+                        titleColor: 'white',
+                        messageColor: 'white',
+                        class: 'custom-toast',
+                        icon: 'fa-regular fa-circle-check',
+                        iconColor: 'white',
+                        onClose: function(instance, toast, closedBy) {
+                            // Add custom CSS to align the close button to the right
+                            toast.style.justifyContent = 'flex-end';
+                        }
+                    });
+                </script>";
+            
+            // Unset the session variable after displaying the iziToast notification
+            unset($_SESSION['Participation']);
+        }
+        elseif(isset($_SESSION['Participation']) && $_SESSION['Participation'] == 'Failure') {
+            // Trigger iziToast notification for successful login
+            // Trigger iziToast notification for successful login
+            echo "<script src=\"https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/js/iziToast.min.js\"></script>";
+            echo "<script>
+                    iziToast.show({
+                        title: 'Fail to join',
+                        message: 'Fail to join the event!',
+                        position: 'bottomRight',
+                        timeout: 3000,
+                        backgroundColor: 'red',
+                        titleColor: 'white',
+                        messageColor: 'white',
+                        class: 'custom-toast',
+                        icon: 'fa-solid fa-circle-xmark',
+                        iconColor: 'white',
+                        onClose: function(instance, toast, closedBy) {
+                            // Add custom CSS to align the close button to the right
+                            toast.style.justifyContent = 'flex-end';
+                        }
+                    });
+                </script>";
+            
+            // Unset the session variable after displaying the iziToast notification
+            unset($_SESSION['Participation']);
+        }
+        else {
+
+        }
+
+
+        if(isset($_SESSION['CancelJoin']) && $_SESSION['CancelJoin'] == 'Success') {
+            // Trigger iziToast notification for successful login
+            echo "<script src=\"https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/js/iziToast.min.js\"></script>";
+            echo "<script>
+                    iziToast.show({
+                        title: 'Cancel Successful',
+                        message: 'You have cancelled the event successfully!',
+                        position: 'bottomRight',
+                        timeout: 3000,
+                        backgroundColor: 'green',
+                        titleColor: 'white',
+                        messageColor: 'white',
+                        class: 'custom-toast',
+                        icon: 'fa-regular fa-circle-check',
+                        iconColor: 'white',
+                        onClose: function(instance, toast, closedBy) {
+                            // Add custom CSS to align the close button to the right
+                            toast.style.justifyContent = 'flex-end';
+                        }
+                    });
+                </script>";
+            
+            // Unset the session variable after displaying the iziToast notification
+            unset($_SESSION['CancelJoin']);
+        }
+        elseif(isset($_SESSION['CancelJoin']) && $_SESSION['CancelJoin'] == 'Failure') {
+            // Trigger iziToast notification for successful login
+            echo "<script src=\"https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/js/iziToast.min.js\"></script>";
+            echo "<script>
+                    iziToast.show({
+                        title: 'Fail to cancel participation',
+                        message: 'Fail to cancel your participation on the event!',
+                        position: 'bottomRight',
+                        timeout: 3000,
+                        backgroundColor: 'red',
+                        titleColor: 'white',
+                        messageColor: 'white',
+                        class: 'custom-toast',
+                        icon: 'fa-solid fa-circle-xmark',
+                        iconColor: 'white',
+                        onClose: function(instance, toast, closedBy) {
+                            // Add custom CSS to align the close button to the right
+                            toast.style.justifyContent = 'flex-end';
+                        }
+                    });
+                </script>";
+            
+            // Unset the session variable after displaying the iziToast notification
+            unset($_SESSION['CancelJoin']);
+        }
+        else {
+
+        }
+
+
+    ?>
 
     <script>
         function toggleParticipation() {
@@ -430,7 +490,7 @@
                 cancelButtonText: 'No, cancel'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    window.location.href = '../../Controller Layer/User/User Event Process.php?participate=Join&event=<?php echo $eventID?>&userSelected=<?php echo $_SESSION["user"]?>';
+                    window.location.href = '../../Controller Layer/User/User Event Process.php?participate=Joined&event=<?php echo $eventID?>&userSelected=<?php echo $_SESSION["user"]?>';
                 }
             });
         }

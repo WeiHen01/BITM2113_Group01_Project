@@ -1,6 +1,8 @@
 <?php 
-    require("../../Database Layer/db_connection.php");
+    session_start();
+    include("../../Database Layer/db_connection.php");
 
+    
 
     /**
      * event details
@@ -11,7 +13,8 @@
         
         $userSelected = $_GET["userSelected"];
         
-        if($_GET["participate"] === "Join"){
+        if($_GET["participate"] === "Joined"){
+            
             $event = $_GET["event"];
             
             // validation if user already joined this event
@@ -19,37 +22,28 @@
 
             $resultCheck = mysqli_query($con, $sqlCheck);
 
-            if(mysqli_num_rows($resultCheck) === 1){
-                
-                echo "<script>
-                    alert('You have already participated once!');
-                    window.location.href = '../../View Layer/User/User Event Details.php?event=$event'
-                </script>";
+            $sql = "INSERT INTO participation(`EventId`, `UserId`, `ParticipationDateTime`, `ParticipationStatus`) VALUES ('$event', '$userSelected', NOW(), 'Joined') ";
 
+            $result = mysqli_query($con, $sql);
+
+            if($result === True){
+                $_SESSION["Participation"] = "Success";
+
+                // Redirect to login.php with a URL parameter indicating successful login
+                header("Location: ../../View Layer/User/User Event Details.php?event=$event");
             }
             else {
-                $sql = "INSERT INTO participation(`EventId`, `UserId`, `ParticipationDateTime`, `ParticipationStatus`) VALUES ('$event', '$userSelected', NOW(), 'Joined') ";
-
-                $result = mysqli_query($con, $sql);
-
-                if($addResult === True){
-                    $_SESSION["Participation"] = "Success";
-
-                    // Redirect to login.php with a URL parameter indicating successful login
-                    header("Location: ../../View Layer/User/User Event Details.php?event=$event");
-                }
-                else {
-                    $_SESSION["Participation"] = "Failure";
+                $_SESSION["Participation"] = "Failure";
 
 
-                    // Redirect to login.php with a URL parameter indicating successful login
-                    header("Location: ../../View Layer/User/User Event Details.php?event=$event");
-                }
+                // Redirect to login.php with a URL parameter indicating successful login
+                header("Location: ../../View Layer/User/User Event Details.php?event=$event");
             }
 
             
         }
-        elseif($_GET["participate"] === "Cancel"){
+        
+        if($_GET["participate"] === "Cancel"){
             $event = $_GET["event"];
             $user = $_SESSION['user'];
             
@@ -62,12 +56,15 @@
                 
                 $_SESSION["CancelJoin"] = "Success";
 
+
                 // Redirect to login.php with a URL parameter indicating successful login
                 header("Location: ../../View Layer/User/User Event Details.php?event=$event");
 
             }
             else {
                 $_SESSION["CancelJoin"] = "Failure";
+
+                
 
                 // Redirect to login.php with a URL parameter indicating successful login
                 header("Location: ../../View Layer/User/User Event Details.php?event=$event");
@@ -76,9 +73,6 @@
             }
 
             
-        } 
-        else {
-
         }
         
 
