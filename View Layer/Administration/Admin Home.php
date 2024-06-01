@@ -1,15 +1,11 @@
-    <!--=====================================================
-        Check the session and get variables from other page
-    =======================================================-->
-    <!-- PHP session handling and variable retrieval -->
-    <?php 
-        if(session_status() == PHP_SESSION_NONE){
-            session_start();
-        }
+<?php 
+    if(session_status() == PHP_SESSION_NONE){
+        session_start();
+    }
 
-        $loggedUserEmail = $_SESSION["LoggedUserEmail"];
-        include("../General Components & Widget/Administration/Admin_Sidebar.php");
-    ?>
+    $loggedUserEmail = $_SESSION["LoggedUserEmail"];
+
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -39,14 +35,22 @@
 
         /* Container styling */
         .container {
-            padding: 25%;
-            border-radius: 6px;
-            box-shadow: 0px 0px 1px #171a1f, 0px 0px 2px #171a1f;
-            margin-bottom: 20px;
-            background: #F1F4FDFF; /* tertiary1-100 */
+            border-radius: 6px;/* tertiary1-100 */ 
+            background: #F1F4FDFF;
+            border-color: #C5D1F7FF; 
             border-radius: 8px; /* border-m */
             border-width: 1px; 
             border-color: #C5D1F7FF;
+            border-style: solid; 
+        }
+
+        .bg-container {
+            border-radius: 6px;/* tertiary1-100 */ 
+            background: #F1F4FDFF;
+            border-radius: 8px; /* border-m */
+            border-width: 1px; 
+            border-color: #C5D1F7FF;
+            border-style: solid; 
         }
 
         /* Styling for the overview section container */
@@ -94,7 +98,16 @@
             margin-bottom: 10px;
         }
 
-        .overview-item i.fa-sitemap {
+        .overview-item i.fa-calendar-days {
+            background-color: #0066ff;
+            color: white;
+            border-radius: 50%;
+            padding: 10px; /* Reduced padding to make the circle smaller */
+            font-size: 24px; /* Reduced font size to make the icon smaller */
+            margin-bottom: 10px;
+        }
+
+        .overview-item i.fa-calendar-check {
             background-color: #0066ff;
             color: white;
             border-radius: 50%;
@@ -155,6 +168,27 @@
     </style>
 </head>
 <body>
+
+    <!-- Main content area -->
+    <div id="contentArea">
+
+
+    <!-- Head of the webpage -->
+    <head>
+
+        <!-- Title of the tab -->
+        <title>Admin | Dashboard</title>
+        <!-- FavIcon on the browser tab-->
+        <link rel="icon" type="image/x-icon" href="../../Assets/Image/H20 Harmony Logo.png">
+
+        <link href='https://fonts.googleapis.com/css?family=Epilogue:ExtraBold' rel='stylesheet'>
+        <link href='https://fonts.googleapis.com/css?family=Epilogue' rel='stylesheet'>
+
+        <!-- Template Stylesheet -->
+        <link rel="stylesheet" href="../General Components & Widget/Administration/Admin_Component Style.css">
+    </head>
+
+
     <!-- Body of the webpage -->
     <body>
         
@@ -173,54 +207,111 @@
             
 
             <!-- Overview Section -->
-            <p style="padding-left: 2%"><b>Home</b></p>
+            <p style="padding-left: 2%"><b>Dashboard</b></p>
             <div style="padding-left: 2%">
         
                 <div class="overview-container">
                     <div class="overview-item">
-                        <i class="fa-regular fa-address-book"></i>                    
-                        <p class="number"><b>20</b></p>
-                        <p class="title"><b>User Registration</b></p>
-                    </div>
-                    <div class="overview-item">
-                        <i class="fa-solid fa-sitemap"></i>                    
-                        <p class="number"><b>20</b></p>
-                        <p class="title"><b>Organization Registration</b></p>
-                    </div>
-                    <div class="overview-item">
                         <i class="fa-solid fa-building"></i>
-                        <p class="number"><b>23</b></p>
-                        <p class="title"><b>User Complaint Issues</b></p>
+                        <p style="color:blue; font-size:24px;">
+                            <?php
+                                require("../../Database Layer/db_connection.php");
+
+                                $sql = "SELECT COUNT(*) AS orgCount FROM organization";
+
+                                $result = mysqli_query($con, $sql);
+
+                                if($result == true){
+                                    $row = mysqli_fetch_assoc($result);
+                                }
+                            ?>
+                            <b><?php echo $row["orgCount"] ?></b>
+                        </p>
+                        <p><b>Organization Registration</b></p>
                     </div>
                     <div class="overview-item">
-                        <i class="fa-solid fa-building"></i>
-                        <p class="number"><b>07</b></p>
-                        <p class="title"><b>Organization Event Created</b></p>
+                        <i class="fa-regular fa-address-book"></i>
+                        <p style="color:blue; font-size:24px;">
+                            <?php
+                                    require("../../Database Layer/db_connection.php");
+
+                                    $sql = "SELECT COUNT(*) AS userCount FROM user";
+
+                                    $result = mysqli_query($con, $sql);
+
+                                    if($result == true){
+                                        $row = mysqli_fetch_assoc($result);
+                                    }
+                                ?>
+                            <b><?php echo $row["userCount"] ?></b>
+                        </p>                            
+                        <b>User Registration</b></p>
                     </div>
-                    
-                </div>
-                
-            </div>
- 
-            <!-- Report by this month section -->
-            <div class="section-title">Report by this month</div>
-            <div class="main-content">
-                <div class="container">
-                    <p><b>Resolved and Unresolved Water Pollution Complaint</b></p>
-                    <div class="chart-container">
-                        <!-- Insert your chart here -->
+                    <div class="overview-item">
+                        <i class="fa-solid fa-calendar-days"></i>
+                        <p style="color:blue; font-size:24px;">
+                            <?php
+                                    require("../../Database Layer/db_connection.php");
+
+                                    $sql = "SELECT COUNT(*) AS eventCreated 
+                                    FROM `event` 
+                                    WHERE DateTime BETWEEN '2024-06-01' AND '2024-06-30';";
+                                    $result = mysqli_query($con, $sql);
+
+                                    $result = mysqli_query($con, $sql);
+
+                                    if($result == true){
+                                        $row = mysqli_fetch_assoc($result);
+                                    }
+                                ?>
+                            <b><?php echo $row["eventCreated"] ?></b>
+                        </p>               
+                        <p><b>Organization Event Created</b></p>
+                    </div>
+                    <div class="overview-item">
+                        <i class="fa-regular fa-calendar-check"></i>
+                        <p style="color:blue; font-size:24px;">
+                            <?php
+                                    require("../../Database Layer/db_connection.php");
+
+                                    $sql = "SELECT COUNT(*) AS complainCountbymonth 
+                                    FROM `complain` 
+                                    WHERE DateTime BETWEEN '2024-06-01' AND '2024-06-30';";
+                                    $result = mysqli_query($con, $sql);
+
+                                    if($result == true){
+                                        $row = mysqli_fetch_assoc($result);
+                                    }
+                                ?>
+                            <b><?php echo $row["complainCountbymonth"] ?></b>
+                        </p>
+                        <p><b>User Complaint Issues</b></p>
                     </div>
                 </div>
-                <div class="container">
-                    <p><b>Active Events</b></p>
-                    <div class="pie-chart-container">
-                        <!-- Insert your pie chart here -->
+
+                <!-- Report by this month section -->
+                <div class="section-title" style="margin-top: 2%">Report by this month</div>
+                <div class="main-content">
+                    <div class="bg-container">
+                        <div class="container">
+                            <p style= "padding: 1%;"><b>Resolved and Unresolved Water Pollution Complaint</b></p>
+                            <div class="chart-container">
+                                <!-- Insert your chart here -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-container">
+                        <div class="container">
+                            <p style= "padding: 1%;"><b>Active Events</b></p>
+                            <div class="pie-chart-container">
+                                <!-- Insert your pie chart here -->
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <script src="../General Components & Widget/Administration/Admin_Component Script.js"></script>
-</body>
+        <script src="../General Components & Widget/Administration/Admin_Component Script.js"></script>
+    </body>
 </html>

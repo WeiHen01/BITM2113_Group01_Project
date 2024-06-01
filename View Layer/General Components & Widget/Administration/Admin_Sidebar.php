@@ -6,20 +6,20 @@
             <p>Output</p>
         </div>
         <a href="Admin Home.php" <?php if(basename($_SERVER['PHP_SELF']) == 'Admin Home.php') echo 'class="active"'?>>
-            <i class="fa-solid fa-house" style="padding-right: 5%"></i>
-            Home
-        </a>
-        <a href="User Dashboard.php" <?php if(basename($_SERVER['PHP_SELF']) == 'User Dashboard.php') echo 'class="active"'?>>
-            <i class="fa-solid fa-chart-line" style="padding-right: 5%"></i>
+            <i class="fa-brands fa-flipboard" style="padding-right: 5%"></i>
             Dashboard
         </a>
-        <a href="javascript:void(0)" onclick="showContent('Portfolio')">
-            <i class="fa-regular fa-calendar-days" style="padding-right: 5%"></i>
-            Event
+        <a href="UserOrganizationLog.php" <?php if(basename($_SERVER['PHP_SELF']) == 'UserOrganizationLog.php') echo 'class="active"'?>>
+            <i class="fa-regular fa-user" style="padding-right: 5%"></i>
+            User/Organization Log
         </a>
-        <a href="javascript:void(0)" onclick="showContent('Services')">
-            <i class="fa-solid fa-arrow-right-from-bracket" style="padding-right: 5%"></i>
-            Complaint
+        <a href="Complain Log.php" <?php if(basename($_SERVER['PHP_SELF']) == 'Complain Log.php') echo 'class="active"'?>>
+        <i class="fa-regular fa-calendar-check" style="padding-right: 5%"></i>
+            Complain Log
+        </a>
+        <a href="Event Log.php" <?php if(basename($_SERVER['PHP_SELF']) == 'Event Log.php') echo 'class="active"'?>>
+        <i class="fa-solid fa-calendar-days" style="padding-right: 5%"></i>
+            Event Log
         </a>
         <a href="#" onClick="logout()">
             <i class="fa-solid fa-arrow-right-from-bracket" style="padding-right: 5%"></i>

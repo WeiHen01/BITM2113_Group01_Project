@@ -35,7 +35,7 @@
                 <!-- Add spacing here -->
                 <div style="margin-left: 10px;"></div>
 
-                <div id = "logo" style = "display: flex; align-items: center; cursor: pointer; justify-content: center;" onclick = "window.location.href = 'User Home.php'">
+                <div id = "logo" style = "display: flex; align-items: center; cursor: pointer; justify-content: center;" onclick = "window.location.href = 'Admin Home.php'">
                     <img src="../../Assets/Image/H20 Harmony Logo.png"  alt="Logo" width="50">
                     <p style="font-size: 15px;"><b>H2O Harmony</b></p>
                 </div>
