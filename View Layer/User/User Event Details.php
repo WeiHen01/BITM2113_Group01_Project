@@ -220,23 +220,21 @@
 
                             if(mysqli_num_rows($resultCheck) === 1){
                                 $row = mysqli_fetch_assoc($resultCheck);
+
+                                $orgId = $row["OrgId"];
+
+                                $sqlOrg = "SELECT * FROM organization WHERE OrgId = $orgId";
+
+                                $resultCheck02 = mysqli_query($con, $sqlOrg);
+
+                                if(mysqli_num_rows($resultCheck02) === 1){
+                                    $row02 = mysqli_fetch_assoc($resultCheck02);
+                                }
                             }
                         ?>
                         <h3 style=" font-family: 'Epilogue'; text-align: center; font-size: 14; line-height: 56px; font-weight: 500; color: #171A1FFF;"><?php echo $row["DateTime"] ?></h3>
                         <h1 style=" font-family: 'Epilogue'; text-align: center; font-size: 40px; line-height: 30px; font-weight: 800; color: #171A1FFF;"><?php echo $row["Name"] ?></h1>
                         
-                        <div style = "display: flex; justify-content: center">
-                            <button class="button-red" onclick="" >
-                                <i class="fa-regular fa-heart"></i>
-                                345
-                            </button>
-                            <div style = "width: 2%"></div>
-                            <button class="button-blue" onclick="">
-                                <i class="fa-solid fa-share-nodes"></i>
-                                124
-                            </button>
-                        </div>
-
                     </div>
                 </div>
 
@@ -281,7 +279,16 @@
                                     <p style = "padding-top: 1%; font-weight: bold">Duration</p>
                                     <p style = "padding-top: 1%;">5 hours</p>
                                 </div>
+                            </div>
 
+                            <div style = "display: flex; gap: 2%; width: 20vw; cursor: pointer" onClick = "window.location.href='View Organization.php?id=<?php echo $row['OrgId']; ?>'">
+                                <div style = "background-color: #9a9fe4; width: 5vw; height: 5vw; border-radius: 4px; display: flex; justify-content: center; align-items: center; padding: 3% ">
+                                    <i class="fa-solid fa-sitemap" style = "font-size: 35px"></i>
+                                </div>
+                                <div>
+                                    <p style = "padding-top: 1%; font-weight: bold">Organised By</p>
+                                    <p style = "padding-top: 1%;"><?php echo $row02["OrgName"] ?></p>
+                                </div>
                             </div>
                         </div>
 

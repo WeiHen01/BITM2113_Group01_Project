@@ -99,14 +99,45 @@
                 border-radius: 1%;
             }
 
+            table {
+                border: 1px solid #dededf;
+                height: 100%;
+                width: 100%;
+                table-layout: fixed;
+                border-collapse: collapse;
+                border-spacing: 1px;
+                text-align: left;
+            }
 
+            th {
+                border: 1px solid #dededf;
+                background-color: #eceff1;
+                color: #000000;
+                padding-top: 2%;
+                padding-bottom: 2%;
+                padding-left: 10px;
+                padding-right: 10px;
+            }
+
+            td {
+                border: 1px solid #dededf;
+                background-color: #ffffff;
+                color: #000000;
+                padding-top: 2%;
+                padding-bottom: 2%;
+                padding-left: 10px;
+                padding-right: 10px;
+            }
+
+
+            
             
         </style>
     </head>
 
 
     <!-- Body of the webpage -->
-    <body>
+    <body onload="getLocation()">
         
         <!-- Sidebar -->
         <?php 
@@ -131,14 +162,53 @@
                 <!-- First container group -->
                 <div style="display: flex;">
                     <!-- Inner flex container for the first two containers -->
-                    <div style="display: flex; flex-direction: column; width: 50%; gap: 10px">
-                        <div class="container">
-                            <p style="padding-left: 1.5%"><b>Location</b></p>
-                            <iframe
-                                src="https://embed.waze.com/iframe?zoom=14&lat=40.730610&lon=-73.935242"
-                                allowfullscreen
-                                style="border: none;">
-                            </iframe>
+                    <div style="display: flex; flex-direction: column; width: 50%; gap: 20px">
+                        <div class="container" style =" overflow-y: auto">
+                            <p style="padding-left: 1.5%"><b>Pollution Areas</b></p>
+                            <?php 
+                                require("../../Database Layer/db_connection.php");
+
+                                $sql = "SELECT DISTINCT City, State, Country FROM complain ORDER BY Country, State, City";
+
+                                $result = mysqli_query($con, $sql);
+
+                                $current_country = ''; // Variable to store the current country
+                                $current_state = '';   // Variable to store the current state
+
+                                if(mysqli_num_rows($result) > 0){
+                                    while($row = mysqli_fetch_assoc($result)){
+
+                                        // Check if the country has changed
+                                        if ($row['Country'] !== $current_country) {
+                                            // If country has changed, start a new table for the country
+                                            if ($current_country !== '') {
+                                                // Close the previous table if it's not the first one
+                                                echo "</tbody></table>";
+                                            }
+                                            // Start a new table for the current country
+                                            echo "<div style='padding: 1%;'>";
+                                            echo "<table>";
+                                            echo "<thead><tr><th colspan='2' style = 'background: #5088e7'>".$row['Country']."</th></tr></thead>";
+                                            echo "<tbody>";
+                                            $current_country = $row['Country']; // Update the current country
+                                            $current_state = ''; // Reset current state when changing country
+                                        }
+
+                                        // Check if the state has changed within the same country
+                                        if ($row['State'] !== $current_state) {
+                                            echo "<tr><th colspan='2'>".$row['State']."</th></tr>";
+                                            $current_state = $row['State']; // Update the current state
+                                        }
+
+                                        // Display City information
+                                        echo "<tr><td>".$row['City']."</td><td><a href='Water Pollution Details.php?country=".$row['Country']."&state=".$row['State']."&city=".$row['City']."' style = 'text-decoration: none'>View</a></td></tr>";
+                                    }
+                                    // Close the last table
+                                    echo "</tbody></table></div>";
+                                }
+                            ?>
+
+
                         </div>
                         <div class="container" >
                             <p style="padding-left: 1.5%"><b>Latest Complaint submitted</b></p>
@@ -245,6 +315,22 @@
 
 
     <script src="../General Components & Widget/User/User Component Script.js"></script>
-    
+    <script>
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition);
+            } 
+        }
+
+        function showPosition(position) {
+            var latitude = position.coords.latitude;
+            var longitude = position.coords.longitude;
+            // Construct the URL with the latitude and longitude
+            var url = "https://embed.waze.com/iframe?zoom=14&lat=" + latitude + "&lon=" + longitude;
+
+            // Update the src attribute of the iframe
+            document.getElementById("wazeFrame").src = url;
+        }
+    </script>
 
 </html>

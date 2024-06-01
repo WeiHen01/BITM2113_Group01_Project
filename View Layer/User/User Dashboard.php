@@ -20,9 +20,12 @@
 
         <!-- Map -->
         <script src="https://www.waze.com/widgets/map-embed/init.js"></script>
+        <script src="https://www.waze.com/assets/presentations/presenter/jsapi/iframe.js"></script>
 
+        <!-- Chart -->
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
+        <!-- Date range -->
         <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
         <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
         <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
@@ -88,7 +91,7 @@
             
         </style>
     </head>
-    <body>
+    <body onload="getCurrentLocation()">
         <!-- Sidebar -->
         <?php 
             include("../General Components & Widget/User/Sidebar.php");
@@ -212,7 +215,7 @@
 
                 <div class = "container-2" style="margin-top: 2%; margin-bottom: 2%">
                     <iframe
-                        src="https://embed.waze.com/iframe?zoom=14&lat=40.730610&lon=-73.935242"
+                        id="wazeFrame"
                         allowfullscreen
                         style="border: none; width: 94vw; height: 60vh; ">
                     </iframe>
@@ -365,7 +368,44 @@
                 }
             }
         });
+
+
     </script>
+
+    <script>
+        function getCurrentLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showCurrentPosition);
+            } 
+        }
+
+        function showCurrentPosition(position) {
+            var latitude = position.coords.latitude;
+            var longitude = position.coords.longitude;
+            // Construct the URL with the latitude and longitude
+            var url = "https://embed.waze.com/iframe?zoom=14&lat=" + latitude + "&lon=" + longitude;
+
+            // Update the src attribute of the iframe
+            document.getElementById("wazeFrame").src = url;
+
+            // Show marker on the map
+            showMarker(latitude, longitude);
+        }
+
+        function showMarker(latitude, longitude) {
+            // Get a reference to the iframe's content window
+            var wazeFrame = document.getElementById("wazeFrame");
+            var wazeMap = wazeFrame.contentWindow;
+
+            // Call the Waze map's addMarker method if it exists
+            if (wazeMap && typeof wazeMap.addMarker === 'function') {
+                wazeMap.addMarker(latitude, longitude);
+            } else {
+                console.error('Waze map addMarker method not available or not a function.');
+            }
+        }
+    </script>
+
     
     
     <script src="../General Components & Widget/User/User Component Script.js"></script>
