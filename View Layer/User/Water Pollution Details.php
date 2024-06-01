@@ -9,9 +9,16 @@
     $loggedUserEmail = $_SESSION["LoggedUserEmail"];
 
 
-    $city = $_GET['city'];
-    $country = $_GET['country'];
-    $state = $_GET['state'];
+    if(isset($_GET['country'])){
+        $country = $_GET['country'];
+    }
+    if(isset($_GET['city'])){
+        $city = $_GET['city'];
+    }
+    if(isset($_GET['state'])){
+        $state = $_GET['state'];
+    }
+    
 
 ?>
 
@@ -81,7 +88,7 @@
                 margin-left: 1%;
                 margin-right: 2%;
                 width: 95%; 
-                height: 72vh; 
+                height: 60vh; 
                 background: #FFFFFFFF; /* white */
                 border-radius: 6px; /* border-l */
                 border-width: 1px; 
@@ -132,13 +139,28 @@
             <div style = "padding-top: 0.5%; padding-left: 2%; margin-bottom: 2%">
                 
                 <div style = "display: flex; align-items: center; gap: 1%">
-                    <a href="#" class="back-link" onclick="window.history.back()">
+                    <a href="#" class="back-link" onclick="window.location.href='User Home.php'">
                         <i class="fa-solid fa-chevron-left"></i>
                     </a>
-                    <p class="header-text" style = "font-weight: bold">Organization Details</p>
+                    <p class="header-text" style = "font-weight: bold">Water Pollution Details</p>
                 </div>
 
-                <p style = "margin-left: 2%;">Location: <?php echo $state == null ? null : $state ?> > <?php echo $city ?> </p>
+                <p style = "margin-left: 2%;">
+                    <a style = "text-decoration: none" href="?country=<?php echo isset($_GET['country']) ? $_GET['country'] : '' ?>">
+                        <?php echo isset($_GET['country']) ? $_GET['country']: '' ?>
+                    </a> 
+
+                    <a style = "text-decoration: none" href="?country=<?php echo isset($_GET['country']) ? $_GET['country'] : '' ?>&state=<?php echo isset($_GET['state']) ? $_GET['state'] : '' ?>">
+                        <?php echo isset($_GET['state']) ? '> '. $_GET['state'] : '' ?>
+                    </a>
+
+                    <?php if (isset($_GET['city'])): ?>
+                        <a style = "text-decoration: none" href="?country=<?php echo $_GET['country'] ?>&state=<?php echo $_GET['state'] ?>&city=<?php echo $_GET['city'] ?>">
+                            <?php echo isset($_GET['city']) ? '> '. $_GET['city'] : '' ?>
+                        </a> 
+                    <?php endif; ?>
+
+                </p>
 
                 <div style = "margin-bottom: 2%">
                     <!-- First container group -->
@@ -147,29 +169,92 @@
                         <div style="display: flex; flex-direction: column; width: 50%; gap: 20px">
                             
                             <div class="container" >
-                                <p style="padding-left: 1.5%"><b>Details</b></p>
-                                
+                                <p style="padding-left: 1.5%"><b>Location: </b>
+                                    <?php if (isset($_GET['city'])): ?>
+                                    <?php echo isset($_GET['city']) ? $_GET['city']. ', ' : '' ?>
+                                    <?php endif; ?>
+                                    <?php echo isset($_GET['state']) ? $_GET['state']. ', ' : '' ?>
+                                    <?php echo isset($_GET['country']) ? $_GET['country']: '' ?>
+                                </p>
+                                <?php
+                                    require("../../Database Layer/db_connection.php");
 
+                                    $country = $_GET['country'];
+
+                                    $sql = "SELECT COUNT(*) AS Number FROM complain WHERE Country = '$country' ";
+
+                                    if(isset($_GET['state'])){
+                                        $state = $_GET['state'];
+                                        $sql .= "AND State = '$state' ";
+                                    }
+
+                                    if(isset($_GET['city'])){
+                                        $city = $_GET['city'];
+                                        $sql .= "AND City = '$city' ";
+                                    }
+    
+                                    $result = mysqli_query($con, $sql);
+
+                                    if($result == true){
+                                        $row = mysqli_fetch_assoc($result);
+                                        $count = $row['Number'];
+                                        $display = '';
+                                        if($count < 2){
+                                            $display = $count . " complaint ";
+                                        }
+                                        else {
+                                            $display = $count . " complaints ";
+                                        }
+                                    }
+
+                                    
+                                ?>
+                                <p style="padding-left: 1.5%"><b><?php echo $display ?></b>
+                                <?php echo $count < 2 ? "has been " : "have been " ?>made about this location.</p>
                                 
                             </div>
                         </div>
                         <!-- Third container -->
                         <div class="container-2" style="width: 50%; overflow-y: auto">
                             <p style="padding-left: 1%"><b>Complaints related to this area</b></p>
-                            <?php 
-                                
-
-                            ?>
+                            
 
                             <div>
+                                <?php
+                                    require("../../Database Layer/db_connection.php");
 
-                                <div style = "background: #a899fb; cursor: pointer; margin-bottom: 20px; padding: 2%;" onClick="window.location.href='User Event Details.php?event=<?php echo $row_2['EventId']; ?>'">
+                                    $country = $_GET['country'];
+
+                                    $sql = "SELECT * FROM complain WHERE Country = '$country' ";
+
+                                    if(isset($_GET['state'])){
+                                        $state = $_GET['state'];
+                                        $sql .= "AND State = '$state' ";
+                                    }
+
+                                    if(isset($_GET['city'])){
+                                        $city = $_GET['city'];
+                                        $sql .= "AND City = '$city' ";
+                                    }
+
+                                    $result = mysqli_query($con, $sql);
+
+                                    if(mysqli_num_rows($result) > 0){
+                                        while($row = mysqli_fetch_assoc($result)){
+
                                     
-                                    <strong style ="font-size: 25px">Title</strong>
-                                    <p>Description</p>
-                                    <p></p>
+                                ?>
+                                <div style = "background: #a899fb; cursor: pointer; margin-bottom: 20px; padding: 2%;" onClick="window.location.href='User Complaint Details.php?complaint=<?php echo $row['ComplainId']; ?>'">
+                                    
+                                    <strong style ="font-size: 25px"><?php echo $row['Title'] ?></strong>
+                                    <p><?php echo $row['Description'] ?></p>
+                                    <p>Submitted by: <?php echo $row['DateTime'] ?></p>
                                 
                                 </div>
+                                <?php 
+                                        }
+                                    }
+                                ?>
 
 
                             </div>

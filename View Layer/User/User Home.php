@@ -188,7 +188,12 @@
                                             // Start a new table for the current country
                                             echo "<div style='padding: 1%;'>";
                                             echo "<table>";
-                                            echo "<thead><tr><th colspan='2' style = 'background: #5088e7'>".$row['Country']."</th></tr></thead>";
+                                            echo "<thead>
+                                                    <tr>
+                                                        <th colspan='2' style='background: #5088e7; color: #ffffff; cursor: pointer' onclick=\"window.location.href='Water Pollution Details.php?country=".$row['Country']."'\" onmouseover=\"this.style.background='#5059e7'\" onmouseout=\"this.style.background='#5088e7'\"> ".$row['Country']." </th>
+                                                    </tr>
+                                                </thead>";
+
                                             echo "<tbody>";
                                             $current_country = $row['Country']; // Update the current country
                                             $current_state = ''; // Reset current state when changing country
@@ -196,7 +201,7 @@
 
                                         // Check if the state has changed within the same country
                                         if ($row['State'] !== $current_state) {
-                                            echo "<tr><th colspan='2'>".$row['State']."</th></tr>";
+                                            echo "<tr><th colspan='2' onmouseover=\"this.style.background='#7a7a7a'\" onmouseout=\"this.style.background='#dededf'\" onclick=\"window.location.href='Water Pollution Details.php?country=".$row['Country']."&state=".$row['State']."'\">".$row['State']."</th></tr>";
                                             $current_state = $row['State']; // Update the current state
                                         }
 
@@ -273,7 +278,7 @@
 
                         <div>
 
-                            <div style = "background: #a899fb; cursor: pointer; margin-bottom: 20px; padding: 2%;" onClick="window.location.href='User Event Details.php?event=<?php echo $row_2['EventId']; ?>'">
+                            <div style = "background: #9cbfe7; cursor: pointer; margin-bottom: 20px; padding: 2%;" onClick="window.location.href='User Event Details.php?event=<?php echo $row_2['EventId']; ?>'">
                                 
                                 <strong style ="font-size: 25px"><?php echo $row_2["Name"] ?></strong>
                                 <p><?php echo $row_2["Description"] ?></p>

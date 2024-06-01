@@ -228,10 +228,11 @@
                             Date: 
                             <input type="text" name="daterange" placeholder="Select date range">
                         </div>
+                        <canvas id="complaintsChart" width="90" height="40"></canvas>
                     </div>
 
                     <div class = "container-3">
-                        <canvas id="myPieChart" style="width:100%; max-width: 100%"></canvas>
+                        <canvas id="complaintsChart" width="90" height="40"></canvas>
                     </div>
                 </div>
 
@@ -249,7 +250,6 @@
                 opens: 'left'
             }, function(start, end, label) {
                 const filteredData = filterData(start.format('YYYY-MM-DD'), end.format('YYYY-MM-DD'));
-                updateChart(myChart, filteredData);
             });
         });
 
@@ -259,59 +259,60 @@
                 const date = new Date(item.date);
                 return date >= new Date(startDate) && date <= new Date(endDate);
             });
+
+            updateChart(startDate, endDate);
         }
 
-        // Function to update the chart
-        function updateChart(chart, data) {
-            const countries = [...new Set(data.map(item => item.country))];
-            const aggregatedData = countries.map(country => {
-                return data.filter(item => item.country === country).reduce((sum, item) => sum + item.value, 0);
-            });
+        // Code to fetch and update data on date range change
+        function updateChart(startDate, endDate) {
+            // Code to fetch data from server based on selected date range
+            // Replace this with your actual data fetching logic
+            const data = {
+                labels: ["Day 1", "Day 2", "Day 3", "Day 4", "Day 5"],
+                datasets: [{
+                    label: "Number of Complaints",
+                    data: [5, 7, 3, 9, 6], // Example data for recent 5 days
+                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                    borderColor: 'rgba(255, 99, 132, 1)',
+                    borderWidth: 1
+                }]
+            };
 
-            chart.data.labels = countries;
-            chart.data.datasets[0].data = aggregatedData;
-            chart.update();
-        }
-    </script>
-
-    <!-- Chart data configuration-->
-    <script>
-        $(function() {
-            $('input[name="daterange"]').daterangepicker({
-                opens: 'left'
-            }, function(start, end, label) {
-                const startDate = start.format('YYYY-MM-DD');
-                const endDate = end.format('YYYY-MM-DD');
-                fetchComplaintData(startDate, endDate);
-            });
-        });
-
-        function fetchComplaintData(startDate, endDate) {
-            $.ajax({
-                url: 'User Fetch Complaints.php',
-                method: 'POST',
-                data: {
-                    start_date: startDate,
-                    end_date: endDate
-                },
-                success: function(response) {
-                    const data = JSON.parse(response);
-                    updateChart(myChart, data);
-                },
-                error: function(error) {
-                    console.error("Error fetching data:", error);
+            // Update chart with new data
+            const ctx = document.getElementById('complaintsChart').getContext('2d');
+            const complaintsChart = new Chart(ctx, {
+                type: 'bar',
+                data: data,
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
                 }
             });
         }
 
-        function updateChart(chart, data) {
-            const dates = data.map(item => item.date);
-            const values = data.map(item => item.value);
+        // Initialize date range picker
+        $(function() {
+            $('#daterange').daterangepicker({
+                opens: 'left'
+            }, function(start, end, label) {
+                // Update chart when date range changes
+                updateChart(start, end);
+            });
 
-            chart.data.labels = dates;
-            chart.data.datasets[0].data = values;
-            chart.update();
-        }
+            // By default, show data for the recent 5 days
+            const endDate = moment(); // Current date
+            const startDate = moment().subtract(5, 'days'); // 5 days ago
+            updateChart(startDate, endDate);
+        });
+
+        
+    </script>
+
+    <!-- Chart data configuration-->
+    <script>
 
         const barColors = ["red", "green", "blue", "orange", "brown"];
 

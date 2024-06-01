@@ -22,9 +22,15 @@
 <div id="sideMenu" class="sideMenu">
     
     <div class="mainMenu">
-        <div style = "padding: 3%; background-color: cyan; display: flex; align-items: center; ">
+        <div style = "padding: 3%; background-color: cyan; display: flex; align-items: center; cursor: pointer" onclick = "window.location.href='User Account.php'" onmouseover="this.style.background='#00eaea'" onmouseout="this.style.background='cyan'">
             <div style = "padding-right: 5%">
-                <img src="path/to/your/image.jpg" alt="Avatar" class="avatar-name">
+                <!-- fetch profile image -->
+                <?php if (!empty($row['ProfileImage'])) : ?>
+                    <!-- Convert BLOB data to base64 and embed it directly in the src attribute -->
+                    <img src="data:image/<?php echo pathinfo($row['ProfileImage'], PATHINFO_EXTENSION); ?>;base64,<?php echo base64_encode($row['ProfileImage']); ?>" class="dpicn" alt="dp" style="height: 60px; width: 60px; border-radius: 50%;">
+                <?php else : ?>
+                    <img src="../../Assets/Image/H20 Harmony Logo.png" class="dpicn" alt="dp" style="height: 60px; width: 60px;border-radius: 50%;">
+                <?php endif; ?>
             </div>
             <div style = "margin: 0">
                 <p><b><?php echo $row['Username'] == null ? "New User" : $row['Username'] ?></b></p>
