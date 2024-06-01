@@ -40,11 +40,13 @@
         /* Container styling */
         .container {
             padding: %;
-            background: #FFFFFF;
             border-radius: 6px;
-            border: 1px solid #DEE1E6;
             box-shadow: 0px 0px 1px #171a1f, 0px 0px 2px #171a1f;
             margin-bottom: 20px;
+            background: #F1F4FDFF; /* tertiary1-100 */
+            border-radius: 8px; /* border-m */
+            border-width: 1px; 
+            border-color: #C5D1F7FF;
         }
 
         /* Styling for the overview section container */
@@ -140,6 +142,7 @@
             font-weight: bold;
             margin-bottom: 10px;
         }
+
     </style>
 </head>
 <body>
