@@ -39,7 +39,7 @@
 
         /* Container styling */
         .container {
-            padding: %;
+            padding: 25%;
             border-radius: 6px;
             box-shadow: 0px 0px 1px #171a1f, 0px 0px 2px #171a1f;
             margin-bottom: 20px;
@@ -86,6 +86,15 @@
         }
 
         .overview-item i.fa-address-book {
+            background-color: #0066ff;
+            color: white;
+            border-radius: 50%;
+            padding: 10px; /* Reduced padding to make the circle smaller */
+            font-size: 24px; /* Reduced font size to make the icon smaller */
+            margin-bottom: 10px;
+        }
+
+        .overview-item i.fa-sitemap {
             background-color: #0066ff;
             color: white;
             border-radius: 50%;
@@ -146,29 +155,6 @@
     </style>
 </head>
 <body>
-
-    <!-- Main content area -->
-    <div id="contentArea">
-        <!-- Including the header component -->
-        <?php include("../General Components & Widget/Administration/Admin_Header.php"); ?>
-
-
-    <!-- Head of the webpage -->
-    <head>
-
-        <!-- Title of the tab -->
-        <title>Admin | Home</title>
-        <!-- FavIcon on the browser tab-->
-        <link rel="icon" type="image/x-icon" href="../../Assets/Image/H20 Harmony Logo.png">
-
-        <link href='https://fonts.googleapis.com/css?family=Epilogue:ExtraBold' rel='stylesheet'>
-        <link href='https://fonts.googleapis.com/css?family=Epilogue' rel='stylesheet'>
-
-        <!-- Template Stylesheet -->
-        <link rel="stylesheet" href="../General Components & Widget/Administration/Admin_Component Style.css">
-    </head>
-
-
     <!-- Body of the webpage -->
     <body>
         
@@ -192,39 +178,28 @@
         
                 <div class="overview-container">
                     <div class="overview-item">
-                    <i class="fa-solid fa-building" style="color: white"></i>
-                    <i class="fa-solid fa-circle" style="margin-top: 2%; color: blue; font-size: 32px;"></i> 
-                    <p style="color:blue; font-size:24px;"><b>17</b></p>
-                    <p><b>Organization Registration</b></p>
+                        <i class="fa-regular fa-address-book"></i>                    
+                        <p class="number"><b>20</b></p>
+                        <p class="title"><b>User Registration</b></p>
                     </div>
                     <div class="overview-item">
-                        <p style="color:blue; font-size:24px;"><b>20</b></p>
-                        <p><b>User Registration</b></p>
+                        <i class="fa-solid fa-sitemap"></i>                    
+                        <p class="number"><b>20</b></p>
+                        <p class="title"><b>Organization Registration</b></p>
                     </div>
                     <div class="overview-item">
-                        <p style="color:blue; font-size:24px;"><b>23</b></p>
-                        <p><b>User Complaint Issues</b></p>
+                        <i class="fa-solid fa-building"></i>
+                        <p class="number"><b>23</b></p>
+                        <p class="title"><b>User Complaint Issues</b></p>
                     </div>
                     <div class="overview-item">
-                        <p style="color:blue; font-size:24px;"><b>07</b></p>
-                        <p><b>Organization Event Created</b></p>
+                        <i class="fa-solid fa-building"></i>
+                        <p class="number"><b>07</b></p>
+                        <p class="title"><b>Organization Event Created</b></p>
                     </div>
+                    
                 </div>
-                <div class="overview-item">
-                    <i class="fa-regular fa-address-book"></i>                    
-                    <p class="number"><b>20</b></p>
-                    <p class="title"><b>User Registration</b></p>
-                </div>
-                <div class="overview-item">
-                    <i class="fa-solid fa-building"></i>
-                    <p class="number"><b>23</b></p>
-                    <p class="title"><b>User Complaint Issues</b></p>
-                </div>
-                <div class="overview-item">
-                    <i class="fa-solid fa-building"></i>
-                    <p class="number"><b>07</b></p>
-                    <p class="title"><b>Organization Event Created</b></p>
-                </div>
+                
             </div>
 
             <!-- Report by this month section -->
