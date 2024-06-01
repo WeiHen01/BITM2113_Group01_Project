@@ -5,6 +5,9 @@
     session_start();
 
     $loggedUserEmail = $_SESSION["LoggedUserEmail"];
+
+    require('../../Database Layer/db_connection.php');
+
 ?>
 
 <!--=========================================================================
@@ -164,6 +167,82 @@
                 padding-left: 12px;
             }
 
+
+            #updateImgButton button{
+                font-family: 'Epilogue';
+                width: 10vw; 
+                height: 46px;  
+                display: flex; 
+                align-items: center; 
+                justify-content: center; 
+                font-size: 16px; 
+                margin-top: 2%;
+                line-height: 26px; 
+                font-weight: 400; 
+                color: #FFFFFFFF; /* white */
+                background: #00BDD6FF; /* primary-500 */
+                opacity: 1; 
+                border: none; 
+                border-radius: 8px; /* border-xl */
+                padding-left: 12px;
+            }
+
+            #updateImgButton button:hover{
+                font-family: 'Epilogue';
+                width: 10vw; 
+                height: 46px;  
+                display: flex; 
+                align-items: center; 
+                justify-content: center; 
+                font-size: 16px; 
+                margin-top: 2%;
+                line-height: 26px; 
+                font-weight: 400; 
+                background-color: #0056b3; /* Example background color on hover */
+                color: #f8f9fa; /* Example text color on hover */
+                opacity: 1; 
+                border: none; 
+                border-radius: 8px; /* border-xl */
+                padding-left: 12px;
+            }
+            
+            #updatePassButton button{
+                font-family: 'Epilogue';
+                width: 13vw; 
+                height: 46px;  
+                display: flex; 
+                align-items: center; 
+                justify-content: center; 
+                font-size: 16px; 
+                margin-top: 2%;
+                line-height: 26px; 
+                font-weight: 400; 
+                color: #FFFFFFFF; /* white */
+                background: #00BDD6FF; /* primary-500 */
+                opacity: 1; 
+                border: none; 
+                border-radius: 8px; /* border-xl */
+                padding-left: 12px;
+            }
+
+            #updatePassButton button:hover{
+                font-family: 'Epilogue';
+                width: 13vw; 
+                height: 46px;  
+                display: flex; 
+                align-items: center; 
+                justify-content: center; 
+                font-size: 16px; 
+                margin-top: 2%;
+                line-height: 26px; 
+                font-weight: 400; 
+                background-color: #0056b3; /* Example background color on hover */
+                color: #f8f9fa; /* Example text color on hover */
+                opacity: 1; 
+                border: none; 
+                border-radius: 8px; /* border-xl */
+                padding-left: 12px;
+            }
             
 
             .cancelBtn button {
@@ -214,6 +293,30 @@
                 background: #949494; /* primary-500 */
             }
 
+            .cancelBtn03 button {
+                font-family: 'Epilogue';
+                width: 8vw; 
+                height: 46px;  
+                display: flex; 
+                align-items: center; 
+                justify-content: center; 
+                font-size: 16px; 
+                margin-top: 2%;
+                line-height: 26px; 
+                font-weight: 400; 
+                color: #000000; /* white */
+                background: #FFFFFFFF; /* primary-500 */
+                opacity: 1; 
+                border: none; 
+                border-radius: 8px; /* border-xl */
+                padding-left: 12px;
+            }
+
+            .cancelBtn03 button:hover {
+                color: #000000; /* white */
+                background: #949494; /* primary-500 */
+            }
+
 
             /* The Modal (background) */
             .modal {
@@ -245,6 +348,35 @@
                 box-shadow: 0px 17px 35px #171a1f, 0px 0px 2px #171a1f; /* shadow-xl */
             }
 
+            .modal-2 {
+                display: none; /* Hidden by default */
+                position: fixed; /* Stay in place */
+                z-index: 1; /* Sit on top */
+                left: 0;
+                top: 0;
+                width: 100%; /* Full width */
+                height: 100%; /* Full height */
+                overflow: auto; /* Enable scroll if needed */
+                background-color: rgb(0,0,0); /* Fallback color */
+                background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+                justify-content: center; /* Center horizontally */
+                align-items: center; /* Center vertically */
+            }
+
+            /* Modal Content/Box */
+            .modal-content-02 {
+                position: absolute; 
+                top: 30%;
+                bottom: 30%; 
+                left: 30%;
+                right: 30%; 
+                width: 40%; 
+                height: 40%;
+                background: #FFFFFFFF; /* white */
+                border-radius: 8px; /* border-xl */
+                box-shadow: 0px 17px 35px #171a1f, 0px 0px 2px #171a1f; /* shadow-xl */
+            }
+
             /* The Close Button */
             #close {
                 color: #aaa;
@@ -270,6 +402,19 @@
             }
 
             #close-2:hover{
+                color: black;
+            }
+
+            #close-3 {
+                color: #aaa;
+                float: right;
+                font-size: 28px;
+                font-weight: bold;
+                cursor: pointer;
+                padding: 1.5%;
+            }
+
+            #close-3:hover{
                 color: black;
             }
 
@@ -333,7 +478,7 @@
         <!-- The Modal -->
         <div id="updateModel" class="modal">
 
-        <?php 
+            <?php 
                 require("../../Database Layer/db_connection.php");
                 
                 $sqlShow = "SELECT * FROM user WHERE Email = '$loggedUserEmail'";
@@ -388,6 +533,53 @@
         
         </div>
 
+        <div id="updateImageModel" class="modal-2">
+
+            <?php 
+                require("../../Database Layer/db_connection.php");
+                
+                $sqlShow = "SELECT * FROM user WHERE Email = '$loggedUserEmail'";
+
+                $result = mysqli_query($con, $sqlShow);
+            
+                if(mysqli_num_rows($result) === 1){
+                    $row = mysqli_fetch_assoc($result);
+                }
+            ?>
+            
+            <form id="updateImageForm" action = "../../Controller Layer/User/User Profile Process.php?user=<?php echo $row['UserId']?>" method="post" enctype="multipart/form-data">
+                <!-- Modal content -->
+                <div class="modal-content-02">
+                    <!--Close button -->
+                    <div id="close-3" style = "padding: 4%">
+                        <i class="fa-solid fa-xmark" ></i>
+                    </div>
+
+                    <div style = "font-size: 25px; padding: 4%">
+                        <b>Update profile picture</b>
+                    </div>
+
+                    <div style = "padding: 4%">
+                        <!-- accept any image file to be selected -->
+                        <input type = "file" id="newProfileImage" name="newProfileImage" accept=".image/*">
+                    </div>
+
+                    <div style = "display: flex; justify-content: end; margin-top: 2%; margin-right: 5%; gap: 10px;">
+                        <div class="cancelBtn03" id="cancelBtn03">
+                            <button type="button">Cancel</button>
+                        </div>
+                        <div class="updateImg-btn" id="updateImgButton" onclick="validateForm()">
+                            <button type="submit" name = "update-image">Update Profile</button>
+                        </div>
+                    </div>
+
+                    
+                    
+                </div>
+            </form>
+        
+        </div>
+
         <!-- The Modal -->
         <div id="updatePasswordModel" class="modal">
             
@@ -422,7 +614,7 @@
                         <div class="cancelBtn02" id="cancelBtn02">
                             <button type="button">Cancel</button>
                         </div>
-                        <div class="updateProfile-btn" id="updateAccButton" onclick="validateForm()">
+                        <div class="updatePass-btn" id="updatePassButton" onclick="validateForm()">
                             <button type="submit" name = "update-password">Update Password</button>
                         </div>
                     </div>
@@ -447,153 +639,159 @@
             <div>
 
             <div class="container" style = "margin: 0;">
+            
+            <!-- Profile Image -->
+            <div class="profile-container" id="profile-img">
+                <?php if (!empty($row['ProfileImage'])) : ?>
+                    <!-- Convert BLOB data to base64 and embed it directly in the src attribute -->
+                    <img src="data:image/*;base64,<?php echo base64_encode($row['ProfileImage']); ?>" alt="Profile Picture" class="profile-picture">
+                <?php else : ?>
+                    <img src="../../Assets/Image/H20 Harmony Logo.png" alt="Profile Picture" class="profile-picture">
+                <?php endif; ?>
                 
-            <div class="profile-container">
-                <img src="https://www.niehs.nih.gov/sites/default/files/health/assets/images/safewater_og.jpg" alt="Profile Picture" class="profile-picture">
             </div>
 
     
-                <div style = "display: flex;">
-                    
-                    <div class="left-container">
-    
-                        <div style="height: 5%"></div>
-    
-                        <div class = "user-details">
-    
-                            <strong><p style = "font-size: 25px"><b><?php echo $row["Username"] ?></b></p></strong>
-    
-                            <div style="display: flex; align-items: center; padding-left: 1%">
-                                <i class="fa-regular fa-envelope"></i>
-    
-                                <div style="width: 3%"></div>
-    
-                                <p><?php echo $row["Email"] ?></p>
-                            </div>
-    
-                            <div style="display: flex; align-items: center; padding-left: 1%">
-                                <i class="fa-solid fa-phone"></i>
-    
-                                <div style="width: 3%"></div>
-    
-                                <p><?php echo $row["Contact"] == null ? "-": $row["Contact"] ?></p>
-                            </div>
-                            
-                        </div>
-    
-                        <div style="height: 5%"></div>
-    
-                        <div class="button" id="openEditProfile">
-                            <button type="button" style="color: #FFFFFFFF; background: #00BDD6FF; transition: #0056b3 0.3s; width: 100%;" onmouseover="this.style.backgroundColor='#0056b3';" onmouseout="this.style.backgroundColor='#00BDD6FF';">
-                                <i class="fa-regular fa-pen-to-square"></i>
-                                Edit this profile
-                            </button>
-                        </div>
-    
-                        <div class="button" id="openEditPassword">
-                            <button type="button" style="color: #FFFFFFFF; background: #00BDD6FF; transition: #0056b3 0.3s; width: 100%;" onmouseover="this.style.backgroundColor='#0056b3';" onmouseout="this.style.backgroundColor='#00BDD6FF';">
-                                <i class="fa-solid fa-lock"></i>
-                                Edit password
-                            </button>
-                        </div>
-    
-                        
-    
-                    </div>
-    
-                    <div class="right-container"  style = "overflow-y: auto">
-                        
-                        <div>
-                            <p><strong>Event Participated</strong></p>
-                        </div>
-
-                        <?php 
-                            require("../../Database Layer/db_connection.php");
-
-                            $sql = "SELECT * FROM participation WHERE UserId IN(
-                                SELECT UserId FROM user WHERE Email = '$loggedUserEmail'
-                            ) AND ParticipationStatus = 'Completed'";
-
-                            $result = mysqli_query($con, $sql);
-
-                            function formatDate($inputTimestamp) {
-                                // Get current date
-                                $currentDate = date('Y-m-d');
-                                $inputDate = date('Y-m-d', strtotime($inputTimestamp));
-                                
-                                // Calculate date difference in days
-                                $dateDifference = (strtotime($currentDate) - strtotime($inputDate)) / (60 * 60 * 24);
-                            
-                                // Logic for date comparison
-                                if ($inputDate == $currentDate) {
-                                    return "Today";
-                                } elseif ($dateDifference == 1) {
-                                    return "1 day ago";
-                                } elseif ($dateDifference == 2) {
-                                    return "2 days ago";
-                                } else {
-                                    return date('Y-m-d', strtotime($inputTimestamp));
-                                }
-                            }
-                            
-                            function formatTime($inputTimestamp) {
-                                // Get current time
-                                $currentTimestamp = time();
-                                $inputTimestamp = strtotime($inputTimestamp);
-                            
-                                // Calculate time difference in seconds
-                                $timeDifference = $currentTimestamp - $inputTimestamp;
-                            
-                                // Logic for time comparison
-                                if ($timeDifference < 60) {
-                                    return $timeDifference . " seconds ago";
-                                } elseif ($timeDifference < 3600) {
-                                    $minutesAgo = floor($timeDifference / 60);
-                                    return $minutesAgo . " minutes ago";
-                                } else {
-                                    return date('g:i:s a', $inputTimestamp);
-                                }
-                            }
-
-                            // Check if the query returned any results
-                            if ($result && mysqli_num_rows($result) > 0) {
-                                
-                                $row = mysqli_fetch_assoc($result);
-
-                                $event = $row['EventId'];
-
-                                $sql_2 = "SELECT * FROM event WHERE EventId = $event";
-
-                                $result_2 = mysqli_query($con, $sql_2);
-
-                                if ($result_2 && mysqli_num_rows($result_2) > 0) {
-                                    while ($row_2 = mysqli_fetch_assoc($result_2)) {
-
-                        ?>
-    
-                        <div class = "event-details">
-    
-                            <div class ="event">
-                                
-                                <strong style ="font-size: 25px"><?php echo $row_2["Name"] ?></strong>
-                                <p><?php echo $row_2["Description"] ?></p>
-                                <p><b>Participated By:</b> <?php echo formatDate($row_2['DateTime']).' '.formatTime($row_2['DateTime']) ?></p>
-                                
-                                <?php 
-                                            }
-                                        }
-                                    }
-                                ?>
-                            </div>
-    
-                        
-                        </div>
-    
-                    </div>
+            <div style = "display: flex;">
                 
+                <div class="left-container">
 
+                    <div style="height: 5%"></div>
+
+                    <div class = "user-details">
+
+                        <strong><p style = "font-size: 25px"><b><?php echo $row["Username"] ?></b></p></strong>
+
+                        <div style="display: flex; align-items: center; padding-left: 1%">
+                            <i class="fa-regular fa-envelope"></i>
+
+                            <div style="width: 3%"></div>
+
+                            <p><?php echo $row["Email"] ?></p>
+                        </div>
+
+                        <div style="display: flex; align-items: center; padding-left: 1%">
+                            <i class="fa-solid fa-phone"></i>
+
+                            <div style="width: 3%"></div>
+
+                            <p><?php echo $row["Contact"] == null ? "-": $row["Contact"] ?></p>
+                        </div>
+                        
+                    </div>
+
+                    <div style="height: 5%"></div>
+
+                    <div class="button" id="openEditProfile">
+                        <button type="button" style="color: #FFFFFFFF; background: #00BDD6FF; transition: #0056b3 0.3s; width: 100%;" onmouseover="this.style.backgroundColor='#0056b3';" onmouseout="this.style.backgroundColor='#00BDD6FF';">
+                            <i class="fa-regular fa-pen-to-square"></i>
+                            Edit this profile
+                        </button>
+                    </div>
+
+                    <div class="button" id="openEditPassword">
+                        <button type="button" style="color: #FFFFFFFF; background: #00BDD6FF; transition: #0056b3 0.3s; width: 100%;" onmouseover="this.style.backgroundColor='#0056b3';" onmouseout="this.style.backgroundColor='#00BDD6FF';">
+                            <i class="fa-solid fa-lock"></i>
+                            Edit password
+                        </button>
+                    </div>
+
+                    
 
                 </div>
+
+                <div class="right-container"  style = "overflow-y: auto">
+                    
+                    <div>
+                        <p><strong>Event Participated</strong></p>
+                    </div>
+
+                    <?php 
+                        require("../../Database Layer/db_connection.php");
+
+                        $sql = "SELECT * FROM participation WHERE UserId IN(
+                            SELECT UserId FROM user WHERE Email = '$loggedUserEmail'
+                        ) AND ParticipationStatus = 'Completed'";
+
+                        $result = mysqli_query($con, $sql);
+
+                        function formatDate($inputTimestamp) {
+                            // Get current date
+                            $currentDate = date('Y-m-d');
+                            $inputDate = date('Y-m-d', strtotime($inputTimestamp));
+                            
+                            // Calculate date difference in days
+                            $dateDifference = (strtotime($currentDate) - strtotime($inputDate)) / (60 * 60 * 24);
+                        
+                            // Logic for date comparison
+                            if ($inputDate == $currentDate) {
+                                return "Today";
+                            } elseif ($dateDifference == 1) {
+                                return "1 day ago";
+                            } elseif ($dateDifference == 2) {
+                                return "2 days ago";
+                            } else {
+                                return date('Y-m-d', strtotime($inputTimestamp));
+                            }
+                        }
+                        
+                        function formatTime($inputTimestamp) {
+                            // Get current time
+                            $currentTimestamp = time();
+                            $inputTimestamp = strtotime($inputTimestamp);
+                        
+                            // Calculate time difference in seconds
+                            $timeDifference = $currentTimestamp - $inputTimestamp;
+                        
+                            // Logic for time comparison
+                            if ($timeDifference < 60) {
+                                return $timeDifference . " seconds ago";
+                            } elseif ($timeDifference < 3600) {
+                                $minutesAgo = floor($timeDifference / 60);
+                                return $minutesAgo . " minutes ago";
+                            } else {
+                                return date('g:i:s a', $inputTimestamp);
+                            }
+                        }
+
+                        // Check if the query returned any results
+                        if ($result && mysqli_num_rows($result) > 0) {
+                            
+                            $row = mysqli_fetch_assoc($result);
+
+                            $event = $row['EventId'];
+
+                            $sql_2 = "SELECT * FROM event WHERE EventId = $event";
+
+                            $result_2 = mysqli_query($con, $sql_2);
+
+                            if ($result_2 && mysqli_num_rows($result_2) > 0) {
+                                while ($row_2 = mysqli_fetch_assoc($result_2)) {
+
+                    ?>
+
+                    <div class = "event-details">
+
+                        <div class ="event">
+                            
+                            <strong style ="font-size: 25px"><?php echo $row_2["Name"] ?></strong>
+                            <p><?php echo $row_2["Description"] ?></p>
+                            <p><b>Participated By:</b> <?php echo formatDate($row_2['DateTime']).' '.formatTime($row_2['DateTime']) ?></p>
+                            
+                            <?php 
+                                        }
+                                    }
+                                }
+                            ?>
+                        </div>
+
+                    
+                    </div>
+
+                </div>
+            
+
+
             </div>
 
             
@@ -734,20 +932,29 @@
 
         var modal2 = document.getElementById("updatePasswordModel");
 
+        var modal3 = document.getElementById("updateImageModel");
+
         // Get the button that opens the modal
         var btn = document.getElementById("openEditProfile");
 
         var btn2 = document.getElementById("openEditPassword");
 
+        var profile = document.getElementById("profile-img");
+
         var cancel = document.getElementById("cancelBtn");
+        
         var cancel02 = document.getElementById("cancelBtn02");
 
-        var profile = document.getElementById("profile-container");
+        var cancel03 = document.getElementById("cancelBtn03");
+
+
 
         // Get the <span> element that closes the modal
         var i = document.getElementById("close");
 
         var i2 = document.getElementById("close-2");
+
+        var i3 = document.getElementById("close-3");
 
         // When the user clicks on the button, open the modal
         btn.onclick = function() {
@@ -758,12 +965,20 @@
             modal2.style.display = "block";
         }
 
+        profile.onclick = function(){
+            modal3.style.display = "block";
+        }
+
         cancel.onclick = function(){
             modal.style.display = "none";
         }
 
         cancel02.onclick = function(){
             modal2.style.display = "none";
+        }
+
+        cancel03.onclick = function(){
+            modal3.style.display = "none";
         }
 
         // When the user clicks on <span> (x), close the modal
@@ -775,6 +990,10 @@
             modal2.style.display = "none";
         }
 
+        i3.onclick = function(){
+            modal3.style.display = "none";
+        }
+
         // When the user clicks anywhere outside of the modal, close it
         window.onclick = function(event) {
             if (event.target == modal) {
@@ -783,6 +1002,10 @@
 
             if (event.target == modal2){
                 modal2.style.display = "none";
+            }
+
+            if (event.target == modal3){
+                modal3.style.display = "none";
             }
         }
 

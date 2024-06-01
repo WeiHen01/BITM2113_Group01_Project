@@ -1,4 +1,5 @@
 <?php 
+    
     if(session_status() == PHP_SESSION_NONE){
         session_start();
     }
@@ -15,6 +16,8 @@
         $row = mysqli_fetch_assoc($result);
         $_SESSION['user'] = $row["UserId"];
     }
+
+
 
 ?>
 
@@ -61,13 +64,24 @@
             
 
             <!-- Profile image with dropdown -->
-            <div class="profile-image" onclick="toggleDropdown()" style = "display: flex; gap: 3%; align-items: center">
-                <img src="../../../Assets/Image/logo.png" width="40" height="40">
-                <p><?php echo $row['Username'] == null ? "New User" : $row['Username'] ?></p>
+            <div class="profile-image" onclick="toggleDropdown()" style = "display: flex; gap: 5%; align-items: center">
+                
+                <!-- fetch profile image -->
+                <?php if (!empty($row['ProfileImage'])) : ?>
+                    <!-- Convert BLOB data to base64 and embed it directly in the src attribute -->
+                    <img src="data:image/*;base64,<?php echo base64_encode($row['ProfileImage']); ?>" class="dpicn" alt="dp" style="height: 40px;width: 40px;border-radius: 50%;">
+                <?php else : ?>
+                    <img src="../../Assets/Image/H20 Harmony Logo.png" class="dpicn" alt="dp" style="height: 40px;width: 40px;border-radius: 50%;">
+                <?php endif; ?>
+
+
+                <p style = "font-weight: 900"><?php echo $row['Username'] == null ? "New User" : $row['Username'] ?></p>
+                
                 <div class="profile-dropdown" id="profileDropdown">
                     <a href="User Account.php">Profile</a>
                     <a href="#" onClick="logout()">Logout</a>
                 </div>
+
             </div>
             
         </div>
