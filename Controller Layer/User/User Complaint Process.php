@@ -13,7 +13,18 @@
         $state = $_POST["State"];
         $country = $_POST["Country"];
 
-        $user = $_SESSION["userID"];
+        $loggedUserEmail = $_SESSION["LoggedUserEmail"];
+        $sql = "SELECT * FROM user WHERE Email = '$loggedUserEmail'";
+
+        $result = mysqli_query($con, $sql);
+
+        if(mysqli_num_rows($result) === 1){
+            $row = mysqli_fetch_assoc($result);
+            $_SESSION['user'] = $row["UserId"];
+            
+        }
+
+        $user = $row["UserId"];
 
         if($title == null || $desc == null || $city == null || $state == "none" || $country == null){
             $_SESSION["Submission"] = "Empty";

@@ -1,5 +1,18 @@
 <?php 
     session_start();
+
+    $loggedUserEmail = $_SESSION["LoggedUserEmail"];
+
+    require("../../Database Layer/db_connection.php");
+
+    $sql = "SELECT * FROM user WHERE Email = '$loggedUserEmail'";
+
+    $result = mysqli_query($con, $sql);
+
+    if(mysqli_num_rows($result) === 1){
+        $row = mysqli_fetch_assoc($result);
+        $_SESSION['user'] = $row["UserId"];
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -408,7 +421,7 @@
                         <?php 
                             include ("../../Database Layer/db_connection.php");
 
-                            $user = $_SESSION['userID'];
+                            $user = $_SESSION['user'];
 
                             $sqlView = "SELECT * FROM complain WHERE Status = 'Progressing' 
                                         AND UserId = '$user'";
@@ -452,7 +465,7 @@
                          <?php 
                             include ("../../Database Layer/db_connection.php");
 
-                            $user = $_SESSION['userID'];
+                            $user = $_SESSION['user'];
 
                             $sqlView = "SELECT * FROM complain WHERE Status = 'Done' 
                                         AND UserId = '$user'";

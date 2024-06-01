@@ -18,7 +18,17 @@
         <!-- Template Stylesheet -->
         <link rel="stylesheet" href="../General Components & Widget/User/User Component Style.css">
 
+        <!-- Map -->
         <script src="https://www.waze.com/widgets/map-embed/init.js"></script>
+
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+
+
 
         <style>
             /* Container 23 */
@@ -58,6 +68,21 @@
                 border-color: #DEE1E6FF; /* neutral-300 */
                 border-style: solid; 
                 box-shadow: 0px 0px 1px #171a1f, 0px 0px 2px #171a1f; /* shadow-xs */
+            }
+
+            .textbox input {
+                font-family: 'Epilogue';
+                width: 15vw; /* Fill the entire width of the parent container */
+                height: 46px;
+                font-size: 14px;
+                line-height: 22px;
+                font-weight: 400;
+                background: #F3F4F6FF; /* neutral-200 */
+                border-radius: 8px; /* border-xl */
+                border-width: 0px;
+                outline: none;
+                padding-left: 5px; /* Adjust the padding to make space for the icon */
+                padding-right: 38px;
             }
 
             
@@ -196,11 +221,14 @@
 
                 <div style = "display: flex; gap: 1%">
                     <div class = "container-3">
-
+                        <div class = "textbox" style = "align-items: center; display: flex; gap: 1%; padding: 2%">
+                            Date: 
+                            <input type="text" name="daterange" placeholder="Select date range">
+                        </div>
                     </div>
 
                     <div class = "container-3">
-
+                        <canvas id="myPieChart" style="width:100%; max-width: 100%"></canvas>
                     </div>
                 </div>
 
@@ -211,5 +239,135 @@
 
 
     </body>
+
+    <script>
+        $(function() {
+            $('input[name="daterange"]').daterangepicker({
+                opens: 'left'
+            }, function(start, end, label) {
+                const filteredData = filterData(start.format('YYYY-MM-DD'), end.format('YYYY-MM-DD'));
+                updateChart(myChart, filteredData);
+            });
+        });
+
+        // Function to filter data based on date range
+        function filterData(startDate, endDate) {
+            return allData.filter(item => {
+                const date = new Date(item.date);
+                return date >= new Date(startDate) && date <= new Date(endDate);
+            });
+        }
+
+        // Function to update the chart
+        function updateChart(chart, data) {
+            const countries = [...new Set(data.map(item => item.country))];
+            const aggregatedData = countries.map(country => {
+                return data.filter(item => item.country === country).reduce((sum, item) => sum + item.value, 0);
+            });
+
+            chart.data.labels = countries;
+            chart.data.datasets[0].data = aggregatedData;
+            chart.update();
+        }
+    </script>
+
+    <!-- Chart data configuration-->
+    <script>
+        $(function() {
+            $('input[name="daterange"]').daterangepicker({
+                opens: 'left'
+            }, function(start, end, label) {
+                const startDate = start.format('YYYY-MM-DD');
+                const endDate = end.format('YYYY-MM-DD');
+                fetchComplaintData(startDate, endDate);
+            });
+        });
+
+        function fetchComplaintData(startDate, endDate) {
+            $.ajax({
+                url: 'User Fetch Complaints.php',
+                method: 'POST',
+                data: {
+                    start_date: startDate,
+                    end_date: endDate
+                },
+                success: function(response) {
+                    const data = JSON.parse(response);
+                    updateChart(myChart, data);
+                },
+                error: function(error) {
+                    console.error("Error fetching data:", error);
+                }
+            });
+        }
+
+        function updateChart(chart, data) {
+            const dates = data.map(item => item.date);
+            const values = data.map(item => item.value);
+
+            chart.data.labels = dates;
+            chart.data.datasets[0].data = values;
+            chart.update();
+        }
+
+        const barColors = ["red", "green", "blue", "orange", "brown"];
+
+        const myChart = new Chart("myChart", {
+            type: "bar",
+            data: {
+                labels: [],
+                datasets: [{
+                    backgroundColor: barColors,
+                    data: []
+                }]
+            },
+            options: {
+                plugins: {
+                    title: {
+                        display: true,
+                        text: "Complaints",
+                        font: {
+                            size: 25,
+                            family: 'Epilogue'
+                        }
+                    },
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        titleFont: {
+                            size: 14,
+                            family: 'Epilogue'
+                        },
+                        bodyFont: {
+                            size: 12,
+                            family: 'Epilogue'
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        ticks: {
+                            font: {
+                                size: 14,
+                                family: 'Epilogue'
+                            }
+                        }
+                    },
+                    y: {
+                        ticks: {
+                            font: {
+                                size: 14,
+                                family: 'Epilogue'
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+    
+    
     <script src="../General Components & Widget/User/User Component Script.js"></script>
+
 </html>
