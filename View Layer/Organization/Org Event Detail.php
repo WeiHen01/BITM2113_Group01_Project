@@ -41,6 +41,10 @@
 
         <style>
             
+            #header{
+                background: url("../../Assets/Image/event_details_bg.jpg");
+                width: 100%;
+            }
             .container {
                 justify-content: center;
                 background: #00BDD66B; /* primary-500 */
@@ -263,28 +267,29 @@
             <!-- Content here -->
 
             <div class = "body-content">
-                <h2 style="text-align: left; font-family: Epilogue; font-size: 50px;  padding: 2%; margin: 0;">About Event</h2>
-
-
-                <div class = "container" style="margin-left: 10%; margin-right: 10%; padding-bottom: 2%;">
-                    <h3 style=" font-family: 'Epilogue'; text-align: center; font-size: 14; line-height: 56px; font-weight: 500; color: #171A1FFF;">May 27</h3>
-                    <h1 style=" font-family: 'Epilogue'; text-align: center; font-size: 40px; line-height: 30px; font-weight: 800; color: #171A1FFF;">Ripple Effect: Unveiling Water Pollution</h1>
-                    <h3 style=" font-family: 'Epilogue'; text-align: center; font-size: 14; line-height: 20px; font-weight: 300; color: #171A1FFF;">
-                    Rock Revolt: A Fusion of Power and Passion" is an electrifying rock music
-                    event that brings together a diverse lineup of talented rock bands and
-                    artists</h3>
-                    <div style = "display: flex; justify-content: center">
-                        <button class="button-red" onclick="" >
-                            <i class="fa-regular fa-heart"></i>
-                            345
-                        </button>
-                        <div style = "width: 2%"></div>
-                        <button class="button-blue" onclick="">
-                            <i class="fa-solid fa-share-nodes"></i>
-                            124
-                        </button>
+                <div id = "header">
+                    <h2 style="text-align: left; font-family: Epilogue; font-size: 50px;  padding: 2%; margin: 0;">About Event</h2>
+                    <div class = "container" style="margin-left: 10%; margin-right: 10%; padding-bottom: 2%;">
+                        <h3 style=" font-family: 'Epilogue'; text-align: center; font-size: 14; line-height: 56px; font-weight: 500; color: #171A1FFF;">May 27</h3>
+                        <h1 style=" font-family: 'Epilogue'; text-align: center; font-size: 40px; line-height: 30px; font-weight: 800; color: #171A1FFF;">Ripple Effect: Unveiling Water Pollution</h1>
+                        <h3 style=" font-family: 'Epilogue'; text-align: center; font-size: 14; line-height: 20px; font-weight: 300; color: #171A1FFF;">
+                        Rock Revolt: A Fusion of Power and Passion" is an electrifying rock music
+                        event that brings together a diverse lineup of talented rock bands and
+                        artists</h3>
+                        <div style = "display: flex; justify-content: center">
+                            <button class="button-red" onclick="" >
+                                <i class="fa-regular fa-heart"></i>
+                                345
+                            </button>
+                            <div style = "width: 2%"></div>
+                            <button class="button-blue" onclick="">
+                                <i class="fa-solid fa-share-nodes"></i>
+                                124
+                            </button>
+                        </div>
                     </div>
                 </div>
+
 
 
                 <div style="display: flex">

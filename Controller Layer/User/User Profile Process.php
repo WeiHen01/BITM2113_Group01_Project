@@ -126,17 +126,15 @@
             $check = getimagesize($_FILES["newProfileImage"]["tmp_name"]);
             if ($check === false) {
                 echo "
-                    <script>alert('Sorry, file is not an image.'); 
-                    
-                    </script>";
+                    <script>alert('Sorry, this file is not an image.');</script>";
                 $uploadOk = 0;
             }
         }
 
-        // Check file size if the size is more than 50Mb(50,000,000 bytes)
+        // Check file size if the size is more than 20Mb(20,000,000 bytes)
         if ($_FILES["newProfileImage"]["size"] > 20000000) {
             echo "<script>
-                alert('Sorry, your file is too large.'); 
+                alert('Sorry, your file is too large. Please upload less than 20Mb'); 
             </script>";
             $uploadOk = 0;
         }
@@ -150,9 +148,7 @@
 
         // Check if $uploadOk is set to 0 by an error
         if ($uploadOk == 0) {
-            echo "<script>alert('Sorry, your file is not uploaded.'); 
-            
-            </script>";
+            echo "<script>alert('Sorry, your file is not uploaded.'); </script>";
         } else {
             if (move_uploaded_file($_FILES["newProfileImage"]["tmp_name"], $targetFile)) {
                 // Read the new image data
@@ -167,11 +163,19 @@
 
                 if ($resultUpdateImage) {
                     // Image data and user data updated successfully
-                    echo "<script>alert('Image Updated Successfully!');</script>";
+                    $_SESSION["Update_Image"] = "Success";
+
+                        // Redirect to login.php with a URL parameter indicating successful login
+                    header("Location: ../../View Layer/User/User Account.php");  
                     exit();
                 } else {
+                    // Image data and user data updated successfully
+                    $_SESSION["Update_Image"] = "Failure";
+
+                        // Redirect to login.php with a URL parameter indicating successful login
+                    header("Location: ../../View Layer/User/User Account.php");  
                     // Handle the case when the update fails
-                    echo "Error updating image and user data: " . $con->error;
+                    //echo "Error updating image and user data: " . $con->error;
                 }
             } else {
                 echo "<script>alert('Sorry, there was an error uploading your file.');</script>";

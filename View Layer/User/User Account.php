@@ -561,7 +561,7 @@
 
                     <div style = "padding: 4%">
                         <!-- accept any image file to be selected -->
-                        <input type = "file" id="newProfileImage" name="newProfileImage" accept=".image/*">
+                        <input type = "file" id="newProfileImage" name="newProfileImage" accept=".jpg, .jpeg, .png, .gif">
                     </div>
 
                     <div style = "display: flex; justify-content: end; margin-top: 2%; margin-right: 5%; gap: 10px;">
@@ -644,7 +644,7 @@
             <div class="profile-container" id="profile-img">
                 <?php if (!empty($row['ProfileImage'])) : ?>
                     <!-- Convert BLOB data to base64 and embed it directly in the src attribute -->
-                    <img src="data:image/*;base64,<?php echo base64_encode($row['ProfileImage']); ?>" alt="Profile Picture" class="profile-picture">
+                    <img src="data:image/<?php echo pathinfo($row['ProfileImage'], PATHINFO_EXTENSION); ?>;base64,<?php echo base64_encode($row['ProfileImage']); ?>" alt="Profile Picture" class="profile-picture">
                 <?php else : ?>
                     <img src="../../Assets/Image/H20 Harmony Logo.png" alt="Profile Picture" class="profile-picture">
                 <?php endif; ?>
@@ -915,6 +915,62 @@
             
             // Unset the session variable after displaying the iziToast notification
             unset($_SESSION['Update_Password']);
+        }
+        else {
+
+        }
+
+
+        // Update password response
+        if(isset($_SESSION['Update_Image']) && $_SESSION['Update_Image'] == 'Success') {
+            // Trigger iziToast notification for successful login
+            echo "<script src=\"https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/js/iziToast.min.js\"></script>";
+            echo "<script>
+                    iziToast.show({
+                        title: 'Successfully update profile image',
+                        message: 'You have updated your profile picture!',
+                        position: 'bottomRight',
+                        timeout: 3000,
+                        backgroundColor: 'green',
+                        titleColor: 'white',
+                        messageColor: 'white',
+                        class: 'custom-toast',
+                        icon: 'fa-regular fa-circle-check',
+                        iconColor: 'white',
+                        onClose: function(instance, toast, closedBy) {
+                            // Add custom CSS to align the close button to the right
+                            toast.style.justifyContent = 'flex-end';
+                        }
+                    });
+                </script>";
+            
+            // Unset the session variable after displaying the iziToast notification
+            unset($_SESSION['Update_Image']);
+        }
+        elseif(isset($_SESSION['Update_Image']) && $_SESSION['Update_Image'] == 'Failure') {
+            // Trigger iziToast notification for successful login
+            echo "<script src=\"https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/js/iziToast.min.js\"></script>";
+            echo "<script>
+                    iziToast.show({
+                        title: 'Fail to update profile',
+                        message: 'Fail to update profile picture!',
+                        position: 'bottomRight',
+                        timeout: 3000,
+                        backgroundColor: 'red',
+                        titleColor: 'white',
+                        messageColor: 'white',
+                        class: 'custom-toast',
+                        icon: 'fa-solid fa-circle-xmark',
+                        iconColor: 'white',
+                        onClose: function(instance, toast, closedBy) {
+                            // Add custom CSS to align the close button to the right
+                            toast.style.justifyContent = 'flex-end';
+                        }
+                    });
+                </script>";
+            
+            // Unset the session variable after displaying the iziToast notification
+            unset($_SESSION['Update_Image']);
         }
         else {
 

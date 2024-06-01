@@ -66,91 +66,96 @@
                 <p style="padding-left:2%; "><b>Dashboard</b></p>
 
                 <div style="display: flex;">
-                    <div class="container"> 
-                        <p style="padding-left:2%; ">Total Polluted Areas</p> 
-                        
-                        <?php 
-                            require("../../Database Layer/db_connection.php");
+                    <div class="container" style = "display: flex; justify-content: space-evenly"> 
+                        <div>
+                            <p style="padding-left:2%; ">Total Polluted Areas</p> 
                             
-                            try {
-                                $sql = "SELECT COUNT(DISTINCT CONCAT(City, ',', State, ',', Country)) AS UniqueLocations
-                                        FROM complain";
-
-                                // Fetch the result
-                                // Execute the query
-                                $result = $con->query($sql);
+                            <?php 
+                                require("../../Database Layer/db_connection.php");
                                 
-                                // Check if result exists
-                                if ($result) {
-                                    // Fetch the result as an associative array
-                                    $row = $result->fetch_assoc();
+                                try {
+                                    $sql = "SELECT COUNT(DISTINCT CONCAT(City, ',', State, ',', Country)) AS UniqueLocations
+                                            FROM complain";
+
+                                    // Fetch the result
+                                    // Execute the query
+                                    $result = $con->query($sql);
                                     
-                                    // Check if the result is not empty
-                                    if ($row && isset($row['UniqueLocations'])) {
+                                    // Check if result exists
+                                    if ($result) {
+                                        // Fetch the result as an associative array
+                                        $row = $result->fetch_assoc();
+                                        
+                                        // Check if the result is not empty
+                                        if ($row && isset($row['UniqueLocations'])) {
+                                            // Output the result
                                         // Output the result
-                                       // Output the result
-                                        echo '<p style="font-weight: bold; font-size: 40px; padding-left:2%; ">' . $row['UniqueLocations'] . '</p>';
+                                            echo '<p style="font-weight: bold; font-size: 40px; padding-left:2%; ">' . $row['UniqueLocations'] . '</p>';
+                                        } else {
+                                            echo '<p style="font-weight: bold; font-size: 40px; padding-left:2%; "> 0</p>'; // No unique locations found
+                                        }
                                     } else {
-                                        echo '<p style="font-weight: bold; font-size: 40px; padding-left:2%; "> 0</p>'; // No unique locations found
+                                        echo '<p style="font-weight: bold">0</p>'; // No result found
                                     }
-                                } else {
-                                    echo '<p style="font-weight: bold">0</p>'; // No result found
+                            
+                                    
+                                    
+                                } catch(Exception $e) {
+                                    // Handle errors
+                                    echo "Error: " . $e->getMessage();
                                 }
-                        
-                                
-                                
-                            } catch(Exception $e) {
-                                // Handle errors
-                                echo "Error: " . $e->getMessage();
-                            }
-                        ?>
-
+                            ?>
+                        </div>
+                        <!-- <i class="fa-solid fa-map-location-dot"></i> -->
                     </div>
 
-                    <div class="container" style = "margin-bottom: 2%">
-                        <p style="padding-left:2%; ">Total Complaints in This week</p>
+                    <div class="container" style = "margin-bottom: 2%; display: flex;">
+                        <div>
+                            <p style="padding-left:2%; ">Total Complaints in This week</p>
 
-                        <?php 
-                            require("../../Database Layer/db_connection.php");
-                            
-                            try {
-                                // Get the current date
-                                $currentDate = date('Y-m-d');
-                            
-                                // Calculate the start date of the current week (assuming Monday is the start of the week)
-                                $startDate = date('Y-m-d', strtotime('last monday', strtotime($currentDate)));
-                            
-                                // Calculate the end date of the current week (assuming Sunday is the end of the week)
-                                $endDate = date('Y-m-d', strtotime('next sunday', strtotime($currentDate)));
-                            
-                                // SQL query to count records within the current week
-                                $sql = "SELECT COUNT(*) AS TotalRecords FROM complain WHERE DateTime >= ? AND DateTime <= ?";
+                            <?php 
+                                require("../../Database Layer/db_connection.php");
                                 
-                                // Prepare the statement
-                                $statement = $con->prepare($sql);
+                                try {
+                                    // Get the current date
+                                    $currentDate = date('Y-m-d');
                                 
-                                // Bind parameters
-                                $statement->bind_param('ss', $startDate, $endDate);
+                                    // Calculate the start date of the current week (assuming Monday is the start of the week)
+                                    $startDate = date('Y-m-d', strtotime('last monday', strtotime($currentDate)));
                                 
-                                // Execute the query
-                                $statement->execute();
+                                    // Calculate the end date of the current week (assuming Sunday is the end of the week)
+                                    $endDate = date('Y-m-d', strtotime('next sunday', strtotime($currentDate)));
                                 
-                                // Bind the result
-                                $statement->bind_result($totalRecords);
-                                
-                                // Fetch the result
-                                $statement->fetch();
-                                
-                                // Output the total records for this week
-                                echo '<p style="font-weight: bold; font-size: 40px; padding-left:2%; ">' . $totalRecords . '</p>';
-                                
-                                // Close the statement
-                                $statement->close();
-                            } catch(Exception $e) {
-                                // Handle errors
-                                echo "Error: " . $e->getMessage();
-                            }
-                        ?>
+                                    // SQL query to count records within the current week
+                                    $sql = "SELECT COUNT(*) AS TotalRecords FROM complain WHERE DateTime >= ? AND DateTime <= ?";
+                                    
+                                    // Prepare the statement
+                                    $statement = $con->prepare($sql);
+                                    
+                                    // Bind parameters
+                                    $statement->bind_param('ss', $startDate, $endDate);
+                                    
+                                    // Execute the query
+                                    $statement->execute();
+                                    
+                                    // Bind the result
+                                    $statement->bind_result($totalRecords);
+                                    
+                                    // Fetch the result
+                                    $statement->fetch();
+                                    
+                                    // Output the total records for this week
+                                    echo '<p style="font-weight: bold; font-size: 40px; padding-left:2%; ">' . $totalRecords . '</p>';
+                                    
+                                    // Close the statement
+                                    $statement->close();
+                                } catch(Exception $e) {
+                                    // Handle errors
+                                    echo "Error: " . $e->getMessage();
+                                }
+                            ?>
+                        </div>
+                        
                     </div>
                 </div>
 

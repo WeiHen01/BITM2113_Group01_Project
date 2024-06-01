@@ -69,7 +69,7 @@
                 <!-- fetch profile image -->
                 <?php if (!empty($row['ProfileImage'])) : ?>
                     <!-- Convert BLOB data to base64 and embed it directly in the src attribute -->
-                    <img src="data:image/*;base64,<?php echo base64_encode($row['ProfileImage']); ?>" class="dpicn" alt="dp" style="height: 40px;width: 40px;border-radius: 50%;">
+                    <img src="data:image/<?php echo pathinfo($row['ProfileImage'], PATHINFO_EXTENSION); ?>;base64,<?php echo base64_encode($row['ProfileImage']); ?>" class="dpicn" alt="dp" style="height: 40px;width: 40px;border-radius: 50%;">
                 <?php else : ?>
                     <img src="../../Assets/Image/H20 Harmony Logo.png" class="dpicn" alt="dp" style="height: 40px;width: 40px;border-radius: 50%;">
                 <?php endif; ?>
