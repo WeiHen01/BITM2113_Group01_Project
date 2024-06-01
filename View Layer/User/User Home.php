@@ -235,7 +235,7 @@
                             
                             ?>
 
-                            <div class ="event" style = "cursor: pointer" onClick="window.location.href='User Complaint Details.php?complaint=<?php echo $row['ComplainId']; ?>'">
+                            <div class ="event" style = "cursor: pointer; margin-left: 2%; margin-right: 2%; " onClick="window.location.href='User Complaint Details.php?complaint=<?php echo $row['ComplainId']; ?>'">
                                 
                                 <strong style ="font-size: 25px"><?php echo $row["Title"] ?></strong>
                                 <p><?php echo $row["Description"] ?></p>
@@ -278,7 +278,7 @@
 
                         <div>
 
-                            <div style = "background: #9cbfe7; cursor: pointer; margin-bottom: 20px; padding: 2%;" onClick="window.location.href='User Event Details.php?event=<?php echo $row_2['EventId']; ?>'">
+                            <div style = "background: #9cbfe7; cursor: pointer; margin-left: 2%; margin-right: 2%; margin-bottom: 20px; padding: 2%;" onClick="window.location.href='User Event Details.php?event=<?php echo $row_2['EventId']; ?>'">
                                 
                                 <strong style ="font-size: 25px"><?php echo $row_2["Name"] ?></strong>
                                 <p><?php echo $row_2["Description"] ?></p>

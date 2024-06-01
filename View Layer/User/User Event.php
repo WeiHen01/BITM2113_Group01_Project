@@ -135,6 +135,7 @@
                         if ($result->num_rows > 0) {
                             // Output data of the upcoming event
                             while ($row = $result->fetch_assoc()) {
+                                $deadline = $row["DateTime"];
                     ?>
                     <div style = "display: flex; gap: 15%; align-items: center; ">
                         <i class="fa-solid fa-location-dot" style="font-size: 40px"></i>
@@ -273,22 +274,12 @@
             const timeinterval = setInterval(updateClock, 1000);
         }
 
-        <?php 
+        // Output JavaScript code with the calculated deadline
+        const deadline = new Date("<?php echo $deadline; ?>");
 
-           
-                    // Convert SQL datetime to JavaScript compatible format
-                    $deadline = date("Y-m-d\TH:i:s", strtotime($row["DateTime"]));
-
-                    // Output JavaScript code with the calculated deadline
-                    echo "const deadline = new Date('" . $deadline . "');";
-        ?>
-
-        const deadline = new Date(Date.parse(<?php echo $deadline ?>) + 15 * 24 * 60 * 60 * 1000);
-        
-        //const deadline = new Date(Date.parse(new Date()) + 15 * 24 * 60 * 60 * 1000);
         initializeClock('clockdiv', deadline);
-
-
     </script>
+    
     <script src="../General Components & Widget/User/User Component Script.js"></script>
 </html>
+<!-- //const deadline = new Date(Date.parse(new Date()) + 15 * 24 * 60 * 60 * 1000); -->

@@ -1,5 +1,10 @@
 <?php 
     session_start();
+
+    require("../../Database Layer/db_connection.php");
+
+    
+
 ?>
 
 <!DOCTYPE html>
@@ -22,21 +27,20 @@
         <script src="https://www.waze.com/widgets/map-embed/init.js"></script>
         <script src="https://www.waze.com/assets/presentations/presenter/jsapi/iframe.js"></script>
 
-        <!-- Chart -->
-        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        
 
         <!-- Date range -->
         <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
         <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
         <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
         <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
-
+        
 
 
         <style>
             /* Container 23 */
             .container {
-                width: 25%; 
+                width: 28%; 
                 height: 20vh; 
                 background: url("../../Assets/Image/User_dashboard_bg.png"); /* white */
                 background-size: cover;
@@ -205,7 +209,7 @@
         
                                 ?>
                             </div>
-                            <i class="fa-solid fa-map-location-dot" style = "font-size: 5vw"></i>  
+                            <i class="fa-solid fa-bullhorn" style = "font-size: 5vw"></i>  
                         </div>
 
                     </div>
@@ -213,7 +217,7 @@
                     
                 </div>
 
-                <div class = "container-2" style="margin-top: 2%; margin-bottom: 2%">
+                <div class = "container-2" style="margin-top: 2%; margin-bottom: 0.5%">
                     <iframe
                         id="wazeFrame"
                         allowfullscreen
@@ -222,19 +226,19 @@
                 </div>
 
 
-                <div style = "display: flex; gap: 1%">
+                <!-- <div style = "display: flex; gap: 1%">
                     <div class = "container-3">
                         <div class = "textbox" style = "align-items: center; display: flex; gap: 1%; padding: 2%">
                             Date: 
                             <input type="text" name="daterange" placeholder="Select date range">
                         </div>
-                        <canvas id="complaintsChart" width="90" height="40"></canvas>
+                        <canvas  id="chartjs_bar" width="90" height="40"></canvas> 
                     </div>
 
                     <div class = "container-3">
-                        <canvas id="complaintsChart" width="90" height="40"></canvas>
+                        
                     </div>
-                </div>
+                </div> -->
 
             </div>
 
@@ -244,134 +248,25 @@
 
     </body>
 
-    <script>
+    <!-- <script>
+        
         $(function() {
+            // Initialize date range picker
             $('input[name="daterange"]').daterangepicker({
                 opens: 'left'
             }, function(start, end, label) {
-                const filteredData = filterData(start.format('YYYY-MM-DD'), end.format('YYYY-MM-DD'));
+                // On date range selection, update the displayed date range
+                const selectedRange = start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD');
+                $('#selectedDateRange').text(selectedRange);
+
+                
             });
         });
 
-        // Function to filter data based on date range
-        function filterData(startDate, endDate) {
-            return allData.filter(item => {
-                const date = new Date(item.date);
-                return date >= new Date(startDate) && date <= new Date(endDate);
-            });
+    </script> -->
+    
 
-            updateChart(startDate, endDate);
-        }
-
-        // Code to fetch and update data on date range change
-        function updateChart(startDate, endDate) {
-            // Code to fetch data from server based on selected date range
-            // Replace this with your actual data fetching logic
-            const data = {
-                labels: ["Day 1", "Day 2", "Day 3", "Day 4", "Day 5"],
-                datasets: [{
-                    label: "Number of Complaints",
-                    data: [5, 7, 3, 9, 6], // Example data for recent 5 days
-                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                    borderColor: 'rgba(255, 99, 132, 1)',
-                    borderWidth: 1
-                }]
-            };
-
-            // Update chart with new data
-            const ctx = document.getElementById('complaintsChart').getContext('2d');
-            const complaintsChart = new Chart(ctx, {
-                type: 'bar',
-                data: data,
-                options: {
-                    scales: {
-                        y: {
-                            beginAtZero: true
-                        }
-                    }
-                }
-            });
-        }
-
-        // Initialize date range picker
-        $(function() {
-            $('#daterange').daterangepicker({
-                opens: 'left'
-            }, function(start, end, label) {
-                // Update chart when date range changes
-                updateChart(start, end);
-            });
-
-            // By default, show data for the recent 5 days
-            const endDate = moment(); // Current date
-            const startDate = moment().subtract(5, 'days'); // 5 days ago
-            updateChart(startDate, endDate);
-        });
-
-        
-    </script>
-
-    <!-- Chart data configuration-->
-    <script>
-
-        const barColors = ["red", "green", "blue", "orange", "brown"];
-
-        const myChart = new Chart("myChart", {
-            type: "bar",
-            data: {
-                labels: [],
-                datasets: [{
-                    backgroundColor: barColors,
-                    data: []
-                }]
-            },
-            options: {
-                plugins: {
-                    title: {
-                        display: true,
-                        text: "Complaints",
-                        font: {
-                            size: 25,
-                            family: 'Epilogue'
-                        }
-                    },
-                    legend: {
-                        display: false
-                    },
-                    tooltip: {
-                        titleFont: {
-                            size: 14,
-                            family: 'Epilogue'
-                        },
-                        bodyFont: {
-                            size: 12,
-                            family: 'Epilogue'
-                        }
-                    }
-                },
-                scales: {
-                    x: {
-                        ticks: {
-                            font: {
-                                size: 14,
-                                family: 'Epilogue'
-                            }
-                        }
-                    },
-                    y: {
-                        ticks: {
-                            font: {
-                                size: 14,
-                                family: 'Epilogue'
-                            }
-                        }
-                    }
-                }
-            }
-        });
-
-
-    </script>
+    
 
     <script>
         function getCurrentLocation() {
@@ -388,23 +283,8 @@
 
             // Update the src attribute of the iframe
             document.getElementById("wazeFrame").src = url;
-
-            // Show marker on the map
-            showMarker(latitude, longitude);
         }
 
-        function showMarker(latitude, longitude) {
-            // Get a reference to the iframe's content window
-            var wazeFrame = document.getElementById("wazeFrame");
-            var wazeMap = wazeFrame.contentWindow;
-
-            // Call the Waze map's addMarker method if it exists
-            if (wazeMap && typeof wazeMap.addMarker === 'function') {
-                wazeMap.addMarker(latitude, longitude);
-            } else {
-                console.error('Waze map addMarker method not available or not a function.');
-            }
-        }
     </script>
 
     

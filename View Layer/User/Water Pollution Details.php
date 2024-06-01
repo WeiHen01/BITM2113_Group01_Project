@@ -244,11 +244,12 @@
 
                                     
                                 ?>
-                                <div style = "background: #a899fb; cursor: pointer; margin-bottom: 20px; padding: 2%;" onClick="window.location.href='User Complaint Details.php?complaint=<?php echo $row['ComplainId']; ?>'">
+                                <div style = "margin-left: 2%; margin-right: 2%; background: #a899fb; cursor: pointer; margin-bottom: 20px; padding: 2%;" onClick="window.location.href='View Complaint Details.php?complaint=<?php echo $row['ComplainId']; ?>'">
                                     
                                     <strong style ="font-size: 25px"><?php echo $row['Title'] ?></strong>
                                     <p><?php echo $row['Description'] ?></p>
                                     <p>Submitted by: <?php echo $row['DateTime'] ?></p>
+                                    <p>Location: <?php echo $row['City'] .', '. $row['State'] .', '. $row['Country'] ?></p>
                                 
                                 </div>
                                 <?php 

@@ -223,13 +223,9 @@
 
                                 $orgId = $row["OrgId"];
 
-                                $sqlOrg = "SELECT * FROM organization WHERE OrgId = $orgId";
+                                $_SESSION["Organization"] = $orgId;
 
-                                $resultCheck02 = mysqli_query($con, $sqlOrg);
-
-                                if(mysqli_num_rows($resultCheck02) === 1){
-                                    $row02 = mysqli_fetch_assoc($resultCheck02);
-                                }
+                                
                             }
                         ?>
                         <h3 style=" font-family: 'Epilogue'; text-align: center; font-size: 14; line-height: 56px; font-weight: 500; color: #171A1FFF;"><?php echo $row["DateTime"] ?></h3>
@@ -287,7 +283,20 @@
                                 </div>
                                 <div>
                                     <p style = "padding-top: 1%; font-weight: bold">Organised By</p>
-                                    <p style = "padding-top: 1%;"><?php echo $row02["OrgName"] ?></p>
+                                    <?php 
+
+                                        require("../../Database Layer/db_connection.php");
+                                        $orgId = $_SESSION['Organization'];
+                                        $sqlOrg = "SELECT * FROM organization WHERE OrgId = $orgId";
+
+                                        $resultCheck02 = mysqli_query($con, $sqlOrg);
+        
+                                        if(mysqli_num_rows($resultCheck02) === 1){
+                                            $row03 = mysqli_fetch_assoc($resultCheck02);
+                                        
+                                    ?>
+                                    <p style = "padding-top: 1%;"><?php echo $row03["OrgName"]; }  ?></p>
+                                   
                                 </div>
                             </div>
                         </div>
