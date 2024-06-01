@@ -1,5 +1,7 @@
 <?php 
     session_start();
+
+    
 ?>
 
 <!DOCTYPE html>
@@ -116,27 +118,66 @@
                 </div>
 
                 <div style = "background: #F3F4F6FF; margin-top: 1%; margin-left: 20%; margin-right: 20%; height: 15vh; gap: 5%; display: flex; align-items: center; justify-content: space-evenly; padding-left: 1%">
+
+                    <?php 
+                        require("../../Database Layer/db_connection.php");
+
+                        $user_id = $_SESSION['user'];
+                    
+                        // SQL query to select upcoming event nearest from today
+                        
+                        $sql = "SELECT * FROM `event` WHERE EventId IN (
+                            SELECT EventId FROM participation WHERE UserId = '$user_id'
+                        ) AND DateTime >= CURDATE() ORDER BY DATEDIFF(`DateTime`, CURDATE()) LIMIT 1";
+                    
+                        $result = $con->query($sql);
+                    
+                        if ($result->num_rows > 0) {
+                            // Output data of the upcoming event
+                            while ($row = $result->fetch_assoc()) {
+                    ?>
                     <div style = "display: flex; gap: 15%; align-items: center; ">
                         <i class="fa-solid fa-location-dot" style="font-size: 40px"></i>
                         <div style = "align-items: start">
                             <p><strong>Location</strong></p>
-                            <p class ="venue">Venue</p>
+                            <p class ="venue"><?php echo $row["Location"]?></p>
                         </div>
                     </div>
                     <div style = "display: flex; gap: 15%; align-items: center;">
                         <i class="fa-regular fa-clock" style="font-size: 40px"></i>
                         <div style = "align-items: start">
                             <p><strong>Time</strong></p>
-                            <p class ="date">Time</p>
+                            <p class ="date"><?php echo $row["DateTime"]?></p>
                         </div>
                     </div>
                     <div style = "display: flex; gap: 10%; width: 30vw; align-items: center;">
                         <i class="fa-solid fa-users" style="font-size: 40px"></i>
                         <div style = "align-items: start">
+                            <!-- Display number of participants -->
+                            <?php 
+                                require("../../Database Layer/db_connection.php");
+                                
+                                $sql01 = "SELECT COUNT(EventId) AS participationCount FROM participation WHERE EventId = '" . $row['EventId'] . "' AND ParticipationStatus = 'Joined'";
+                                $result01 = mysqli_query($con, $sql01);
+
+                                if($result01){
+                                    $row01 = mysqli_fetch_assoc($result01);
+                                    $count01 = $row01["participationCount"];
+                            ?>
                             <p><strong>Number of participants</strong></p>
-                            <p class ="time">number</p>
+                            <p class ="time"><?php echo $count01 ?></p>
+                            <?php 
+                                } else {
+                                    echo "Error fetching participant count";
+                                }
+                            ?>
                         </div>
                     </div>
+                    <?php 
+                            }
+                        }
+                    
+                    ?>
 
                 </div>
             </div>
@@ -173,6 +214,7 @@
                         <b style="font-size: 20px"><?php echo $row["Name"] ?></b>
                         <p style="margin: 0; padding-top: 3%; font-size: 13px; text-overflow: ellipsis;overflow: hidden; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;"><?php echo $row["Description"] ?></p>
                     </div>
+                    
                     <?php
                             }
                         } else {
@@ -231,7 +273,19 @@
             const timeinterval = setInterval(updateClock, 1000);
         }
 
-        const deadline = new Date(Date.parse(new Date()) + 15 * 24 * 60 * 60 * 1000);
+        <?php 
+
+           
+                    // Convert SQL datetime to JavaScript compatible format
+                    $deadline = date("Y-m-d\TH:i:s", strtotime($row["DateTime"]));
+
+                    // Output JavaScript code with the calculated deadline
+                    echo "const deadline = new Date('" . $deadline . "');";
+        ?>
+
+        const deadline = new Date(Date.parse(<?php echo $deadline ?>) + 15 * 24 * 60 * 60 * 1000);
+        
+        //const deadline = new Date(Date.parse(new Date()) + 15 * 24 * 60 * 60 * 1000);
         initializeClock('clockdiv', deadline);
 
 
