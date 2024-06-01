@@ -559,9 +559,9 @@
                         <b>Update profile picture</b>
                     </div>
 
-                    <div style = "padding: 4%">
+                    <div style = "padding: 4%; ">
                         <!-- accept any image file to be selected -->
-                        <input type = "file" id="newProfileImage" name="newProfileImage" accept=".jpg, .jpeg, .png, .gif">
+                        <input type = "file" id="newProfileImage" name="newProfileImage" accept=".jpg, .jpeg, .png, .gif" style ="font-family: Epilogue">
                     </div>
 
                     <div style = "display: flex; justify-content: end; margin-top: 2%; margin-right: 5%; gap: 10px;">

@@ -66,6 +66,12 @@
                 box-shadow: 0px 0px 1px #171a1f, 0px 0px 2px #171a1f; /* shadow-xs */
             }
 
+            .container iframe {
+                width: 100%;
+                height: 65%;
+                border: none;
+            }
+
             .container-2 {
                 margin-left: 1%;
                 margin-right: 2%;
@@ -111,6 +117,11 @@
                     <div style="display: flex; flex-direction: column; width: 50%; gap: 10px">
                         <div class="container">
                             <p style="padding-left: 1.5%"><b>Location</b></p>
+                            <iframe
+                                src="https://embed.waze.com/iframe?zoom=14&lat=40.730610&lon=-73.935242"
+                                allowfullscreen
+                                style="border: none;">
+                            </iframe>
                         </div>
                         <div class="container" >
                             <p style="padding-left: 1.5%"><b>Latest Complaint submitted</b></p>
