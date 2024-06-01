@@ -379,7 +379,7 @@
                             $sqlView = "SELECT * FROM complain WHERE Status = 'Incomplete' 
                                         AND UserId IN (
                                             SELECT UserId FROM user where Email = '$email'
-                                        )";
+                                        ) ORDER BY DateTime DESC";
 
                             $result = mysqli_query($con, $sqlView);
 
@@ -424,7 +424,7 @@
                             $user = $_SESSION['user'];
 
                             $sqlView = "SELECT * FROM complain WHERE Status = 'Progressing' 
-                                        AND UserId = '$user'";
+                                        AND UserId = '$user' ORDER BY DateTime DESC";
 
                             $result = mysqli_query($con, $sqlView);
 
@@ -468,7 +468,7 @@
                             $user = $_SESSION['user'];
 
                             $sqlView = "SELECT * FROM complain WHERE Status = 'Done' 
-                                        AND UserId = '$user'";
+                                        AND UserId = '$user' ORDER BY DateTime DESC";
 
                             $result = mysqli_query($con, $sqlView);
 

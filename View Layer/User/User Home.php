@@ -84,6 +84,23 @@
                 border-style: solid; 
                 box-shadow: 0px 0px 1px #171a1f, 0px 0px 2px #171a1f; /* shadow-xs */
             }
+
+            .event-details{
+                background: #9cbfe7;
+                padding: 1%;
+                margin-bottom: 1%;
+                border-radius: 1%;
+            }
+
+            .event{
+                background: #9cbfe7;
+                padding: 1%;
+                margin-bottom: 1%;
+                border-radius: 1%;
+            }
+
+
+            
         </style>
     </head>
 
@@ -125,11 +142,86 @@
                         </div>
                         <div class="container" >
                             <p style="padding-left: 1.5%"><b>Latest Complaint submitted</b></p>
+                            <?php 
+                                require("../../Database Layer/db_connection.php");
+
+                                $sql = "SELECT * FROM complain WHERE UserId IN(
+                                    SELECT UserId FROM user WHERE Email = '$loggedUserEmail'
+                                ) ORDER BY DateTime DESC LIMIT 1";
+        
+                                $result = mysqli_query($con, $sql);
+
+                                // Check if the query returned any results
+                                if ($result && mysqli_num_rows($result) > 0) {
+                                
+                                    $row = mysqli_fetch_assoc($result);
+
+                                    
+                            
+                            ?>
+
+                            <div class ="event" style = "cursor: pointer" onClick="window.location.href='User Complaint Details.php?complaint=<?php echo $row['ComplainId']; ?>'">
+                                
+                                <strong style ="font-size: 25px"><?php echo $row["Title"] ?></strong>
+                                <p><?php echo $row["Description"] ?></p>
+                                <p><b>Submitted By:</b> <?php echo $row['DateTime']?></p>
+                                
+                                <?php 
+                                    }  
+                                ?>
+                            </div>
                         </div>
                     </div>
                     <!-- Third container -->
-                    <div class="container-2" style="width: 50%;">
-                        <p style="padding-left: 1.5%"><b>Upcoming Events</b></p>
+                    <div class="container-2" style="width: 50%; overflow-y: auto">
+                        <p style="padding-left: 1%"><b>Upcoming Events</b></p>
+                        <?php 
+                            require("../../Database Layer/db_connection.php");
+
+                            $sql = "SELECT * FROM participation WHERE UserId IN(
+                                SELECT UserId FROM user WHERE Email = '$loggedUserEmail'
+                            ) AND ParticipationStatus = 'Joined'";
+    
+                            $result = mysqli_query($con, $sql);
+
+                            // Check if the query returned any results
+                            if ($result && mysqli_num_rows($result) > 0) {
+
+                                while($row = mysqli_fetch_assoc($result)){
+
+                                    $event = $row['EventId'];
+
+                                    $sql_2 = "SELECT * FROM event WHERE EventId = $event ";
+
+                                    $result_2 = mysqli_query($con, $sql_2);
+
+                                    if ($result_2 && mysqli_num_rows($result_2) > 0) {
+                                        while ($row_2 = mysqli_fetch_assoc($result_2)) {
+                            
+
+                        ?>
+
+                        <div>
+
+                            <div style = "background: #a899fb; cursor: pointer; margin-bottom: 20px; padding: 2%;" onClick="window.location.href='User Event Details.php?event=<?php echo $row_2['EventId']; ?>'">
+                                
+                                <strong style ="font-size: 25px"><?php echo $row_2["Name"] ?></strong>
+                                <p><?php echo $row_2["Description"] ?></p>
+                                <p><b>Participated By:</b> <?php echo $row_2['DateTime']?>
+                               
+                            </div>
+
+
+                        </div>
+                        <?php 
+                                            }
+                                        }
+                                    }
+                                }
+                        ?>
+                        
+
+
                     </div>
                 </div>
             </div>
@@ -153,6 +245,6 @@
 
 
     <script src="../General Components & Widget/User/User Component Script.js"></script>
-
+    
 
 </html>
