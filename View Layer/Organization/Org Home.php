@@ -230,6 +230,39 @@
             z-index: 1000; /* Ensure it's above other elements */
             display: none; /* Hidden by default */
         }
+        .popup-container-2 {
+            position: fixed; 
+            display: none; /* Hidden by default */
+            position: absolute; 
+            top: 15%; 
+            left: 214px; 
+            width: 70%; 
+            height: 85vh; 
+            background: #DEE1E6FF; /* neutral-300 */
+            border-radius: 15px; /* border-xl */
+            box-shadow: 0px 17px 35px #171a1f, 0px 0px 2px #171a1f; /* shadow-xl */
+            z-index: 1002;
+        }
+
+        .popup-content {
+            padding-left: 2%;
+            padding-top: 1%;
+            width: 92%; 
+        }
+
+        .close-btn {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close-btn:hover,
+        .close-btn:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
         
     </style>
 
@@ -299,7 +332,7 @@
                         </div>
                     <div class="popup-group" style="top: 65%; left: 35%">
                         <div class="sub-text" style="padding-top: 10px;">Update and edit your event here!</div>
-                        <button class="popup-button">Edit Event</button>
+                        <button class="popup-button" id="editEventBtn">Edit Event</button>
                     </div>
                 </div>
                 <!-- Row 3 -->
@@ -362,6 +395,7 @@
                     <button class="popup-button" onclick="submitNewEvent()" style="width: 100%; padding: 10px; background-color: #2979FF; color: white; font-family: 'Epilogue'; font-size: 16px; line-height: 24px; border: none; border-radius: 4px;">Add New Event</button>
                         </div>
                         <div style="padding: 20px; border-radius: 8px; width: 40%;">
+                        <i class="fa-regular fa-circle-xmark" onclick="hidePopup()" style="font-size: xx-large;"  ></i>
                             <div style="background-image: url('../../Assets/Image/Org2.png'); padding: 80px; border-radius: 8px; position: relative;">
                                 <div style="position: absolute; top: 7%; right: 40%; background: #987070 ;color: white; border-radius: 50%; padding: 5px 10px;">?</div>
                                 <p style="font-family: Inter; font-size: 16px; line-height: 24px; text-align: center; color: #F1EEDC;">"The environment is where we all meet; where we all have a mutual interest; it is the one thing all of us share."</p>
@@ -369,28 +403,60 @@
                         </div>
                     </div>
 
-            <!-- Overlay for new event popup container -->
-            <div class="overlay" id="overlayNewEventPopup" style="display: none;" onclick="hidePopup()"></div>
+                <!-- Overlay for new event popup container -->
+                <div class="overlay" id="overlayNewEventPopup" style="display: none;" onclick="hidePopup()"></div>
 
             </div>
-            
+           <!-- Edit Event Popup Container -->
+            <div id="editEventPopup" class="popup-container-2">
+                <div class="popup-content">
+                    <span class="close-btn" id="closePopup">&times;</span>
+                    <h2>Edit Event</h2>
+                    <!-- Event Title -->
+                    <h3 style="font-weight:300">To update or delete your event organization, please fill out the forms below. We appreciate your cooperation!</h3>
+                    <!-- Event Name -->
+                    <input type="text" id="newEventName" name="newEventName" placeholder="Event Name" style="width: 100%; margin-bottom: 10px; padding: 10px; font-family: 'Epilogue'; font-size: 16px; line-height: 24px; border: 1px solid #9095A0; border-radius: 4px;">
 
-            
-            
+                    <!-- Event Description -->
+                    <textarea id="newEventDescription" name="newEventDescription" placeholder="Description" rows="4" style="width: 100%; margin-bottom: 10px; padding: 10px; font-family: 'Epilogue'; font-size: 16px; line-height: 24px; border: 1px solid #9095A0; border-radius: 4px;"></textarea>
 
+                    <!-- Event Location -->
+                    <select id="newEventLocation" name="newEventLocation" style="width: 100%; margin-bottom: 10px; padding: 10px; font-family: 'Epilogue'; font-size: 16px; line-height: 24px; border: 1px solid #9095A0; border-radius: 4px;">
+                        <option value="" disabled selected>Location</option>
+                        <!-- Add your locations here -->
+                    </select>
 
+                    <!-- Event Category -->
+                    <input type="text" id="newEventCategory" name="newEventCategory" placeholder="Category" style="width: 100%; margin-bottom: 10px; padding: 10px; font-family: Inter; font-size: 16px; line-height: 24px; border: 1px solid #9095A0; border-radius: 4px;">
 
+                    <!-- Participation Quota -->
+                    <div style="margin-bottom: 1%;">
+                        <label style="display: block; font-family: Inter; font-size: 16px; margin-bottom: 5px;">Participation Quota</label>
+                        <div>
+                            <input type="radio" id="quota1" name="participationQuota" value="<50">
+                            <label for="quota1" style="margin-right: 10px;">Participants < 50</label>
+                            <input type="radio" id="quota2" name="participationQuota" value="50-100">
+                            <label for="quota2" style="margin-right: 10px;">50 < Participants < 100</label>
+                            <input type="radio" id="quota3" name="participationQuota" value="100-250">
+                            <label for="quota3" style="margin-right: 10px;">100 < Participants < 250</label>
+                            <input type="radio" id="quota4" name="participationQuota" value="others">
+                            <label for="quota4">Others</label>
+                        </div>
+                        <textarea id="otherQuota" name="otherQuota" placeholder="Others" rows="1" style="width: 100%; margin-top: 10px; padding: 10px; font-family: 'Epilogue'; font-size: 16px; line-height: 24px; border: 1px solid #9095A0; border-radius: 4px;"></textarea>
+                    </div>
 
-
-
+                    <div style="display: flex;">
+                        <button class="popup-button" onclick="submitNewEvent()" style="width: 30%; background-color: #2979FF; color: white; font-family: 'Epilogue'; font-size: 16px; border-radius: 4px;">Update Event</button>
+                        <div style="padding: 30%;"></div>
+                        <button class="popup-button" onclick="submitNewEvent()" style="width: 30%; background-color: #2979FF; color: white; font-family: 'Epilogue'; font-size: 16px; border-radius: 4px;">Delete Event</button>   
+                    </div>
+                    <div style="padding: 20px; border-radius: 8px; width: 40%;">
+                        <i class="fa-regular fa-circle-xmark" onclick="hidePopup()" style="font-size: xx-large;" ></i>
+                    </div>
+                    
+                </div>
+            </div>
         </div>
-        
-
-        
-
-        
-        
-
     </body>
 
     <script>
@@ -400,7 +466,9 @@
         }
         function hidePopup() {
             document.getElementById("popupContainer").style.display = "none";
-            document.getElementById("overlay").style.display = "block";
+            document.getElementById("overlay").style.display = "none";
+            document.getElementById("newEventPopupContainer").style.display = "none";
+            document.getElementById("overlayNewEventPopup").style.display = "none";
         }
         function showAddNewEvent() {
             document.getElementById("newEventPopupContainer").style.display = "flex";
@@ -412,6 +480,20 @@
                 document.getElementById("overlay").style.display = "none";
             }
         }
+        document.getElementById('editEventBtn').onclick = function() {
+        document.getElementById('editEventPopup').style.display = "block";
+    }
+
+    document.getElementById('closePopup').onclick = function() {
+        document.getElementById('editEventPopup').style.display = "none";
+    }
+
+    window.onclick = function(event) {
+        if (event.target == document.getElementById('editEventPopup')) {
+            document.getElementById('editEventPopup').style.display = "none";
+        }
+    }
+
     </script>
 
 
