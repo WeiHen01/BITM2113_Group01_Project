@@ -504,7 +504,7 @@
 
                     <label style = "margin-left: 3%">Username</label>
                     <div class="textbox">
-                        <input type="text" name="Username" id="usernameInput" placeholder="Enter Your Username" value = <?php echo htmlspecialchars(isset($row["Username"]) && $row["Username"] !== null ? $row["Username"] : "New User"); ?> >
+                        <input type="text" name="Username" id="usernameInput" placeholder="Enter Your Username" value="<?php echo htmlspecialchars(isset($row['Username']) && $row['Username'] !== null ? $row['Username'] : 'New User', ENT_QUOTES, 'UTF-8'); ?>" />
                     </div>
 
                     <label style = "margin-left: 3%">Email</label>
