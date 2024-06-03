@@ -9,9 +9,9 @@
             <i class="fa-brands fa-flipboard" style="padding-right: 5%"></i>
             Dashboard
         </a>
-        <a href="UserOrganizationLog.php" <?php if(basename($_SERVER['PHP_SELF']) == 'UserOrganizationLog.php') echo 'class="active"'?>>
+        <a href="User Organization Log.php" <?php if(basename($_SERVER['PHP_SELF']) == 'User Organization Log.php') echo 'class="active"'?>>
             <i class="fa-regular fa-user" style="padding-right: 5%"></i>
-            User/Organization Log
+            User Organization Log
         </a>
         <a href="Complain Log.php" <?php if(basename($_SERVER['PHP_SELF']) == 'Complain Log.php') echo 'class="active"'?>>
         <i class="fa-regular fa-calendar-check" style="padding-right: 5%"></i>

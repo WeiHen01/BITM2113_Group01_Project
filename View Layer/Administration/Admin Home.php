@@ -1,10 +1,12 @@
+<!--=====================================================
+    Check the session and get variables from other page
+=======================================================-->
 <?php 
     if(session_status() == PHP_SESSION_NONE){
         session_start();
     }
 
     $loggedUserEmail = $_SESSION["LoggedUserEmail"];
-
 ?>
 
 <!DOCTYPE html>
@@ -12,7 +14,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin | Home</title>
+    <!-- Title of the tab -->
+    <title>Admin |Dashboard</title>
     <link rel="icon" type="image/x-icon" href="../../Assets/Image/H20 Harmony Logo.png">
     <link href='https://fonts.googleapis.com/css?family=Epilogue:ExtraBold' rel='stylesheet'>
     <link href='https://fonts.googleapis.com/css?family=Epilogue' rel='stylesheet'>
@@ -171,24 +174,6 @@
 
     <!-- Main content area -->
     <div id="contentArea">
-
-
-    <!-- Head of the webpage -->
-    <head>
-
-        <!-- Title of the tab -->
-        <title>Admin | Dashboard</title>
-        <!-- FavIcon on the browser tab-->
-        <link rel="icon" type="image/x-icon" href="../../Assets/Image/H20 Harmony Logo.png">
-
-        <link href='https://fonts.googleapis.com/css?family=Epilogue:ExtraBold' rel='stylesheet'>
-        <link href='https://fonts.googleapis.com/css?family=Epilogue' rel='stylesheet'>
-
-        <!-- Template Stylesheet -->
-        <link rel="stylesheet" href="../General Components & Widget/Administration/Admin_Component Style.css">
-    </head>
-
-
     <!-- Body of the webpage -->
     <body>
         
@@ -204,9 +189,7 @@
                 include("../General Components & Widget/Administration/Admin_Header.php");
             ?>
 
-            
-
-            <!-- Overview Section -->
+            <!-- Content Here -->
             <p style="padding-left: 2%"><b>Dashboard</b></p>
             <div style="padding-left: 2%">
         
