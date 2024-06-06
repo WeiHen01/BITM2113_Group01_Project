@@ -59,7 +59,57 @@
         .text {
             font-family: Epilogue; /* Heading */
             font-size: 20px; 
-            line-height: 48px; /* neutral-900 */
+            line-height: 35px; /* neutral-900 */
+        }
+        /* Container 293 */
+        .container-3 {
+            position: absolute; 
+            top: 89px; 
+            left: 20px; 
+            width: 350px; 
+            height: 230%; 
+            background: #F8F9FAFF; /* neutral-150 */
+            border-radius: 4px; /* border-m */
+            border-width: 1px; 
+            border-color: #1D2128FF; /* neutral-800 */
+            border-style: solid; 
+            cursor: pointer;
+        }
+        /* Button 46 */
+        .button {
+            position: absolute; 
+            top: 743px; 
+            left: 403px; 
+            width: 150px; 
+            height: 41px; 
+            padding: 0 12px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            font-family: Inter; 
+            font-size: 18px; 
+            line-height: 28px; 
+            font-weight: 400; 
+            color: #FFFFFFFF; /* white */
+            background: #4069E5FF; /* tertiary1-500 */
+            opacity: 1; 
+            border: none; 
+            border-radius: 4px; /* border-m */
+            box-shadow: 0px 4px 9px #171a1f, 0px 0px 2px #171a1f; /* shadow-m */
+        }
+        /* Hover */
+        .button:hover {
+            color: #FFFFFFFF; /* white */
+            background: #2655E1FF; /* tertiary1-550 */
+        }
+        /* Pressed */
+        .button:hover:active {
+            color: #FFFFFFFF; /* white */
+            background: #1941B8FF; /* tertiary1-650 */
+        }
+        /* Disabled */
+        .button:disabled {
+            opacity: 0.4; 
         }
 </style>
 
@@ -167,8 +217,34 @@
                     <img src="../../Assets/Image/Org123.png" style = "width:25vw; border-radius:5%"><div style="width:2%"></div>
                 </div>
             </div>
-            <div class="container-2" style="top: 160%; left: 5%; width: 85%; height: 290px; ">
+            <div class="container-2" style="top: 160%; left: 5%; width: 85%; height: 290px; padding-bottom: 20;">
                 <div class="text" style="font-weight: 600;">Recent event openings</div>
+                <div style="display: flex;">
+                    <div class="container-3" style="left: 5%; width: 40%; padding: 3% ">
+                        <div class="text" style="font-weight: 700;">Ripple Effect: Unveiling Water Pollution</div>
+                        <img src="../../Assets/Image/Org Riple.jpg" style = "width: 100%; height:60%; border-radius:5%; " alt="Event Image">
+                        <div style="height: 1%;"></div>
+                        <div class="text" style="font-weight: 500; color: #171A1FFF; text-align: justify">Join us as we shed light on the pressing issue of 
+                            water pollution and its far-reaching impacts. Together, 
+                            we'll explore solutions and take action to preserve our 
+                            planet's most precious resource.
+                        </div>
+                        <div class="button" style="top: 93%; left:5%">more</div>
+                    </div>
+                    <div class="container-3" style="left: 55%; width: 40%; padding: 3%">
+                        <div class="text" style="font-weight: 700;">Clear Waters, Bright Futures: A Call to Action</div>
+                        <img src="../../Assets/Image/Org Bright.jpg" style = "width: 100%; height:60%; border-radius:5%;" alt="Event Image">
+                        <div style="height: 1%;"></div>
+                        <div class="text" style="font-weight: 500; color: #171A1FFF; text-align: justify">Our event aims to ignite a movement towards
+                             cleaner, healthier waterways. Through engaging discussions 
+                             and hands-on activities, we'll raise awareness about water
+                              pollution and empower individuals to make a positive
+                               difference in their communities</div>
+                        </div>
+                        <div class="button" style="top: 270%; left:58%">more</div>
+                    </div>
+                </div>
+                
             </div>
 
             
