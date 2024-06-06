@@ -37,7 +37,7 @@
         <link href='https://fonts.googleapis.com/css?family=Epilogue' rel='stylesheet'>
 
         <!-- Template Stylesheet -->
-        <link rel="stylesheet" href="../General Components & Widget/Administration/Admin_Component Style.css">
+        <link rel="stylesheet" href="../General Components & Widget/Organization/Org Component Style.css">
     </head>
 
 

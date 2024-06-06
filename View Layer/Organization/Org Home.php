@@ -44,8 +44,6 @@
         /* Big Container */
         .container {
             position: absolute; 
-            width: 50%; 
-            height: 80%; 
             background: #FFFFFFFF; /* white */
             border-radius: 4px; /* border-m */
             border-width: 1px; 
@@ -58,6 +56,7 @@
             justify-content: space-around;
             padding: 2%;
             cursor: pointer;
+            margin: 1%;
         }
 
         .group {
@@ -287,27 +286,26 @@
             <!-- Content here -->
 
             <!-- Group 2 -->
-            <div class = "container">
-                <div class="group"  onclick="showPopup()">
-                    <div class="image">
-                        <!-- Image content -->
-                        <img src="../../Assets/Image/org event.png" style = "width: 100%" alt="Event Image">
-                    </div>
-                    <div class="text">
-                        Upcoming Events
-                    </div>
-                    <div class="sub-container">
-                        <div class="sub-container-text">
-                            Additional Information
+            <div style="display: flex;">
+                <div class = "container" style="width: 43%; height: 70%; ">
+                    <div class="group"  onclick="showPopup()"> 
+                        <div class="text">Upcoming Events</div>
+                        <img src="../../Assets/Image/event_details.jpg" style = "width: 100%; height:60%; border-radius:5%" alt="Event Image">
+                        <div class="sub-container">
+                            <div class="sub-container-text">
+                                Additional Information
+                            </div>
                         </div>
-                    </div>
-                    <div class="sub-container">
-                        <div class="sub-container-text">
-                            Additional Information
+                        <div class="sub-container">
+                            <div class="sub-container-text">
+                                Additional Information
+                            </div>
                         </div>
                     </div>
                 </div>
+            
             </div>
+            
 
             <div class="overlay" id="overlay" style="display:none;" onclick="hidePopup()"></div>
 
@@ -336,14 +334,14 @@
                     </div>
                 </div>
                 <!-- Row 3 -->
-                <div class="rectangle"  style="left: 65%">
+                <div class="rectangle" style="left: 65%">
                     <div class="sub-image">
-                            <!-- Image content -->
-                            <img src="../../Assets/Image/Org View.png" alt="Image">
-                        </div>
+                        <!-- Image content -->
+                        <img src="../../Assets/Image/Org View.png" alt="Image">
+                    </div>
                     <div class="popup-group" style="top: 65%; left: 35%">
                         <div class="sub-text" style="padding-top: 10px;">View all your event here!</div>
-                        <button class="popup-button">Event Calender</button>
+                        <button class="popup-button" id="eventCalendarBtn">Event Calendar</button>
                     </div>
                 </div>
             </div>
@@ -493,6 +491,11 @@
             document.getElementById('editEventPopup').style.display = "none";
         }
     }
+
+    // Navigate to Org Event Calendar.php when event calendar button is clicked
+    document.getElementById('eventCalendarBtn').onclick = function() {
+            window.location.href = 'Org Event Calendar.php';
+        }
 
     </script>
 

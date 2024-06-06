@@ -42,7 +42,8 @@
         <style>
             
             #header{
-                background: url("../../Assets/Image/event_details_bg.jpg");
+                background: url("../../Assets/Image/event_details.jpg");
+                background-size: cover; 
                 width: 100%;
             }
             .container {
@@ -276,17 +277,6 @@
                         Rock Revolt: A Fusion of Power and Passion" is an electrifying rock music
                         event that brings together a diverse lineup of talented rock bands and
                         artists</h3>
-                        <div style = "display: flex; justify-content: center">
-                            <button class="button-red" onclick="" >
-                                <i class="fa-regular fa-heart"></i>
-                                345
-                            </button>
-                            <div style = "width: 2%"></div>
-                            <button class="button-blue" onclick="">
-                                <i class="fa-solid fa-share-nodes"></i>
-                                124
-                            </button>
-                        </div>
                     </div>
                 </div>
 
