@@ -190,7 +190,7 @@
             ?>
 
             <!-- Content Here -->
-            <p style="padding-left: 2%"><b>Dashboard</b></p>
+            <p style="padding-left: 2%; font-size: 24px;"><b>Dashboard</b></p>
             <div style="padding-left: 2%">
         
                 <div class="overview-container">

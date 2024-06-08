@@ -43,7 +43,7 @@
             ?>
 
             <!-- Content Here -->
-            <p style="padding-left: 2%"><b>Complain Tracking</b></p>
+            <p style="padding-left: 2%; font-size: 24px;"><b>Complain Tracking</b></p>
                     
                         
                         

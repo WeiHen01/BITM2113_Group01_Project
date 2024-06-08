@@ -43,7 +43,7 @@
             ?>
 
             <!-- Content Here -->
-            <p style="padding-left: 2%"><b>Event Tracking</b></p>
+            <p style="padding-left: 2%; font-size: 24px;"><b>Event Tracking</b></p>
                     
                         
                         

@@ -43,7 +43,7 @@
 
         <style>
             body {
-                font-family: Arial, sans-serif;
+                font-family: 'Epilogue', sans-serif;
                 margin: 0;
                 padding: 0;
                 background-color: white;
@@ -154,7 +154,7 @@
             ?>
 
             <!-- Content here -->
-            <p style="padding-left: 2%;"><b>Tracking Dashboard</b></p>
+            <p style="padding-left: 2%; font-size: 24px;"><b>Tracking Dashboard</b></p>
 
             <!-- User Table -->
             <div class="container">
@@ -256,7 +256,7 @@
                                         while($row = mysqli_fetch_assoc($result)){
                                             echo "<tr>";
                                             echo "<td><input type='checkbox'></td>";
-                                            echo "<td>" . $row["OrgName"] . "</td>";
+                                            echo "<td><a href='Organization Analysis.php?org_id=" . $row["OrgId"] . "'>" . $row["OrgName"] . "</a></td>";
                                             //check status
                                             if ($row["OrgStatus"] == "Available") {
                                                 echo "<td><span class='status-available'>● Available</span></td>";
