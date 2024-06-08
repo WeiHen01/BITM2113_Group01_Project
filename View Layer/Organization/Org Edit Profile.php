@@ -319,7 +319,7 @@
                         </div>
                         <div class="buttons">
                                     <button type="submit" class="save-button">Save profile</button>
-                                    <button type="button" class="cancel-button" onclick="window.location.href='dashboard.php'">Cancel</button>
+                                    <button type="button" class="cancel-button" onclick="window.location.href='./Org Company Profile.php'">Cancel</button>
                                 </div>
                     </form>
                    

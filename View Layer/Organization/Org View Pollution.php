@@ -14,7 +14,7 @@
 
     <!-- Import CSS References Stylesheets using URL Link-->
 
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
 
     <!-- Embedded CSS style -->
     <style>
@@ -31,8 +31,8 @@
         .container-2 {
             top: 332px; 
             left: 50px; 
-            width: 1330px; 
-            height: 462px; 
+            width: 800px; 
+            height: 350px; 
             background: #FFFFFFFF; /* white */
             border-radius: 6px; /* border-l */
             border-width: 1px; 
@@ -43,8 +43,8 @@
         .container-3 {
             top: 877px; 
             left: 50px; 
-            width: 800px; 
-            height: 575px; 
+            width: 400px; 
+            height: 300px; 
             background: #FFFFFFFF; /* white */
             border-radius: 4px; /* border-m */
             border-width: 7px; 
@@ -54,8 +54,8 @@
         .container-4 {
             top: 895px; 
             left: 940px; 
-            width: 440px; 
-            height: 279px; 
+            width: 170%; 
+            height: 575px; 
             background: #FFFFFFFF; /* white */
             border-radius: 6px; /* border-l */
             box-shadow: 0px 0px 1px #171a1f, 0px 0px 2px #171a1f; /* shadow-xs */
@@ -108,6 +108,37 @@
         }
         .dropdown :disabled + .icon, .dropdown :disabled + .icon + .icon {
             fill: #171A1FFF; /* neutral-900 */
+        }
+        /* Container 146 */
+        .container-5 {
+            margin: 2%;
+            left: 19px; 
+            width: 96%; 
+            height: 100px; 
+            background: #F3F4F6FF; /* neutral-200 */
+            border-radius: 4px; /* border-m */
+            box-shadow: 0px 0px 1px #171a1f, 0px 0px 2px #171a1f; /* shadow-xs */
+        }
+        .text-1 {
+            top: 16px; 
+            left: 18px; 
+            width: 299px; 
+            font-family: Epilogue; /* Heading */
+            font-size: 20px; 
+            line-height: 30px; 
+            font-weight: 700; 
+            color: #171A1FFF; /* neutral-900 */
+        }
+        .text-2 {
+            top: 64px; 
+            left: 20px; 
+            width: 552px; 
+            height: 88px; 
+            font-family: Inter; /* Body */
+            font-size: 14px; 
+            line-height: 22px; 
+            font-weight: 400; 
+            color: #171A1FFF; /* neutral-900 */
         }
     </style>
 
@@ -167,27 +198,45 @@
                 </div>
 
             </div>
-            <div class="container-2" style="margin: 3%;">
-                <div class="text" style="padding-left: 3%; top: 63px; left: 16px; font-size: 25px; font-weight:600; top: 63px;  ">Location</div>
-                <img src="../../Assets/Image/Org location.png" alt="Background Image">
+            <div style="display: flex;">
+                <div class="container-2" style="margin: 3%;">
+                    <div class="text" style="padding-left: 3%; top: 63px; left: 16px; font-size: 25px; font-weight:600; top: 63px;  ">Location</div>
+                    <img src="../../Assets/Image/Org location.png" style="width: 800px" alt="Background Image">
+                </div>
+                <canvas id="multipleChart" style="width:100%;max-width:600px; padding-top: 7%"></canvas>
             </div>
-
-
-
-
+            
             <div style="display: flex;">
                 <div class="container-3" style="margin: 3%;">
-                    <div class="text" style="padding-left: 3%; top: 63px; left: 16px; font-size: 25px; font-weight:600; top: 63px;  ">Sales</div>
-                        <img src="../../Assets/Image/Org Line Chart.png" alt="Background Image">
+                    <div class="text" style="padding-left: 3%; top: 63px; left: 16px; font-size: 25px; font-weight:600; top: 63px;  ">Details</div>
+                       <div style="display: flex; padding-left: 5%">
+                            <i class="fa-solid fa-location-dot" style="font-size:large;"></i>
+                            <div class="text-2" style="padding-left: 3%;">Ayer Keroh, Melaka</div>
+                       </div>
+                        <div style="display: flex; padding-left: 5%">
+                            <i class="fa-solid fa-comment-dots" style="font-size:large;"></i>
+                            <div class="text-2" style="padding-left: 3%;">12 complaints have been made about here.</div>
+                       </div>
                     </div>
                     <div style="display: block; ">
                         <div class="container-4" style="margin: 10%;">
-                            <div class="text" style="padding-left: 3%; top: 63px; left: 16px; font-size: 25px; font-weight:600; ">Statistic</div>
-                            <img src="../../Assets/Image/Org Bar Chart.png" alt="Background Image">
-                        </div>
-                        <div class="container-4" style="margin: 10%;">
-                            <div class="text" style="padding-left: 3%; top: 63px; left: 16px; font-size: 25px; font-weight:600; top: 63px; ">Statistic</div>
-                            <img src="../../Assets/Image/Org Pie Chart.png" alt="Background Image">
+                            <div class="text" style="padding-left: 3%; top: 63px; left: 16px; font-size: 25px; font-weight:600; ">Complaints related to this area</div>
+                            <div class="container-5">
+                                <div class="text-1" style="padding-left: 3%;">Complaint 1</div>
+                                <div class="text-2" style="padding-left: 3%;">Description</div>
+                            </div>
+                            <div class="container-5">
+                                <div class="text-1" style="padding-left: 3%;">Complaint 2</div>
+                                <div class="text-2" style="padding-left: 3%;">Description</div>
+                            </div>
+                            <div class="container-5">
+                                <div class="text-1" style="padding-left: 3%;">Complaint 3</div>
+                                <div class="text-2" style="padding-left: 3%;">Description</div>
+                            </div>
+                             <div class="container-5">
+                                <div class="text-1" style="padding-left: 3%;">Complaint 3</div>
+                                <div class="text-2" style="padding-left: 3%;">Description</div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -209,12 +258,42 @@
 
 
 
+
             
         </div>
     </body>
 
 
     <script src="../General Components & Widget/Organization/Org Component Script.js"></script>
+    <script>
+        const xValues = [100,200,300,400,500,600,700,800,900,1000];
 
+        new Chart("multipleChart", {
+        type: "line",
+        data: {
+            labels: xValues,
+            datasets: [{ 
+            data: [860,1140,1060,1060,1070,1110,1330,2210,7830,2478],
+            borderColor: "red",
+            fill: false
+            }, { 
+            data: [1600,1700,1700,1900,2000,2700,4000,5000,6000,7000],
+            borderColor: "green",
+            fill: false
+            }, { 
+            data: [300,700,2000,5000,6000,4000,2000,1000,200,100],
+            borderColor: "blue",
+            fill: false
+            }]
+        },
+        options: {
+            legend: {display: false},
+             title: {
+                display: true,
+                text: "June 2024"
+            }
+        }
+        });
+    </script>
 
 </html>

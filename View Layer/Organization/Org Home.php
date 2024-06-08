@@ -43,7 +43,6 @@
     <style>
         /* Big Container */
         .container {
-            position: absolute; 
             background: #FFFFFFFF; /* white */
             border-radius: 4px; /* border-m */
             border-width: 1px; 
@@ -60,9 +59,6 @@
         }
 
         .group {
-            width: 94%; 
-            height: 90%; 
-            display: flex;
             flex-direction: column;
             align-items: center;
         }
@@ -70,7 +66,7 @@
         /* Image 36 */
         .image {
             width: 100%; 
-            height: 70%; 
+            height: 10%; 
             top: 60%;
             border-radius: 8px; /* border-xl */
             box-shadow: 0px 8px 17px #171a1f, 0px 0px 2px #171a1f; /* shadow-l */
@@ -112,14 +108,13 @@
         /* Container 47 */
         .sub-container {
             width: 100%; 
-            height: 15%; 
+            height: 8%; 
             background: #DEE1E6FF; /* neutral-300 */
             border-radius: 4px; /* border-m */
             box-shadow: 0px 0px 1px #171a1f, 0px 0px 2px #171a1f; /* shadow-xs */
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-top: 2%;
             font-family: 'Epilogue'; 
         }
 
@@ -262,6 +257,56 @@
             text-decoration: none;
             cursor: pointer;
         }
+        .button-1 {
+            width: 35%; 
+            height: 52px; 
+            padding: 0 20px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            font-family: Inter; 
+            font-size: 18px; 
+            line-height: 28px; 
+            font-weight: 400; 
+            color: #00BDD6FF; /* primary-500 */
+            background: #00000000; /* transparent */
+            opacity: 1; 
+            border-radius: 8px; /* border-xl */
+            border-width: 1px; 
+            border-color: #00BDD6FF; /* primary-500 */
+            border-style: solid; 
+        }
+        /* Hover */
+        .button-1:hover {
+            color: #00A9C0FF; /* primary-550 */
+            background: #00000000; /* transparent */
+        }
+        /* Pressed */
+        .button-1:hover:active {
+            color: #0095A9FF; /* primary-600 */
+            background: #00000000; /* transparent */
+        }
+        /* Disabled */
+        .button-1:disabled {
+            opacity: 0.4; 
+        }
+        /* Button 139 */
+        .button-add { 
+        width: 203px; 
+        height: 36px; 
+        padding: 0 12px; 
+        align-items: center; 
+        justify-content: center; 
+        font-family: Inter; 
+        font-size: 14px; 
+        line-height: 22px; 
+        font-weight: 400; 
+        color: #171A1FFF; /* neutral-900 */
+        background: #E0585873; /* tertiary3-500 */
+        opacity: 1; 
+        border: none; 
+        border-radius: 4px; /* border-m */
+        }
         
     </style>
 
@@ -287,21 +332,100 @@
 
             <!-- Group 2 -->
             <div style="display: flex;">
-                <div class = "container" style="width: 43%; height: 70%; ">
-                    <div class="group"  onclick="showPopup()"> 
-                        <div class="text">Upcoming Events</div>
-                        <img src="../../Assets/Image/event_details.jpg" style = "width: 100%; height:60%; border-radius:5%" alt="Event Image">
-                        <div class="sub-container">
-                            <div class="sub-container-text">
-                                Additional Information
-                            </div>
-                        </div>
-                        <div class="sub-container">
-                            <div class="sub-container-text">
-                                Additional Information
-                            </div>
+                <div class="text" style="padding-left: 2%">Upcoming Events </div>
+                <div style="width: 65%;"></div>
+                <div class="group" onclick="showPopup()"> 
+                        <button class="button-add" onclick="showAddNewEvent()" style="margin: 15%">Add New Event</button>
+                </div>
+             </div>
+            
+            <div style="display: flex;">
+                <div class = "container" style="width: 25%; ">
+                    <div style="display: flex;">
+                        <div class="text">Ripple Effect: Unveiling Water Pollution</div> 
+                        <div class="group"  onclick="showPopup()"> 
+                                <i class="fa-solid fa-pencil" style="font-size:larger; padding-top: 5%" id="editEventBtn"></i>
                         </div>
                     </div>
+                    <img src="../../Assets/Image/event_details.jpg" style = "width: 100%; height:30%; border-radius:5%" alt="Event Image">
+                        <div class="sub-container">
+                            <div class="sub-container-text">
+                                Additional Information
+                            </div>
+                        </div>
+                        <div class="sub-container">
+                            <div class="sub-container-text">
+                                Additional Information
+                            </div>
+                        </div>
+                        <div class="sub-container">
+                            <div class="sub-container-text">
+                                Additional Information
+                            </div>
+                        </div>
+                        <button class="button-1" onclick="window.location.href='./Org Event Detail.php'" 
+                            onmouseover="this.style.background='#00bcd4'; 
+                            this.style.color = '#ffffff'" onmouseleave="this.style.color='#00bcd4'; 
+                            this.style.background = 'transparent'">More
+                        </button>  
+                </div>
+                <div class = "container" style="width: 25%; ">
+                    <div style="display: flex;">
+                        <div class="text">Ripple Effect: Unveiling Water Pollution</div> 
+                        <div class="group"  onclick="showPopup()"> 
+                                <i class="fa-solid fa-pencil" style="font-size:larger; padding-top: 5%" id="editEventBtn"></i>
+                        </div>
+                    </div>
+                    <img src="../../Assets/Image/event_details.jpg" style = "width: 100%; height:30%; border-radius:5%" alt="Event Image">
+                        <div class="sub-container">
+                            <div class="sub-container-text">
+                                Additional Information
+                            </div>
+                        </div>
+                        <div class="sub-container">
+                            <div class="sub-container-text">
+                                Additional Information
+                            </div>
+                        </div>
+                        <div class="sub-container">
+                            <div class="sub-container-text">
+                                Additional Information
+                            </div>
+                        </div>
+                        <button class="button-1" onclick="window.location.href='./Org Event Detail.php'" 
+                            onmouseover="this.style.background='#00bcd4'; 
+                            this.style.color = '#ffffff'" onmouseleave="this.style.color='#00bcd4'; 
+                            this.style.background = 'transparent'">More
+                        </button>  
+                </div>
+                <div class = "container" style="width: 25%; ">
+                    <div style="display: flex;">
+                        <div class="text">Ripple Effect: Unveiling Water Pollution</div> 
+                        <div class="group"  onclick="showPopup()"> 
+                                <i class="fa-solid fa-pencil" style="font-size:larger; padding-top: 5%" id="editEventBtn"></i>
+                        </div>
+                    </div>
+                    <img src="../../Assets/Image/event_details.jpg" style = "width: 100%; height:30%; border-radius:5%" alt="Event Image">
+                        <div class="sub-container">
+                            <div class="sub-container-text">
+                                Additional Information
+                            </div>
+                        </div>
+                        <div class="sub-container">
+                            <div class="sub-container-text">
+                                Additional Information
+                            </div>
+                        </div>
+                        <div class="sub-container">
+                            <div class="sub-container-text">
+                                Additional Information
+                            </div>
+                        </div>
+                        <button class="button-1" onclick="window.location.href='./Org Event Detail.php'" 
+                            onmouseover="this.style.background='#00bcd4'; 
+                            this.style.color = '#ffffff'" onmouseleave="this.style.color='#00bcd4'; 
+                            this.style.background = 'transparent'">More
+                        </button>  
                 </div>
             
             </div>
@@ -316,7 +440,7 @@
                     <div class="sub-image">
                             <!-- Image content -->
                             <img src="../../Assets/Image/Org Water Droplets.png" alt="Image">
-                        </div>
+                    </div>
                     <div class="popup-group" style="top: 65%; left: 35%">
                         <div class="sub-text" style="padding-top: 10px;">Have new event to launch?</div>
                         <button class="popup-button" onclick="showAddNewEvent()">Add New Event</button>
@@ -408,7 +532,7 @@
            <!-- Edit Event Popup Container -->
             <div id="editEventPopup" class="popup-container-2">
                 <div class="popup-content">
-                    <span class="close-btn" id="closePopup">&times;</span>
+                    <span class="close-btn"  onclick="window.location.href='./Org Home.php'">&times;</span>
                     <h2>Edit Event</h2>
                     <!-- Event Title -->
                     <h3 style="font-weight:300">To update or delete your event organization, please fill out the forms below. We appreciate your cooperation!</h3>
@@ -448,9 +572,6 @@
                         <div style="padding: 30%;"></div>
                         <button class="popup-button" onclick="submitNewEvent()" style="width: 30%; background-color: #2979FF; color: white; font-family: 'Epilogue'; font-size: 16px; border-radius: 4px;">Delete Event</button>   
                     </div>
-                    <div style="padding: 20px; border-radius: 8px; width: 40%;">
-                        <i class="fa-regular fa-circle-xmark" onclick="hidePopup()" style="font-size: xx-large;" ></i>
-                    </div>
                     
                 </div>
             </div>
@@ -472,7 +593,6 @@
             document.getElementById("newEventPopupContainer").style.display = "flex";
             document.getElementById("overlayPopup").style.display = "block";
         }
-
         window.onclick = function(event) {
             if(event.target == document.getElementById("overlay")){
                 document.getElementById("overlay").style.display = "none";
