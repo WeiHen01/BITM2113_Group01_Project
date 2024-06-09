@@ -134,6 +134,11 @@
                 cursor: pointer;
                 color: #007bff;
             }
+            .plain-text-link {
+                text-decoration: none;
+                color: inherit;
+                cursor: pointer;
+            }
         </style>
     </head>
 
@@ -186,7 +191,7 @@
                                             while($row = mysqli_fetch_assoc($result)){
                                                 echo "<tr>";
                                                 echo "<td><input type='checkbox'></td>";
-                                                echo "<td><a href='User Analysis.php?user_id=" . $row["UserId"] . "'>" . $row["Username"] . "</a></td>";
+                                                echo "<td><a class='plain-text-link' href='User Analysis.php?user_id=" . $row["UserId"] . "'>" . $row["Username"] . "</a></td>";
                                                 /// Checking user status
                                                 if ($row["Status"] == "Registered") {
                                                     echo "<td><span class='status-registered'>● Registered</span></td>";
@@ -251,12 +256,11 @@
                                 <?php
                                     $sql = "SELECT * FROM organization";
                                     $result = mysqli_query($con, $sql);
-
                                     if(mysqli_num_rows($result) > 0){
                                         while($row = mysqli_fetch_assoc($result)){
                                             echo "<tr>";
                                             echo "<td><input type='checkbox'></td>";
-                                            echo "<td><a href='Organization Analysis.php?org_id=" . $row["OrgId"] . "'>" . $row["OrgName"] . "</a></td>";
+                                            echo "<td><a class='plain-text-link' href='Organization Analysis.php?org_id=" . $row["OrgId"] . "'>" . $row["OrgName"] . "</a></td>";
                                             //check status
                                             if ($row["OrgStatus"] == "Available") {
                                                 echo "<td><span class='status-available'>● Available</span></td>";

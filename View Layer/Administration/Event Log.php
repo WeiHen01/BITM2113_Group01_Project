@@ -9,47 +9,345 @@
     $loggedUserEmail = $_SESSION["LoggedUserEmail"];
 
     require("../../Database Layer/db_connection.php");
+
+    // Fetch events made by the user
+    $events_sql = "SELECT * FROM event WHERE DATE(DateTime) = CURDATE() ORDER BY DateTime DESC"; 
+    $events_result = mysqli_query($con, $events_sql);
+
+    if (!$events_result) {
+        die('Error executing events query: ' . mysqli_error($con));
+    }
+
+    // Store complaints in an array
+    $events = [];
+    while ($row = mysqli_fetch_assoc($events_result)) {
+        $events[] = $row;
+    }
+
+    // Function to calculate the time difference
+    function time_elapsed_string($datetime, $full = false) {
+        $now = new DateTime;
+        $ago = new DateTime($datetime);
+        $diff = $now->diff($ago);
+
+        $diff->w = floor($diff->d / 7);
+        $diff->d -= $diff->w * 7;
+
+        $string = array(
+            'y' => 'year',
+            'm' => 'month',
+            'w' => 'week',
+            'd' => 'day',
+            'h' => 'hour',
+            'i' => 'minute',
+            's' => 'second',
+        );
+        foreach ($string as $k => &$v) {
+            if ($diff->$k) {
+                $v = $diff->$k . ' ' . $v . ($diff->$k > 1 ? 's' : '');
+            } else {
+                unset($string[$k]);
+            }
+        }
+
+        if (!$full) $string = array_slice($string, 0, 1);
+        return $string ? implode(', ', $string) . ' ago' : 'just now';
+    }
+
+    // Fetch complain data
+    $events_sql = "
+    SELECT 
+        e.EventId,
+        e.Name,
+        e.Description,
+        o.OrgName AS OrgName,
+        e.DateTime,
+        e.Category as Status
+    FROM 
+        event e
+    JOIN 
+        organization o ON e.OrgId = o.OrgId
+    ORDER BY DateTime DESC
+    ";
+    $events_result = mysqli_query($con, $events_sql);
+
+    if (!$events_result) {
+        die('Error executing complain query: ' . mysqli_error($con));
+    }
+
+    // Store complains in an array
+    $events = [];
+    while ($row = mysqli_fetch_assoc($events_result)) {
+        $events[] = $row;
+    }
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <!-- Title of the tab -->
-        <title>Admin |Event Log</title>
-        <link rel="icon" type="image/x-icon" href="../../Assets/Image/H20 Harmony Logo.png">
-        <link href='https://fonts.googleapis.com/css?family=Epilogue:ExtraBold' rel='stylesheet'>
-        <link href='https://fonts.googleapis.com/css?family=Epilogue' rel='stylesheet'>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-        <link rel="stylesheet" href="../General Components & Widget/Administration/Admin_Component Style.css">
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Title of the tab -->
+    <title>Admin | Event Log</title>
+    <link rel="icon" type="image/x-icon" href="../../Assets/Image/H20 Harmony Logo.png">
+    <link href='https://fonts.googleapis.com/css?family=Epilogue:ExtraBold' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Epilogue' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="../General Components & Widget/Administration/Admin_Component Style.css">
+    <style>
+        body {
+            font-family: 'Epilogue', sans-serif;
+        }
+        .dashboard {
+            padding: 2%;
+        }
+        .layout-container {
+            display: flex;
+            justify-content: space-between;
+        }
+        .left-section {
+            display: flex;
+            flex-direction: column;
+            width: 65%;
+        }
+        .overview-container {
+            background-color: #ccc;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .overview {
+            display: flex;
+            justify-content: space-between;
+        }
+        .overview h3 {
+            flex-basis: 100%;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+        .overview .stat {
+            background: #e6f0ff;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            flex: 1;
+            margin: 10px;
+            border: 2px solid #4c8dff;
+        }
+        .stat-icon {
+            font-size: 32px;
+            color: #4c8dff;
+            margin-bottom: 10px;
+        }
+        .stat h2 {
+            margin: 0;
+            color: #4c8dff;
+        }
+        .stat p {
+            margin: 0;
+            color: #333;
+        }
+        .complaints-table {
+            background: #ccc;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .complaints-table table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .complaints-table th, .complaints-table td {
+            padding: 1%;
+            border-bottom: 1px solid #ddd;
+            text-align: left;
+        }
+        .complaints-table th {
+            background: #e6f0ff;
+        }
+        .right-section {
+            width: 30%;
+            background: #ccc;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+        }
+        .right-section .complaint {
+            background: #e6f0ff;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .right-section p {
+            margin: 0;
+            padding: 0;
+        }
+        .right-section small {
+            display: block;
+            margin-top: 5px;
+            color: #000;
+        }
+        .right-section hr {
+            border: 0;
+            border-top: 1px solid #ddd;
+            margin: 10px 0;
+        }
+        .status-ongoing { color: orange; }
+        .status-cancelled { color: red; }
+        .status-completed { color: green; 
+        }
+        .plain-text-link {
+                text-decoration: none;
+                color: inherit;
+                cursor: pointer;
+        }
+    </style>
+</head>
 
-    <!-- Body of the webpage -->
-    <body>   
+<!-- Body of the webpage -->
+<body>   
 
-        <!-- Sidebar -->
+    <!-- Sidebar -->
+    <?php 
+        include("../General Components & Widget/Administration/Admin_Sidebar.php");
+    ?>
+
+    <!-- Body --> 
+    <div id="contentArea">
+        <!-- Header -->
         <?php 
-            include("../General Components & Widget/Administration/Admin_Sidebar.php");
+            include("../General Components & Widget/Administration/Admin_Header.php");
         ?>
 
-        <!-- Body --> 
+        <!-- Content Here -->
+        <div class="dashboard">
+            <p style="font-size: 24px;"><b>Complain Tracking</b></p>
+            
+            <!-- Layout Container -->
+            <div class="layout-container">
+                <div class="left-section">
+                    <!-- Overview Section -->
+                    <div class="overview-container">
+                        <h3>Overview</h3>
+                        <div class="overview">
+                            <div class="stat">
+                                <?php
+                                    // Initialize counts
+                                    $eventCountToday = 0;
 
-        <div id="contentArea">
+                                    // Get the count of event submitted today
+                                    $sql = "
+                                    SELECT COUNT(*) AS eventCount
+                                    FROM event
+                                    WHERE DATE(DateTime) = CURDATE()";
 
-            <!-- Header -->
-            <?php 
-                include("../General Components & Widget/Administration/Admin_Header.php");
-            ?>
+                                    $result = mysqli_query($con, $sql);
 
-            <!-- Content Here -->
-            <p style="padding-left: 2%; font-size: 24px;"><b>Event Tracking</b></p>
+                                    if ($result) {
+                                        $row = mysqli_fetch_assoc($result);
+                                        if ($row) {
+                                            $eventCountToday = $row['eventCount'];
+                                        }
+                                    }
+                                    ?>                
+                                    <h2><?php echo $eventCountToday; ?></h2>
+                                <p style="font-weight:bold">Created by today</p>
+                            </div>
+                            <div class="stat">
+                                <?php
+                                    // Initialize counts
+                                    $eventCountThisMonth = 0;
+
+                                    // Get the count of events submitted this month
+                                    $sql_month = "
+                                    SELECT COUNT(*) AS eventCount
+                                    FROM event
+                                    WHERE MONTH(DateTime) = MONTH(CURDATE()) AND YEAR(DateTime) = YEAR(CURDATE())";
+
+                                    $result_month = mysqli_query($con, $sql_month);
+
+                                    if ($result_month) {
+                                        $row_month = mysqli_fetch_assoc($result_month);
+                                        if ($row_month) {
+                                            $eventCountThisMonth = $row_month['eventCount'];
+                                        }
+                                    }
+                                ?>
+                                <h2><?php echo $eventCountThisMonth; ?></h2>
+                                <p style="font-weight:bold">Created by this month</p>
+                            </div>
+                        </div>
+                    </div>
                     
-                        
-                        
-                      
+                    <!-- All Events Table -->
+                    <div class="complaints-table">
+                        <h3>All Complains</h3>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Complain</th>
+                                    <th>Organization</th>
+                                    <th>Date and Time</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php foreach ($events as $event): ?>
+                                    <tr>
+                                    <td>
+                                        <a class='plain-text-link' href='../User/User Event Details.php?event=<?php echo urlencode($event['EventId']); ?>'>
+                                        <?php echo htmlspecialchars($event['Name']); ?></a>
+                                        </td>
+                                        <td><?php echo htmlspecialchars($event['OrgName']); ?></td>
+                                        <td><?php echo htmlspecialchars($event['DateTime']); ?></td>
+                                        <td class="status-<?php echo strtolower(htmlspecialchars(str_replace(' ', '', $event['Status']))); ?>">
+                                            <?php echo htmlspecialchars($event['Status']); ?>
+                                        </td>
+                                        <td><i class="fa fa-pencil-alt"></i></td>
+                                    </tr>
+                                <?php endforeach; ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <!-- Events made by user today Section -->
+                <div class="right-section">
+                    <h3>Events created by today</h3>
+                    <?php if (!empty($events)): ?>
+                        <!-- Display the first event in a highlighted container -->
+                        <div class="complaint" style="background: #fff; margin-bottom: 20px;">
+                            <p style="margin-bottom: 10px;"><strong><?php echo htmlspecialchars($events[0]['Name']); ?></strong></p>
+                            <p style="margin-bottom: 5px;"><?php echo htmlspecialchars($events[0]['Description']); ?></p>
+                            <small style="color:blue; font-size:10px; font-weight: normal;"><b><?php echo htmlspecialchars(time_elapsed_string($events[0]['DateTime'])); ?></b></small>
+                        </div>
+                        <!-- Display the rest of the events -->
+                        <?php for ($i = 1; $i < count($events); $i++): ?>
+                            <div class="complaint">
+                                <p><strong><?php echo htmlspecialchars($events[$i]['Name']); ?></strong></p>
+                                <p><?php echo htmlspecialchars($events[$i]['Description']); ?></p>
+                                <small><b><?php echo htmlspecialchars(time_elapsed_string($events[$i]['DateTime'])); ?></b></small>
+                            </div>
+                        <?php endfor; ?>
+                    <?php else: ?>
+                        <div class="complaint">
+                            <p>No events made today.</p>
+                        </div>
+                    <?php endif; ?>
+                </div>
+            </div>
         </div>
-    </body>  
-    <script src="../General Components & Widget/Administration/Admin_Component Script.js"></script> 
-    
+    </div>
+</body>  
+<script src="../General Components & Widget/Administration/Admin_Component Script.js"></script> 
 </html>

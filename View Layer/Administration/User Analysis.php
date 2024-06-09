@@ -258,7 +258,7 @@
                             if ($event['ParticipationStatus'] == 'Waiting') {
                                 echo '<i class="fas fa-calendar-check"></i>'; // Display join event icon
                             } elseif ($event['ParticipationStatus'] == 'Cancel') {
-                                echo '<i class="fa-regular fa-circle-xmark"></i>'; // Display cancel participation icon
+                                echo '<i class="fa-solid fa-circle-xmark"></i>'; // Display cancel participation icon
                             } else {
                                 echo '<i class="fas fa-calendar-check"></i>'; // Display join event icon by default
                             }
