@@ -230,7 +230,7 @@
 
         <!-- Content Here -->
         <div class="dashboard">
-            <p style="font-size: 24px;"><b>Complain Tracking</b></p>
+            <p style="font-size: 24px;"><b>Event Tracking</b></p>
             
             <!-- Layout Container -->
             <div class="layout-container">
@@ -290,11 +290,11 @@
                     
                     <!-- All Events Table -->
                     <div class="complaints-table">
-                        <h3>All Complains</h3>
+                        <h3>All Events</h3>
                         <table>
                             <thead>
                                 <tr>
-                                    <th>Complain</th>
+                                    <th>Event</th>
                                     <th>Organization</th>
                                     <th>Date and Time</th>
                                     <th>Status</th>
@@ -305,7 +305,7 @@
                                 <?php foreach ($events as $event): ?>
                                     <tr>
                                     <td>
-                                        <a class='plain-text-link' href='Admin Details.php?event=<?php echo urlencode($event['EventId']); ?>'>
+                                        <a class='plain-text-link' href='Admin Event Details.php?event=<?php echo urlencode($event['EventId']); ?>'>
                                         <?php echo htmlspecialchars($event['Name']); ?></a>
                                         </td>
                                         <td><?php echo htmlspecialchars($event['OrgName']); ?></td>
@@ -313,7 +313,7 @@
                                         <td class="status-<?php echo strtolower(htmlspecialchars(str_replace(' ', '', $event['Status']))); ?>">
                                             <?php echo htmlspecialchars($event['Status']); ?>
                                         </td>
-                                        <td><i class="fa fa-pencil-alt"></i></td>
+                                        <td><a class='plain-text-link' href='Admin Event Details.php?event=<?php echo urlencode($event['EventId']); ?>'><i class="fa fa-pencil-alt"></i></a></td>
                                     </tr>
                                 <?php endforeach; ?>
                             </tbody>

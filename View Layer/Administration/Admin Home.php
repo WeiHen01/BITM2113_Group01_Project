@@ -309,7 +309,7 @@
                                 <div class="section-title" style="margin-top: 2%">Report by this month</div>
                 <div class="main-content">
                     <div class="bg-container">
-                        <div class="container">
+                        <div class="container" style = "align-items: center">
                             <p style= "padding: 1%;"><b>Resolved and Unresolved Water Pollution Complaint</b></p>
                             <div class="chart-container">
                                 <canvas id="complaintChart"></canvas>
@@ -317,9 +317,9 @@
                         </div>
                     </div>
                     <div class="bg-container">
-                        <div class="container">
+                        <div class="container" style = "align-items: center">
                             <p style= "padding: 1%;"><b>Active Events</b></p>
-                            <div class="pie-chart-container">
+                            <div class="pie-chart-container" >
                                 <canvas id="eventChart"></canvas>
                             </div>
                         </div>

@@ -44,7 +44,7 @@
 
             .event-header{
                 background: url("https://miro.medium.com/v2/resize:fit:7540/1*P7OE0mqUGAgo0-6RKMPbfg.jpeg");
-                height: 65vh;
+                height: 40vh;
                 overflow-y: auto;
             }
 
@@ -302,13 +302,17 @@
                         </div>
 
 
+
+                    </div>
+
+                    
+                    <div style = "width: 100%">
+                        <p style = "padding-top: 1%; padding-left: 2%; font-size: 25px"><Strong>Description</Strong></p>
                         <p style="padding-left: 2%; line-height: 1.5; text-align: justify;">
                             <?php echo $row["Description"] ?>
                         </p>
 
                     </div>
-
-                    
 
                 </div>
 

@@ -8,60 +8,6 @@
     }
 
     $loggedUserEmail = $_SESSION["LoggedUserEmail"];
-
-    require("../../Database Layer/db_connection.php");
-
-    if (isset($_GET['user_id'])) {
-        $user_id = $_GET['user_id']; // Get the user_id from the URL query string
-        $sql = "SELECT * FROM user WHERE UserId='$user_id'"; // Prepare the SQL query
-        $result = mysqli_query($con, $sql); // Execute the query
-
-        if (!$result) {
-            die('Error executing query: ' . mysqli_error($con));
-        }
-    
-        if(mysqli_num_rows($result) > 0){
-            $user = mysqli_fetch_assoc($result); // Fetch the user data
-        } else {
-            echo "User not found."; // Handle case where no user is found
-            exit();
-        }
-        
-        // Fetch events joined by the user with organizer's name
-        $events_sql = "
-            SELECT 
-                p.ParticipationStatus,
-                p.ParticipationDateTime,
-                e.Name AS EventName,
-                e.DateTime,
-                e.Location,
-                o.OrgName
-            FROM 
-                participation p
-            JOIN 
-                event e ON p.EventId = e.EventId
-            JOIN 
-                organization o ON e.OrgId = o.OrgId
-            WHERE 
-                p.UserId = '$user_id'
-        ";
-        $events_result = mysqli_query($con, $events_sql);
-
-        if (!$events_result) {
-            die('Error executing events query: ' . mysqli_error($con));
-        }
-        
-        // Fetch complaints made by the user
-        $complaints_sql = "SELECT * FROM complain WHERE UserId='$user_id'"; 
-        $complaints_result = mysqli_query($con, $complaints_sql);
-
-        if (!$complaints_result) {
-            die('Error executing complaints query: ' . mysqli_error($con));
-        }
-    } else {
-        echo "No user ID provided."; // Handle case where user_id is not in the query string
-        exit();
-    }
 ?>
 
 <!DOCTYPE html>
@@ -80,10 +26,8 @@
             font-family: 'Epilogue', sans-serif;
             background-color: #f5f5f5;
         }
-        #contentArea {
-            padding: 20px;
-        }
         .header {
+            padding-left: 2%;
             display: flex;
             align-items: center;
             font-size: 24px;
@@ -107,12 +51,14 @@
         }
         .container {
             max-width: 1200px;
+            height: 10vh;
             margin: 0 auto;
             padding: 20px;
             border-radius: 10px;
         }
         .user-card {
             display: flex;
+            height: 100%;
             align-items: center;
             margin-bottom: 20px;
             background-color: #ccc;
@@ -221,14 +167,68 @@
         <!-- Header -->
         <?php include("../General Components & Widget/Administration/Admin_Header.php"); ?>
 
-        <!-- Content Here -->
         <div class="header">
-            <a href="User Organization Log.php"><i class="fas fa-arrow-left"></i></a>
+            <a href="User Organization Log.php"><i class="fa-solid fa-chevron-left"></i></a>
             <p style="margin: 0; font-weight: bold;">User Analysis</p>
         </div>
 
-        <div class="container">
+        <div class="container" style = "margin-bottom: 10px">
             <div class="user-card">
+                <?php 
+                    require("../../Database Layer/db_connection.php");
+
+                    if (isset($_GET['user_id'])) {
+                        $user_id = $_GET['user_id']; // Get the user_id from the URL query string
+                        $sql = "SELECT * FROM user WHERE UserId='$user_id'"; // Prepare the SQL query
+                        $result = mysqli_query($con, $sql); // Execute the query
+                
+                        if (!$result) {
+                            die('Error executing query: ' . mysqli_error($con));
+                        }
+                    
+                        if(mysqli_num_rows($result) > 0){
+                            $user = mysqli_fetch_assoc($result); // Fetch the user data
+                        } else {
+                            echo "User not found."; // Handle case where no user is found
+                            exit();
+                        }
+                        
+                        // Fetch events joined by the user with organizer's name
+                        $events_sql = "
+                            SELECT 
+                                p.ParticipationStatus,
+                                p.ParticipationDateTime,
+                                e.Name AS EventName,
+                                e.DateTime,
+                                e.Location,
+                                o.OrgName
+                            FROM 
+                                participation p
+                            JOIN 
+                                event e ON p.EventId = e.EventId
+                            JOIN 
+                                organization o ON e.OrgId = o.OrgId
+                            WHERE 
+                                p.UserId = '$user_id'
+                        ";
+                        $events_result = mysqli_query($con, $events_sql);
+                
+                        if (!$events_result) {
+                            die('Error executing events query: ' . mysqli_error($con));
+                        }
+                        
+                        // Fetch complaints made by the user
+                        $complaints_sql = "SELECT * FROM complain WHERE UserId='$user_id'"; 
+                        $complaints_result = mysqli_query($con, $complaints_sql);
+                
+                        if (!$complaints_result) {
+                            die('Error executing complaints query: ' . mysqli_error($con));
+                        }
+                    } else {
+                        echo "No user ID provided."; // Handle case where user_id is not in the query string
+                        exit();
+                    }
+                ?>
                 <img src="../../Assets/Image/UserProfile/<?php echo $user['ProfileImage']; ?>" alt="User Profile Picture">
                 <div class="user-details">
                     <div class="name"><?php echo $user['Username']; ?></div>
@@ -328,7 +328,15 @@
                     ?>
                 </div>
             </div>
+
+            <div style = "height: 20px"></div>
+
+
+            
+            
         </div>
+
+       
     </div>     
 </body>
 <script src="../General Components & Widget/Administration/Admin_Component Script.js"></script> 

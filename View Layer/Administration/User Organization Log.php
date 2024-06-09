@@ -147,7 +147,7 @@
 
         <!-- Sidebar -->
         <?php 
-        include("../General Components & Widget/Administration/Admin_Sidebar.php");
+            include("../General Components & Widget/Administration/Admin_Sidebar.php");
         ?>
 
         <!-- Body -->
@@ -207,13 +207,13 @@
                                                     echo "<form method='POST' style='display:inline;'>
                                                             <input type='hidden' name='user_id' value='" . $row["UserId"] . "'>
                                                             <input type='hidden' name='user_action' value='Active'>
-                                                            <button type='submit' class='action-button'>Activate</button>
+                                                            <button type='submit' class='action-button' style = 'background: green; border: none; color: white; padding: 2%; width: 5vw; border-radius: 8px; cursor: pointer' onmouseover = 'this.style.background=\"#005c0e\"' onmouseleave='this.style.background=\"green\"'>Activate</button>
                                                         </form>";
                                                 } else {
                                                     echo "<form method='POST' style='display:inline;'>
                                                             <input type='hidden' name='user_id' value='" . $row["UserId"] . "'>
                                                             <input type='hidden' name='user_action' value='Disable'>
-                                                            <button type='submit' class='action-button'>Disable</button>
+                                                            <button type='submit' class='action-button' style = 'background: red; border: none; color: white; padding: 2%; width: 5vw; border-radius: 8px; cursor: pointer' onmouseover = 'this.style.background=\"#870000\"' onmouseleave='this.style.background=\"red\"'>Disable</button>
                                                         </form>";
                                                 }
                                                 echo "</td>";
@@ -274,13 +274,13 @@
                                                 echo "<form method='POST' style='display:inline;'>
                                                         <input type='hidden' name='org_id' value='" . $row["OrgId"] . "'> 
                                                         <input type='hidden' name='org_action' value='Available'>
-                                                        <button type='submit' class='action-button'>Activate</button>
+                                                        <button type='submit' class='action-button' style = 'background: green; border: none; color: white; padding: 2%; width: 5vw; border-radius: 8px; cursor: pointer' onmouseover = 'this.style.background=\"#005c0e\"' onmouseleave='this.style.background=\"green\"'>Activate</button>
                                                     </form>";
                                             } else {
                                                 echo "<form method='POST' style='display:inline;'>
                                                         <input type='hidden' name='org_id' value='" . $row["OrgId"] . "'> <!-- Ensure 'OrgId' matches your DB column name -->
                                                         <input type='hidden' name='org_action' value='Disable'>
-                                                        <button type='submit' class='action-button'>Disable</button>
+                                                        <button type='submit' class='action-button' style = 'background: red; border: none; color: white; padding: 2%; width: 5vw; border-radius: 8px; cursor: pointer' onmouseover = 'this.style.background=\"#870000\"' onmouseleave='this.style.background=\"red\"'>Disable</button>
                                                     </form>";
                                             }
                                             echo "</td>";

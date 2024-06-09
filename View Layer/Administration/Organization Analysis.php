@@ -192,7 +192,7 @@ if (!$events_result) {
         
         <!-- Content Here -->
         <div class="header">
-            <a href="User Organization Log.php"><i class="fas fa-arrow-left"></i></a>
+            <a href="User Organization Log.php"><i class="fa-solid fa-chevron-left"></i></a>
             <p style="margin: 0; font-weight: bold;">Organization Analysis</p>
         </div>
 

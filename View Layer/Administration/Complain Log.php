@@ -313,7 +313,7 @@
                                         <td class="status-<?php echo strtolower(htmlspecialchars(str_replace(' ', '', $complain['Status']))); ?>">
                                             <?php echo htmlspecialchars($complain['Status']); ?>
                                         </td>
-                                        <td><i class="fa fa-pencil-alt"></i></td>
+                                        <td><a class='plain-text-link' href='Admin Complaint Details.php?complaint=<?php echo urlencode($complain['ComplainId']); ?>'><i class="fa fa-pencil-alt"></i></a></td>
                                     </tr>
                                 <?php endforeach; ?>
                             </tbody>
