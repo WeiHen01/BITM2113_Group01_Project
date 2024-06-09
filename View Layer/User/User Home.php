@@ -279,7 +279,7 @@
                         <div>
 
                             <div style = "background: #9cbfe7; cursor: pointer; margin-left: 2%; margin-right: 2%; margin-bottom: 20px; padding: 2%;" onClick="window.location.href='User Event Details.php?event=<?php echo $row_2['EventId']; ?>'">
-                                
+                               
                                 <strong style ="font-size: 25px"><?php echo $row_2["Name"] ?></strong>
                                 <p><?php echo $row_2["Description"] ?></p>
                                 <p><b>Participated By:</b> <?php echo $row_2['DateTime']?>
@@ -303,18 +303,15 @@
 
 
 
-            <!-- Content ends -->
 
 
 
-            
+
+
+
+            <!-- Content ends -->   
         </div>
-        
-
-        
-
-        
-        
+    
 
     </body>
 

@@ -7,7 +7,7 @@
     }
 
     $loggedUserEmail = $_SESSION["LoggedUserEmail"];
-
+    $eventID = $_GET['event'];
 ?>
 
 <!DOCTYPE html>
@@ -269,16 +269,28 @@
             <!-- Content here -->
 
             <div class = "body-content">
+                <?php    
+                        require("../../Database Layer/db_connection.php");
+                        //validation 
+                        $sqlCheck = "SELECT * FROM event WHERE EventId = $eventID";
+
+                        $resultCheck = mysqli_query($con, $sqlCheck);
+
+                        if(mysqli_num_rows($resultCheck) === 1){
+                            $row = mysqli_fetch_assoc($resultCheck);
+
+                            $orgId = $row["OrgId"];
+
+                        $_SESSION["Organization"] = $orgId;
+
+                                
+                    }
+                ?>
                 <div id = "header">
                     <h2 style="text-align: left; font-family: Epilogue; font-size: 50px;  padding: 2%; margin: 0;">About Event</h2>
-                    <div class = "container" style="margin-left: 10%; margin-right: 10%; padding-bottom: 2%;">
-                        <h3 style=" font-family: 'Epilogue'; text-align: center; font-size: 14; line-height: 56px; font-weight: 500; color: #171A1FFF;">May 27</h3>
-                        <h1 style=" font-family: 'Epilogue'; text-align: center; font-size: 40px; line-height: 30px; font-weight: 800; color: #171A1FFF;">Ripple Effect: Unveiling Water Pollution</h1>
-                        <h3 style=" font-family: 'Epilogue'; text-align: center; font-size: 14; line-height: 20px; font-weight: 300; color: #171A1FFF;">
-                        Rock Revolt: A Fusion of Power and Passion" is an electrifying rock music
-                        event that brings together a diverse lineup of talented rock bands and
-                        artists</h3>
-                    </div>
+                    <div class = "container" style="margin-left: 10%; margin-right: 10%; padding-bottom: 2%; padding-top: 2%">
+                        <h1 style=" font-family: 'Epilogue'; text-align: center; font-size: 40px; line-height: 30px; font-weight: 800; color: #171A1FFF;"><?php echo $row["Name"] ?></h1>
+                   </div>
                 </div>
 
 
@@ -287,109 +299,91 @@
                     <div class="group" style="top: 82%; left: 6.67%; padding: 2%">
                         <h3 style="text-align: left; font-family: Epilogue; font-size: 35px; margin: 0;">Description</h3>
                         <h3 style=" font-family: 'Epilogue'; text-align: justify; font-size: 25; line-height: 38px; font-weight: 300; color: #171A1FFF;"> 
-                        "Ripple Effect: Unveiling Water Pollution" is an engaging and 
-                        informative event dedicated to raising awareness about the 
-                        critical issue of water pollution and its significant impacts on 
-                        our environment and communities. Through a series of
-                        insightful discussions, interactive workshops, and collaborative activities,
-                        this event aims to empower participants to
-                        become agents of change in the fight to preserve
-                        our planet's most precious resource: clean water.
+                        <?php echo $row["Description"] ?>
                     </div>
+                        <div style = "padding-left: 2%; padding-top: 1%; display: flex; margin-top: 3%">
+                            <div style = "display: flex; gap: 2%;  width: 20vw">
+                                <div style = "background-color: #9a9fe4; width: 5vw; height: 5vw; border-radius: 4px; display: flex; justify-content: center; align-items: center; padding: 3% ">
+                                    <i class="fa-regular fa-calendar" style = "font-size: 35px"></i>
+                                </div>
+                                <div>
+                                    <p style = "padding-top: 1%; font-weight: bold">Date and Time</p>
+                                    <p style = "padding-top: 1%;"><?php echo $row["DateTime"] ?></p>
+                                </div>
 
-                    <div class="group" style="display: block; top: 82%; padding: 2%;">
-                        <div class="group-small" style="display: flex;">
-                                <div style="left: 30vw;"> 
-                                    <h3 style="font-size: 16px; font-weight: 600; color: #171A1FFF;">DURATION</h3>
-                                    <h3 style="font-size: 14px; font-weight: 400; color: #6E7787FF;">5 hours</h3>
-                                </div>
-                        </div>
-                        <div class="group-small" style="display: flex;">
-                                <div > 
-                                    <h3 style="font-size: 16px; font-weight: 600; color: #171A1FFF;">DATE AND TIME</h3>
-                                    <h3 style="font-size: 14px; font-weight: 400; color: #6E7787FF;">Saturday, February 20</h3>
-                                    <h3 style="font-size: 14px; font-weight: 400; color: #6E7787FF;">08:00 PM</h3>
-                                </div>
-                        </div>
-                        <div class="group-small" style="display: flex;">
-                                <div > 
-                                    <h3 style="font-size: 16px; font-weight: 600; color: #171A1FFF;">PLACE</h3>
-                                    <h3 style="font-size: 14px; font-weight: 400; color: #6E7787FF;">Central Park, New York, NY 10022 United States</h3>
-                                </div>
-                        </div>
-                            
-                    </div>
-                    
+                            </div>
 
+                            <div style = "display: flex; gap: 2%;  width: 20vw">
+                                <div style = "background-color: #9a9fe4; width: 5vw; height: 5vw; border-radius: 4px; display: flex; justify-content: center; align-items: center; padding: 3% ">
+                                    <i class="fa-solid fa-location-dot" style = "font-size: 35px"></i>
+                                </div>
+                                <div>
+                                    <p style = "padding-top: 1%; font-weight: bold">Place</p>
+                                    <p style = "padding-top: 1%;"><?php echo $row["Location"] ?></p>
+                                </div>
+
+                            </div>
+                        </div>
                 </div>
 
                 <div class="group" style="padding: 2%;left: 6.67%;">
                     <h3 style="text-align: left; font-family: Epilogue; font-size: 35px; margin: 0;">Participation</h3>
-                    <div style="padding-bottom: 2%;">
-                        <div class="container-1" style="padding-left: 10%;">
-                            <div style="display: flex" >
-                                <div class="text" style="font-size: 18px; line-height: 28px; font-weight: 700; color: #171A1FFF; ">John Smith</div>
-                                <div style="width: 55%"></div>
-                                <div class="text" style="font-size: 18px; line-height: 28px; font-weight: 400; color: #171A1FFF; ">joined 30 minutes ago..</div>
-                            </div>
-                            <div style="height: 30%"></div>
-                            <div style="display: flex">
-                                <i class="fa-solid fa-phone" style="font-size:large"></i><div style="width: 2%"></div>
-                                <div class="text" style="font-size: 18px; line-height: 28px; font-weight: 400; color: #171A1FFF; ">+1234567890</div><div style="width: 20%"></div>
-                                <i class="fa-regular fa-envelope" style="font-size:large"></i><div style="width: 2%"></div>
-                                <div class="text" style="font-size: 18px; line-height: 28px; font-weight: 400; color: #379AE6FF; ">emilybrown@yahoo.com</div>
-                            </div>                           
-                        </div>                       
-                    </div>
-                    <div style="padding-bottom: 2%;">
-                        <div class="container-1" style="padding-left: 10%;">
-                            <div style="display: flex" >
-                                <div class="text" style="font-size: 18px; line-height: 28px; font-weight: 700; color: #171A1FFF; ">John Smith</div>
-                                <div style="width: 55%"></div>
-                                <div class="text" style="font-size: 18px; line-height: 28px; font-weight: 400; color: #171A1FFF; ">joined 30 minutes ago..</div>
-                            </div>
-                            <div style="height: 30%"></div>
-                            <div style="display: flex">
-                                <i class="fa-solid fa-phone" style="font-size:large"></i><div style="width: 2%"></div>
-                                <div class="text" style="font-size: 18px; line-height: 28px; font-weight: 400; color: #171A1FFF; ">+1234567890</div><div style="width: 20%"></div>
-                                <i class="fa-regular fa-envelope" style="font-size:large"></i><div style="width: 2%"></div>
-                                <div class="text" style="font-size: 18px; line-height: 28px; font-weight: 400; color: #379AE6FF; ">emilybrown@yahoo.com</div>
-                            </div>                           
-                        </div>                       
-                    </div>
-                    <div style="padding-bottom: 2%;">
-                        <div class="container-1" style="padding-left: 10%;">
-                            <div style="display: flex" >
-                                <div class="text" style="font-size: 18px; line-height: 28px; font-weight: 700; color: #171A1FFF; ">John Smith</div>
-                                <div style="width: 55%"></div>
-                                <div class="text" style="font-size: 18px; line-height: 28px; font-weight: 400; color: #171A1FFF; ">joined 30 minutes ago..</div>
-                            </div>
-                            <div style="height: 30%"></div>
-                            <div style="display: flex">
-                                <i class="fa-solid fa-phone" style="font-size:large"></i><div style="width: 2%"></div>
-                                <div class="text" style="font-size: 18px; line-height: 28px; font-weight: 400; color: #171A1FFF; ">+1234567890</div><div style="width: 20%"></div>
-                                <i class="fa-regular fa-envelope" style="font-size:large"></i><div style="width: 2%"></div>
-                                <div class="text" style="font-size: 18px; line-height: 28px; font-weight: 400; color: #379AE6FF; ">emilybrown@yahoo.com</div>
-                            </div>                           
-                        </div>                       
-                    </div>
-                    <div style="padding-bottom: 2%;">
-                        <div class="container-1" style="padding-left: 10%;">
-                            <div style="display: flex" >
-                                <div class="text" style="font-size: 18px; line-height: 28px; font-weight: 700; color: #171A1FFF; ">John Smith</div>
-                                <div style="width: 55%"></div>
-                                <div class="text" style="font-size: 18px; line-height: 28px; font-weight: 400; color: #171A1FFF; ">joined 30 minutes ago..</div>
-                            </div>
-                            <div style="height: 30%"></div>
-                            <div style="display: flex">
-                                <i class="fa-solid fa-phone" style="font-size:large"></i><div style="width: 2%"></div>
-                                <div class="text" style="font-size: 18px; line-height: 28px; font-weight: 400; color: #171A1FFF; ">+1234567890</div><div style="width: 20%"></div>
-                                <i class="fa-regular fa-envelope" style="font-size:large"></i><div style="width: 2%"></div>
-                                <div class="text" style="font-size: 18px; line-height: 28px; font-weight: 400; color: #379AE6FF; ">emilybrown@yahoo.com</div>
-                            </div>                           
-                        </div>                       
-                    </div>
+                    <?php 
+                        require("../../Database Layer/db_connection.php");
 
+                        $sql = "SELECT * FROM participation WHERE EventId = $eventID ORDER BY UserId DESC LIMIT 5";
+
+                        $result = $con->query($sql);
+
+                        // Check if the query returned any results
+                        if ($result && $result->num_rows > 0) {
+                            while ($row = $result->fetch_assoc()) {
+                                $userId = $row['UserId'];
+                
+                                // Query to get user data based on UserId
+                                $userSql = "SELECT * FROM user WHERE UserId = $userId";
+                                $userResult = $con->query($userSql);
+                
+                                if ($userResult && $userResult->num_rows > 0) {
+                                    $userRow = $userResult->fetch_assoc();
+                                    $userName = $userRow['Username']; 
+                                    $userEmail = $userRow['Email'];
+                                    $userProfile = $userRow['ProfileImage'];
+                                    $userContact = $userRow['Contact'];
+                                } else {
+                                    echo "No events found.";
+                                }
+                    ?>
+                    <div style="padding-bottom: 2%;">
+                        <?php if (!empty($userRow['ProfileImage'])) : ?>
+                            <!-- Convert BLOB data to base64 and embed it directly in the src attribute -->
+                            <img src="data:image/<?php echo pathinfo($userRow['ProfileImage'], PATHINFO_EXTENSION); ?>;base64,<?php echo base64_encode($userRow['ProfileImage']); ?>" class="dpicn" alt="dp" style="height: 40px;width: 40px;border-radius: 50%;">
+                            <?php else : ?>
+                            <img src="../../Assets/Image/H20 Harmony Logo.png" class="dpicn" alt="dp" style="height: 50px;width: 50px;border-radius: 50%;">
+                            <?php endif; ?>
+                        <div class="container-1" style="padding-left: 10%;">
+                            
+                            <div style="display: flex" >
+                                <div class="text" style="font-size: 18px; line-height: 28px; font-weight: 700; color: #171A1FFF; "><?php echo $userName; ?></div>
+                                <div style="width: 55%"></div>
+                                <div class="text" style="font-size: 18px; line-height: 28px; font-weight: 400; color: #171A1FFF; ">joined 30 minutes ago..</div>
+                            </div>
+                            <div style="height: 30%"></div>
+                            <div style="display: flex">
+                                <i class="fa-solid fa-phone" style="font-size:large"></i><div style="width: 2%"></div>
+                                <div class="text" style="font-size: 18px; line-height: 28px; font-weight: 400; color: #171A1FFF; "><?php echo $userContact; ?></div><div style="width: 20%"></div>
+                                <i class="fa-regular fa-envelope" style="font-size:large"></i><div style="width: 2%"></div>
+                                <div class="text" style="font-size: 18px; line-height: 28px; font-weight: 400; color: #379AE6FF; "><?php echo $userEmail; ?></div>
+                            </div>                           
+                        </div>                       
+                    </div>
+                    <?php
+                            }
+                        } else {
+                            echo "No events found.";
+                        }
+                        $con->close();
+                    ?>
                     <div class="group-small" style="display: flex; justify-content: center">
                         <button class="button" onclick="showList()">View Participation List</button>
                         <div style="width: 3%;"></div>
@@ -406,84 +400,58 @@
                         <button class="close-button" onclick="hidePopup()">X</button>
                     </div>
                     <div class="popup-content">
+                        <?php 
+                            require("../../Database Layer/db_connection.php");
+
+                            $sql = "SELECT * FROM participation WHERE EventId = $eventID ORDER BY UserId DESC LIMIT 5";
+
+                            $result = $con->query($sql);
+
+                            // Check if the query returned any results
+                            if ($result && $result->num_rows > 0) {
+                                while ($row = $result->fetch_assoc()) {
+                                    $userId = $row['UserId'];
+                    
+                                    // Query to get user data based on UserId
+                                    $userSql = "SELECT * FROM user WHERE UserId = $userId";
+                                    $userResult = $con->query($userSql);
+                    
+                                    if ($userResult && $userResult->num_rows > 0) {
+                                        $userRow = $userResult->fetch_assoc();
+                                        $userName = $userRow['Username']; 
+                                        $userEmail = $userRow['Email'];
+                                        $userProfile = $userRow['ProfileImage'];
+                                        $userContact = $userRow['Contact'];
+                                    } else {
+                                        echo "No events found.";
+                                    }
+                        ?>
                         <div class="participant">
-                            <img src="path/to/image.jpg" alt="Participant Image">
+                            <!-- fetch profile image -->
+                            <?php if (!empty($userRow['ProfileImage'])) : ?>
+                                <!-- Convert BLOB data to base64 and embed it directly in the src attribute -->
+                                <img src="data:image/<?php echo pathinfo($userRow['ProfileImage'], PATHINFO_EXTENSION); ?>;base64,<?php echo base64_encode($userRow['ProfileImage']); ?>" class="dpicn" alt="dp" style="height: 40px;width: 40px;border-radius: 50%;">
+                            <?php else : ?>
+                                <img src="../../Assets/Image/H20 Harmony Logo.png" class="dpicn" alt="dp" style="height: 50px;width: 50px;border-radius: 50%;">
+                            <?php endif; ?>
+
+
                             <div style="width: 2%;"></div>
                             <div style="display: flex">
-                                <div class="text" style="font-size: 18px; line-height: 28px; font-weight: 700; color: #171A1FFF; ">John Smith</div><div style="width: 4%;"></div>
+                                <div class="text" style="font-size: 18px; line-height: 28px; font-weight: 700; color: #171A1FFF; "><?php echo $userName;?></div><div style="width: 4%;"></div>
                                 <i class="fa-solid fa-phone" style="font-size:large; padding-top: 5%; padding-left:8%"></i>
-                                <div class="text" style="font-size: 18px; line-height: 28px; font-weight: 400; color: #171A1FFF; padding-top: 5%; padding-left: 5%;">+1234567890</div>
+                                <div class="text" style="font-size: 18px; line-height: 28px; font-weight: 400; color: #171A1FFF; padding-top: 5%; padding-left: 5%;"><?php echo $userContact;?></div>
                                 <i class="fa-solid fa-envelope" style="font-size:large; padding-top: 5%; padding-left:8%"></i>
-                                <div class="text" style="font-size: 18px; line-height: 28px; font-weight: 400; color: #379AE6FF; padding: 5%">emilybrown@yahoo.com</div>
+                                <div class="text" style="font-size: 18px; line-height: 28px; font-weight: 400; color: #379AE6FF; padding: 5%"><?php echo $userEmail;?></div>
                             </div> 
                         </div>
-                        <div class="participant">
-                            <img src="path/to/image.jpg" alt="Participant Image">
-                            <div style="width: 2%;"></div>
-                            <div style="display: flex">
-                                <div class="text" style="font-size: 18px; line-height: 28px; font-weight: 700; color: #171A1FFF; ">John Smith</div><div style="width: 4%;"></div>
-                                <i class="fa-solid fa-phone" style="font-size:large; padding-top: 5%; padding-left:8%"></i>
-                                <div class="text" style="font-size: 18px; line-height: 28px; font-weight: 400; color: #171A1FFF; padding-top: 5%; padding-left: 5%;">+1234567890</div>
-                                <i class="fa-solid fa-envelope" style="font-size:large; padding-top: 5%; padding-left:8%"></i>
-                                <div class="text" style="font-size: 18px; line-height: 28px; font-weight: 400; color: #379AE6FF; padding: 5%">emilybrown@yahoo.com</div>
-                            </div> 
-                        </div>
-                        <div class="participant">
-                            <img src="path/to/image.jpg" alt="Participant Image">
-                            <div style="width: 2%;"></div>
-                            <div style="display: flex">
-                                <div class="text" style="font-size: 18px; line-height: 28px; font-weight: 700; color: #171A1FFF; ">John Smith</div><div style="width: 4%;"></div>
-                                <i class="fa-solid fa-phone" style="font-size:large; padding-top: 5%; padding-left:8%"></i>
-                                <div class="text" style="font-size: 18px; line-height: 28px; font-weight: 400; color: #171A1FFF; padding-top: 5%; padding-left: 5%;">+1234567890</div>
-                                <i class="fa-solid fa-envelope" style="font-size:large; padding-top: 5%; padding-left:8%"></i>
-                                <div class="text" style="font-size: 18px; line-height: 28px; font-weight: 400; color: #379AE6FF; padding: 5%">emilybrown@yahoo.com</div>
-                            </div> 
-                        </div>
-                        <div class="participant">
-                            <img src="path/to/image.jpg" alt="Participant Image">
-                            <div style="width: 2%;"></div>
-                            <div style="display: flex">
-                                <div class="text" style="font-size: 18px; line-height: 28px; font-weight: 700; color: #171A1FFF; ">John Smith</div><div style="width: 4%;"></div>
-                                <i class="fa-solid fa-phone" style="font-size:large; padding-top: 5%; padding-left:8%"></i>
-                                <div class="text" style="font-size: 18px; line-height: 28px; font-weight: 400; color: #171A1FFF; padding-top: 5%; padding-left: 5%;">+1234567890</div>
-                                <i class="fa-solid fa-envelope" style="font-size:large; padding-top: 5%; padding-left:8%"></i>
-                                <div class="text" style="font-size: 18px; line-height: 28px; font-weight: 400; color: #379AE6FF; padding: 5%">emilybrown@yahoo.com</div>
-                            </div> 
-                        </div>
-                        <div class="participant">
-                            <img src="path/to/image.jpg" alt="Participant Image">
-                            <div style="width: 2%;"></div>
-                            <div style="display: flex">
-                                <div class="text" style="font-size: 18px; line-height: 28px; font-weight: 700; color: #171A1FFF; ">John Smith</div><div style="width: 4%;"></div>
-                                <i class="fa-solid fa-phone" style="font-size:large; padding-top: 5%; padding-left:8%"></i>
-                                <div class="text" style="font-size: 18px; line-height: 28px; font-weight: 400; color: #171A1FFF; padding-top: 5%; padding-left: 5%;">+1234567890</div>
-                                <i class="fa-solid fa-envelope" style="font-size:large; padding-top: 5%; padding-left:8%"></i>
-                                <div class="text" style="font-size: 18px; line-height: 28px; font-weight: 400; color: #379AE6FF; padding: 5%">emilybrown@yahoo.com</div>
-                            </div> 
-                        </div>
-                        <div class="participant">
-                            <img src="path/to/image.jpg" alt="Participant Image">
-                            <div style="width: 2%;"></div>
-                            <div style="display: flex">
-                                <div class="text" style="font-size: 18px; line-height: 28px; font-weight: 700; color: #171A1FFF; ">John Smith</div><div style="width: 4%;"></div>
-                                <i class="fa-solid fa-phone" style="font-size:large; padding-top: 5%; padding-left:8%"></i>
-                                <div class="text" style="font-size: 18px; line-height: 28px; font-weight: 400; color: #171A1FFF; padding-top: 5%; padding-left: 5%;">+1234567890</div>
-                                <i class="fa-solid fa-envelope" style="font-size:large; padding-top: 5%; padding-left:8%"></i>
-                                <div class="text" style="font-size: 18px; line-height: 28px; font-weight: 400; color: #379AE6FF; padding: 5%">emilybrown@yahoo.com</div>
-                            </div> 
-                        </div>
-                        <div class="participant">
-                            <img src="path/to/image.jpg" alt="Participant Image">
-                            <div style="width: 2%;"></div>
-                            <div style="display: flex">
-                                <div class="text" style="font-size: 18px; line-height: 28px; font-weight: 700; color: #171A1FFF; ">John Smith</div><div style="width: 4%;"></div>
-                                <i class="fa-solid fa-phone" style="font-size:large; padding-top: 5%; padding-left:8%"></i>
-                                <div class="text" style="font-size: 18px; line-height: 28px; font-weight: 400; color: #171A1FFF; padding-top: 5%; padding-left: 5%;">+1234567890</div>
-                                <i class="fa-solid fa-envelope" style="font-size:large; padding-top: 5%; padding-left:8%"></i>
-                                <div class="text" style="font-size: 18px; line-height: 28px; font-weight: 400; color: #379AE6FF; padding: 5%">emilybrown@yahoo.com</div>
-                            </div> 
-                        </div>
-                        <!-- Add more participant divs as needed -->
+                        <?php
+                            }
+                        } else {
+                            echo "No events found.";
+                        }
+                        $con->close();
+                    ?>
                     </div>
                 </div>
                 

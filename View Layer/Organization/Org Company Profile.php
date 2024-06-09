@@ -8,6 +8,26 @@
 
     $loggedUserEmail = $_SESSION["LoggedUserEmail"];
 
+    require("../../Database Layer/db_connection.php");
+
+    // Sanitize $loggedUserEmail to prevent SQL injection
+    $loggedUserEmail = $con->real_escape_string($loggedUserEmail);
+
+    $sql = "SELECT * FROM organization WHERE OrgEmail = '$loggedUserEmail'";
+
+    $result = $con->query($sql);
+
+    // Check if the query returned any results
+    if ($result && $result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        $orgName = $row['OrgName']; 
+        $orgEmail = $row['OrgEmail'];
+        $orgType = $row['OrgType'];
+        $orgImage = $row['OrgImage'];
+        $orgContact = $row['OrgContact'];
+    } else {
+        echo "No organizations found.";
+    }
 ?>
 
 <!DOCTYPE html>
@@ -193,34 +213,20 @@
             </div>
             <div style="display: flex;">
                 <div class="container-2" style="top: 65%; left: 5%; width: 40%; height: 261px;">
-                    <div class="text" style="color: #171A1FFF; font-weight: 600;">H2O HARMONY</div>
-                    <div class="text" style=" color: #9095A0FF; font-weight: 400;">Software development</div>
+                    <div class="text" style="color: #171A1FFF; font-weight: 600;"><?php echo $orgName; ?></div>
                     <div style="display: flex;">
                         <i class="fa-solid fa-globe" style="font-size:xx-large;  color: #9095A0FF;"></i>
                         <div style="width:2%;"></div>
-                        <div class="text" style="color: #379AE6FF; font-weight: 300;">h20harmony@gmail.com</div>
+                        <div class="text" style="color: #379AE6FF; font-weight: 300;"><?php echo $orgEmail; ?></div>
                         <div style="width:10%;"></div>
                         <i class="fa-regular fa-bookmark" style="font-size:xx-large;  color: #9095A0FF;"></i>
                         <div style="width:2%;"></div>
-                        <div class="text" style="color: #9095A0FF; font-weight: 300;">Hybrid</div>
+                        <div class="text" style="color: #9095A0FF; font-weight: 300;"><?php echo $orgType; ?></div>
                     </div>
                     <div style="display: flex;">
-                        <i class="fa-solid fa-location-pin" style="font-size:xx-large;  color: #9095A0FF;"></i>
-                        <div style="width:2%;"></div>
-                        <div class="text" style="color: #9095A0FF; font-weight: 300;">Malacca, Malaysia</div>
-                        <div style="width:21%;"></div>
                         <i class="fa-solid fa-briefcase" style="font-size:xx-large;  color: #9095A0FF;"></i>
                         <div style="width:2%;"></div>
-                        <div class="text" style="color: #9095A0FF; font-weight: 300;">Monday - Friday</div>
-                    </div>
-                    <div style="display: flex;">
-                        <i class="fa-regular fa-user" style="font-size:xx-large;  color: #9095A0FF;"></i>
-                        <div style="width:2%;"></div>
-                        <div class="text" style="color: #9095A0FF; font-weight: 300;">10-30 employees</div>
-                        <div style="width:23%;"></div>
-                        <i class="fa-regular fa-clock" style="font-size:xx-large;  color: #9095A0FF;"></i>
-                        <div style="width:2%;"></div>
-                        <div class="text" style="color: #9095A0FF; font-weight: 300;">No OT</div>
+                        <div class="text" style="color: #9095A0FF; font-weight: 300;"><?php echo $orgContact; ?></div>
                     </div>
                 </div>
                 <div class="container-2" style="top: 66%; left: 50%; width: 40%; height: 261px; ">
@@ -287,9 +293,6 @@
                 </div>
                 
             </div>
-
-            
-
 
 
 

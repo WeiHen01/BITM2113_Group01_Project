@@ -203,7 +203,7 @@
     .container-2 { 
         top: 286px; 
         left: 25px; 
-        width: 334px; 
+        width: 900px; 
         height: 350px; 
         background: #FFFFFFFF; /* neutral-300 */
     }
@@ -234,7 +234,45 @@
         background-position: center;
         background-repeat: no-repeat;
     }
+    .dropbtn {
+        background-color: #51829B;
+        color: white;
+        padding: 16px;
+        font-size: 16px;
+        border: none;
+        cursor: pointer;
+    }
 
+    .dropdown {
+        position: relative;
+        display: inline-block;
+    }
+
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+    }
+
+    .dropdown-content a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+    }
+
+    .dropdown-content a:hover {background-color: #51829B}
+
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
+
+    .dropdown:hover .dropbtn {
+        background-color: #BED7DC;
+    }
     </style>
 
 
@@ -245,7 +283,7 @@
     <head>
 
         <!-- Title of the tab -->
-        <title>User | Dashboard</title>
+        <title>Org | Edit Profile</title>
         <!-- FavIcon on the browser tab-->
         <link rel="icon" type="image/x-icon" href="../../Assets/Image/H20 Harmony Logo.png">
 
@@ -311,29 +349,22 @@
                                     <label for="contactInformation">Contact Information</label>
                                     <input type="text" id="contactInformation" name="contactInformation" required>
                                 </div>
-                                <div class="form-group">
-                                    <label for="location">Location</label>
-                                    <select id="location" name="location" required>
-                                        <option value="">--Select your country--</option>
-                                        <!-- Add country options here -->
-                                    </select>
-                                </div>
                             </div>
                             <div style="width: 2%;"></div>
-                            <div class="container-3">
-                                <div class="form-group">
-                                    <label for="vision">Vision</label>
-                                    <textarea id="vision" name="vision"></textarea>
-                                </div>
-                                <div class="form-group">
-                                    <label for="partnership">Partnership/Collaboration</label>
-                                    <textarea id="partnership" name="partnership"></textarea>
+                            <div class="container-3" style="margin: 2%">
+                                <label for="contactInformation">Organization Category</label>
+                                <div class="dropdown"">
+                                    <button class="dropbtn" style="margin: 5%,">Dropdown</button>
+                                    <div class="dropdown-content">
+                                        <a href="#">Partnership</a>
+                                        <a href="#">Corporation</a>
+                                        <a href="#">Holding Company</a>
+                                        <a href="#">Foreign Corporation</a>
+                                        <a href="#">Private Limited Company</a>
+                                        <a href="#">Sole propriotorship</a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="privacyPolicy">Privacy and Policy and Terms of Service</label>
-                            <input type="url" id="privacyPolicy" name="privacyPolicy" required>
                         </div>
                         <div class="buttons">
                                     <button type="submit" class="save-button">Save profile</button>

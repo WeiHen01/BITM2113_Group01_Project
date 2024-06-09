@@ -52,12 +52,14 @@
             border-style: solid; 
         }
         .container-4 {
+            padding: 10px;
             top: 895px; 
-            left: 940px; 
-            width: 170%; 
+            left: 940px;  
+            width: 90%;
             height: 575px; 
             background: #FFFFFFFF; /* white */
             border-radius: 6px; /* border-l */
+            overflow-y: auto;
             box-shadow: 0px 0px 1px #171a1f, 0px 0px 2px #171a1f; /* shadow-xs */
         }
         .text {
@@ -150,7 +152,7 @@
     <head>
 
         <!-- Title of the tab -->
-        <title>User | Dashboard</title>
+        <title>Org | Dashboard</title>
         <!-- FavIcon on the browser tab-->
         <link rel="icon" type="image/x-icon" href="../../Assets/Image/H20 Harmony Logo.png">
 
@@ -200,66 +202,38 @@
             </div>
             <div style="display: flex;">
                 <div class="container-2" style="margin: 3%;">
-                    <div class="text" style="padding-left: 3%; top: 63px; left: 16px; font-size: 25px; font-weight:600; top: 63px;  ">Location</div>
-                    <img src="../../Assets/Image/Org location.png" style="width: 800px" alt="Background Image">
+                    <iframe
+                        id="wazeFrame"
+                        allowfullscreen
+                        style="border: none; width: 94vw; height: 60vh; ">
+                    </iframe>
                 </div>
                 <canvas id="multipleChart" style="width:100%;max-width:600px; padding-top: 7%"></canvas>
             </div>
             
-            <div style="display: flex;">
-                <div class="container-3" style="margin: 3%;">
-                    <div class="text" style="padding-left: 3%; top: 63px; left: 16px; font-size: 25px; font-weight:600; top: 63px;  ">Details</div>
-                       <div style="display: flex; padding-left: 5%">
-                            <i class="fa-solid fa-location-dot" style="font-size:large;"></i>
-                            <div class="text-2" style="padding-left: 3%;">Ayer Keroh, Melaka</div>
-                       </div>
-                        <div style="display: flex; padding-left: 5%">
-                            <i class="fa-solid fa-comment-dots" style="font-size:large;"></i>
-                            <div class="text-2" style="padding-left: 3%;">12 complaints have been made about here.</div>
-                       </div>
-                    </div>
-                    <div style="display: block; ">
-                        <div class="container-4" style="margin: 10%;">
-                            <div class="text" style="padding-left: 3%; top: 63px; left: 16px; font-size: 25px; font-weight:600; ">Complaints related to this area</div>
-                            <div class="container-5">
-                                <div class="text-1" style="padding-left: 3%;">Complaint 1</div>
-                                <div class="text-2" style="padding-left: 3%;">Description</div>
-                            </div>
-                            <div class="container-5">
-                                <div class="text-1" style="padding-left: 3%;">Complaint 2</div>
-                                <div class="text-2" style="padding-left: 3%;">Description</div>
-                            </div>
-                            <div class="container-5">
-                                <div class="text-1" style="padding-left: 3%;">Complaint 3</div>
-                                <div class="text-2" style="padding-left: 3%;">Description</div>
-                            </div>
-                             <div class="container-5">
-                                <div class="text-1" style="padding-left: 3%;">Complaint 3</div>
-                                <div class="text-2" style="padding-left: 3%;">Description</div>
-                            </div>
-                        </div>
-                    </div>
+            <div class="container-4" style="margin: 2%;">
+                <div class="text" style="padding-left: 3%; top: 63px; left: 16px; font-size: 25px; font-weight:600; ">Complaints</div>
+                <div class="container-5">
+                    <div class="text-1" style="padding-left: 3%; padding-top:2%">Complaint 1</div>
+                    <div class="text-2" style="padding-left: 3%;">Description</div>
                 </div>
-                
+                <div class="container-5">
+                    <div class="text-1" style="padding-left: 3%; padding-top:2%">Complaint 2</div>
+                    <div class="text-2" style="padding-left: 3%;">Description</div>
+                </div>
+                <div class="container-5">
+                    <div class="text-1" style="padding-left: 3%; padding-top:2%">Complaint 3</div>
+                    <div class="text-2" style="padding-left: 3%;">Description</div>
+                </div>
+                <div class="container-5">
+                    <div class="text-1" style="padding-left: 3%; padding-top:2%">Complaint 4</div>
+                    <div class="text-2" style="padding-left: 3%;">Description</div>
+                </div>
+                <div class="container-5">
+                    <div class="text-1" style="padding-left: 3%; padding-top:2%">Complaint 5</div>
+                    <div class="text-2" style="padding-left: 3%;">Description</div>
+                </div>
             </div>
-            
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            
         </div>
     </body>
 
@@ -294,6 +268,17 @@
             }
         }
         });
+
+        function showCurrentPosition(position) {
+            var latitude = position.coords.latitude;
+            var longitude = position.coords.longitude;
+            // Construct the URL with the latitude and longitude
+            var url = "https://embed.waze.com/iframe?zoom=14&lat=" + latitude + "&lon=" + longitude;
+
+            // Update the src attribute of the iframe
+            document.getElementById("wazeFrame").src = url;
+        }
+
     </script>
 
 </html>

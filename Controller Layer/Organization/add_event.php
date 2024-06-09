@@ -16,7 +16,7 @@
         
         $name = $_POST["name"];
         $description = $_POST["description"];
-        $dateTime = date("Y-m-d H:i:s");
+        $dateTime = $_POST["dateTime"];
         $location = $_POST["location"];
         $category = $_POST["category"];
         //$orgId = $_POST["OrgId "];

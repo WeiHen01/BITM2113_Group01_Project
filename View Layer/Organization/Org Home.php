@@ -334,8 +334,11 @@
             <div style="display: flex;">
                 <div class="text" style="padding-left: 2%">Upcoming Events </div>
                 <div style="width: 65%;"></div>
-                <div class="group" onclick="showPopup()"> 
-                    <button class="button-add" onclick="showAddNewEvent()" style="margin: 15%">Add New Event</button>
+                <div class="group" onclick="showAddEventPopUP()"> 
+                    
+                    <button class="button-add" onclick="showAddNewEvent()" style="margin: 15px; cursor: pointer; display: flex; gap: 2%">
+                        <i class="fa-solid fa-plus"></i> Add New Event
+                    </button>
                 </div>
             </div>
             <div class="container-wrapper" style="display: flex; flex-wrap: wrap;">
@@ -355,17 +358,17 @@
                     <div class="container" style="width: 25%; margin: 2%">
                         <div style="display: flex;">
                             <div class="text"><?php echo $row['Name']; ?></div> 
-                            <div class="group" onclick="showPopup()"> 
+                            <div class="group" onclick="showPopup()"style="margin-left: 50px; margin-top:4%; cursor: pointer; display: flex; "> 
                                 <i class="fa-solid fa-pencil" style="font-size:x-large;" id="editEventBtn"></i>                                </div>
                             </div>
                             <img src="../../Assets/Image/event_details.jpg" style="width: 100%; height: 30%; border-radius: 5%;" alt="Event Image">
-                            <div class="sub-container">
-                                <div class="sub-container-text"><?php echo $row['Description']; ?></div>
+                            <div class="sub-container" style="padding: 7%">
+                                <div class="sub-container-text" ><?php echo $row['Description']; ?></div>
                             </div>
-                            <div class="sub-container">
+                            <div class="sub-container" style="padding: 7%">
                                 <div class="sub-container-text"><?php echo $row['Location']; ?></div>
                             </div>
-                            <button class="button-1" onclick="window.location.href='./Org Event Detail.php'" 
+                            <button class="button-1" onClick="window.location.href='Org Event Detail.php?event=<?php echo $row['EventId']; ?>'"
                                 onmouseover="this.style.background='#00bcd4'; 
                                 this.style.color = '#ffffff'" onmouseleave="this.style.color='#00bcd4'; 
                                 this.style.background = 'transparent'">More
@@ -382,85 +385,63 @@
             
             <div class="overlay" id="overlay" style="display:none;" onclick="hidePopup()"></div>
 
-            <!-- Popup container -->
-            <div class="popup-container" id="popupContainer">
-                <!-- Row 1 -->
-                <div class="rectangle" style="left: 5%" >
-                    <div class="sub-image">
-                            <!-- Image content -->
-                            <img src="../../Assets/Image/Org Water Droplets.png" alt="Image">
-                    </div>
-                    <div class="popup-group" style="top: 65%; left: 35%">
-                        <div class="sub-text" style="padding-top: 10px;">Have new event to launch?</div>
-                        <button class="popup-button" onclick="showAddNewEvent()">Add New Event</button>
-                    </div>
-                </div>
-                <!-- Row 2 -->
-                <div class="rectangle" style="left: 35%" >
-                    <div class="sub-image">
-                            <!-- Image content -->
-                            <img src="../../Assets/Image/Org Elemental.png" alt="Image">
-                        </div>
-                    <div class="popup-group" style="top: 65%; left: 35%">
-                        <div class="sub-text" style="padding-top: 10px;">Update and edit your event here!</div>
-                        <button class="popup-button" id="editEventBtn">Edit Event</button>
-                    </div>
-                </div>
-                <!-- Row 3 -->
-                <div class="rectangle" style="left: 65%">
-                    <div class="sub-image">
-                        <!-- Image content -->
-                        <img src="../../Assets/Image/Org View.png" alt="Image">
-                    </div>
-                    <div class="popup-group" style="top: 65%; left: 35%">
-                        <div class="sub-text" style="padding-top: 10px;">View all your event here!</div>
-                        <button class="popup-button" id="eventCalendarBtn">Event Calendar</button>
-                    </div>
-                </div>
-            </div>
-
             <!-- Popup container for adding a new event -->
             <div class="popup-container" id="newEventPopupContainer" style="display: none; padding: 20px;
                 background: white; border-radius: 8px;">
-                <div style="background-image: url('../../Assets/Image/Org New Event.png'); 
-                    padding: 20px; border-radius: 8px; width: 30%; background-size: cover; background-position: center;">
-                    <h2 style="writing-mode: vertical-rl; text-align: center; 
-                    font-size: 80px;  padding: 50px; transform: rotate(180deg); margin: 0;">New Event</h2>
-                </div>
-
-                <div style="flex-grow: 1; padding: 20px;">
-                    <form id="newEventForm" method="POST" action="../../Controller Layer/Organization/add_event.php">
-                    <!-- Event Title -->
-                        <h3>Please enter details for new event:</h3>
-                        <!-- Event Name -->
-                        <input type="text" id="newEventName" name="name" placeholder="name" style="width: 100%; margin-bottom: 10px; padding: 10px; font-family: 'Epilogue'; font-size: 16px; line-height: 24px; border: 1px solid #9095A0; border-radius: 4px;">
-                        <!-- Event Description -->
-                        <textarea id="newEventDescription" name="description" placeholder="description" rows="4" style="width: 100%; margin-bottom: 10px; padding: 10px; font-family: 'Epilogue'; font-size: 16px; line-height: 24px; border: 1px solid #9095A0; border-radius: 4px;"></textarea>
-                        <!-- Event Location -->
-                        <textarea id="newEventLocation" name="location" placeholder="location" rows="4" style="width: 100%; margin-bottom: 10px; padding: 10px; font-family: 'Epilogue'; font-size: 16px; line-height: 24px; border: 1px solid #9095A0; border-radius: 4px;"></textarea>
-                        <!-- Event Category -->
-                        <input type="text" id="category" name="category" placeholder="Category" style="width: 100%; margin-bottom: 10px; padding: 10px; font-family: Inter; font-size: 16px; line-height: 24px; border: 1px solid #9095A0; border-radius: 4px;">
-                        <!-- Button to submit event --> 
-                        <button class="popup-button" onclick="submitNewEvent()" style="width: 100%; padding: 10px; background-color: #2979FF; color: white; font-family: 'Epilogue'; font-size: 16px; line-height: 24px; border: none; border-radius: 4px;">Add New Event</button></div>
-                    </form>
-                    <div style="padding: 20px; border-radius: 8px; width: 40%;">
-                        <i class="fa-regular fa-circle-xmark" onclick="hidePopup()" style="font-size: xx-large;"  ></i>
-                            <div style="background-image: url('../../Assets/Image/Org2.png'); padding: 80px; border-radius: 8px; position: relative;">
-                                <div style="position: absolute; top: 7%; right: 40%; background: #987070 ;color: white; border-radius: 50%; padding: 5px 10px;">?</div>
-                                <p style="font-family: Inter; font-size: 16px; line-height: 24px; text-align: center; color: #F1EEDC;">"The environment is where we all meet; where we all have a mutual interest; it is the one thing all of us share."</p>
-                            </div>
-                        </div>
+                <div style = "display: flex">
+                    <div style="background-image: url('../../Assets/Image/Org New Event.png'); 
+                        padding: 20px; border-radius: 8px; width: 30%; background-size: cover; background-position: center;">
+                        <h2 style="writing-mode: vertical-rl; text-align: center; 
+                        font-size: 80px;  padding: 50px; transform: rotate(180deg); margin: 0;">New Event</h2>
                     </div>
 
-                <!-- Overlay for new event popup container -->
-                <div class="overlay" id="overlayNewEventPopup" style="display: none;" onclick="hidePopup()"></div>
+                    <div style="flex-grow: 1; padding: 20px;">
+                        <form id="newEventForm" method="POST" action="../../Controller Layer/Organization/add_event.php">
+                        <!-- Event Title -->
+                            <h3>Please enter details for new event:</h3>
+                            <!-- Event Name -->
+                            <input type="text" id="newEventName" name="name" placeholder="name" style="width: 100%; margin-bottom: 10px; padding: 10px; font-family: 'Epilogue'; font-size: 16px; line-height: 24px; border: 1px solid #9095A0; border-radius: 4px;">
+                            <!-- Event Description -->
+                            <textarea id="newEventDescription" name="description" placeholder="description" rows="4" style="width: 100%; margin-bottom: 10px; padding: 10px; font-family: 'Epilogue'; font-size: 16px; line-height: 24px; border: 1px solid #9095A0; border-radius: 4px;"></textarea>
+                            <!-- Event Location -->
+                            <textarea id="newEventLocation" name="location" placeholder="location" rows="4" style="width: 100%; margin-bottom: 10px; padding: 10px; font-family: 'Epilogue'; font-size: 16px; line-height: 24px; border: 1px solid #9095A0; border-radius: 4px;"></textarea>
+                            <!-- Event Category -->
+                            <input type="text" id="category" name="category" placeholder="Category" style="width: 100%; margin-bottom: 10px; padding: 10px; font-family: Inter; font-size: 16px; line-height: 24px; border: 1px solid #9095A0; border-radius: 4px;">
+                            Select date and time: 
+                            <input name="dateTime" type="datetime-local"/>
+                            <!-- Button to submit event --> 
+                            <button class="popup-button" onclick="submitNewEvent()" style="width: 100%; padding: 10px; background-color: #2979FF; color: white; font-family: 'Epilogue'; font-size: 16px; line-height: 24px; border: none; border-radius: 4px;">Add New Event</button></div>
+                        </form>
+                        <div style="padding: 20px; border-radius: 8px; width: 40%;">
+                            <div style = "justify-content: end; width: 100%;">
+                                <i class="fa-solid fa-xmark" onclick="hidePopup()" style="font-size: xx-large; cursor: pointer"  ></i>
+                                <div style="background-image: url('../../Assets/Image/Org2.png'); padding: 80px; border-radius: 8px; position: relative;">
+                                    <div style="position: absolute; top: 7%; right: 40%; background: #987070 ;color: white; border-radius: 50%; padding: 5px 10px;">?</div>
+                                        <p style="font-family: Inter; font-size: 16px; line-height: 24px; text-align: center; color: #F1EEDC;">"The environment is where we all meet; where we all have a mutual interest; it is the one thing all of us share."</p>
+                                    </div>
+                                
+                                </div>
+                                
+                            </div>
+                           
+                        </div>
+                        
+
+                    <!-- Overlay for new event popup container -->
+                    <div class="overlay" id="overlayNewEventPopup" style="display: none;" onclick="hidePopup()"></div>
+                </div>
 
             </div>
+
            <!-- Edit Event Popup Container -->
-            <div id="editEventPopup" class="popup-container-2">
+           <div id="editEventPopup" class="popup-container-2">
+                 
                 <div class="popup-content">
-                    <span class="close-btn"  onclick="window.location.href='./Org Home.php'">&times;</span>
-                    <h2>Edit Event</h2>
+                     
+                    <div style = "justify-content: space-between; display: flex; align-items: center;">
+                        <h2>Edit Event</h2>
+                        <i class="fa-solid fa-xmark" onclick="hidePopup()" style="font-size: xx-large; cursor: pointer" onmouseover="this.style.color='#fff000'" onmouseleave="this.style.color='#000000'"></i>
+                    </div>
                     <!-- Event Title -->
                     <h3 style="font-weight:300">To update or delete your event organization, please fill out the forms below. We appreciate your cooperation!</h3>
                     <!-- Event Name -->
@@ -468,15 +449,15 @@
 
                     <!-- Event Description -->
                     <textarea id="newEventDescription" name="newEventDescription" placeholder="Description" rows="4" style="width: 100%; margin-bottom: 10px; padding: 10px; font-family: 'Epilogue'; font-size: 16px; line-height: 24px; border: 1px solid #9095A0; border-radius: 4px;"></textarea>
-
-                    <!-- Event Location -->
-                    <select id="newEventLocation" name="newEventLocation" style="width: 100%; margin-bottom: 10px; padding: 10px; font-family: 'Epilogue'; font-size: 16px; line-height: 24px; border: 1px solid #9095A0; border-radius: 4px;">
-                        <option value="" disabled selected>Location</option>
-                        <!-- Add your locations here -->
-                    </select>
-
+                    
                     <!-- Event Category -->
                     <input type="text" id="newEventCategory" name="newEventCategory" placeholder="Category" style="width: 100%; margin-bottom: 10px; padding: 10px; font-family: Inter; font-size: 16px; line-height: 24px; border: 1px solid #9095A0; border-radius: 4px;">
+                    
+                    <!-- Event Category -->
+                    <input type="text" id="newEventCategory" name="newEventCategory" placeholder="Location" style="width: 100%; margin-bottom: 10px; padding: 10px; font-family: Inter; font-size: 16px; line-height: 24px; border: 1px solid #9095A0; border-radius: 4px;">
+                    
+                    Select date and time: 
+                    <input type="datetime-local" />
 
                     <!-- Participation Quota -->
                     <div style="display: flex;">
@@ -487,20 +468,30 @@
                     
                 </div>
             </div>
+
+
+
+            </div>
         </div>
     </body>
 
     <script>
         function showPopup() {
-            document.getElementById("popupContainer").style.display = "block";
+            document.getElementById("editEventPopup").style.display = "block";
             document.getElementById("overlay").style.display = "block";
         }
+        function showAddEventPopUP() {
+            document.getElementById("newEventPopupContainer").style.display = "block";
+            document.getElementById("overlay").style.display = "block";
+        }
+
         function hidePopup() {
-            document.getElementById("popupContainer").style.display = "none";
             document.getElementById("overlay").style.display = "none";
             document.getElementById("newEventPopupContainer").style.display = "none";
+            document.getElementById("editEventPopup").style.display = "none";
             document.getElementById("overlayNewEventPopup").style.display = "none";
         }
+
         function showAddNewEvent() {
             document.getElementById("newEventPopupContainer").style.display = "flex";
             document.getElementById("overlayPopup").style.display = "block";
@@ -509,6 +500,12 @@
             if(event.target == document.getElementById("overlay")){
                 document.getElementById("overlay").style.display = "none";
             }
+            if(event.target == document.getElementById("editEventPopup")){
+                document.getElementById("overlay").style.display = "none";
+                document.getElementById("editEventPopup").style.display = "none";
+                document.getElementById("overlayNewEventPopup").style.display = "none";
+            }
+            
         }
         document.getElementById('editEventBtn').onclick = function() {
         document.getElementById('editEventPopup').style.display = "block";
