@@ -305,7 +305,7 @@
                                 <?php foreach ($events as $event): ?>
                                     <tr>
                                     <td>
-                                        <a class='plain-text-link' href='../User/User Event Details.php?event=<?php echo urlencode($event['EventId']); ?>'>
+                                        <a class='plain-text-link' href='Admin Details.php?event=<?php echo urlencode($event['EventId']); ?>'>
                                         <?php echo htmlspecialchars($event['Name']); ?></a>
                                         </td>
                                         <td><?php echo htmlspecialchars($event['OrgName']); ?></td>

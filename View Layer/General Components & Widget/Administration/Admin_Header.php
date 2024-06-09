@@ -1,3 +1,26 @@
+<?php 
+    
+    if(session_status() == PHP_SESSION_NONE){
+        session_start();
+    }
+
+    $loggedUserEmail = $_SESSION["LoggedUserEmail"];
+
+    require("../../Database Layer/db_connection.php");
+
+    $sql = "SELECT * FROM admin WHERE AdminEmail = '$loggedUserEmail'";
+
+    $result = mysqli_query($con, $sql);
+
+    if(mysqli_num_rows($result) === 1){
+        $row = mysqli_fetch_assoc($result);
+        $_SESSION['admin'] = $row["AdminId"];
+    }
+
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -43,11 +66,20 @@
             
 
             <!-- Profile image with dropdown -->
-            <div class="profile-image" onclick="toggleDropdown()">
-                <img src="../../../Assets/Image/logo.png" alt="Profile" width="40" height="40">
+            <div class="profile-image" onclick="toggleDropdown()" style = "display: flex; gap: 5%; align-items: center">
+                 <!-- fetch profile image -->
+                 <?php if (!empty($row['ProfileImage'])) : ?>
+                    <!-- Convert BLOB data to base64 and embed it directly in the src attribute -->
+                    <img src="data:image/<?php echo pathinfo($row['ProfileImage'], PATHINFO_EXTENSION); ?>;base64,<?php echo base64_encode($row['ProfileImage']); ?>" class="dpicn" alt="dp" style="height: 40px;width: 40px;border-radius: 50%;">
+                <?php else : ?>
+                    <img src="../../Assets/Image/H20 Harmony Logo.png" class="dpicn" alt="dp" style="height: 40px;width: 40px;border-radius: 50%;">
+                <?php endif; ?>
+
+                <p style = "font-weight: 900"><?php echo $row['AdminName'] == null ? "New User" : $row['AdminName'] ?></p>
+                
+
                 <div class="profile-dropdown" id="profileDropdown">
-                    <a href="User Account.php">Profile</a>
-                    <a href="#">Settings</a>
+                    <a href="Admin Account.php">Profile</a>
                     <a href="#" onClick="logout()">Logout</a>
                 </div>
             </div>

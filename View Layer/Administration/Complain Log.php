@@ -305,7 +305,7 @@
                                 <?php foreach ($complains as $complain): ?>
                                     <tr>
                                         <td>
-                                        <a class='plain-text-link' href='../User/User Complaint Details.php?complaint=<?php echo urlencode($complain['ComplainId']); ?>'>
+                                        <a class='plain-text-link' href='Admin Complaint Details.php?complaint=<?php echo urlencode($complain['ComplainId']); ?>'>
                                         <?php echo htmlspecialchars($complain['Title']); ?></a>
                                         </td>
                                         <td><?php echo htmlspecialchars($complain['Username']); ?></td>

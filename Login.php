@@ -199,7 +199,7 @@
                             <input type="checkbox" value="status" id="Remember" /> 
                             <label for="Remember">Remember me</label>
                         </div>
-                        <b><a href="" style="text-decoration: none; color: black" onmouseover="this.style.color='#0056b3'" onmouseout="this.style.color='#000000'">Forget Password?</a></b>
+                        <b><a href="Forget Password.php" style="text-decoration: none; color: black" onmouseover="this.style.color='#0056b3'" onmouseout="this.style.color='#000000'">Forget Password?</a></b>
                     </div>
 
                    

@@ -7,6 +7,38 @@
     }
 
     $loggedUserEmail = $_SESSION["LoggedUserEmail"];
+
+    require("../../Database Layer/db_connection.php");
+
+    // Fetch complaints data
+    $complaintData = [];
+    $sql = "SELECT Status, COUNT(*) as count FROM complain GROUP BY Status";
+    $result = mysqli_query($con, $sql);
+
+    if($result) {
+        while($row = mysqli_fetch_assoc($result)) {
+            $complaintData[$row['Status']] = $row['count'];
+        }
+    }
+
+    $complaintsOnProgress = isset($complaintData['On Progress']) ? $complaintData['On Progress'] : 0;
+    $complaintsCompleted = isset($complaintData['Completed']) ? $complaintData['Completed'] : 0;
+
+    // Fetch events data
+    $eventData = [];
+    $sql = "SELECT Category, COUNT(*) as count FROM event GROUP BY Category";
+    $result = mysqli_query($con, $sql);
+
+    if($result) {
+        while($row = mysqli_fetch_assoc($result)) {
+            $eventData[$row['Category']] = $row['count'];
+        }
+    }
+
+    $eventsOngoing = isset($eventData['Ongoing']) ? $eventData['Ongoing'] : 0;
+    $eventsCompleted = isset($eventData['Completed']) ? $eventData['Completed'] : 0;
+
+
 ?>
 
 <!DOCTYPE html>
@@ -169,6 +201,7 @@
         }
 
     </style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Include Chart.js library -->
 </head>
 <body>
 
@@ -272,14 +305,14 @@
                     </div>
                 </div>
 
-                <!-- Report by this month section -->
-                <div class="section-title" style="margin-top: 2%">Report by this month</div>
+                                <!-- Report by this month section -->
+                                <div class="section-title" style="margin-top: 2%">Report by this month</div>
                 <div class="main-content">
                     <div class="bg-container">
                         <div class="container">
                             <p style= "padding: 1%;"><b>Resolved and Unresolved Water Pollution Complaint</b></p>
                             <div class="chart-container">
-                                <!-- Insert your chart here -->
+                                <canvas id="complaintChart"></canvas>
                             </div>
                         </div>
                     </div>
@@ -287,7 +320,7 @@
                         <div class="container">
                             <p style= "padding: 1%;"><b>Active Events</b></p>
                             <div class="pie-chart-container">
-                                <!-- Insert your pie chart here -->
+                                <canvas id="eventChart"></canvas>
                             </div>
                         </div>
                     </div>
@@ -295,6 +328,75 @@
             </div>
         </div>
 
-        <script src="../General Components & Widget/Administration/Admin_Component Script.js"></script>
+        <script>
+            // Data for the complaint chart
+            const complaintData = {
+                labels: ['On Progress', 'Completed'],
+                datasets: [{
+                    label: 'Complaints',
+                    data: [<?php echo $complaintsOnProgress; ?>, <?php echo $complaintsCompleted; ?>],
+                    backgroundColor: ['#6495ED', '#1E90FF']
+                }]
+            };
+
+            // Configuration for the complaint chart
+            const complaintConfig = {
+                type: 'bar',
+                data: complaintData,
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        },
+                        title: {
+                            display: true,
+                            text: 'Resolved and Unresolved Water Pollution Complaint'
+                        }
+                    }
+                }
+            };
+
+            // Render the complaint chart
+            const complaintChart = new Chart(
+                document.getElementById('complaintChart'),
+                complaintConfig
+            );
+
+            // Data for the event chart
+            const eventData = {
+                labels: ['Ongoing', 'Completed'],
+                datasets: [{
+                    label: 'Events',
+                    data: [<?php echo $eventsOngoing; ?>, <?php echo $eventsCompleted; ?>],
+                    backgroundColor: ['#6495ED', '#1E90FF']
+                }]
+            };
+
+            // Configuration for the event chart
+            const eventConfig = {
+                type: 'pie',
+                data: eventData,
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        },
+                        title: {
+                            display: true,
+                            text: 'Active Events'
+                        }
+                    }
+                }
+            };
+
+            // Render the event chart
+            const eventChart = new Chart(
+                document.getElementById('eventChart'),
+                eventConfig
+            );
+        </script>
+<script src="../General Components & Widget/User/User Component Script.js"></script>
     </body>
 </html>
