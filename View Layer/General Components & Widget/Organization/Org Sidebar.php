@@ -16,7 +16,7 @@
             Dashboard
         </a>
         <a href="Org Event Detail.php" <?php if(basename($_SERVER['PHP_SELF']) == 'Org Event Detail.php') echo 'class="active"'?>>
-            <i class="fa-regular fa-calendar-days" style="padding-right: 5%"></i>
+            <i class="fa-solid fa-cube" style="padding-right: 5%"></i>
             Event
         </a>
         <a href="Org Event Calendar.php" <?php if(basename($_SERVER['PHP_SELF']) == 'Org Event Calendar.php') echo 'class="active"'?>>

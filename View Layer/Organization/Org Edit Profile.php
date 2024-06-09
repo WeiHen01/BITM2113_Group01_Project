@@ -150,7 +150,6 @@
     }
     /* Avatar 1 */
     .avatar {
-        position: absolute; 
         top: 86px; 
         left: 45px; 
         width: 177px; 
@@ -164,7 +163,7 @@
         opacity: 1; 
         overflow: hidden; 
         border-radius: 89px; 
-        }
+    }
     .avatar .badge {
         width: 44px; 
         height: 44px; 
@@ -216,6 +215,25 @@
         height: 350px; 
         background: #FFFFFFFF; /* neutral-300 */
     }
+    .avatar-2 {
+        top: 95%;
+        left: 60px;
+        width: 30%;
+        height: 177px;
+        font-family: Inter;
+        font-size: 88px;
+        line-height: 88px;
+        font-weight: 400;
+        color: #FFFFFFFF; /* white */
+        background: #4069E5FF; /* tertiary1-500 */
+        opacity: 1;
+        overflow: hidden;
+        border-radius: 89px;
+        background-image: url('../../Assets/Image/shao.jpg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
 
     </style>
 
@@ -261,8 +279,8 @@
                     <h2>Edit Profile</h2>
                     <form action="save_profile.php" method="post" enctype="multipart/form-data">
                         <div style="display: flex;">
-                            <div class="avatar">
-
+                            <div class="avatar-2">
+                                <img src="../../Assets/Image/shao.jpg" alt="Profile" width="40" height="40">
                             </div>
                             <div class="group">
                                 <label for="logo" style=" font-family: Inter; font-size: 16; line-height: 22px; font-weight: 700; color: #171A1FFF;">Logo</label>

@@ -45,6 +45,7 @@
                 background: url("../../Assets/Image/event_details.jpg");
                 background-size: cover; 
                 width: 100%;
+               padding-bottom: 5%;
             }
             .container {
                 justify-content: center;

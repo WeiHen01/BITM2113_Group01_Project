@@ -229,7 +229,7 @@
             display: none; /* Hidden by default */
             position: absolute; 
             top: 15%; 
-            left: 214px; 
+            left: 250px; 
             width: 70%; 
             height: 85vh; 
             background: #DEE1E6FF; /* neutral-300 */
@@ -335,102 +335,51 @@
                 <div class="text" style="padding-left: 2%">Upcoming Events </div>
                 <div style="width: 65%;"></div>
                 <div class="group" onclick="showPopup()"> 
-                        <button class="button-add" onclick="showAddNewEvent()" style="margin: 15%">Add New Event</button>
+                    <button class="button-add" onclick="showAddNewEvent()" style="margin: 15%">Add New Event</button>
                 </div>
-             </div>
-            
-            <div style="display: flex;">
-                <div class = "container" style="width: 25%; ">
-                    <div style="display: flex;">
-                        <div class="text">Ripple Effect: Unveiling Water Pollution</div> 
-                        <div class="group"  onclick="showPopup()"> 
-                                <i class="fa-solid fa-pencil" style="font-size:larger; padding-top: 5%" id="editEventBtn"></i>
-                        </div>
-                    </div>
-                    <img src="../../Assets/Image/event_details.jpg" style = "width: 100%; height:30%; border-radius:5%" alt="Event Image">
-                        <div class="sub-container">
-                            <div class="sub-container-text">
-                                Additional Information
+            </div>
+            <div class="container-wrapper" style="display: flex; flex-wrap: wrap;">
+                <?php
+                    // Include the database connection file
+                    include('../../Database Layer/db_connection.php');
+
+                    // Query to fetch all data from the events table
+                    $sql = "SELECT * FROM event";
+                    $result = mysqli_query($con, $sql);
+
+                    // Check if there are any events
+                    if (mysqli_num_rows($result) > 0) {
+                        while ($row = mysqli_fetch_assoc($result)) {
+                        // Output HTML for each event
+                ?>
+                    <div class="container" style="width: 25%; margin: 2%">
+                        <div style="display: flex;">
+                            <div class="text"><?php echo $row['Name']; ?></div> 
+                            <div class="group" onclick="showPopup()"> 
+                                <i class="fa-solid fa-pencil" style="font-size:x-large;" id="editEventBtn"></i>                                </div>
                             </div>
-                        </div>
-                        <div class="sub-container">
-                            <div class="sub-container-text">
-                                Additional Information
+                            <img src="../../Assets/Image/event_details.jpg" style="width: 100%; height: 30%; border-radius: 5%;" alt="Event Image">
+                            <div class="sub-container">
+                                <div class="sub-container-text"><?php echo $row['Description']; ?></div>
                             </div>
-                        </div>
-                        <div class="sub-container">
-                            <div class="sub-container-text">
-                                Additional Information
+                            <div class="sub-container">
+                                <div class="sub-container-text"><?php echo $row['Location']; ?></div>
                             </div>
+                            <button class="button-1" onclick="window.location.href='./Org Event Detail.php'" 
+                                onmouseover="this.style.background='#00bcd4'; 
+                                this.style.color = '#ffffff'" onmouseleave="this.style.color='#00bcd4'; 
+                                this.style.background = 'transparent'">More
+                            </button>
                         </div>
-                        <button class="button-1" onclick="window.location.href='./Org Event Detail.php'" 
-                            onmouseover="this.style.background='#00bcd4'; 
-                            this.style.color = '#ffffff'" onmouseleave="this.style.color='#00bcd4'; 
-                            this.style.background = 'transparent'">More
-                        </button>  
-                </div>
-                <div class = "container" style="width: 25%; ">
-                    <div style="display: flex;">
-                        <div class="text">Ripple Effect: Unveiling Water Pollution</div> 
-                        <div class="group"  onclick="showPopup()"> 
-                                <i class="fa-solid fa-pencil" style="font-size:larger; padding-top: 5%" id="editEventBtn"></i>
-                        </div>
-                    </div>
-                    <img src="../../Assets/Image/event_details.jpg" style = "width: 100%; height:30%; border-radius:5%" alt="Event Image">
-                        <div class="sub-container">
-                            <div class="sub-container-text">
-                                Additional Information
-                            </div>
-                        </div>
-                        <div class="sub-container">
-                            <div class="sub-container-text">
-                                Additional Information
-                            </div>
-                        </div>
-                        <div class="sub-container">
-                            <div class="sub-container-text">
-                                Additional Information
-                            </div>
-                        </div>
-                        <button class="button-1" onclick="window.location.href='./Org Event Detail.php'" 
-                            onmouseover="this.style.background='#00bcd4'; 
-                            this.style.color = '#ffffff'" onmouseleave="this.style.color='#00bcd4'; 
-                            this.style.background = 'transparent'">More
-                        </button>  
-                </div>
-                <div class = "container" style="width: 25%; ">
-                    <div style="display: flex;">
-                        <div class="text">Ripple Effect: Unveiling Water Pollution</div> 
-                        <div class="group"  onclick="showPopup()"> 
-                                <i class="fa-solid fa-pencil" style="font-size:larger; padding-top: 5%" id="editEventBtn"></i>
-                        </div>
-                    </div>
-                    <img src="../../Assets/Image/event_details.jpg" style = "width: 100%; height:30%; border-radius:5%" alt="Event Image">
-                        <div class="sub-container">
-                            <div class="sub-container-text">
-                                Additional Information
-                            </div>
-                        </div>
-                        <div class="sub-container">
-                            <div class="sub-container-text">
-                                Additional Information
-                            </div>
-                        </div>
-                        <div class="sub-container">
-                            <div class="sub-container-text">
-                                Additional Information
-                            </div>
-                        </div>
-                        <button class="button-1" onclick="window.location.href='./Org Event Detail.php'" 
-                            onmouseover="this.style.background='#00bcd4'; 
-                            this.style.color = '#ffffff'" onmouseleave="this.style.color='#00bcd4'; 
-                            this.style.background = 'transparent'">More
-                        </button>  
-                </div>
-            
+                <?php
+                    }
+                } else {
+                    // If no events found, display a message or handle it accordingly
+                    echo "<p>No events found.</p>";
+                }
+                ?>
             </div>
             
-
             <div class="overlay" id="overlay" style="display:none;" onclick="hidePopup()"></div>
 
             <!-- Popup container -->
@@ -480,43 +429,21 @@
                 </div>
 
                 <div style="flex-grow: 1; padding: 20px;">
+                    <form id="newEventForm" method="POST" action="../../Controller Layer/Organization/add_event.php">
                     <!-- Event Title -->
-                    <h3>Please enter details for new event:</h3>
-                    <!-- Event Name -->
-                    <input type="text" id="newEventName" name="newEventName" placeholder="Event Name" style="width: 100%; margin-bottom: 10px; padding: 10px; font-family: 'Epilogue'; font-size: 16px; line-height: 24px; border: 1px solid #9095A0; border-radius: 4px;">
-
-                    <!-- Event Description -->
-                    <textarea id="newEventDescription" name="newEventDescription" placeholder="Description" rows="4" style="width: 100%; margin-bottom: 10px; padding: 10px; font-family: 'Epilogue'; font-size: 16px; line-height: 24px; border: 1px solid #9095A0; border-radius: 4px;"></textarea>
-
-                    <!-- Event Location -->
-                    <select id="newEventLocation" name="newEventLocation" style="width: 100%; margin-bottom: 10px; padding: 10px; font-family: 'Epilogue'; font-size: 16px; line-height: 24px; border: 1px solid #9095A0; border-radius: 4px;">
-                        <option value="" disabled selected>Location</option>
-                        <!-- Add your locations here -->
-                    </select>
-
-                    <!-- Event Category -->
-                    <input type="text" id="newEventCategory" name="newEventCategory" placeholder="Category" style="width: 100%; margin-bottom: 10px; padding: 10px; font-family: Inter; font-size: 16px; line-height: 24px; border: 1px solid #9095A0; border-radius: 4px;">
-
-                    <!-- Participation Quota -->
-                    <div style="margin-bottom: 1%;">
-                        <label style="display: block; font-family: Inter; font-size: 16px; margin-bottom: 5px;">Participation Quota</label>
-                        <div>
-                            <input type="radio" id="quota1" name="participationQuota" value="<50">
-                            <label for="quota1" style="margin-right: 10px;">Participants < 50</label>
-                            <input type="radio" id="quota2" name="participationQuota" value="50-100">
-                            <label for="quota2" style="margin-right: 10px;">50 < Participants < 100</label>
-                            <input type="radio" id="quota3" name="participationQuota" value="100-250">
-                            <label for="quota3" style="margin-right: 10px;">100 < Participants < 250</label>
-                            <input type="radio" id="quota4" name="participationQuota" value="others">
-                            <label for="quota4">Others</label>
-                        </div>
-                        <textarea id="otherQuota" name="otherQuota" placeholder="Others" rows="1" style="width: 100%; margin-top: 10px; padding: 10px; font-family: 'Epilogue'; font-size: 16px; line-height: 24px; border: 1px solid #9095A0; border-radius: 4px;"></textarea>
-                    </div>
-
-                    <!-- Button to submit event --> 
-                    <button class="popup-button" onclick="submitNewEvent()" style="width: 100%; padding: 10px; background-color: #2979FF; color: white; font-family: 'Epilogue'; font-size: 16px; line-height: 24px; border: none; border-radius: 4px;">Add New Event</button>
-                        </div>
-                        <div style="padding: 20px; border-radius: 8px; width: 40%;">
+                        <h3>Please enter details for new event:</h3>
+                        <!-- Event Name -->
+                        <input type="text" id="newEventName" name="name" placeholder="name" style="width: 100%; margin-bottom: 10px; padding: 10px; font-family: 'Epilogue'; font-size: 16px; line-height: 24px; border: 1px solid #9095A0; border-radius: 4px;">
+                        <!-- Event Description -->
+                        <textarea id="newEventDescription" name="description" placeholder="description" rows="4" style="width: 100%; margin-bottom: 10px; padding: 10px; font-family: 'Epilogue'; font-size: 16px; line-height: 24px; border: 1px solid #9095A0; border-radius: 4px;"></textarea>
+                        <!-- Event Location -->
+                        <textarea id="newEventLocation" name="location" placeholder="location" rows="4" style="width: 100%; margin-bottom: 10px; padding: 10px; font-family: 'Epilogue'; font-size: 16px; line-height: 24px; border: 1px solid #9095A0; border-radius: 4px;"></textarea>
+                        <!-- Event Category -->
+                        <input type="text" id="category" name="category" placeholder="Category" style="width: 100%; margin-bottom: 10px; padding: 10px; font-family: Inter; font-size: 16px; line-height: 24px; border: 1px solid #9095A0; border-radius: 4px;">
+                        <!-- Button to submit event --> 
+                        <button class="popup-button" onclick="submitNewEvent()" style="width: 100%; padding: 10px; background-color: #2979FF; color: white; font-family: 'Epilogue'; font-size: 16px; line-height: 24px; border: none; border-radius: 4px;">Add New Event</button></div>
+                    </form>
+                    <div style="padding: 20px; border-radius: 8px; width: 40%;">
                         <i class="fa-regular fa-circle-xmark" onclick="hidePopup()" style="font-size: xx-large;"  ></i>
                             <div style="background-image: url('../../Assets/Image/Org2.png'); padding: 80px; border-radius: 8px; position: relative;">
                                 <div style="position: absolute; top: 7%; right: 40%; background: #987070 ;color: white; border-radius: 50%; padding: 5px 10px;">?</div>
@@ -552,21 +479,6 @@
                     <input type="text" id="newEventCategory" name="newEventCategory" placeholder="Category" style="width: 100%; margin-bottom: 10px; padding: 10px; font-family: Inter; font-size: 16px; line-height: 24px; border: 1px solid #9095A0; border-radius: 4px;">
 
                     <!-- Participation Quota -->
-                    <div style="margin-bottom: 1%;">
-                        <label style="display: block; font-family: Inter; font-size: 16px; margin-bottom: 5px;">Participation Quota</label>
-                        <div>
-                            <input type="radio" id="quota1" name="participationQuota" value="<50">
-                            <label for="quota1" style="margin-right: 10px;">Participants < 50</label>
-                            <input type="radio" id="quota2" name="participationQuota" value="50-100">
-                            <label for="quota2" style="margin-right: 10px;">50 < Participants < 100</label>
-                            <input type="radio" id="quota3" name="participationQuota" value="100-250">
-                            <label for="quota3" style="margin-right: 10px;">100 < Participants < 250</label>
-                            <input type="radio" id="quota4" name="participationQuota" value="others">
-                            <label for="quota4">Others</label>
-                        </div>
-                        <textarea id="otherQuota" name="otherQuota" placeholder="Others" rows="1" style="width: 100%; margin-top: 10px; padding: 10px; font-family: 'Epilogue'; font-size: 16px; line-height: 24px; border: 1px solid #9095A0; border-radius: 4px;"></textarea>
-                    </div>
-
                     <div style="display: flex;">
                         <button class="popup-button" onclick="submitNewEvent()" style="width: 30%; background-color: #2979FF; color: white; font-family: 'Epilogue'; font-size: 16px; border-radius: 4px;">Update Event</button>
                         <div style="padding: 30%;"></div>
