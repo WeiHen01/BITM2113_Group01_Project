@@ -76,77 +76,7 @@
             border-style: solid; 
             cursor: pointer;
         }
-        /* Button 46 */
-        .button {
-            position: absolute; 
-            top: 743px; 
-            left: 403px; 
-            width: 150px; 
-            height: 41px; 
-            padding: 0 12px; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            font-family: Inter; 
-            font-size: 18px; 
-            line-height: 28px; 
-            font-weight: 400; 
-            color: #FFFFFFFF; /* white */
-            background: #4069E5FF; /* tertiary1-500 */
-            opacity: 1; 
-            border: none; 
-            border-radius: 4px; /* border-m */
-            box-shadow: 0px 4px 9px #171a1f, 0px 0px 2px #171a1f; /* shadow-m */
-        }
-        /* Hover */
-        .button:hover {
-            color: #FFFFFFFF; /* white */
-            background: #2655E1FF; /* tertiary1-550 */
-        }
-        /* Pressed */
-        .button:hover:active {
-            color: #FFFFFFFF; /* white */
-            background: #1941B8FF; /* tertiary1-650 */
-        }
-        /* Disabled */
-        .button:disabled {
-            opacity: 0.4; 
-        }
-                /* Button 23 */
-        .button-1 {
-            position: absolute; 
-            width: 50%; 
-            height: 52px; 
-            padding: 0 20px; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            font-family: Inter; 
-            font-size: 18px; 
-            line-height: 28px; 
-            font-weight: 400; 
-            color: #00BDD6FF; /* primary-500 */
-            background: #00000000; /* transparent */
-            opacity: 1; 
-            border-radius: 8px; /* border-xl */
-            border-width: 1px; 
-            border-color: #00BDD6FF; /* primary-500 */
-            border-style: solid; 
-        }
-        /* Hover */
-        .button-1:hover {
-            color: #00A9C0FF; /* primary-550 */
-            background: #00000000; /* transparent */
-        }
-        /* Pressed */
-        .button-1:hover:active {
-            color: #0095A9FF; /* primary-600 */
-            background: #00000000; /* transparent */
-        }
-        /* Disabled */
-        .button-1:disabled {
-            opacity: 0.4; 
-        }
+        
         .container-circle {
             width: 150px; 
             height: 150px;

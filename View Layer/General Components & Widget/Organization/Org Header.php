@@ -52,7 +52,7 @@
         opacity: 1;
         border: none;
         font-family: 'Epilogue';
-        border-radius: 4px; /* border-m */
+        border-radius: 8px; /* border-m */
     }
     .avatar {
         top: 26px; 
@@ -86,7 +86,7 @@
                 <img src="../../Assets/Image/H20 Harmony Logo.png" alt="Logo" width="50">
                 <p style="font-size: 15px;"><b>H2O Harmony</b></p>
                 <!-- Organization -->
-                <button class="button">Organization</button>
+                <div class="button">Organization</div>
             </div>
         </div>
 
