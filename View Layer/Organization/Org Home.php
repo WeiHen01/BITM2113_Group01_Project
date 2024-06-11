@@ -397,7 +397,7 @@
                     </div>
 
                     <div style="flex-grow: 1; padding: 20px;">
-                        <form id="newEventForm" method="POST" action="../../Controller Layer/Organization/add_event.php">
+                        <form id="newEventForm" method="POST" action="../../Controller Layer/Organization/Organization Event Process.php">
                         <!-- Event Title -->
                             <h3>Please enter details for new event:</h3>
                             <!-- Event Name -->

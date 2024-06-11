@@ -332,7 +332,7 @@
                         }
                     ?>
                     <h2>Edit Profile</h2>
-                    <form id="updateProfileForm" action="../../Controller Layer/Organization/Org update profile.php?org=<?php echo $orgId ?>" method="post" enctype = "multipart/form-data">
+                    <form id="updateProfileForm" action="../../Controller Layer/Organization/Org Profile Process.php?org=<?php echo $orgId ?>" method="post" enctype = "multipart/form-data">
                         <div style="display: flex;">
                             <?php if (!empty($row['OrgImage'])) : ?>
                                 <!-- Convert BLOB data to base64 and embed it directly in the src attribute -->
