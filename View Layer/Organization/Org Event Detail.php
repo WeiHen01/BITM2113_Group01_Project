@@ -29,7 +29,7 @@
     <head>
 
         <!-- Title of the tab -->
-        <title>Organization | Home</title>
+        <title>Org | Event Detail</title>
         <!-- FavIcon on the browser tab-->
         <link rel="icon" type="image/x-icon" href="../../Assets/Image/H20 Harmony Logo.png">
 

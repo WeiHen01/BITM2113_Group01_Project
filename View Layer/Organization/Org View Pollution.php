@@ -16,6 +16,10 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
 
+     <!-- Map -->
+     <script src="https://www.waze.com/widgets/map-embed/init.js"></script>
+    <script src="https://www.waze.com/assets/presentations/presenter/jsapi/iframe.js"></script>
+
     <!-- Embedded CSS style -->
     <style>
         .container-1 {
@@ -55,7 +59,7 @@
             padding: 10px;
             top: 895px; 
             left: 940px;  
-            width: 90%;
+            width: 95%;
             height: 575px; 
             background: #FFFFFFFF; /* white */
             border-radius: 6px; /* border-l */
@@ -134,7 +138,6 @@
         .text-2 {
             top: 64px; 
             left: 20px; 
-            width: 552px; 
             height: 88px; 
             font-family: Inter; /* Body */
             font-size: 14px; 
@@ -165,7 +168,7 @@
 
 
     <!-- Body of the webpage -->
-    <body>
+    <body onload="getCurrentLocation()">
         
         <!-- Sidebar -->
         <?php 
@@ -184,9 +187,19 @@
             <!-- Content here -->
             <div style="display: flex; margin: 3%;">
                 <div class="container-1" >
-                    <div class="text" style="top: 63px; left: 16px; font-size: 22px; font-weight: 500; padding-left: 5%">Today Polluted Areas</div>
+                    <div class="text" style="top: 63px; left: 16px; font-size: 22px; font-weight: 500; padding-left: 5%">Total Polluted Areas</div>
                     <div style="display: flex;">
-                        <div style="font-size: 50px; font-weight: bold; padding-left: 5%">25</div>
+                        <?php
+                                    require("../../Database Layer/db_connection.php");
+
+                                    $sql = "SELECT COUNT(*) AS TotalComplaints FROM complain;";
+                                    $result = mysqli_query($con, $sql);
+
+                                    if($result == true){
+                                        $row = mysqli_fetch_assoc($result);
+                                    }
+                                ?>
+                        <div style="font-size: 50px; font-weight: bold; padding-left: 5%"><?php echo $row["TotalComplaints"] ?></div>
                         <i class="fa-solid fa-map-location-dot" style="font-size: 50px; padding-left: 55%"></i>
                     </div>
                 </div>
@@ -194,7 +207,18 @@
                 <div class="container-1">
                     <div class="text" style="top: 63px; left: 16px; font-size: 22px; font-weight: 500; padding-left: 5%">Total Complaints in This week</div>
                         <div style="display: flex;">
-                            <div style="font-size: 50px; font-weight: bold; padding-left: 5%">4</div>
+                                <?php
+                                    require("../../Database Layer/db_connection.php");
+
+                                    $sql = "SELECT COUNT(*) AS complainCountThisWeek FROM `complain` 
+                                    WHERE WEEK(DateTime) = WEEK(CURDATE()) AND YEAR(DateTime) = YEAR(CURDATE());";
+                                    $result = mysqli_query($con, $sql);
+
+                                    if($result == true){
+                                        $row = mysqli_fetch_assoc($result);
+                                    }
+                                ?>
+                            <div style="font-size: 50px; font-weight: bold; padding-left: 5%"><?php echo $row["complainCountThisWeek"] ?></div>
                             <i class="fa-solid fa-bullhorn" style="font-size: 50px; padding-left: 55%"></i>
                         </div>
                 </div>
@@ -205,34 +229,41 @@
                     <iframe
                         id="wazeFrame"
                         allowfullscreen
-                        style="border: none; width: 94vw; height: 60vh; ">
+                        style="border: none; width: 100%; height: 100%; ">
                     </iframe>
                 </div>
                 <canvas id="multipleChart" style="width:100%;max-width:600px; padding-top: 7%"></canvas>
             </div>
             
             <div class="container-4" style="margin: 2%;">
-                <div class="text" style="padding-left: 3%; top: 63px; left: 16px; font-size: 25px; font-weight:600; ">Complaints</div>
-                <div class="container-5">
-                    <div class="text-1" style="padding-left: 3%; padding-top:2%">Complaint 1</div>
-                    <div class="text-2" style="padding-left: 3%;">Description</div>
+            <div class="text" style="padding-left: 3%; top: 63px; left: 16px; font-size: 25px; font-weight:600; ">Complaints</div>
+                <?php
+                    // Include the database connection file
+                    include('../../Database Layer/db_connection.php');
+
+                    // Query to fetch all data from the events table
+                    $sql = "SELECT * FROM complain";
+                    $result = mysqli_query($con, $sql);
+                    // Initialize complaint counter
+                    $complaintCount = 1;
+
+                    // Check if there are any events
+                    if (mysqli_num_rows($result) > 0) {
+                        while ($row = mysqli_fetch_assoc($result)) {
+                ?>
+                <div class="container-5" style="padding-top: 2%; padding-bottom: 2%">
+                    <div class="text-1" style="padding-left: 3%;">Complaint <?php echo $complaintCount; ?></div>
+                    <div class="text-1" style="padding-left: 3%;"><?php echo $row['Title']; ?></div>
+                    <div class="text-2" style="padding-left: 3%;"><?php echo $row['Description']; ?></div>
                 </div>
-                <div class="container-5">
-                    <div class="text-1" style="padding-left: 3%; padding-top:2%">Complaint 2</div>
-                    <div class="text-2" style="padding-left: 3%;">Description</div>
-                </div>
-                <div class="container-5">
-                    <div class="text-1" style="padding-left: 3%; padding-top:2%">Complaint 3</div>
-                    <div class="text-2" style="padding-left: 3%;">Description</div>
-                </div>
-                <div class="container-5">
-                    <div class="text-1" style="padding-left: 3%; padding-top:2%">Complaint 4</div>
-                    <div class="text-2" style="padding-left: 3%;">Description</div>
-                </div>
-                <div class="container-5">
-                    <div class="text-1" style="padding-left: 3%; padding-top:2%">Complaint 5</div>
-                    <div class="text-2" style="padding-left: 3%;">Description</div>
-                </div>
+                <?php
+                 $complaintCount++;
+                    }
+                } else {
+                    // If no events found, display a message or handle it accordingly
+                    echo "<p>No events found.</p>";
+                }
+                ?>
             </div>
         </div>
     </body>
@@ -268,6 +299,14 @@
             }
         }
         });
+
+    </script>
+    <script>
+        function getCurrentLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showCurrentPosition);
+            } 
+        }
 
         function showCurrentPosition(position) {
             var latitude = position.coords.latitude;

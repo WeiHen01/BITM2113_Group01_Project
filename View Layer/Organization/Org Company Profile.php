@@ -20,6 +20,7 @@
     // Check if the query returned any results
     if ($result && $result->num_rows > 0) {
         $row = $result->fetch_assoc();
+        $orgId = $row['OrgId'];
         $orgName = $row['OrgName']; 
         $orgEmail = $row['OrgEmail'];
         $orgType = $row['OrgType'];
@@ -166,6 +167,20 @@
         .button-1:disabled {
             opacity: 0.4; 
         }
+        .container-circle {
+            width: 150px; 
+            height: 150px;
+            border-radius: 50%;
+            overflow: hidden; 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .profile-picture {
+            width: 100%; 
+            height: 100%;
+            object-fit: cover; 
+        }
 </style>
 
 
@@ -176,7 +191,7 @@
     <head>
 
         <!-- Title of the tab -->
-        <title>User | Dashboard</title>
+        <title>Organization | Profile</title>
         <!-- FavIcon on the browser tab-->
         <link rel="icon" type="image/x-icon" href="../../Assets/Image/H20 Harmony Logo.png">
 
@@ -207,8 +222,12 @@
 
             <!-- Content here -->
             <div class="container">
-                <div class="container-circle">
-                    <img class="image" src="../../Assets/Image/H20 Harmony Logo.png" alt="Logo">
+                <div class="container-circle"> 
+                    <?php if (!empty($row['OrgImage'])) : ?>
+                        <img src="data:image/<?php echo pathinfo($row['OrgImage'], PATHINFO_EXTENSION); ?>;base64,<?php echo base64_encode($row['OrgImage']); ?>" alt="Profile Picture" class="profile-picture"> 
+                    <?php else : ?>
+                        <img src="../../Assets/Image/H20 Harmony Logo.png" alt="Profile Picture" class="profile-picture">
+                    <?php endif; ?>
                 </div>
             </div>
             <div style="display: flex;">
@@ -241,7 +260,7 @@
                         <i class="fa-regular fa-star-half-stroke" style="font-size:x-large; color:yellow"></i>
                     </div>
                     <div style="height: 25%;"></div>
-                    <button class="button-1" onclick="window.location.href='./Org Edit Profile.php'" 
+                    <button class="button-1" onClick="window.location.href='./Org Edit Profile.php?org=<?php echo $row['OrgId']; ?>'"
                      onmouseover="this.style.background='#00bcd4'; 
                      this.style.color = '#ffffff'" onmouseleave="this.style.color='#00bcd4'; 
                      this.style.background = 'transparent'">Edit Profile

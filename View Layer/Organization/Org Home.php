@@ -358,7 +358,7 @@
                     <div class="container" style="width: 25%; margin: 2%">
                         <div style="display: flex;">
                             <div class="text"><?php echo $row['Name']; ?></div> 
-                            <div class="group" onclick="showPopup()"style="margin-left: 50px; margin-top:4%; cursor: pointer; display: flex; "> 
+                            <div class="group" onclick="showPopup('<?php echo $row['EventId']; ?>', '<?php echo $row['Name']; ?>', '<?php echo addslashes($row['Description']); ?>', '<?php echo $row['Location']; ?>')" style="margin-left: 50px; margin-top:4%; cursor: pointer; display: flex; "> 
                                 <i class="fa-solid fa-pencil" style="font-size:x-large;" id="editEventBtn"></i>                                </div>
                             </div>
                             <img src="../../Assets/Image/event_details.jpg" style="width: 100%; height: 30%; border-radius: 5%;" alt="Event Image">
@@ -444,17 +444,18 @@
                     </div>
                     <!-- Event Title -->
                     <h3 style="font-weight:300">To update or delete your event organization, please fill out the forms below. We appreciate your cooperation!</h3>
+                    
                     <!-- Event Name -->
-                    <input type="text" id="newEventName" name="newEventName" placeholder="Event Name" style="width: 100%; margin-bottom: 10px; padding: 10px; font-family: 'Epilogue'; font-size: 16px; line-height: 24px; border: 1px solid #9095A0; border-radius: 4px;">
+                    <input type="text" id="EventName" name="newEventName" placeholder="Event Name" style="width: 100%; margin-bottom: 10px; padding: 10px; font-family: 'Epilogue'; font-size: 16px; line-height: 24px; border: 1px solid #9095A0; border-radius: 4px;">
 
                     <!-- Event Description -->
-                    <textarea id="newEventDescription" name="newEventDescription" placeholder="Description" rows="4" style="width: 100%; margin-bottom: 10px; padding: 10px; font-family: 'Epilogue'; font-size: 16px; line-height: 24px; border: 1px solid #9095A0; border-radius: 4px;"></textarea>
+                    <textarea id="EventDescription" name="newEventDescription" placeholder="Description" rows="4" style="width: 100%; margin-bottom: 10px; padding: 10px; font-family: 'Epilogue'; font-size: 16px; line-height: 24px; border: 1px solid #9095A0; border-radius: 4px;"></textarea>
                     
                     <!-- Event Category -->
-                    <input type="text" id="newEventCategory" name="newEventCategory" placeholder="Category" style="width: 100%; margin-bottom: 10px; padding: 10px; font-family: Inter; font-size: 16px; line-height: 24px; border: 1px solid #9095A0; border-radius: 4px;">
+                    <input type="text" id="EventCategory" name="newEventCategory" placeholder="Category" style="width: 100%; margin-bottom: 10px; padding: 10px; font-family: Inter; font-size: 16px; line-height: 24px; border: 1px solid #9095A0; border-radius: 4px;">
                     
                     <!-- Event Category -->
-                    <input type="text" id="newEventCategory" name="newEventCategory" placeholder="Location" style="width: 100%; margin-bottom: 10px; padding: 10px; font-family: Inter; font-size: 16px; line-height: 24px; border: 1px solid #9095A0; border-radius: 4px;">
+                    <input type="text" id="EventLocation" name="newEventLocation" placeholder="Location" style="width: 100%; margin-bottom: 10px; padding: 10px; font-family: Inter; font-size: 16px; line-height: 24px; border: 1px solid #9095A0; border-radius: 4px;">
                     
                     Select date and time: 
                     <input type="datetime-local" />
@@ -476,10 +477,16 @@
     </body>
 
     <script>
-        function showPopup() {
+        function showPopup(eventId, eventName, eventDescription, eventLocation) {
+            
             document.getElementById("editEventPopup").style.display = "block";
             document.getElementById("overlay").style.display = "block";
+            
+           
+            
         }
+
+
         function showAddEventPopUP() {
             document.getElementById("newEventPopupContainer").style.display = "block";
             document.getElementById("overlay").style.display = "block";

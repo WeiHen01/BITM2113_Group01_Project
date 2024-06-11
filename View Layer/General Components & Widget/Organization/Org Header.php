@@ -1,3 +1,26 @@
+<?php 
+    
+    if(session_status() == PHP_SESSION_NONE){
+        session_start();
+    }
+
+    $loggedUserEmail = $_SESSION["LoggedUserEmail"];
+
+    require("../../Database Layer/db_connection.php");
+
+    $sql = "SELECT * FROM organization WHERE OrgEmail = '$loggedUserEmail'";
+
+    $result = mysqli_query($con, $sql);
+
+    if(mysqli_num_rows($result) === 1){
+        $row = mysqli_fetch_assoc($result);
+        $_SESSION['org'] = $row["OrgId"];
+    }
+
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -73,10 +96,14 @@
         <!-- Profile image with dropdown -->
         <div class="profile-image" onclick="toggleDropdown()">
             <div style="display: flex;">
-                <div class="avatar" >
-                    <img src="../../Assets/Image/shao.jpg" alt="Profile" width="40" height="40">
-                </div>
-                <p style="font-size: 15px;"><b>Shaufy Yana Ezani</b></p>
+                <!-- fetch profile image -->
+                <?php if (!empty($row['OrgImage'])) : ?>
+                    <!-- Convert BLOB data to base64 and embed it directly in the src attribute -->
+                    <img src="data:image/<?php echo pathinfo($row['OrgImage'], PATHINFO_EXTENSION); ?>;base64,<?php echo base64_encode($row['OrgImage']); ?>" class="dpicn" alt="dp" style="height: 40px;width: 40px;border-radius: 50%;">
+                <?php else : ?>
+                    <img src="../../Assets/Image/H20 Harmony Logo.png" class="dpicn" alt="dp" style="height: 40px;width: 40px;border-radius: 50%;">
+                <?php endif; ?>
+                <p style = "font-weight: 900"><?php echo $row['OrgName'] == null ? "New User" : $row['OrgName'] ?></p>
                 <i class="fa-solid fa-chevron-down" style="font-size:large; padding: 10%"></i>
                 <div class="profile-dropdown" id="profileDropdown">
                     <a href="Org Company Profile.php">Profile</a>

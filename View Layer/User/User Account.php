@@ -533,6 +533,7 @@
         
         </div>
 
+        <!-- Edit profile model -->
         <div id="updateImageModel" class="modal-2">
 
             <?php 
@@ -579,6 +580,7 @@
             </form>
         
         </div>
+        <!-- The modal ends -->
 
         <!-- The Modal -->
         <div id="updatePasswordModel" class="modal">

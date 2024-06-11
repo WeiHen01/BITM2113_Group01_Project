@@ -7,7 +7,7 @@
     }
 
     $loggedUserEmail = $_SESSION["LoggedUserEmail"];
-
+    $orgId = $_GET['org'];
 ?>
 
 <!DOCTYPE html>
@@ -34,7 +34,7 @@
             border-radius: 42px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             max-width: 800px;
-            margin: 50px auto;
+            margin:  auto;
             padding: 20px;
             position: relative;
         }
@@ -203,8 +203,7 @@
     .container-2 { 
         top: 286px; 
         left: 25px; 
-        width: 900px; 
-        height: 350px; 
+        width: 800px; 
         background: #FFFFFFFF; /* neutral-300 */
     }
     /* Container 284 */
@@ -314,19 +313,40 @@
                 <div class="background-image" style="justify-content: center "></div>
                 <div class="overlay"></div>
                 <div class="edit-profile-container">
+
+                    <?php    
+                            require("../../Database Layer/db_connection.php");
+                            //validation 
+                            $sqlCheck = "SELECT * FROM organization WHERE OrgId = $orgId";
+
+                            $resultCheck = mysqli_query($con, $sqlCheck);
+
+                            if(mysqli_num_rows($resultCheck) === 1){
+                                $row = mysqli_fetch_assoc($resultCheck);
+
+                                $orgId = $row["OrgId"];
+
+                            $_SESSION["Organization"] = $orgId;
+
+                                    
+                        }
+                    ?>
                     <h2>Edit Profile</h2>
-                    <form action="save_profile.php" method="post" enctype="multipart/form-data">
+                    <form id="updateProfileForm" action="../../Controller Layer/Organization/Org update profile.php?org=<?php echo $orgId ?>" method="post" enctype = "multipart/form-data">
                         <div style="display: flex;">
-                            <div class="avatar-2">
-                                <img src="../../Assets/Image/shao.jpg" alt="Profile" width="40" height="40">
-                            </div>
+                            <?php if (!empty($row['OrgImage'])) : ?>
+                                <!-- Convert BLOB data to base64 and embed it directly in the src attribute -->
+                                <img src="data:image/<?php echo pathinfo($row['OrgImage'], PATHINFO_EXTENSION); ?>;base64,<?php echo base64_encode($row['OrgImage']); ?>" alt="Profile Picture" class="profile-picture">
+                            <?php else : ?>
+                                <img src="../../Assets/Image/H20 Harmony Logo.png" alt="Profile Picture" class="profile-picture">
+                            <?php endif; ?>
                             <div class="group">
                                 <label for="logo" style=" font-family: Inter; font-size: 16; line-height: 22px; font-weight: 700; color: #171A1FFF;">Logo</label>
                                 <div class="logo-upload">
                                     <p style="text-align:justify; font-size: 10; color: #565E6CFF;">Upload your company logo</p>
                                     <p style="text-align:justify; font-size: 8; color: #565E6CFF;">Your photo should be in PNG or JPG format</p>
 
-                                    <input type="file" id="logo" name="logo" accept="image/png, image/jpeg">
+                                    <input type="file" id="logo" name="logo" accept=".jpg, .jpeg, .png, .gif">
                                 </div>
                             </div>
                             <div style="width: 60%;"></div>
@@ -336,42 +356,39 @@
                             </div>
                         </div>
                         <div style="display: flex;">
+                       
                             <div class="container-2">
                                 <div class="form-group">
                                     <label for="organizationName">Organization name</label>
-                                    <input type="text" id="organizationName" name="organizationName" required>
+                                    <input type="text" id="organizationName" name="OrgName" value="<?php echo $row["OrgName"] ?>" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="organizationEmail">Organization Email</label>
-                                    <input type="email" id="organizationEmail" name="organizationEmail" required>
+                                    <input type="email" id="organizationEmail" name="OrgEmail" value="<?php echo $row["OrgEmail"] ?>" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="contactInformation">Contact Information</label>
-                                    <input type="text" id="contactInformation" name="contactInformation" required>
-                                </div>
-                            </div>
-                            <div style="width: 2%;"></div>
-                            <div class="container-3" style="margin: 2%">
-                                <label for="contactInformation">Organization Category</label>
-                                <div class="dropdown"">
-                                    <button class="dropbtn" style="margin: 5%,">Dropdown</button>
-                                    <div class="dropdown-content">
-                                        <a href="#">Partnership</a>
-                                        <a href="#">Corporation</a>
-                                        <a href="#">Holding Company</a>
-                                        <a href="#">Foreign Corporation</a>
-                                        <a href="#">Private Limited Company</a>
-                                        <a href="#">Sole propriotorship</a>
-                                    </div>
+                                    <input type="text" id="contactInformation" name="OrgContact"  value="<?php echo $row["OrgContact"] ?>" required>
                                 </div>
                             </div>
                         </div>
+                        <div class="form-group">
+                                <label for="organizationType">Organization Type</label>
+                                <select id="organizationType" name="OrgType" onchange="updateOrgType()">
+                                    <option value="Partnership">Partnership</option>
+                                    <option value="Corporation">Corporation</option>
+                                    <option value="Holding Company">Holding Company</option>
+                                    <option value="Foreign Corporation">Foreign Corporation</option>
+                                    <option value="Private Limited Company">Private Limited Company</option>
+                                    <option value="Sole Proprietorship">Sole Proprietorship</option>
+                                </select>
+                            </div>
                         <div class="buttons">
-                                    <button type="submit" class="save-button">Save profile</button>
-                                    <button type="button" class="cancel-button" onclick="window.location.href='./Org Company Profile.php'">Cancel</button>
-                                </div>
+                        <button type="submit" class="save-button" name="update-profile">Save profile</button>
+                        <button type="button" class="cancel-button" onclick="window.location.href='./Org Company Profile.php'">Cancel</button>
+                    
                     </form>
-                   
+                    </div>   
                 </div>
         </div>
 

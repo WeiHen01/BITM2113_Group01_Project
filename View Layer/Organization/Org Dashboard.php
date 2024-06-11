@@ -8,6 +8,23 @@
 
     $loggedUserEmail = $_SESSION["LoggedUserEmail"];
 
+    require("../../Database Layer/db_connection.php");
+
+    // Retrieve data for Overview section
+    $sql = "SELECT 
+                (SELECT COUNT(*) FROM event WHERE Status='Completed') AS TotalCompletedEvent,
+                (SELECT COUNT(*) FROM event WHERE Status='Upcoming') AS TotalUpcomingEvent,
+                (SELECT COUNT(*) FROM event WHERE Status='Cancelled') AS TotalCancelledEvent,
+                (SELECT COUNT(*) FROM event WHERE Status='Postponed') AS TotaPostponedEvent";
+
+    $result = mysqli_query($con, $sql);
+
+    if($result === false){
+        // Handle error
+        die(mysqli_error($con));
+    }
+
+    $row = mysqli_fetch_assoc($result);
 ?>
 
 <!DOCTYPE html>
@@ -74,7 +91,7 @@
     <head>
 
         <!-- Title of the tab -->
-        <title>User | Dashboard</title>
+        <title>Org | Dashboard</title>
         <!-- FavIcon on the browser tab-->
         <link rel="icon" type="image/x-icon" href="../../Assets/Image/H20 Harmony Logo.png">
 
@@ -103,6 +120,25 @@
                 include("../General Components & Widget/Organization/Org Header.php");
             ?>
 
+            <?php 
+                require("../../Database Layer/db_connection.php");
+
+                // Retrieve data for Overview section
+                $sql = "SELECT 
+                            (SELECT COUNT(*) FROM event WHERE Status='Completed') AS TotalCompletedEvent,
+                            (SELECT COUNT(*) FROM event WHERE Status='Upcoming') AS TotalUpcomingEvent,
+                            (SELECT COUNT(*) FROM event WHERE Status='Cancelled') AS TotalCancelledEvent,
+                            (SELECT COUNT(*) FROM event WHERE Status='Postponed') AS TotaPostponedEvent";
+
+                $result = mysqli_query($con, $sql);
+
+                if($result === false){
+                    // Handle error
+                    die(mysqli_error($con));
+                }
+
+                $row = mysqli_fetch_assoc($result);
+            ?>
             <!-- Content here -->
             <p style="padding-left: 2%; font-size: 20px; font-weight: 700;"><b>Overview</b></p>
             <div style="padding-left: 2%">
@@ -114,20 +150,9 @@
                             <p><b>Completed Event</b></p>
                         </div>
                         <p style="color:blue; font-size:24px;">
-                            <?php
-                                require("../../Database Layer/db_connection.php");
-
-                                $sql = "SELECT COUNT(*) AS orgCount FROM organization";
-
-                                $result = mysqli_query($con, $sql);
-
-                                if($result == true){
-                                    $row = mysqli_fetch_assoc($result);
-                                }
-                            ?>
-                            <b><?php echo $row["orgCount"] ?></b>
+                            <b><?php echo $row["TotalCompletedEvent"] ?></b>
                         </p>
-                        
+
                     </div>
                     <div class="overview-item">
                         <div style="display: flex;">
@@ -136,19 +161,8 @@
                             <p><b>Upcoming Event</b></p>
                         </div>
                         <p style="color:blue; font-size:24px;">
-                            <?php
-                                    require("../../Database Layer/db_connection.php");
-
-                                    $sql = "SELECT COUNT(*) AS userCount FROM user";
-
-                                    $result = mysqli_query($con, $sql);
-
-                                    if($result == true){
-                                        $row = mysqli_fetch_assoc($result);
-                                    }
-                                ?>
-                            <b><?php echo $row["userCount"] ?></b>
-                        </p>                            
+                            <b><?php echo $row["TotalUpcomingEvent"] ?></b>
+                        </p>                          
                      
                     </div>
                     <div class="overview-item">
@@ -158,22 +172,8 @@
                             <p><b>Cancelled Event</b></p>
                         </div>
                         <p style="color:blue; font-size:24px;">
-                            <?php
-                                    require("../../Database Layer/db_connection.php");
-
-                                    $sql = "SELECT COUNT(*) AS eventCreated 
-                                    FROM `event` 
-                                    WHERE DateTime BETWEEN '2024-06-01' AND '2024-06-30';";
-                                    $result = mysqli_query($con, $sql);
-
-                                    $result = mysqli_query($con, $sql);
-
-                                    if($result == true){
-                                        $row = mysqli_fetch_assoc($result);
-                                    }
-                                ?>
-                            <b><?php echo $row["eventCreated"] ?></b>
-                        </p> 
+                            <b><?php echo $row["TotalCancelledEvent"] ?></b>
+                        </p>  
                     </div>
                     <div class="overview-item">
                         <div style="display: flex;">
@@ -182,29 +182,18 @@
                             <p><b>Postponed Event</b></p>
                         </div>
                         <p style="color:blue; font-size:24px;">
-                            <?php
-                                    require("../../Database Layer/db_connection.php");
-
-                                    $sql = "SELECT COUNT(*) AS complainCountbymonth 
-                                    FROM `complain` 
-                                    WHERE DateTime BETWEEN '2024-06-01' AND '2024-06-30';";
-                                    $result = mysqli_query($con, $sql);
-
-                                    if($result == true){
-                                        $row = mysqli_fetch_assoc($result);
-                                    }
-                                ?>
-                            <b><?php echo $row["complainCountbymonth"] ?></b>
-                        </p>
+                            <b><?php echo $row["TotaPostponedEvent"] ?></b>
+                        </p>  
                     </div>
                 </div>
             </div>
             <p style="padding-left: 2%; font-size: 20px; font-weight: 700;"><b>Detailed Reports</b></p>
             <div style="display: flex;">
                 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
-                <canvas id="barChart" style="padding-left: 5%; width:150%;max-width:900px"></canvas>
                 <canvas id="pieChart" style="width:50%;max-width:450px"></canvas>
+                <canvas id="barChart" style="padding-left: 5%; width:150%; max-width:850px"></canvas>
             </div>
+            
         </div>
         
 
@@ -218,50 +207,91 @@
 
     <script src="../General Components & Widget/Organization/Org Component Script.js"></script>    
     <script>
-        var xValues = ["Jan", "Feb", "Mac", "April", "May", "June","July", "Aug", "Sept", "Oct", "Nov", "Dec"];
-        var yValues = [50, 40, 35, 20, 0];
-        var barColors = ["blue", "green","yellow"];
-        var dataset1 = [50, 40, 35, 20, 10, 30, 45, 25, 15, 50, 35, 20];
-        var dataset2 = [30, 20, 25, 15, 5, 25, 35, 20, 10, 40, 25, 15];
-        var dataset3 = [20, 10, 15, 10, 0, 20, 25, 15, 5, 30, 20, 10];
-        var barColors1 = "blue";
-        var barColors2 = "green";
-        var barColors3 = "yellow";
+        <?php
+        // Create arrays to store monthly data for each event status
+        $completedEventData = array_fill(0, 12, 0);
+        $upcomingEventData = array_fill(0, 12, 0);
+        $cancelledEventData = array_fill(0, 12, 0);
+        $postponedEventData = array_fill(0, 12, 0);
+
+        // Fetch monthly data for each event status
+        $sql = "SELECT MONTH(DateTime) AS Month, 
+                    SUM(CASE WHEN Status = 'Completed' THEN 1 ELSE 0 END) AS TotalCompletedEvent,
+                    SUM(CASE WHEN Status = 'Upcoming' THEN 1 ELSE 0 END) AS TotalUpcomingEvent,
+                    SUM(CASE WHEN Status = 'Cancelled' THEN 1 ELSE 0 END) AS TotalCancelledEvent,
+                    SUM(CASE WHEN Status = 'Postponed' THEN 1 ELSE 0 END) AS TotalPostponedEvent
+                FROM event
+                GROUP BY MONTH(DateTime)";
+
+        $result = mysqli_query($con, $sql);
+
+        // Populate the arrays with the fetched data
+        while ($row = mysqli_fetch_assoc($result)) {
+            $month = intval($row['Month']) - 1; // Adjust month to array index (0-based)
+            $completedEventData[$month] = $row['TotalCompletedEvent'];
+            $upcomingEventData[$month] = $row['TotalUpcomingEvent'];
+            $cancelledEventData[$month] = $row['TotalCancelledEvent'];
+            $postponedEventData[$month] = $row['TotalPostponedEvent'];
+        }
+        ?>
+
+        var xValues = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+        // Use PHP arrays to populate the dataset arrays
+        var dataset1 = <?php echo json_encode($completedEventData); ?>;
+        var dataset2 = <?php echo json_encode($upcomingEventData); ?>;
+        var dataset3 = <?php echo json_encode($cancelledEventData); ?>;
+        var dataset4 = <?php echo json_encode($postponedEventData); ?>;
+
+        var barColors = ["blue", "green", "yellow", "pink"];
 
         new Chart("barChart", {
         type: "bar",
         data: {
-        labels: xValues,
-        datasets: [
-                    {
-                        label: "Dataset 1",
-                        backgroundColor: barColors1,
-                        data: dataset1
-                    },
-                    {
-                        label: "Dataset 2",
-                        backgroundColor: barColors2,
-                        data: dataset2
-                    },
-                    {
-                        label: "Dataset 3",
-                        backgroundColor: barColors3,
-                        data: dataset3
-                    }
-                ]
+            labels: xValues,
+            datasets: [
+                {
+                    label: "Completed Events",
+                    backgroundColor: barColors[0],
+                    data: dataset1
+                },
+                {
+                    label: "Upcoming Events",
+                    backgroundColor: barColors[1],
+                    data: dataset2
+                },
+                {
+                    label: "Cancelled Events",
+                    backgroundColor: barColors[2],
+                    data: dataset3
+                },
+                {
+                    label: "Postponed Events",
+                    backgroundColor: barColors[3],
+                    data: dataset4
+                }
+            ]
         },
         options: {
-            legend: {display: false},
+            legend: { display: true },
             title: {
-            display: true,
-            text: "Yearly Reports"
+                display: true,
+                text: "Monthly Events Overview"
+            },
+            scales: {
+                xAxes: [{ stacked: true }],
+                yAxes: [{ stacked: true }]
             }
         }
-        });
+    });
     </script>
     <script>
         var xValues = ["Completed", "Upcoming", "Cancelled"];
-        var yValues = [ 44, 24, 15];
+        var yValues = [
+            <?php echo $row["TotalCompletedEvent"] ?>,
+            <?php echo $row["TotalUpcomingEvent"] ?>,
+            <?php echo $row["TotalCancelledEvent"] ?>
+        ];
         var barColors = [
         "#2b5797",
         "#e8c3b9",
@@ -273,17 +303,16 @@
         data: {
             labels: xValues,
             datasets: [{
-            backgroundColor: barColors,
-            data: yValues
+                backgroundColor: barColors,
+                data: yValues
             }]
         },
         options: {
             title: {
-            display: true,
-            text: "Last 30 days performance"
+                display: true,
+                text: "Last 30 days performance"
             }
         }
-        });
+    });
     </script>
-
 </html>
