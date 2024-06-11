@@ -31,8 +31,8 @@
         $ago = new DateTime($datetime);
         $diff = $now->diff($ago);
 
-        $diff->w = floor($diff->d / 7);
-        $diff->d -= $diff->w * 7;
+        //$diff->w = floor($diff->d / 7);
+        //$diff->d -= $diff->w * 7;
 
         $string = array(
             'y' => 'year',
