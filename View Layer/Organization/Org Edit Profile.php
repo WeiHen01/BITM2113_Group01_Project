@@ -326,7 +326,7 @@
 
                                 $orgId = $row["OrgId"];
 
-                            $_SESSION["Organization"] = $orgId;
+                                $_SESSION["Organization"] = $orgId;
 
                                     
                         }
@@ -336,9 +336,9 @@
                         <div style="display: flex;">
                             <?php if (!empty($row['OrgImage'])) : ?>
                                 <!-- Convert BLOB data to base64 and embed it directly in the src attribute -->
-                                <img src="data:image/<?php echo pathinfo($row['OrgImage'], PATHINFO_EXTENSION); ?>;base64,<?php echo base64_encode($row['OrgImage']); ?>" alt="Profile Picture" class="profile-picture">
+                                <img src="data:image/<?php echo pathinfo($row['OrgImage'], PATHINFO_EXTENSION); ?>;base64, <?php echo base64_encode($row['OrgImage']); ?>" class="profile-picture" style = "height: 200px">
                             <?php else : ?>
-                                <img src="../../Assets/Image/H20 Harmony Logo.png" alt="Profile Picture" class="profile-picture">
+                                <img src="../../Assets/Image/H20 Harmony Logo.png" class="profile-picture" style = "height: 200px">
                             <?php endif; ?>
                             <div class="group">
                                 <label for="logo" style=" font-family: Inter; font-size: 16; line-height: 22px; font-weight: 700; color: #171A1FFF;">Logo</label>

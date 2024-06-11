@@ -287,7 +287,12 @@
                     }
                 ?>
                 <div id = "header">
-                    <h2 style="text-align: left; font-family: Epilogue; font-size: 50px;  padding: 2%; margin: 0;">About Event</h2>
+                    <div style = "display: flex; align-items: center; padding-left: 2%; padding-bottom: 1%; gap: 1%">
+                        <a href="#" onclick = "window.history.back();" class="back-link">
+                            <i class="fa-solid fa-chevron-left" style = "color: white"></i>
+                        </a>
+                        <p class="header-text" style = "font-weight: bold; font-size: 25px; color: white">About Event</p>
+                    </div>
                     <div class = "container" style="margin-left: 10%; margin-right: 10%; padding-bottom: 2%; padding-top: 2%">
                         <h1 style=" font-family: 'Epilogue'; text-align: center; font-size: 40px; line-height: 30px; font-weight: 800; color: #171A1FFF;"><?php echo $row["Name"] ?></h1>
                    </div>
@@ -350,31 +355,31 @@
                                     $userEmail = $userRow['Email'];
                                     $userProfile = $userRow['ProfileImage'];
                                     $userContact = $userRow['Contact'];
-                                } else {
-                                    echo "No events found.";
-                                }
+                               
                     ?>
-                    <div style="padding-bottom: 2%;">
-                        <?php if (!empty($userRow['ProfileImage'])) : ?>
+                    <div style="padding-bottom: 2%; ">
+                       
+                        <div class="container-1" style="padding-left: 3%; display: flex; gap: 5%; align-items: center">
+                             <?php if (!empty($userRow['ProfileImage'])) : ?>
                             <!-- Convert BLOB data to base64 and embed it directly in the src attribute -->
-                            <img src="data:image/<?php echo pathinfo($userRow['ProfileImage'], PATHINFO_EXTENSION); ?>;base64,<?php echo base64_encode($userRow['ProfileImage']); ?>" class="dpicn" alt="dp" style="height: 40px;width: 40px;border-radius: 50%;">
+                                <img src="data:image/<?php echo pathinfo($userRow['ProfileImage'], PATHINFO_EXTENSION); ?>;base64,<?php echo base64_encode($userRow['ProfileImage']); ?>" class="dpicn" alt="dp" style="height: 40px;width: 40px;border-radius: 50%;">
                             <?php else : ?>
-                            <img src="../../Assets/Image/H20 Harmony Logo.png" class="dpicn" alt="dp" style="height: 50px;width: 50px;border-radius: 50%;">
+                                <img src="../../Assets/Image/H20 Harmony Logo.png" class="dpicn" alt="dp" style="height: 50px; width: 50px;border-radius: 50%;">
                             <?php endif; ?>
-                        <div class="container-1" style="padding-left: 10%;">
-                            
-                            <div style="display: flex" >
-                                <div class="text" style="font-size: 18px; line-height: 28px; font-weight: 700; color: #171A1FFF; "><?php echo $userName; ?></div>
-                                <div style="width: 55%"></div>
-                                <div class="text" style="font-size: 18px; line-height: 28px; font-weight: 400; color: #171A1FFF; ">joined 30 minutes ago..</div>
-                            </div>
-                            <div style="height: 30%"></div>
-                            <div style="display: flex">
-                                <i class="fa-solid fa-phone" style="font-size:large"></i><div style="width: 2%"></div>
-                                <div class="text" style="font-size: 18px; line-height: 28px; font-weight: 400; color: #171A1FFF; "><?php echo $userContact; ?></div><div style="width: 20%"></div>
-                                <i class="fa-regular fa-envelope" style="font-size:large"></i><div style="width: 2%"></div>
-                                <div class="text" style="font-size: 18px; line-height: 28px; font-weight: 400; color: #379AE6FF; "><?php echo $userEmail; ?></div>
-                            </div>                           
+                            <?php } ?>
+                            <div>
+                                <div style="display: flex; gap: 8%; align-items: center; width: auto; " >
+                                    <p><strong><?php echo $userName; ?></strong></p>
+                                    <!-- <p style = "margin-left: auto">joined 30 minutes ago..</p> -->
+                                </div>
+                                <div style="height: 30%"></div>
+                                <div style="display: flex; align-items: center; gap: 5%">
+                                    <i class="fa-solid fa-phone" style="font-size:large"></i><div style="width: 2%"></div>
+                                    <div class="text" style="font-size: 18px; line-height: 28px; font-weight: 400; color: #171A1FFF; "><?php echo $userContact; ?></div><div style="width: 20%"></div>
+                                    <i class="fa-regular fa-envelope" style="font-size:large"></i><div style="width: 2%"></div>
+                                    <div class="text" style="font-size: 18px; line-height: 28px; font-weight: 400; color: #379AE6FF; "><?php echo $userEmail; ?></div>
+                                </div> 
+                            </div>                          
                         </div>                       
                     </div>
                     <?php
@@ -397,7 +402,9 @@
                 <div class="popup-container" id="popupContainer">
                     <div class="popup-header">
                         <h2>Participation List</h2>
-                        <button class="close-button" onclick="hidePopup()">X</button>
+                        <button class="close-button" onclick="hidePopup()">
+                            <i class="fa-solid fa-xmark"></i>
+                        </button>
                     </div>
                     <div class="popup-content">
                         <?php 
@@ -426,22 +433,23 @@
                                         echo "No events found.";
                                     }
                         ?>
-                        <div class="participant">
+                        <div class="participant" >
                             <!-- fetch profile image -->
                             <?php if (!empty($userRow['ProfileImage'])) : ?>
                                 <!-- Convert BLOB data to base64 and embed it directly in the src attribute -->
                                 <img src="data:image/<?php echo pathinfo($userRow['ProfileImage'], PATHINFO_EXTENSION); ?>;base64,<?php echo base64_encode($userRow['ProfileImage']); ?>" class="dpicn" alt="dp" style="height: 40px;width: 40px;border-radius: 50%;">
                             <?php else : ?>
-                                <img src="../../Assets/Image/H20 Harmony Logo.png" class="dpicn" alt="dp" style="height: 50px;width: 50px;border-radius: 50%;">
+                                <img src="../../Assets/Image/H20 Harmony Logo.png" class="dpicn" alt="dp" style="height: 50px; width: 50px;border-radius: 50%;">
                             <?php endif; ?>
 
 
                             <div style="width: 2%;"></div>
-                            <div style="display: flex">
-                                <div class="text" style="font-size: 18px; line-height: 28px; font-weight: 700; color: #171A1FFF; "><?php echo $userName;?></div><div style="width: 4%;"></div>
-                                <i class="fa-solid fa-phone" style="font-size:large; padding-top: 5%; padding-left:8%"></i>
-                                <div class="text" style="font-size: 18px; line-height: 28px; font-weight: 400; color: #171A1FFF; padding-top: 5%; padding-left: 5%;"><?php echo $userContact;?></div>
-                                <i class="fa-solid fa-envelope" style="font-size:large; padding-top: 5%; padding-left:8%"></i>
+                            <div style="display: flex; align-items: center">
+                                <div class="text" style="font-size: 18px; line-height: 28px; font-weight: 700; color: #171A1FFF; "><?php echo $userName;?></div>
+                                <div style="width: 4%;"></div>
+                                <i class="fa-solid fa-phone" style="font-size:large; padding-left:8%"></i>
+                                <div class="text" style="font-size: 18px; line-height: 28px; font-weight: 400; color: #171A1FFF;  padding-left: 5%;"><?php echo $userContact;?></div>
+                                <i class="fa-solid fa-envelope" style="font-size:large; padding-left:8%"></i>
                                 <div class="text" style="font-size: 18px; line-height: 28px; font-weight: 400; color: #379AE6FF; padding: 5%"><?php echo $userEmail;?></div>
                             </div> 
                         </div>

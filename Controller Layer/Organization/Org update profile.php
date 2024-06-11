@@ -109,6 +109,8 @@
             header("Location: ../../View Layer/Organization/Org Company Profile.php");
             exit();
         }
+
+        
     }
 
   

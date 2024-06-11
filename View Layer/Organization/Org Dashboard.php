@@ -188,10 +188,16 @@
                 </div>
             </div>
             <p style="padding-left: 2%; font-size: 20px; font-weight: 700;"><b>Detailed Reports</b></p>
-            <div style="display: flex;">
-                <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
-                <canvas id="pieChart" style="width:50%;max-width:450px"></canvas>
-                <canvas id="barChart" style="padding-left: 5%; width:150%; max-width:850px"></canvas>
+            <div style="display: flex; justify-content: space-evenly">
+                
+                <div style = "width: 30vw; height: 20vh">
+                    <canvas id="pieChart" style="width:50%; max-width:450px"></canvas>
+                </div>
+                <div style = "width: 50vw; height: 20vh">
+                    <canvas id="barChart" style="padding-left: 5%; width:150%; max-width:850px"></canvas>
+                </div>
+                
+                
             </div>
             
         </div>
@@ -204,10 +210,10 @@
 
     </body>
 
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
     <script src="../General Components & Widget/Organization/Org Component Script.js"></script>    
     <script>
-        <?php
+    <?php
         // Create arrays to store monthly data for each event status
         $completedEventData = array_fill(0, 12, 0);
         $upcomingEventData = array_fill(0, 12, 0);
@@ -233,6 +239,17 @@
             $cancelledEventData[$month] = $row['TotalCancelledEvent'];
             $postponedEventData[$month] = $row['TotalPostponedEvent'];
         }
+
+        // Fetch total data for pie chart
+        $sqlTotal = "SELECT 
+                        SUM(CASE WHEN Status = 'Completed' THEN 1 ELSE 0 END) AS TotalCompletedEvent,
+                        SUM(CASE WHEN Status = 'Upcoming' THEN 1 ELSE 0 END) AS TotalUpcomingEvent,
+                        SUM(CASE WHEN Status = 'Cancelled' THEN 1 ELSE 0 END) AS TotalCancelledEvent
+                    FROM event
+                    WHERE DateTime > DATE_SUB(NOW(), INTERVAL 30 DAY)";
+
+        $resultTotal = mysqli_query($con, $sqlTotal);
+        $totalData = mysqli_fetch_assoc($resultTotal);
         ?>
 
         var xValues = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
@@ -246,73 +263,68 @@
         var barColors = ["blue", "green", "yellow", "pink"];
 
         new Chart("barChart", {
-        type: "bar",
-        data: {
-            labels: xValues,
-            datasets: [
-                {
-                    label: "Completed Events",
-                    backgroundColor: barColors[0],
-                    data: dataset1
-                },
-                {
-                    label: "Upcoming Events",
-                    backgroundColor: barColors[1],
-                    data: dataset2
-                },
-                {
-                    label: "Cancelled Events",
-                    backgroundColor: barColors[2],
-                    data: dataset3
-                },
-                {
-                    label: "Postponed Events",
-                    backgroundColor: barColors[3],
-                    data: dataset4
-                }
-            ]
-        },
-        options: {
-            legend: { display: true },
-            title: {
-                display: true,
-                text: "Monthly Events Overview"
+            type: "bar",
+            data: {
+                labels: xValues,
+                datasets: [
+                    {
+                        label: "Completed Events",
+                        backgroundColor: barColors[0],
+                        data: dataset1
+                    },
+                    {
+                        label: "Upcoming Events",
+                        backgroundColor: barColors[1],
+                        data: dataset2
+                    },
+                    {
+                        label: "Cancelled Events",
+                        backgroundColor: barColors[2],
+                        data: dataset3
+                    },
+                    {
+                        label: "Postponed Events",
+                        backgroundColor: barColors[3],
+                        data: dataset4
+                    }
+                ]
             },
-            scales: {
-                xAxes: [{ stacked: true }],
-                yAxes: [{ stacked: true }]
+            options: {
+                legend: { display: true },
+                title: {
+                    display: true,
+                    text: "Monthly Events Overview"
+                },
+                scales: {
+                    xAxes: [{ stacked: true }],
+                    yAxes: [{ stacked: true }]
+                }
             }
-        }
-    });
-    </script>
-    <script>
-        var xValues = ["Completed", "Upcoming", "Cancelled"];
-        var yValues = [
-            <?php echo $row["TotalCompletedEvent"] ?>,
-            <?php echo $row["TotalUpcomingEvent"] ?>,
-            <?php echo $row["TotalCancelledEvent"] ?>
+        });
+
+        var pieXValues = ["Completed", "Upcoming", "Cancelled"];
+        var pieYValues = [
+            <?php echo $totalData["TotalCompletedEvent"] ?>,
+            <?php echo $totalData["TotalUpcomingEvent"] ?>,
+            <?php echo $totalData["TotalCancelledEvent"] ?>
         ];
-        var barColors = [
-        "#2b5797",
-        "#e8c3b9",
-        "#1e7145"
-        ];
+        var pieColors = ["#2b5797", "#e8c3b9", "#1e7145"];
 
         new Chart("pieChart", {
-        type: "doughnut",
-        data: {
-            labels: xValues,
-            datasets: [{
-                backgroundColor: barColors,
-                data: yValues
-            }]
-        },
-        options: {
-            title: {
-                display: true,
-                text: "Last 30 days performance"
+            type: "doughnut",
+            data: {
+                labels: pieXValues,
+                datasets: [{
+                    backgroundColor: pieColors,
+                    data: pieYValues
+                }]
+            },
+            options: {
+                title: {
+                    display: true,
+                    text: "Last 30 Days Performance"
+                }
             }
-        }
-    });
+        });
     </script>
 </html>

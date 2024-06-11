@@ -94,21 +94,19 @@
 
         
         <!-- Profile image with dropdown -->
-        <div class="profile-image" onclick="toggleDropdown()">
-            <div style="display: flex;">
-                <!-- fetch profile image -->
-                <?php if (!empty($row['OrgImage'])) : ?>
+        <div class="profile-image" onclick="toggleDropdown()"  style="display: flex; gap: 3%; align-items: center">
+            <!-- fetch profile image -->
+            <?php if (!empty($row['OrgImage'])) : ?>
                     <!-- Convert BLOB data to base64 and embed it directly in the src attribute -->
-                    <img src="data:image/<?php echo pathinfo($row['OrgImage'], PATHINFO_EXTENSION); ?>;base64,<?php echo base64_encode($row['OrgImage']); ?>" class="dpicn" alt="dp" style="height: 40px;width: 40px;border-radius: 50%;">
-                <?php else : ?>
-                    <img src="../../Assets/Image/H20 Harmony Logo.png" class="dpicn" alt="dp" style="height: 40px;width: 40px;border-radius: 50%;">
-                <?php endif; ?>
-                <p style = "font-weight: 900"><?php echo $row['OrgName'] == null ? "New User" : $row['OrgName'] ?></p>
-                <i class="fa-solid fa-chevron-down" style="font-size:large; padding: 10%"></i>
-                <div class="profile-dropdown" id="profileDropdown">
-                    <a href="Org Company Profile.php">Profile</a>
-                    <a href="#" onClick="logout()">Logout</a>
-                </div>
+                <img src="data:image/<?php echo pathinfo($row['OrgImage'], PATHINFO_EXTENSION); ?>;base64,<?php echo base64_encode($row['OrgImage']); ?>" class="dpicn" alt="dp" style="height: 40px; width: 50px;border-radius: 50%;">
+            <?php else : ?>
+                <img src="../../Assets/Image/H20 Harmony Logo.png" class="dpicn" alt="dp" style="height: 40px; width: 40px; border-radius: 50%;">
+            <?php endif; ?>
+            <p style = "font-weight: 900"><?php echo $row['OrgName'] == null ? "New User" : $row['OrgName'] ?></p>
+            <i class="fa-solid fa-chevron-down" style="font-size:large; padding: 10%"></i>
+            <div class="profile-dropdown" id="profileDropdown">
+                <a href="Org Company Profile.php">Profile</a>
+                <a href="#" onClick="logout()">Logout</a>
             </div>
         </div>
 

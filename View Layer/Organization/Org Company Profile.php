@@ -8,27 +8,7 @@
 
     $loggedUserEmail = $_SESSION["LoggedUserEmail"];
 
-    require("../../Database Layer/db_connection.php");
-
-    // Sanitize $loggedUserEmail to prevent SQL injection
-    $loggedUserEmail = $con->real_escape_string($loggedUserEmail);
-
-    $sql = "SELECT * FROM organization WHERE OrgEmail = '$loggedUserEmail'";
-
-    $result = $con->query($sql);
-
-    // Check if the query returned any results
-    if ($result && $result->num_rows > 0) {
-        $row = $result->fetch_assoc();
-        $orgId = $row['OrgId'];
-        $orgName = $row['OrgName']; 
-        $orgEmail = $row['OrgEmail'];
-        $orgType = $row['OrgType'];
-        $orgImage = $row['OrgImage'];
-        $orgContact = $row['OrgContact'];
-    } else {
-        echo "No organizations found.";
-    }
+    
 ?>
 
 <!DOCTYPE html>
@@ -223,11 +203,33 @@
             <!-- Content here -->
             <div class="container">
                 <div class="container-circle"> 
+                    <?php 
+                        require("../../Database Layer/db_connection.php");
+
+                        // Sanitize $loggedUserEmail to prevent SQL injection
+                        $loggedUserEmail = $con->real_escape_string($loggedUserEmail);
+                    
+                        $sql = "SELECT * FROM organization WHERE OrgEmail = '$loggedUserEmail'";
+                    
+                        $result = $con->query($sql);
+                    
+                        // Check if the query returned any results
+                        if ($result && $result->num_rows === 1) {
+                            $row = $result->fetch_assoc();
+                            $orgId = $row['OrgId'];
+                            $orgName = $row['OrgName']; 
+                            $orgEmail = $row['OrgEmail'];
+                            $orgType = $row['OrgType'];
+                            $orgImage = $row['OrgImage'];
+                            $orgContact = $row['OrgContact'];
+                        
+                    ?>
                     <?php if (!empty($row['OrgImage'])) : ?>
                         <img src="data:image/<?php echo pathinfo($row['OrgImage'], PATHINFO_EXTENSION); ?>;base64,<?php echo base64_encode($row['OrgImage']); ?>" alt="Profile Picture" class="profile-picture"> 
                     <?php else : ?>
                         <img src="../../Assets/Image/H20 Harmony Logo.png" alt="Profile Picture" class="profile-picture">
                     <?php endif; ?>
+                    <?php } ?>
                 </div>
             </div>
             <div style="display: flex;">
@@ -249,17 +251,7 @@
                     </div>
                 </div>
                 <div class="container-2" style="top: 66%; left: 50%; width: 40%; height: 261px; ">
-                    <div class="text" style="color: #171A1FFF; font-weight: 600;">Overall Rating</div>
-                    <div style="display: flex;">
-                        <div class="text" style="color: #171A1FFF; font-weight: 600;">4.8/5</div>
-                        <div style="width:20%;"></div>
-                        <i class="fa-solid fa-star" style="font-size:x-large; color:yellow"></i>
-                        <i class="fa-solid fa-star" style="font-size:x-large; color:yellow"></i>
-                        <i class="fa-solid fa-star" style="font-size:x-large; color:yellow"></i>
-                        <i class="fa-solid fa-star" style="font-size:x-large; color:yellow"></i>
-                        <i class="fa-regular fa-star-half-stroke" style="font-size:x-large; color:yellow"></i>
-                    </div>
-                    <div style="height: 25%;"></div>
+                    <div style="height: 15%;"></div>
                     <button class="button-1" onClick="window.location.href='./Org Edit Profile.php?org=<?php echo $row['OrgId']; ?>'"
                      onmouseover="this.style.background='#00bcd4'; 
                      this.style.color = '#ffffff'" onmouseleave="this.style.color='#00bcd4'; 

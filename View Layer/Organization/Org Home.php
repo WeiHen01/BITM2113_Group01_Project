@@ -358,22 +358,23 @@
                     <div class="container" style="width: 25%; margin: 2%">
                         <div style="display: flex;">
                             <div class="text"><?php echo $row['Name']; ?></div> 
-                            <div class="group" onclick="showPopup('<?php echo $row['EventId']; ?>', '<?php echo $row['Name']; ?>', '<?php echo addslashes($row['Description']); ?>', '<?php echo $row['Location']; ?>')" style="margin-left: 50px; margin-top:4%; cursor: pointer; display: flex; "> 
-                                <i class="fa-solid fa-pencil" style="font-size:x-large;" id="editEventBtn"></i>                                </div>
+                            <div class="group" onclick="showPopup('<?php echo $row['EventId']; ?>', '<?php echo $row['Name']; ?>', '<?php echo addslashes($row['Description']); ?>', '<?php echo $row['Location']; ?>', '<?php echo addslashes($row['Category']); ?>', '<?php echo addslashes($row['DateTime']); ?>')" style="margin-left: 50px; margin-top:4%; cursor: pointer; display: flex; "> 
+                                <i class="fa-solid fa-pencil" style="font-size:25px;" id="editEventBtn"></i>                              
                             </div>
-                            <img src="../../Assets/Image/event_details.jpg" style="width: 100%; height: 30%; border-radius: 5%;" alt="Event Image">
-                            <div class="sub-container" style="padding: 7%">
-                                <div class="sub-container-text" ><?php echo $row['Description']; ?></div>
-                            </div>
-                            <div class="sub-container" style="padding: 7%">
-                                <div class="sub-container-text"><?php echo $row['Location']; ?></div>
-                            </div>
-                            <button class="button-1" onClick="window.location.href='Org Event Detail.php?event=<?php echo $row['EventId']; ?>'"
-                                onmouseover="this.style.background='#00bcd4'; 
-                                this.style.color = '#ffffff'" onmouseleave="this.style.color='#00bcd4'; 
-                                this.style.background = 'transparent'">More
-                            </button>
                         </div>
+                        <img src="../../Assets/Image/event_details.jpg" style="width: 100%; height: 30%; border-radius: 5%;" alt="Event Image">
+                        <div class="sub-container" style="padding: 7%">
+                            <div class="sub-container-text" ><?php echo $row['Description']; ?></div>
+                        </div>
+                        <div class="sub-container" style="padding: 7%">
+                            <div class="sub-container-text"><?php echo $row['Location']; ?></div>
+                        </div>
+                        <button class="button-1" onClick="window.location.href='Org Event Detail.php?event=<?php echo $row['EventId']; ?>'"
+                            onmouseover="this.style.background='#00bcd4'; 
+                            this.style.color = '#ffffff'" onmouseleave="this.style.color='#00bcd4'; 
+                            this.style.background = 'transparent'">More
+                        </button>
+                    </div>
                 <?php
                     }
                 } else {
@@ -458,7 +459,7 @@
                     <input type="text" id="EventLocation" name="newEventLocation" placeholder="Location" style="width: 100%; margin-bottom: 10px; padding: 10px; font-family: Inter; font-size: 16px; line-height: 24px; border: 1px solid #9095A0; border-radius: 4px;">
                     
                     Select date and time: 
-                    <input type="datetime-local" />
+                    <input type="datetime-local" id = "DateTime"/>
 
                     <!-- Participation Quota -->
                     <div style="display: flex;">
@@ -477,12 +478,16 @@
     </body>
 
     <script>
-        function showPopup(eventId, eventName, eventDescription, eventLocation) {
+        function showPopup(eventId, eventName, eventDescription, eventLocation, eventCategory, eventDateTime) {
             
             document.getElementById("editEventPopup").style.display = "block";
             document.getElementById("overlay").style.display = "block";
             
-           
+            document.getElementById("EventName").value = eventName;
+            document.getElementById("EventDescription").value = eventDescription;
+            document.getElementById("EventLocation").value = eventLocation;
+            document.getElementById("EventCategory").value =eventCategory;
+            document.getElementById("DateTime").value = eventDateTime;
             
         }
 
