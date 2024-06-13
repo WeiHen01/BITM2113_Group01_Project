@@ -126,8 +126,8 @@
                     
                         // SQL query to select upcoming event nearest from today
                         
-                        $sql = "SELECT * FROM `event` WHERE EventId IN (
-                            SELECT EventId FROM participation WHERE UserId = '$user_id'
+                        $sql = "SELECT * FROM event WHERE EventId IN (
+                            SELECT EventId FROM participation WHERE UserId = '$user_id' AND ParticipationStatus LIKE 'Joined'
                         ) AND DateTime >= CURDATE() ORDER BY DATEDIFF(`DateTime`, CURDATE()) LIMIT 1";
                     
                         $result = $con->query($sql);
