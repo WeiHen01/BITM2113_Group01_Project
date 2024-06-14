@@ -582,7 +582,7 @@
     <head>
 
         <!-- Title of the tab -->
-        <title>Org | Calendar</title>
+        <title>Organization | Calendar</title>
         <!-- FavIcon on the browser tab-->
         <link rel="icon" type="image/x-icon" href="../../Assets/Image/H20 Harmony Logo.png">
 

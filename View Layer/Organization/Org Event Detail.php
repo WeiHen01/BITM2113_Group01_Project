@@ -270,19 +270,18 @@
 
             <div class = "body-content">
                 <?php    
-                        require("../../Database Layer/db_connection.php");
-                        //validation 
-                        $sqlCheck = "SELECT * FROM event WHERE EventId = $eventID";
+                    require("../../Database Layer/db_connection.php");
+                    //validation 
+                    $sqlCheck = "SELECT * FROM event WHERE EventId = $eventID";
 
-                        $resultCheck = mysqli_query($con, $sqlCheck);
+                    $resultCheck = mysqli_query($con, $sqlCheck);
 
-                        if(mysqli_num_rows($resultCheck) === 1){
-                            $row = mysqli_fetch_assoc($resultCheck);
+                    if(mysqli_num_rows($resultCheck) === 1){
+                        $row = mysqli_fetch_assoc($resultCheck);
 
-                            $orgId = $row["OrgId"];
+                        $orgId = $row["OrgId"];
 
                         $_SESSION["Organization"] = $orgId;
-
                                 
                     }
                 ?>

@@ -228,10 +228,11 @@
             position: fixed; 
             display: none; /* Hidden by default */
             position: absolute; 
-            top: 15%; 
+            overflow-y: auto;
+            top: 8%; 
             left: 250px; 
             width: 70%; 
-            height: 85vh; 
+            height: 90vh; 
             background: #DEE1E6FF; /* neutral-300 */
             border-radius: 15px; /* border-xl */
             box-shadow: 0px 17px 35px #171a1f, 0px 0px 2px #171a1f; /* shadow-xl */
@@ -336,7 +337,7 @@
                 <div style="width: 65%;"></div>
                 <div class="group" onclick="showAddEventPopUP()"> 
                     
-                    <button class="button-add" onclick="showAddNewEvent()" style="margin: 15px; cursor: pointer; display: flex; gap: 2%">
+                    <button class="button-add" onclick="showAddNewEvent()" style="margin: 15px; cursor: pointer; display: flex; gap: 2%; font-family: 'Epilogue'; ">
                         <i class="fa-solid fa-plus"></i> Add New Event
                     </button>
                 </div>
@@ -358,7 +359,7 @@
                     <div class="container" style="width: 25%; margin: 2%">
                         <div style="display: flex;">
                             <div class="text"><?php echo $row['Name']; ?></div> 
-                            <div class="group" onclick="showPopup('<?php echo $row['EventId']; ?>', '<?php echo $row['Name']; ?>', '<?php echo addslashes($row['Description']); ?>', '<?php echo $row['Location']; ?>', '<?php echo addslashes($row['Category']); ?>', '<?php echo addslashes($row['DateTime']); ?>')" style="margin-left: 50px; margin-top:4%; cursor: pointer; display: flex; "> 
+                            <div class="group" onclick="showPopup('<?php echo $row['EventId']; ?>', '<?php echo $row['Name']; ?>', '<?php echo addslashes($row['Description']); ?>', '<?php echo $row['Location']; ?>', '<?php echo addslashes($row['Category']); ?>', '<?php echo addslashes($row['DateTime']); ?>', '<?php echo addslashes($row['Status']); ?>', )" style="margin-left: 50px; margin-top:4%; cursor: pointer; display: flex; "> 
                                 <i class="fa-solid fa-pencil" style="font-size:25px;" id="editEventBtn"></i>                              
                             </div>
                         </div>
@@ -372,7 +373,7 @@
                         <button class="button-1" onClick="window.location.href='Org Event Detail.php?event=<?php echo $row['EventId']; ?>'"
                             onmouseover="this.style.background='#00bcd4'; 
                             this.style.color = '#ffffff'" onmouseleave="this.style.color='#00bcd4'; 
-                            this.style.background = 'transparent'">More
+                            this.style.background = 'transparent'" name = "edit-event">More
                         </button>
                     </div>
                 <?php
@@ -411,7 +412,7 @@
                             Select date and time: 
                             <input name="dateTime" type="datetime-local"/>
                             <!-- Button to submit event --> 
-                            <button class="popup-button" onclick="submitNewEvent()" style="width: 100%; padding: 10px; background-color: #2979FF; color: white; font-family: 'Epilogue'; font-size: 16px; line-height: 24px; border: none; border-radius: 4px;">Add New Event</button></div>
+                            <button class="popup-button" name = "submit-event" onclick="submitNewEvent()" style="width: 100%; padding: 10px; background-color: #2979FF; color: white; font-family: 'Epilogue'; font-size: 16px; line-height: 24px; border: none; border-radius: 4px;">Add New Event</button></div>
                         </form>
                         <div style="padding: 20px; border-radius: 8px; width: 40%;">
                             <div style = "justify-content: end; width: 100%;">
@@ -443,30 +444,44 @@
                         <h2>Edit Event</h2>
                         <i class="fa-solid fa-xmark" onclick="hidePopup()" style="font-size: xx-large; cursor: pointer" onmouseover="this.style.color='#fff000'" onmouseleave="this.style.color='#000000'"></i>
                     </div>
-                    <!-- Event Title -->
-                    <h3 style="font-weight:300">To update or delete your event organization, please fill out the forms below. We appreciate your cooperation!</h3>
                     
-                    <!-- Event Name -->
-                    <input type="text" id="EventName" name="newEventName" placeholder="Event Name" style="width: 100%; margin-bottom: 10px; padding: 10px; font-family: 'Epilogue'; font-size: 16px; line-height: 24px; border: 1px solid #9095A0; border-radius: 4px;">
+                    <form method="POST" action="../../Controller Layer/Organization/Organization Event Process.php">
+                        <!-- Event Title -->
+                        <h3 style="font-weight:300">To update or delete your event organization, please fill out the forms below. We appreciate your cooperation!</h3>
 
-                    <!-- Event Description -->
-                    <textarea id="EventDescription" name="newEventDescription" placeholder="Description" rows="4" style="width: 100%; margin-bottom: 10px; padding: 10px; font-family: 'Epilogue'; font-size: 16px; line-height: 24px; border: 1px solid #9095A0; border-radius: 4px;"></textarea>
-                    
-                    <!-- Event Category -->
-                    <input type="text" id="EventCategory" name="newEventCategory" placeholder="Category" style="width: 100%; margin-bottom: 10px; padding: 10px; font-family: Inter; font-size: 16px; line-height: 24px; border: 1px solid #9095A0; border-radius: 4px;">
-                    
-                    <!-- Event Category -->
-                    <input type="text" id="EventLocation" name="newEventLocation" placeholder="Location" style="width: 100%; margin-bottom: 10px; padding: 10px; font-family: Inter; font-size: 16px; line-height: 24px; border: 1px solid #9095A0; border-radius: 4px;">
-                    
-                    Select date and time: 
-                    <input type="datetime-local" id = "DateTime"/>
+                        <input type = "hidden" id = "eventID" name = "eventID">
+                        
+                        Name: <!-- Event Name -->
+                        <input type="text" id="EventName" name="newEventName" placeholder="Event Name" style="width: 100%; margin-bottom: 10px; padding: 10px; font-family: 'Epilogue'; font-size: 16px; line-height: 24px; border: 1px solid #9095A0; border-radius: 4px;">
 
-                    <!-- Participation Quota -->
-                    <div style="display: flex;">
-                        <button class="popup-button" onclick="submitNewEvent()" style="width: 30%; background-color: #2979FF; color: white; font-family: 'Epilogue'; font-size: 16px; border-radius: 4px;">Update Event</button>
-                        <div style="padding: 30%;"></div>
-                        <button class="popup-button" onclick="submitNewEvent()" style="width: 30%; background-color: #2979FF; color: white; font-family: 'Epilogue'; font-size: 16px; border-radius: 4px;">Delete Event</button>   
-                    </div>
+                        Description: <!-- Event Description -->
+                        <textarea id="EventDescription" name="newEventDescription" placeholder="Description" rows="4" style="width: 100%; margin-bottom: 10px; padding: 10px; font-family: 'Epilogue'; font-size: 16px; line-height: 24px; border: 1px solid #9095A0; border-radius: 4px;"></textarea>
+                        
+                        Category: <!-- Event Category -->
+                        <input type="text" id="EventCategory" name="newEventCategory" placeholder="Category" style="width: 100%; margin-bottom: 10px; padding: 10px; font-family: 'Epilogue'; font-size: 16px; line-height: 24px; border: 1px solid #9095A0; border-radius: 4px;">
+                        
+                        Location: <!-- Event Category -->
+                        <input type="text" id="EventLocation" name="newEventLocation" placeholder="Location" style="width: 100%; margin-bottom: 10px; padding: 10px; font-family: 'Epilogue'; font-size: 16px; line-height: 24px; border: 1px solid #9095A0; border-radius: 4px;">
+                        
+                        Select date and time: 
+                        <input type="datetime-local" id = "DateTime" name = "DateTime" style="width: 100%; margin-bottom: 10px; padding: 10px; font-family: 'Epilogue'; font-size: 16px; line-height: 24px; border: 1px solid #9095A0; border-radius: 4px;">
+                        
+                        Status: <!-- Event Category -->
+                        <select name="EventStatus" id="EventStatus" style="width: 100%; margin-bottom: 10px; padding: 10px; font-family: 'Epilogue'; font-size: 16px; line-height: 24px; border: 1px solid #9095A0; border-radius: 4px;">
+                            <option value="Upcoming"> Upcoming</option>
+                            <option value="Cancelled"> Cancelled</option>
+                            <option value="Completed"> Completed</option>
+                            <option value="Postponed"> Postponed</option>
+                        </select>
+
+                        <!-- Participation Quota -->
+                        <div style="display: flex;">
+                            <button type = "submit" name = "update-event" class="popup-button" onclick="submitNewEvent()" style="width: 30%; background-color: #2979FF; color: white; font-family: 'Epilogue'; font-size: 16px; border-radius: 4px;">Update Event</button>
+                            <div style="padding: 30%;"></div>
+                            <button type = "submit" name = "delete-event" class="popup-button" onclick="submitNewEvent()" style="width: 30%; background-color: #2979FF; color: white; font-family: 'Epilogue'; font-size: 16px; border-radius: 4px;">Delete Event</button>   
+                        </div>
+                    </form>
+
                     
                 </div>
             </div>
@@ -478,7 +493,7 @@
     </body>
 
     <script>
-        function showPopup(eventId, eventName, eventDescription, eventLocation, eventCategory, eventDateTime) {
+        function showPopup(eventId, eventName, eventDescription, eventLocation, eventCategory, eventDateTime, eventStatus) {
             
             document.getElementById("editEventPopup").style.display = "block";
             document.getElementById("overlay").style.display = "block";
@@ -488,6 +503,8 @@
             document.getElementById("EventLocation").value = eventLocation;
             document.getElementById("EventCategory").value =eventCategory;
             document.getElementById("DateTime").value = eventDateTime;
+            document.getElementById("EventStatus").value = eventStatus;
+            document.getElementById("eventID").value = eventId;
             
         }
 

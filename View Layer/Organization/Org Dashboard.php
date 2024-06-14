@@ -91,7 +91,7 @@
     <head>
 
         <!-- Title of the tab -->
-        <title>Org | Dashboard</title>
+        <title>Organization | Dashboard</title>
         <!-- FavIcon on the browser tab-->
         <link rel="icon" type="image/x-icon" href="../../Assets/Image/H20 Harmony Logo.png">
 

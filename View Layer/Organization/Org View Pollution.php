@@ -155,7 +155,7 @@
     <head>
 
         <!-- Title of the tab -->
-        <title>Org | Dashboard</title>
+        <title>Organization | View Pollution</title>
         <!-- FavIcon on the browser tab-->
         <link rel="icon" type="image/x-icon" href="../../Assets/Image/H20 Harmony Logo.png">
 
@@ -251,7 +251,7 @@
                     if (mysqli_num_rows($result) > 0) {
                         while ($row = mysqli_fetch_assoc($result)) {
                 ?>
-                <div class="container-5" style="padding-top: 2%; padding-bottom: 2%">
+                <div class="container-5" style="padding-top: 2%; padding-bottom: 2%; cursor: pointer"  onClick="window.location.href='Org Complaint Detail.php?complaint=<?php echo $row['ComplainId']; ?>'">
                     <div class="text-1" style="padding-left: 3%;">Complaint <?php echo $complaintCount; ?></div>
                     <div class="text-1" style="padding-left: 3%;"><?php echo $row['Title']; ?></div>
                     <div class="text-2" style="padding-left: 3%;"><?php echo $row['Description']; ?></div>
