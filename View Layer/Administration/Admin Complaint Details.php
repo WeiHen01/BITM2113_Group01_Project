@@ -60,9 +60,9 @@
 
             <div style = "padding-top: 0.5%; padding-left: 2%">
                 <div style = "display: flex; align-items: center; padding-bottom: 1%; gap: 1%">
-                    <a href="#" onclick = "window.history.back();" class="back-link">
+                    <a7 class="back-link">
                         <i class="fa-solid fa-chevron-left"></i>
-                    </a>
+                    </a7>
                     <p class="header-text" style = "font-weight: bold">Complaint Details</p>
                 </div>
 
