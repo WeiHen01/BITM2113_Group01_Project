@@ -28,6 +28,7 @@
         $username = $_POST['Username'];
         $email = $_POST['Email'];
         $phone = $_POST['Contact'];
+        
 
         $id = $_GET['admin'];
 
@@ -37,6 +38,7 @@
 
         if($result == TRUE){
             $_SESSION["Update_Profile"] = "Success";
+            $_SESSION["LoggedUserEmail"] = $email;
 
                // Redirect to login.php with a URL parameter indicating successful login
                header("Location: ../../View Layer/Administration/Admin Account.php");  

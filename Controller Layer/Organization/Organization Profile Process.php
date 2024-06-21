@@ -102,6 +102,7 @@
 
         if ($result == TRUE) {
             $_SESSION["Update_Profile"] = "Success";
+            $_SESSION["LoggedUserEmail"] = $orgEmail;
             header("Location: ../../View Layer/Organization/Org Company Profile.php");
             exit();
         } else {

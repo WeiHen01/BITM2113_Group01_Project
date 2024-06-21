@@ -24,7 +24,7 @@
     $password = "";
 
     // Database name
-    $dbname = "bitm2113_project";
+    $dbname = "student_b032110201";
 
     // Connection mysqli carry all define above variable to phpMyadmin
     // die - php immediately stop the function

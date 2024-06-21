@@ -37,6 +37,7 @@
 
         if($result == TRUE){
             $_SESSION["Update_Profile"] = "Success";
+            $_SESSION["LoggedUserEmail"] = $email;
 
                 // Redirect to login.php with a URL parameter indicating successful login
             header("Location: ../../View Layer/User/User Account.php");     
